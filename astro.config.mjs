@@ -5,8 +5,5 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://www.five-whys.com',
   output: 'static',
-  integrations: [
-    tailwind({ applyBaseStyles: false }),
-    sitemap(),
-  ],
+  integrations: [tailwind({ applyBaseStyles: false }), sitemap()],
 });
