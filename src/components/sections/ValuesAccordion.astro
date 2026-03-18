@@ -21,7 +21,6 @@ const { values } = Astro.props;
         <div class={`value-item${index < values.length - 1 ? ' border-b border-border-theme' : ''}`}>
           <button
             class="value-header w-full flex items-center justify-between p-6 bg-transparent border-none cursor-pointer text-left"
-            onclick="toggleValue(this)"
             aria-expanded={index === 0 ? 'true' : 'false'}
           >
             <div class="flex items-center gap-4">
@@ -46,40 +45,56 @@ const { values } = Astro.props;
 </section>
 
 <script>
-  function toggleValue(button: HTMLButtonElement) {
-    const item = button.closest('.value-item') as HTMLElement;
-    const content = item.querySelector('.value-content') as HTMLElement;
-    const chevron = button.querySelector('.chevron') as SVGElement;
-    const isOpen = button.getAttribute('aria-expanded') === 'true';
+  const accordion = document.querySelector('#values-accordion');
 
-    // Close all
-    document.querySelectorAll('.value-item').forEach((vi) => {
-      const btn = vi.querySelector('.value-header') as HTMLButtonElement;
-      const cnt = vi.querySelector('.value-content') as HTMLElement;
-      const chv = btn.querySelector('.chevron') as SVGElement;
-      btn.setAttribute('aria-expanded', 'false');
-      cnt.style.maxHeight = '0';
-      cnt.style.padding = '0';
-      chv.style.transform = '';
+  if (accordion instanceof HTMLElement) {
+    const items = Array.from(accordion.querySelectorAll('.value-item')) as HTMLElement[];
+
+    const closeAllItems = () => {
+      items.forEach((item) => {
+        const button = item.querySelector('.value-header') as HTMLButtonElement | null;
+        const content = item.querySelector('.value-content') as HTMLElement | null;
+        const chevron = item.querySelector('.chevron') as SVGElement | null;
+
+        if (!button || !content) return;
+
+        button.setAttribute('aria-expanded', 'false');
+        content.style.maxHeight = '0px';
+        content.style.paddingTop = '0px';
+        content.style.paddingBottom = '0px';
+        if (chevron) chevron.style.transform = 'rotate(0deg)';
+      });
+    };
+
+    const openItem = (item: HTMLElement) => {
+      const button = item.querySelector('.value-header') as HTMLButtonElement | null;
+      const content = item.querySelector('.value-content') as HTMLElement | null;
+      const chevron = item.querySelector('.chevron') as SVGElement | null;
+
+      if (!button || !content) return;
+
+      button.setAttribute('aria-expanded', 'true');
+      content.style.paddingTop = '0px';
+      content.style.paddingBottom = '24px';
+      content.style.maxHeight = content.scrollHeight + 'px';
+      if (chevron) chevron.style.transform = 'rotate(180deg)';
+    };
+
+    items.forEach((item) => {
+      const button = item.querySelector('.value-header') as HTMLButtonElement | null;
+      if (!button) return;
+
+      button.addEventListener('click', () => {
+        const isOpen = button.getAttribute('aria-expanded') === 'true';
+        closeAllItems();
+        if (!isOpen) openItem(item);
+      });
     });
 
-    if (!isOpen) {
-      button.setAttribute('aria-expanded', 'true');
-      content.style.maxHeight = content.scrollHeight + 'px';
-      content.style.padding = '';
-      chevron.style.transform = 'rotate(180deg)';
-    }
-  }
-
-  // Open first item by default
-  const firstBtn = document.querySelector('.value-header') as HTMLButtonElement;
-  if (firstBtn) {
-    const firstContent = firstBtn.closest('.value-item')?.querySelector('.value-content') as HTMLElement;
-    const firstChevron = firstBtn.querySelector('.chevron') as SVGElement;
-    if (firstContent) {
-      firstBtn.setAttribute('aria-expanded', 'true');
-      firstContent.style.maxHeight = firstContent.scrollHeight + 'px';
-      if (firstChevron) firstChevron.style.transform = 'rotate(180deg)';
+    const firstItem = items[0];
+    if (firstItem) {
+      closeAllItems();
+      openItem(firstItem);
     }
   }
 </script>
