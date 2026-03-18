@@ -1,0 +1,100 @@
+---
+interface Props {
+  label?: string;
+  title: string;
+  body: string;
+  accent?: boolean;
+  iconSVG?: string;
+}
+
+const { label, title, body, accent = false, iconSVG } = Astro.props;
+---
+
+<div class="shift-card">
+  {iconSVG ? (
+    <div class="flex items-center gap-3 mb-3">
+      <div class="w-7 h-7 text-accent shrink-0 [&_svg]:w-full [&_svg]:h-full" set:html={iconSVG} />
+      <h4 class="text-base font-bold text-text-primary m-0">{title}</h4>
+    </div>
+  ) : (
+    <>
+      {label && (
+        <div class={`shift-card-label ${accent ? 'shift-card-label--accent' : 'shift-card-label--muted'}`}>
+          {label}
+        </div>
+      )}
+      <h4 class="shift-card-title">{title}</h4>
+    </>
+  )}
+  <p class="shift-card-body">{body}</p>
+</div>
+
+<style>
+  .shift-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-tertiary);
+    padding: 1.75rem 1.5rem;
+    height: 100%; /* stretch to fill grid row — ensures equal height */
+    box-sizing: border-box;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  /* gold top-edge line */
+  .shift-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,192,0,0.65), transparent);
+  }
+  /* radial glow from top */
+  .shift-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 130% 55% at 50% 0%, rgba(255,192,0,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .shift-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255,192,0,0.28);
+    box-shadow: 0 16px 36px rgba(255,192,0,0.06);
+  }
+  .shift-card > * { position: relative; z-index: 1; }
+
+  /* Label pill badge */
+  .shift-card-label {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.625rem;
+    border-radius: 100px;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.875rem;
+  }
+  .shift-card-label--accent {
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+  }
+  .shift-card-label--muted {
+    background: rgba(255,255,255,0.06);
+    color: var(--color-text-muted);
+    border: 1px solid rgba(255,255,255,0.09);
+  }
+  .shift-card-title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0 0 0.625rem;
+  }
+  .shift-card-body {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>

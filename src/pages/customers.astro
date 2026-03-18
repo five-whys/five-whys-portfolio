@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/sections/PageHero.astro';
+import ResultsGrid from '../components/sections/ResultsGrid.astro';
+import SuccessStoryCard from '../components/cards/SuccessStoryCard.astro';
+import { ArrowRight } from 'lucide-astro';
+import { successStories, results, featuredCustomer, featuredTestimonial } from '../data/customers';
+---
+
+<BaseLayout
+  title="Customer Success Stories - GLUCOSE AI Results | 5.Y"
+  description="See how industry leaders use GLUCOSE AI for autonomous customer engagement. Real results from automotive, healthcare, and retail companies."
+  keywords="GLUCOSE customers, AI customer success stories, enterprise AI case studies, customer engagement results, AI implementation success"
+  canonicalUrl="https://www.five-whys.com/customers"
+  ogTitle="Customer Success Stories | 5.Y"
+  ogDescription="See how industry leaders use GLUCOSE AI for autonomous customer engagement."
+  ogImage="https://www.five-whys.com/Images/og-image.png"
+  twitterTitle="Customer Success Stories | 5.Y"
+  twitterDescription="Real results from GLUCOSE AI implementations."
+  activeNav="customers"
+>
+  <!-- Hero -->
+  <PageHero
+    heading="Our Customers"
+    subtext="5.Y is trusted by industry leaders delivering autonomous customer experiences across healthcare, mobility, and logistics."
+  />
+
+  <!-- Featured Customer - IHH Healthcare -->
+  <section style="max-width: 1200px; margin: 0 auto 4rem; padding: 0 2rem;">
+    <a href={featuredCustomer.href} style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 0; background: var(--color-bg-tertiary); border-radius: 20px; overflow: hidden; border: 1px solid var(--color-border); transition: all 0.3s cubic-bezier(0.4,0,0.2,1); text-decoration: none; color: inherit;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 60px rgba(0,0,0,0.2)';this.style.borderColor='var(--color-accent)'" onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--color-border)'">
+      <div style="position: relative; min-height: 400px; background: linear-gradient(135deg,#1a1a2e 0%,#16213e 100%); overflow: hidden;">
+        <img src={featuredCustomer.imageSrc} alt={featuredCustomer.imageAlt} style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;" />
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; background: linear-gradient(transparent,rgba(0,0,0,0.8));">
+          <img src={featuredCustomer.logoSrc} alt={featuredCustomer.logoAlt} style="height: 40px; width: auto;" />
+        </div>
+      </div>
+      <div style="padding: 3rem; display: flex; flex-direction: column; justify-content: center;">
+        <div style="display: flex; gap: 2rem; margin-bottom: 2rem;">
+          {featuredCustomer.metrics.map((m) => (
+            <div>
+              <div style="font-size: 0.75rem; font-weight: 500; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem;">{m.label}</div>
+              <div style="font-size: 2rem; font-weight: 700; color: var(--color-accent);">{m.value}</div>
+            </div>
+          ))}
+        </div>
+        <h2 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; color: var(--color-text-primary); margin-bottom: 1rem; line-height: 1.3;">{featuredCustomer.heading}</h2>
+        <p style="color: var(--color-text-secondary); font-size: 0.9375rem; line-height: 1.6; margin-bottom: 1.5rem;">{featuredCustomer.body}</p>
+        <span style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--color-accent); font-size: 0.875rem; font-weight: 500;">
+          Read the story
+          <ArrowRight size={16} />
+        </span>
+      </div>
+    </a>
+  </section>
+
+  <!-- Customer Grid - ResultsGrid component -->
+  <ResultsGrid results={results} />
+
+  <!-- Success Stories -->
+  <section style="background: var(--color-bg-secondary); padding: 4rem 2rem;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 style="font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -0.02em; margin-bottom: 2.5rem;">Success Stories</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+        {successStories.map((story) => <SuccessStoryCard {...story} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section style="padding: 4rem 2rem; background: var(--color-bg-primary);">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <div style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: 20px; padding: 3rem; text-align: center;">
+        <img src={featuredTestimonial.logoSrc} alt={featuredTestimonial.logoAlt} style="height: 36px; width: auto; margin: 0 auto 2rem;" />
+        <blockquote style="font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 400; color: var(--color-text-primary); line-height: 1.6; letter-spacing: -0.01em; margin-bottom: 2rem;">"{featuredTestimonial.quote}"</blockquote>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem;">
+          <img src={featuredTestimonial.avatarSrc} alt={featuredTestimonial.avatarAlt} style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;" />
+          <div style="text-align: left;">
+            <div style="font-weight: 600; color: var(--color-text-primary); font-size: 0.9375rem;">{featuredTestimonial.name}</div>
+            <div style="color: var(--color-text-secondary); font-size: 0.875rem;">{featuredTestimonial.role}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background: var(--color-bg-secondary); border-top: 1px solid var(--color-border); padding: 5rem 2rem; text-align: center;" id="demo">
+    <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; letter-spacing: -0.02em; margin-bottom: 1rem;">See what GLUCOSE can do for you</h2>
+    <p style="color: var(--color-text-secondary); font-size: 1.125rem; max-width: 600px; margin: 0 auto 2rem;">Discover how GLUCOSE can help your enterprise run autonomous brand experiences that reach every customer, in every moment that matters.</p>
+    <a href="/contact" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.875rem 1.75rem; font-family: var(--font-primary); font-size: 0.9375rem; font-weight: 500; text-decoration: none; border-radius: 100px; background: var(--color-accent); color: var(--color-bg-primary); transition: all 0.3s cubic-bezier(0.4,0,0.2,1);">Request Demo</a>
+  </section>
+</BaseLayout>

@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { industryOptions, demoFeatures, formConfig } from '../data/contact';
+---
+
+<BaseLayout
+  title="Contact Us | 5.Y"
+  description="Get in touch with the 5.Y team. Request a demo of GLUCOSE AI Experience Agents for your enterprise."
+  keywords="contact 5.Y, request demo GLUCOSE, enterprise AI demo, AI customer engagement demo"
+  canonicalUrl="https://www.five-whys.com/contact"
+  activeNav=""
+>
+
+  <!-- Main Content -->
+  <main class="demo-page">
+    <div class="demo-content">
+      <!-- Left Column - Info -->
+      <div class="demo-info">
+        <h1>5.Y helps enterprises build better, more human customer experiences.</h1>
+        <ul class="demo-features">
+          {demoFeatures.map((f) => <li>{f}</li>)}
+        </ul>
+        <div class="trusted-brands">
+          <h4>Trusted by leading brands</h4>
+          <div class="brand-logos">
+            <span style="color: var(--color-text-muted); font-size: 0.875rem;">Enterprise customers across Automotive, Healthcare, Financial Services, and more</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column - Form -->
+      <div class="demo-form-container">
+        <div class="demo-form-wrapper">
+          <h2>Get in Touch</h2>
+          <p class="form-subtitle">Let us know a bit about yourself, and we will reach out soon.</p>
+
+          <form class="demo-form" id="demo-form" action={formConfig.action} method="POST">
+            <input type="hidden" name="_subject" value={formConfig.subject} />
+            <input type="hidden" name="_next" value={formConfig.redirectUrl} />
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="first-name">First name</label>
+                <input type="text" id="first-name" name="first_name" required placeholder="First name" />
+              </div>
+              <div class="form-group">
+                <label for="last-name">Last name</label>
+                <input type="text" id="last-name" name="last_name" required placeholder="Last name" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="job-title">Job title</label>
+              <input type="text" id="job-title" name="job_title" required placeholder="VP of Customer Experience" />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Company email</label>
+              <input type="email" id="email" name="email" required placeholder="Company email" />
+            </div>
+
+            <div class="form-group">
+              <label for="company">Company name</label>
+              <input type="text" id="company" name="company" required placeholder="Company name" />
+            </div>
+
+            <div class="form-group">
+              <label for="industry">Industry</label>
+              <select id="industry" name="industry" required>
+                <option value="" disabled selected>Select your industry</option>
+                {industryOptions.map((opt) => (
+                  <option value={opt}>{opt}</option>
+                ))}
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your project or questions..."></textarea>
+            </div>
+
+            <p class="form-privacy">By clicking submit, you acknowledge your data will be processed according to our <a href="/privacy">Privacy Policy</a>.</p>
+
+            <div class="form-submit">
+              <button type="submit" class="btn btn-accent">Submit</button>
+            </div>
+          </form>
+
+          <!-- Success Message -->
+          <div class="form-success" id="form-success">
+            <div class="form-success-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <h3>Thank you!</h3>
+            <p>We've received your request and will reach out soon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</BaseLayout>
+
+<script>
+  // Form submission handling
+  const form = document.getElementById('demo-form') as HTMLFormElement | null;
+  const formSuccess = document.getElementById('form-success');
+
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+      }
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          form.style.display = 'none';
+          const subtitle = document.querySelector('.form-subtitle') as HTMLElement | null;
+          const heading = document.querySelector('.demo-form-wrapper h2') as HTMLElement | null;
+          if (subtitle) subtitle.style.display = 'none';
+          if (heading) heading.style.display = 'none';
+          if (formSuccess) formSuccess.classList.add('show');
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        alert('There was an error submitting the form. Please try again or email us directly at denis@five-whys.com');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit';
+        }
+      }
+    });
+  }
+</script>

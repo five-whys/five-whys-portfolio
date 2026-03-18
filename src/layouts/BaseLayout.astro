@@ -1,0 +1,110 @@
+---
+import ThemeScript from '../components/ThemeScript.astro';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  keywords?: string;
+  canonicalUrl?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  structuredData?: string;
+  activeNav?: string;
+  transparentNav?: boolean;
+}
+
+const {
+  title,
+  description = '',
+  keywords = '',
+  canonicalUrl = '',
+  ogTitle = title,
+  ogDescription = description,
+  ogImage = 'https://www.five-whys.com/Images/og-image.jpg',
+  twitterTitle = title,
+  twitterDescription = description,
+  structuredData = '',
+  activeNav = '',
+  transparentNav = false,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+  <head>
+    <ThemeScript />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {keywords && <meta name="keywords" content={keywords} />}
+    <meta name="robots" content="index, follow" />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:image" content={ogImage} />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    <meta property="og:site_name" content="5.Y" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={twitterTitle} />
+    <meta name="twitter:description" content={twitterDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Structured Data -->
+    {structuredData && <script type="application/ld+json" set:html={structuredData} />}
+
+    <GoogleAnalytics />
+
+    <link rel="icon" href="/Images/icon.jpg" type="image/jpeg" />
+    <link rel="apple-touch-icon" href="/Images/icon.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poiret+One&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <Navbar activeNav={activeNav} transparent={transparentNav} />
+    <slot />
+    <Footer />
+  </body>
+
+<script>
+  import Lenis from 'lenis'
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  if (!prefersReducedMotion) {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    })
+
+    // Connect Lenis scroll events to ScrollTrigger so scroll-triggered animations stay in sync
+    lenis.on('scroll', ScrollTrigger.update)
+
+    // Drive Lenis from the GSAP ticker — one RAF loop for both
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000)
+    })
+    gsap.ticker.lagSmoothing(0)
+
+    // Expose lenis so anchor links still work
+    ;(window as any).__lenis = lenis
+  }
+</script>
+</html>

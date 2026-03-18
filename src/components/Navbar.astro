@@ -1,0 +1,315 @@
+---
+import { ChevronDown, X, Moon, Sun } from 'lucide-astro';
+
+interface Props {
+  activeNav?: string;
+  transparent?: boolean;
+}
+const { activeNav = '', transparent = false } = Astro.props;
+---
+
+<!-- Demo Modal Overlay -->
+<div class="demo-modal" id="demo-modal">
+  <div class="demo-modal-backdrop" onclick="closeDemoModal()"></div>
+  <div class="demo-modal-content">
+    <button class="demo-modal-close" onclick="closeDemoModal()" aria-label="Close">
+      <X />
+    </button>
+    <iframe id="demo-calendar-iframe" src="" frameborder="0" allowfullscreen allow="camera; microphone; autoplay; encrypted-media"></iframe>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav class={`navbar${transparent ? ' transparent-nav' : ''}`}>
+  <div class="navbar-inner">
+    <a href="/" class="logo">
+      <img src="/Images/logo-dark.png" alt="5.Y" class="logo-img" />
+      <img src="/Images/logo.png" alt="5.Y" class="logo-img-light" />
+    </a>
+    <ul class="nav-links">
+      <li class={activeNav === 'product' ? 'active' : ''}>
+        <a href="/product" class="nav-trigger">Product <ChevronDown size={12} /></a>
+        <div class="nav-dropdown">
+          <a href="/product#glucose" class="nav-dropdown-item">
+            <div class="nav-dropdown-title">GLUCOSE</div>
+            <div class="nav-dropdown-desc">Autonomous AI agents for customer engagement across every touchpoint.</div>
+          </a>
+          <a href="/product#differentiators" class="nav-dropdown-item">
+            <div class="nav-dropdown-title">Benefits</div>
+            <div class="nav-dropdown-desc">What sets GLUCOSE apart from the competition.</div>
+          </a>
+          <a href="/product#platform" class="nav-dropdown-item">
+            <div class="nav-dropdown-title">The Platform</div>
+            <div class="nav-dropdown-desc">No-code framework for building AI Experience Agents.</div>
+          </a>
+          <a href="/product#technology" class="nav-dropdown-item">
+            <div class="nav-dropdown-title">Technology</div>
+            <div class="nav-dropdown-desc">Enterprise-grade AWS-powered infrastructure.</div>
+          </a>
+          <a href="/product#developers" class="nav-dropdown-item">
+            <div class="nav-dropdown-title">Developers</div>
+            <div class="nav-dropdown-desc">Documentation, JDL specification, and CLI tools.</div>
+          </a>
+        </div>
+      </li>
+      <li class={activeNav === 'industries' ? 'active' : ''}>
+        <a href="/industries" class="nav-trigger">Industries <ChevronDown size={12} /></a>
+        <div class="nav-dropdown">
+          <a href="/industries" class="nav-dropdown-item">
+            <div class="nav-dropdown-title">Industries Overview</div>
+            <div class="nav-dropdown-desc">Discover how GLUCOSE transforms customer engagement across sectors.</div>
+          </a>
+          <a href="/industries#automotive" class="nav-dropdown-item">
+            <div class="nav-dropdown-title">Automotive & Mobility</div>
+            <div class="nav-dropdown-desc">Revolutionize the car buying and ownership experience.</div>
+          </a>
+          <a href="/industries#healthcare" class="nav-dropdown-item">
+            <div class="nav-dropdown-title">Healthcare</div>
+            <div class="nav-dropdown-desc">Improve patient outcomes with personalized AI engagement.</div>
+          </a>
+          <a href="/industries#financial" class="nav-dropdown-item">
+            <div class="nav-dropdown-title">Financial Services</div>
+            <div class="nav-dropdown-desc">Build trust and strengthen customer relationships.</div>
+          </a>
+          <a href="/industries#electronics" class="nav-dropdown-item">
+            <div class="nav-dropdown-title">Consumer Appliances</div>
+            <div class="nav-dropdown-desc">Turn unboxing into brand loyalty.</div>
+          </a>
+          <a href="/industries#industrial" class="nav-dropdown-item">
+            <div class="nav-dropdown-title">Industrial</div>
+            <div class="nav-dropdown-desc">Autonomous AI support for industrial equipment and fleets.</div>
+          </a>
+        </div>
+      </li>
+      <li class={activeNav === 'demo' ? 'active' : ''}>
+        <a href="/demo">Demos</a>
+      </li>
+      <li class={activeNav === 'company' ? 'active' : ''}>
+        <a href="/company" class="nav-trigger">Company <ChevronDown size={12} /></a>
+        <div class="nav-dropdown">
+          <a href="/company#about" class="nav-dropdown-item">
+            <div class="nav-dropdown-title">About</div>
+            <div class="nav-dropdown-desc">Learn about our mission to transform customer engagement.</div>
+          </a>
+          <a href="/company#vision" class="nav-dropdown-item">
+            <div class="nav-dropdown-title">Vision</div>
+            <div class="nav-dropdown-desc">The future of AI-powered brand experiences.</div>
+          </a>
+          <a href="/contact" class="nav-dropdown-item">
+            <div class="nav-dropdown-title">Contact Us</div>
+            <div class="nav-dropdown-desc">Get in touch with our team.</div>
+          </a>
+        </div>
+      </li>
+    </ul>
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <Moon class="icon-moon" />
+        <Sun class="icon-sun" />
+      </button>
+      <a href="https://console.five-whys.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Sign in</a>
+      <a href="/contact" class="btn btn-accent">Request Demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+<!-- Mobile Navigation Panel -->
+<nav class="mobile-nav" id="mobileNav">
+  <ul class="mobile-nav-links">
+    <li>
+      <a href="/product" class="mobile-nav-link">Product <ChevronDown size={12} /></a>
+      <div class="mobile-dropdown">
+        <a href="/product#glucose" class="mobile-dropdown-item">
+          <div class="mobile-dropdown-title">GLUCOSE</div>
+          <div class="mobile-dropdown-desc">Autonomous AI agents for customer engagement across every touchpoint.</div>
+        </a>
+        <a href="/product#differentiators" class="mobile-dropdown-item">
+          <div class="mobile-dropdown-title">Benefits</div>
+          <div class="mobile-dropdown-desc">What sets GLUCOSE apart from the competition.</div>
+        </a>
+        <a href="/product#platform" class="mobile-dropdown-item">
+          <div class="mobile-dropdown-title">The Platform</div>
+          <div class="mobile-dropdown-desc">No-code framework for building AI Experience Agents.</div>
+        </a>
+        <a href="/product#technology" class="mobile-dropdown-item">
+          <div class="mobile-dropdown-title">Technology</div>
+          <div class="mobile-dropdown-desc">Enterprise-grade AWS-powered infrastructure.</div>
+        </a>
+        <a href="/product#developers" class="mobile-dropdown-item">
+          <div class="mobile-dropdown-title">Developers</div>
+          <div class="mobile-dropdown-desc">Documentation, JDL specification, and CLI tools.</div>
+        </a>
+      </div>
+    </li>
+    <li>
+      <a href="/industries" class="mobile-nav-link">Industries <ChevronDown size={12} /></a>
+      <div class="mobile-dropdown">
+        <a href="/industries" class="mobile-dropdown-item">
+          <div class="mobile-dropdown-title">Industries Overview</div>
+          <div class="mobile-dropdown-desc">Discover how GLUCOSE transforms customer engagement across sectors.</div>
+        </a>
+        <a href="/industries#automotive" class="mobile-dropdown-item">
+          <div class="mobile-dropdown-title">Automotive & Mobility</div>
+          <div class="mobile-dropdown-desc">Revolutionize the car buying and ownership experience.</div>
+        </a>
+        <a href="/industries#healthcare" class="mobile-dropdown-item">
+          <div class="mobile-dropdown-title">Healthcare</div>
+          <div class="mobile-dropdown-desc">Improve patient outcomes with personalized AI engagement.</div>
+        </a>
+        <a href="/industries#financial" class="mobile-dropdown-item">
+          <div class="mobile-dropdown-title">Financial Services</div>
+          <div class="mobile-dropdown-desc">Build trust and strengthen customer relationships.</div>
+        </a>
+        <a href="/industries#electronics" class="mobile-dropdown-item">
+          <div class="mobile-dropdown-title">Consumer Appliances</div>
+          <div class="mobile-dropdown-desc">Turn unboxing into brand loyalty.</div>
+        </a>
+        <a href="/industries#industrial" class="mobile-dropdown-item">
+          <div class="mobile-dropdown-title">Industrial</div>
+          <div class="mobile-dropdown-desc">Autonomous AI support for industrial equipment and fleets.</div>
+        </a>
+      </div>
+    </li>
+    <li>
+      <a href="/demo" class="mobile-nav-link">Demos</a>
+    </li>
+    <li>
+      <a href="/company" class="mobile-nav-link">Company <ChevronDown size={12} /></a>
+      <div class="mobile-dropdown">
+        <a href="/company#about" class="mobile-dropdown-item">
+          <div class="mobile-dropdown-title">About</div>
+          <div class="mobile-dropdown-desc">Learn about our mission to transform customer engagement.</div>
+        </a>
+        <a href="/company#vision" class="mobile-dropdown-item">
+          <div class="mobile-dropdown-title">Vision</div>
+          <div class="mobile-dropdown-desc">The future of AI-powered brand experiences.</div>
+        </a>
+        <a href="/contact" class="mobile-dropdown-item">
+          <div class="mobile-dropdown-title">Contact Us</div>
+          <div class="mobile-dropdown-desc">Get in touch with our team.</div>
+        </a>
+      </div>
+    </li>
+  </ul>
+  <div class="mobile-nav-actions">
+    <div class="mobile-theme-toggle-row">
+      <span class="mobile-theme-label">Theme</span>
+      <button class="theme-toggle" id="mobile-theme-toggle" aria-label="Toggle theme">
+        <Moon class="icon-moon" />
+        <Sun class="icon-sun" />
+      </button>
+    </div>
+    <a href="https://console.five-whys.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Sign in</a>
+    <a href="/contact" class="btn btn-accent">Request Demo</a>
+  </div>
+</nav>
+
+<script>
+  // Theme toggle
+  const themeToggle = document.getElementById('theme-toggle') as HTMLButtonElement;
+  const mobileThemeToggle = document.getElementById('mobile-theme-toggle') as HTMLButtonElement;
+  const html = document.documentElement;
+
+  function toggleTheme() {
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  }
+
+  themeToggle?.addEventListener('click', toggleTheme);
+  mobileThemeToggle?.addEventListener('click', toggleTheme);
+
+  // Mobile Menu
+  const mobileMenuToggle = document.getElementById('mobileMenuToggle') as HTMLButtonElement;
+  const mobileNav = document.getElementById('mobileNav') as HTMLElement;
+  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay') as HTMLElement;
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+  function openMobileMenu() {
+    mobileMenuToggle?.classList.add('active');
+    mobileNav?.classList.add('active');
+    mobileMenuOverlay?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu() {
+    mobileMenuToggle?.classList.remove('active');
+    mobileNav?.classList.remove('active');
+    mobileMenuOverlay?.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  mobileMenuToggle?.addEventListener('click', () => {
+    if (mobileNav?.classList.contains('active')) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  });
+
+  mobileMenuOverlay?.addEventListener('click', closeMobileMenu);
+
+  mobileNavLinks.forEach(link => {
+    const parentLi = link.parentElement;
+    const dropdown = parentLi?.querySelector('.mobile-dropdown');
+
+    if (dropdown) {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelectorAll('.mobile-nav-links > li.dropdown-open').forEach(openLi => {
+          if (openLi !== parentLi) {
+            openLi.classList.remove('dropdown-open');
+          }
+        });
+        parentLi?.classList.toggle('dropdown-open');
+      });
+    }
+  });
+
+  document.querySelectorAll('.mobile-dropdown-item').forEach(item => {
+    item.addEventListener('click', closeMobileMenu);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileNav?.classList.contains('active')) {
+      closeMobileMenu();
+    }
+  });
+
+  // Demo Modal
+  const demoModal = document.getElementById('demo-modal') as HTMLElement;
+  const demoIframe = document.getElementById('demo-calendar-iframe') as HTMLIFrameElement;
+  const calendarUrl = 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0lh3E1yq2GlwKzD3f0qPzk7dpZvdQpQ7p33OKZuVOkZ9Rxl6D4N-TLJETjKLfYpPRQOQ2JI06L?gv=true';
+
+  (window as any).openDemoModal = function(e?: Event) {
+    if (e) e.preventDefault();
+    demoIframe.src = calendarUrl;
+    demoModal?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  (window as any).closeDemoModal = function() {
+    demoModal?.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => { if (demoIframe) demoIframe.src = ''; }, 300);
+  };
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && demoModal?.classList.contains('active')) {
+      (window as any).closeDemoModal();
+    }
+  });
+
+  document.querySelectorAll('a[href="/contact"].btn-accent').forEach(btn => {
+    btn.addEventListener('click', (window as any).openDemoModal);
+  });
+</script>

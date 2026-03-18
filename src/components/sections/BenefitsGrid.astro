@@ -1,0 +1,73 @@
+---
+interface Benefit {
+  iconSVG: string;
+  title: string;
+  body: string;
+}
+
+interface Props {
+  label?: string;
+  heading: string;
+  subtext?: string;
+  benefits: Benefit[];
+}
+
+const { label, heading, subtext, benefits } = Astro.props;
+---
+
+<section class="benefits-grid-section py-16 px-8 bg-bg-secondary" id="glucose">
+  <div class="max-w-[1200px] mx-auto">
+    <div class="text-center mb-12">
+      {label && (
+        <span class="inline-block text-[0.75rem] font-semibold tracking-[0.08em] uppercase text-accent mb-3">
+          {label}
+        </span>
+      )}
+      <h2
+        class="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] text-text-primary mb-4"
+        set:html={heading}
+      />
+      {subtext && (
+        <p class="text-text-secondary text-[1.0625rem] max-w-[600px] mx-auto leading-[1.7]">
+          {subtext}
+        </p>
+      )}
+    </div>
+    <div class="benefits-cards-grid grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-5">
+      {benefits.map((benefit) => (
+        <div class="benefit-card-item p-6 bg-bg-primary border border-border-theme rounded-[12px] transition-colors duration-200 hover:border-accent">
+          <div class="w-9 h-9 text-accent mb-4 [&_svg]:w-full [&_svg]:h-full" set:html={benefit.iconSVG} />
+          <h3 class="text-base font-semibold text-text-primary mb-2">{benefit.title}</h3>
+          <p class="text-[0.875rem] text-text-secondary leading-[1.6]">{benefit.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.benefits-grid-section').forEach((section) => {
+      const header = section.querySelector('.text-center')
+      const cards = section.querySelectorAll('.benefit-card-item')
+
+      if (header) {
+        gsap.from(header, {
+          scrollTrigger: { trigger: header, start: 'top 85%' },
+          opacity: 0, y: 30, duration: 0.65, ease: 'power3.out',
+        })
+      }
+      if (cards.length) {
+        gsap.from(cards, {
+          scrollTrigger: { trigger: section.querySelector('.benefits-cards-grid'), start: 'top 82%' },
+          opacity: 0, y: 35, duration: 0.6, stagger: 0.08, ease: 'power3.out',
+        })
+      }
+    })
+  }
+</script>

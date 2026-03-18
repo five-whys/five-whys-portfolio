@@ -1,0 +1,87 @@
+---
+interface Cta {
+  text: string;
+  href: string;
+}
+
+interface Props {
+  heading: string;
+  body: string;
+  primaryCta: Cta;
+  secondaryCta?: Cta;
+  id?: string;
+}
+
+const { heading, body, primaryCta, secondaryCta, id } = Astro.props;
+---
+<section
+  id={id}
+  class="cta-section-component py-[8rem] px-8 text-center relative"
+  style="background: linear-gradient(180deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);"
+>
+  <h2
+    class="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.2] tracking-[-0.02em] mb-4"
+    set:html={heading}
+  />
+  <p class="text-lg text-text-secondary leading-[1.7] max-w-[650px] mx-auto mb-8">
+    {body}
+  </p>
+  <div class="flex gap-4 justify-center flex-wrap">
+    <a
+      href={primaryCta.href}
+      class="inline-flex items-center justify-center gap-2 font-[family-name:var(--font-primary)] font-medium no-underline rounded-[100px] transition-all duration-300 cursor-pointer border-none py-[0.875rem] px-[1.75rem] text-[0.9375rem] bg-accent text-bg-primary hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-[0_4px_16px_rgba(255,192,0,0.3)]"
+    >
+      {primaryCta.text}
+    </a>
+    {secondaryCta && (
+      <a
+        href={secondaryCta.href}
+        class="inline-flex items-center justify-center gap-2 font-[family-name:var(--font-primary)] font-medium no-underline rounded-[100px] transition-all duration-300 cursor-pointer py-[0.875rem] px-[1.75rem] text-[0.9375rem] bg-transparent text-brand-secondary border-2 border-brand-secondary hover:bg-brand-secondary hover:text-text-primary hover:-translate-y-0.5"
+      >
+        {secondaryCta.text}
+      </a>
+    )}
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.cta-section-component').forEach((section) => {
+      const children = section.querySelectorAll('h2, p, div')
+      gsap.timeline({
+        scrollTrigger: { trigger: section, start: 'top 80%' },
+        defaults: { ease: 'power3.out', duration: 0.7 },
+      })
+        .from(section.querySelector('h2'), { opacity: 0, y: 35 })
+        .from(section.querySelector('p'),  { opacity: 0, y: 25 }, '-=0.45')
+        .from(section.querySelector('div.flex'), { opacity: 0, y: 20, duration: 0.6 }, '-=0.35')
+    })
+  }
+</script>
+
+<style>
+  .cta-section-component::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 192, 0, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  [data-theme='light'] .cta-section-component::before {
+    background: radial-gradient(circle, rgba(255, 192, 0, 0.15) 0%, transparent 70%);
+  }
+
+  .cta-section-component h2 :global(.highlight) {
+    color: var(--color-accent);
+  }
+</style>

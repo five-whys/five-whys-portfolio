@@ -1,0 +1,78 @@
+---
+interface Metric {
+  label: string;
+  value: string;
+}
+
+interface Result {
+  imageSrc: string;
+  imageAlt: string;
+  logoSrc: string;
+  logoAlt: string;
+  metrics: Metric[];
+  industry: string;
+  title: string;
+  href?: string;
+}
+
+interface Props {
+  results: Result[];
+}
+
+const { results } = Astro.props;
+---
+
+<section class="pb-16">
+  <div class="max-w-[1200px] mx-auto px-8">
+    <div class="text-center mb-12">
+      <h2 class="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] mb-4">GLUCOSE powers experiences that matter</h2>
+      <p class="text-text-secondary text-[1.0625rem]">From lifestyle mobility to supply chain logistics, industry leaders trust GLUCOSE to engage customers autonomously.</p>
+    </div>
+
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
+      {results.map((result) => (
+        <a
+          href={result.href || '#'}
+          class="results-card bg-bg-secondary border border-border-theme rounded-[16px] overflow-hidden no-underline text-inherit flex flex-col transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
+        >
+          <div class="relative h-[200px] overflow-hidden results-card__image-wrap">
+            <img
+              src={result.imageSrc}
+              alt={result.imageAlt}
+              class="w-full h-full object-cover"
+            />
+            <img
+              src={result.logoSrc}
+              alt={result.logoAlt}
+              class="absolute top-4 left-4 h-7 w-auto bg-white p-1 px-2 rounded"
+            />
+            <div class="absolute bottom-0 left-0 right-0 px-4 py-3 flex gap-6" style="background: linear-gradient(transparent, rgba(0,0,0,0.8));">
+              {result.metrics.map((metric) => (
+                <div>
+                  <div class="text-[0.625rem] text-[rgba(255,255,255,0.7)] uppercase">{metric.label}</div>
+                  <div class="text-base font-bold text-white">{metric.value}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <span class="text-[0.75rem] font-semibold text-accent uppercase tracking-[0.1em] mb-2">{result.industry}</span>
+            <h3 class="text-base font-semibold text-text-primary leading-[1.4] mb-auto">{result.title}</h3>
+            <div class="flex items-center gap-2 text-text-secondary text-[0.8125rem] mt-4">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              Read more
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .results-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+    border-color: var(--color-accent);
+  }
+</style>

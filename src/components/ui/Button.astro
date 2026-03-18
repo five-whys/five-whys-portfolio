@@ -1,0 +1,32 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'accent' | 'primary' | 'secondary' | 'ghost' | 'hero';
+  size?: 'sm' | 'md';
+  target?: string;
+  rel?: string;
+  class?: string;
+  [key: string]: any;
+}
+const { href, variant = 'primary', size = 'md', target, rel, class: className = '', ...rest } = Astro.props;
+
+const base = 'inline-flex items-center justify-center gap-2 font-[family-name:var(--font-primary)] font-medium no-underline rounded-[100px] transition-all duration-300 cursor-pointer border-none relative overflow-hidden';
+const sizes: Record<string, string> = {
+  sm: 'py-[0.4rem] px-[0.75rem] text-[0.8125rem]',
+  md: 'py-[0.875rem] px-[1.75rem] text-[0.9375rem]',
+};
+const variants: Record<string, string> = {
+  accent: 'bg-accent text-bg-primary hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-[0_4px_16px_rgba(255,192,0,0.3)]',
+  primary: 'bg-text-primary text-bg-primary hover:-translate-y-0.5 hover:shadow-md',
+  secondary: 'bg-transparent text-brand-secondary border-2 border-brand-secondary hover:bg-brand-secondary hover:text-text-primary hover:-translate-y-0.5',
+  ghost: 'bg-transparent text-text-secondary hover:text-text-primary',
+  hero: 'bg-[#fcfcfc] text-[#000] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)]',
+};
+
+const classes = [base, sizes[size], variants[variant], className].filter(Boolean).join(' ');
+---
+{href ? (
+  <a href={href} class={classes} target={target} rel={rel} {...rest}><slot /></a>
+) : (
+  <button class={classes} {...rest}><slot /></button>
+)}

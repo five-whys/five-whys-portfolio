@@ -1,0 +1,1588 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/sections/PageHero.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import {
+  Check, Clock, MessageSquare, Boxes, FileText,
+  ArrowRight, Wrench, Settings, CheckCircle, Bell, X, MinusCircle,
+  ChevronLeft, ChevronRight,
+} from 'lucide-astro';
+---
+
+<BaseLayout
+  title="GLUCOSE vs Traditional Chatbots - AI Comparison | 5.Y"
+  description="Compare GLUCOSE agentic AI vs traditional chatbots and FAQ bots. See why autonomous AI agents outperform scripted solutions for customer engagement."
+  canonicalUrl="https://www.five-whys.com/vs"
+  ogTitle="GLUCOSE vs Traditional Chatbots | 5.Y"
+  ogDescription="Compare GLUCOSE agentic AI vs traditional chatbots. See why autonomous AI outperforms scripted solutions."
+  twitterTitle="GLUCOSE vs Traditional Chatbots | 5.Y"
+  twitterDescription="Compare GLUCOSE agentic AI vs traditional chatbots and FAQ bots."
+  activeNav="vs"
+>
+  <main>
+    <!-- VS Hero -->
+    <section class="vs-hero">
+      <div class="vs-hero-inner">
+        <div class="vs-badge">
+          <Boxes size={16} />
+          Compare Solutions
+        </div>
+        <h1>Why teams choose <span class="highlight">GLUCOSE</span> over traditional solutions</h1>
+        <p>Enterprise teams need autonomous AI agents that understand context, deliver personalized experiences, and scale effortlessly—not rule-based chatbots that frustrate customers.</p>
+        <div class="vs-hero-cta">
+          <a href="/contact" class="btn btn-accent">Book a Demo</a>
+          <a href="/product" class="btn btn-secondary">Explore GLUCOSE</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Sections -->
+    <section class="py-32 px-8">
+      <div class="max-w-[1200px] mx-auto">
+        <SectionHeader label="The Difference" heading="What makes GLUCOSE different?" subtext="See why leading brands are switching from traditional chatbots and generic AI solutions to GLUCOSE's autonomous agents." />
+
+        <!-- Visual Comparison -->
+        <div style="margin-bottom: 4rem;">
+          <div class="vs-comparison">
+            <!-- Traditional Chatbot -->
+            <div class="vs-panel vs-panel--chatbot">
+              <div class="vs-panel-header">
+                <div class="vs-panel-icon vs-panel-icon--bad">✕</div>
+                <div class="vs-panel-title">Traditional Chatbot</div>
+              </div>
+              <div class="vs-chat">
+                <div class="vs-msg vs-msg--user">
+                  <div class="vs-msg-avatar vs-msg-avatar--user">U</div>
+                  <div>
+                    <div class="vs-msg-label">User</div>
+                    <div class="vs-msg-bubble">I want to change my delivery address for order #12345 and also ask about the warranty</div>
+                  </div>
+                </div>
+                <div class="vs-msg">
+                  <div class="vs-msg-avatar vs-msg-avatar--bot">B</div>
+                  <div>
+                    <div class="vs-msg-label">Bot</div>
+                    <div class="vs-msg-bubble vs-msg-bubble--bot">I can help you with delivery. Please select an option:<br>1. Track order<br>2. Change address<br>3. Cancel order</div>
+                  </div>
+                </div>
+                <div class="vs-msg vs-msg--user">
+                  <div class="vs-msg-avatar vs-msg-avatar--user">U</div>
+                  <div class="vs-msg-bubble">Change address</div>
+                </div>
+                <div class="vs-msg">
+                  <div class="vs-msg-avatar vs-msg-avatar--bot">B</div>
+                  <div class="vs-msg-bubble vs-msg-bubble--bot">Please enter your new address</div>
+                </div>
+                <div class="vs-msg vs-msg--user">
+                  <div class="vs-msg-avatar vs-msg-avatar--user">U</div>
+                  <div class="vs-msg-bubble">123 Main St. Also, what about the warranty?</div>
+                </div>
+                <div class="vs-msg">
+                  <div class="vs-msg-avatar vs-msg-avatar--bot">B</div>
+                  <div class="vs-msg-bubble vs-msg-bubble--bot">I'm sorry, I can only help with one thing at a time. Please start a new conversation for warranty questions.</div>
+                </div>
+              </div>
+              <div class="vs-result-emoji">😡</div>
+            </div>
+
+            <!-- Arrow -->
+            <div class="vs-arrow">→</div>
+
+            <!-- GLUCOSE AI -->
+            <div class="vs-panel vs-panel--glucose">
+              <div class="vs-panel-header">
+                <div class="vs-panel-icon vs-panel-icon--good">✓</div>
+                <div class="vs-panel-title">GLUCOSE AI</div>
+              </div>
+              <div class="vs-chat">
+                <div class="vs-msg vs-msg--user">
+                  <div class="vs-msg-avatar vs-msg-avatar--user">U</div>
+                  <div>
+                    <div class="vs-msg-label">User</div>
+                    <div class="vs-msg-bubble">I want to change my delivery address for order #12345 and also ask about the warranty</div>
+                  </div>
+                </div>
+                <div class="vs-msg">
+                  <div class="vs-msg-avatar vs-msg-avatar--glucose">G</div>
+                  <div>
+                    <div class="vs-msg-label">GLUCOSE</div>
+                    <div class="vs-msg-bubble vs-msg-bubble--ai">
+                      I'd be happy to help with both! Let me update the delivery address for order #12345 to 123 Main St.<br><br>
+                      <span class="vs-done">✅ Done!</span><br><br>
+                      Regarding warranty: Your product comes with a 2-year manufacturer warranty covering defects.<br><br>
+                      Would you like me to:<br>
+                      1) Email the full warranty details<br>
+                      2) Register your product<br>
+                      3) Start a warranty claim?
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="vs-result-emoji">😊</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparison 1: Goal-Driven vs. Script-Based -->
+        <div class="comparison-block">
+          <div class="comparison-content">
+            <h3>Goal-driven reasoning, not scripted responses</h3>
+            <p>Traditional chatbots follow rigid decision trees that break when conversations shift. GLUCOSE agents reason through complexity, adapting to context and pursuing goals autonomously.</p>
+            <ul>
+              <li>
+                <Check size={16} />
+                Understands intent even with unexpected questions
+              </li>
+              <li>
+                <Check size={16} />
+                Handles multi-turn, complex conversations naturally
+              </li>
+              <li>
+                <Check size={16} />
+                Balances user needs with business objectives
+              </li>
+            </ul>
+          </div>
+          <div class="comparison-visual">
+            <div class="visual-icon">
+              <Clock size={32} />
+            </div>
+            <div class="visual-title">Autonomous Goal Pursuit</div>
+            <div class="visual-desc">GLUCOSE agents work toward outcomes, not just responses. They understand context, remember history, and make intelligent decisions.</div>
+            <div class="chat-mockup">
+              <div class="chat-message">
+                <div class="chat-avatar user">U</div>
+                <div class="chat-bubble">"Actually, wait—can I also ask about warranty coverage?"</div>
+              </div>
+              <div class="chat-message">
+                <div class="chat-avatar">G</div>
+                <div class="chat-bubble ai">"Of course! Your vehicle's warranty includes 4-year coverage. I'll also continue helping with the service booking—would you prefer morning or afternoon?"</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparison 2: Native Multi-Channel -->
+        <div class="comparison-block reverse">
+          <div class="comparison-content">
+            <h3>Native multi-channel, not bolted-on integrations</h3>
+            <p>Most solutions treat messaging channels as an afterthought. GLUCOSE is built from the ground up for WhatsApp, Telegram, LINE, and more—meeting customers where they already are.</p>
+            <ul>
+              <li>
+                <Check size={16} />
+                Deploy on WhatsApp, Telegram, LINE, Viber, and more
+              </li>
+              <li>
+                <Check size={16} />
+                Consistent experience across all channels
+              </li>
+              <li>
+                <Check size={16} />
+                No app downloads required for customers
+              </li>
+            </ul>
+          </div>
+          <div class="comparison-visual">
+            <div class="visual-icon">
+              <MessageSquare size={32} />
+            </div>
+            <div class="visual-title">Deploy Everywhere</div>
+            <div class="visual-desc">One configuration, every channel. Your brand shows up wherever your customers prefer to communicate.</div>
+            <div class="flow-diagram">
+              <div class="flow-node">
+                <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span>WhatsApp</span>
+              </div>
+              <div class="flow-node">
+                <svg viewBox="0 0 24 24" fill="#0088CC"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                <span>Telegram</span>
+              </div>
+              <div class="flow-node">
+                <svg viewBox="0 0 24 24" fill="#00C300"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.193 0-.378-.09-.503-.234l-2.178-2.636v2.243c0 .345-.282.63-.63.63-.345 0-.627-.285-.627-.63V8.108c0-.27.174-.51.432-.596.064-.021.13-.031.199-.031.19 0 .378.09.5.234l2.178 2.636V8.108c0-.345.282-.63.63-.63.346 0 .63.285.63.63v4.771zm-5.741 0c0 .345-.282.63-.63.63-.345 0-.627-.285-.627-.63V8.108c0-.345.282-.63.63-.63.346 0 .627.285.627.63v4.771zm-2.466.63H4.917c-.345 0-.63-.285-.63-.63V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .63.285.63.63 0 .345-.282.629-.63.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+                <span>LINE</span>
+              </div>
+              <div class="flow-node highlight">
+                <Boxes size={20} />
+                <span>GLUCOSE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparison 3: No-Code Setup -->
+        <div class="comparison-block">
+          <div class="comparison-content">
+            <h3>No-code setup, not months of development</h3>
+            <p>Traditional enterprise AI deployments take months and require technical teams. GLUCOSE's Management Console lets product managers configure, deploy, and iterate without writing code.</p>
+            <ul>
+              <li>
+                <Check size={16} />
+                Visual journey builder for business users
+              </li>
+              <li>
+                <Check size={16} />
+                Deploy in days, not months
+              </li>
+              <li>
+                <Check size={16} />
+                Iterate and improve without engineering support
+              </li>
+            </ul>
+          </div>
+          <div class="comparison-visual">
+            <div class="visual-icon">
+              <Boxes size={32} />
+            </div>
+            <div class="visual-title">Management Console</div>
+            <div class="visual-desc">Define customer journeys, configure responses, and analyze performance—all through an intuitive interface designed for business users.</div>
+            <div class="flow-diagram" style="margin-top: 1.5rem;">
+              <div class="flow-node">
+                <FileText size={20} />
+                <span>Add Docs</span>
+              </div>
+              <div class="flow-arrow"><ArrowRight size={16} /></div>
+              <div class="flow-node">
+                <Wrench size={20} />
+                <span>Add Tools</span>
+              </div>
+              <div class="flow-arrow"><ArrowRight size={16} /></div>
+              <div class="flow-node">
+                <Settings size={20} />
+                <span>Configure</span>
+              </div>
+              <div class="flow-arrow"><ArrowRight size={16} /></div>
+              <div class="flow-node highlight">
+                <CheckCircle size={20} />
+                <span>Go Live</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparison 4: Proactive Engagement -->
+        <div class="comparison-block reverse">
+          <div class="comparison-content">
+            <h3>Proactive re-engagement, not just reactive support</h3>
+            <p>Traditional chatbots wait for customers to ask questions. GLUCOSE agents proactively engage—sharing relevant information, following up on service needs, and driving conversions.</p>
+            <ul>
+              <li>
+                <Check size={16} />
+                Scheduled follow-ups and reminders
+              </li>
+              <li>
+                <Check size={16} />
+                Event-triggered communications (IoT, CRM, etc.)
+              </li>
+              <li>
+                <Check size={16} />
+                Personalized product recommendations
+              </li>
+            </ul>
+          </div>
+          <div class="comparison-visual">
+            <div class="visual-icon">
+              <Bell size={32} />
+            </div>
+            <div class="visual-title">Always-On Engagement</div>
+            <div class="visual-desc">GLUCOSE doesn't just answer—it anticipates. Proactive outreach keeps customers engaged throughout their journey.</div>
+            <div class="chat-mockup">
+              <div class="chat-message">
+                <div class="chat-avatar">G</div>
+                <div class="chat-bubble ai">"Hi! Your vehicle's 10,000km service is coming up. I noticed a convenient slot available next Tuesday at 10am. Would you like me to book it?"</div>
+              </div>
+              <div class="chat-message">
+                <div class="chat-avatar user">U</div>
+                <div class="chat-bubble">"Yes, that works perfectly!"</div>
+              </div>
+              <div class="chat-message">
+                <div class="chat-avatar">G</div>
+                <div class="chat-bubble ai">"Done! I've booked your service and sent a calendar invite. Need a reminder the day before?"</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature Comparison Table -->
+    <section class="comparison-table-section">
+      <div class="max-w-[1200px] mx-auto">
+        <SectionHeader label="Feature Comparison" heading="GLUCOSE vs. Alternatives" subtext="See how GLUCOSE compares to traditional chatbots and generic AI solutions." />
+
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Features</th>
+                <th class="glucose-col">GLUCOSE</th>
+                <th>Traditional Chatbots</th>
+                <th>Generic AI (GPT wrappers)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Goal-driven autonomous reasoning</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+                <td class="partial"><MinusCircle size={16} /></td>
+              </tr>
+              <tr>
+                <td>Native multi-channel deployment</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="partial"><MinusCircle size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+              </tr>
+              <tr>
+                <td>No-code configuration</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="check"><Check size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+              </tr>
+              <tr>
+                <td>Proactive customer engagement</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+              </tr>
+              <tr>
+                <td>Enterprise CRM/CDP integrations</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="partial"><MinusCircle size={16} /></td>
+                <td class="partial"><MinusCircle size={16} /></td>
+              </tr>
+              <tr>
+                <td>IoT event-triggered actions</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+              </tr>
+              <tr>
+                <td>First-party data insights</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="partial"><MinusCircle size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+              </tr>
+              <tr>
+                <td>Enterprise security (SOC 2, ISO 27001)</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="partial"><MinusCircle size={16} /></td>
+                <td class="partial"><MinusCircle size={16} /></td>
+              </tr>
+              <tr>
+                <td>Brand voice consistency</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="partial"><MinusCircle size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enterprise AI Platform Comparison -->
+    <section class="comparison-table-section" style="background: var(--color-bg-primary);">
+      <div class="max-w-[1200px] mx-auto">
+        <SectionHeader label="Enterprise Comparison" heading="GLUCOSE vs. AI-Native Platforms" subtext="How GLUCOSE compares to enterprise AI platforms in the market today." />
+
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Capability</th>
+                <th class="glucose-col">GLUCOSE</th>
+                <th>Salesforce AgentForce</th>
+                <th>Sierra AI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Closes deals without human intervention</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="partial"><MinusCircle size={16} /></td>
+                <td class="partial"><MinusCircle size={16} /></td>
+              </tr>
+              <tr>
+                <td>Engages customers on WhatsApp, LINE, Telegram natively</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+                <td class="partial"><MinusCircle size={16} /></td>
+              </tr>
+              <tr>
+                <td>Proactive lifecycle re-engagement (Planner)</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+              </tr>
+              <tr>
+                <td>Model-agnostic (no vendor lock-in)</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+                <td class="partial"><MinusCircle size={16} /></td>
+              </tr>
+              <tr>
+                <td>Vertical-specific product corpus architecture</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="partial"><MinusCircle size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+              </tr>
+              <tr>
+                <td>Live in weeks, not months</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+                <td class="partial"><MinusCircle size={16} /></td>
+              </tr>
+              <tr>
+                <td>Multimodal (voice, text, images, video)</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="partial"><MinusCircle size={16} /></td>
+                <td class="partial"><MinusCircle size={16} /></td>
+              </tr>
+              <tr>
+                <td>Single-tenant deployment option</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+              </tr>
+              <tr>
+                <td>Outcome-based pricing</td>
+                <td class="check"><Check size={16} /></td>
+                <td class="cross"><X size={16} /></td>
+                <td class="check"><Check size={16} /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Reframed Legacy vs Agentic -->
+        <div style="margin-top: 4rem;">
+          <h3 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; color: var(--color-text-primary); text-align: center; margin-bottom: 2rem;">The Engagement Stack, Reimagined</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 800px; margin: 0 auto;">
+            <div style="padding: 2rem; background: var(--color-bg-tertiary); border-radius: 12px; border: 1px solid var(--color-border);">
+              <div style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-text-muted); margin-bottom: 1rem;">Legacy Era</div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
+                <li style="font-size: 0.9375rem; color: var(--color-text-secondary);">CRM stores records</li>
+                <li style="font-size: 0.9375rem; color: var(--color-text-secondary);">Chatbots answer questions</li>
+                <li style="font-size: 0.9375rem; color: var(--color-text-secondary);">Marketing automates campaigns</li>
+                <li style="font-size: 0.9375rem; color: var(--color-text-secondary);">Humans follow up</li>
+              </ul>
+            </div>
+            <div style="padding: 2rem; background: var(--color-accent-soft); border-radius: 12px; border: 1px solid rgba(255, 192, 0, 0.2);">
+              <div style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-accent); margin-bottom: 1rem;">Agentic Era</div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
+                <li style="font-size: 0.9375rem; color: var(--color-text-primary); font-weight: 500;">GLUCOSE orchestrates experiences</li>
+                <li style="font-size: 0.9375rem; color: var(--color-text-primary); font-weight: 500;">GLUCOSE executes goals</li>
+                <li style="font-size: 0.9375rem; color: var(--color-text-primary); font-weight: 500;">GLUCOSE adapts in real time</li>
+                <li style="font-size: 0.9375rem; color: var(--color-text-primary); font-weight: 500;">Planner reengages autonomously</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Carousel -->
+    <section class="testimonials-section">
+      <div class="testimonials-inner">
+        <SectionHeader label="Our Customers" heading="The results speak for themselves" subtext="GLUCOSE is trusted by leading brands across industries to transform customer engagement." />
+        <div class="testimonial-carousel" id="testimonialCarousel">
+          <div class="testimonial-viewport">
+            <div class="testimonial-slides">
+              <!-- Slide 1 -->
+              <div class="testimonial-slide active">
+                <div class="testimonial-card">
+                  <blockquote class="testimonial-quote">
+                    "The platform's ability to understand context and deliver personalized responses transformed customer support operations. It's like having a team of experts available 24/7."
+                  </blockquote>
+                  <div class="testimonial-author">
+                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?w=112&h=112&fit=crop&crop=face" alt="Gennady K.">
+                    <div class="testimonial-info">
+                      <div class="testimonial-name">Gennady K.</div>
+                      <div class="testimonial-role">CEO, Technology Services</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Slide 2 -->
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <blockquote class="testimonial-quote">
+                    "GLUCOSE changed how we think about customer engagement. The AI doesn't just respond—it understands our products and brand voice perfectly."
+                  </blockquote>
+                  <div class="testimonial-author">
+                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=112&h=112&fit=crop&crop=face" alt="Product Head">
+                    <div class="testimonial-info">
+                      <div class="testimonial-name">Product Head</div>
+                      <div class="testimonial-role">Lifestyle Mobility</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Slide 3 -->
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <blockquote class="testimonial-quote">
+                    "We've seen a dramatic improvement in response quality and customer satisfaction since implementing GLUCOSE. The autonomous agents handle complex queries with ease."
+                  </blockquote>
+                  <div class="testimonial-author">
+                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1537511446984-935f663eb1f4?w=112&h=112&fit=crop&crop=face" alt="Tech Lead">
+                    <div class="testimonial-info">
+                      <div class="testimonial-name">Tech Lead</div>
+                      <div class="testimonial-role">Enterprise Software</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Slide 4 -->
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <blockquote class="testimonial-quote">
+                    "The platform handles everything from warranty inquiries to service bookings autonomously. Our customers get instant, accurate responses around the clock."
+                  </blockquote>
+                  <div class="testimonial-author">
+                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1542190891-2093d38760f2?w=112&h=112&fit=crop&crop=face" alt="Service Manager">
+                    <div class="testimonial-info">
+                      <div class="testimonial-name">Service Manager</div>
+                      <div class="testimonial-role">Automotive</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Slide 5 -->
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <blockquote class="testimonial-quote">
+                    "Patient engagement has never been easier. The AI understands medical context and provides appropriate guidance while maintaining compliance."
+                  </blockquote>
+                  <div class="testimonial-author">
+                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=112&h=112&fit=crop&crop=face" alt="Digital Health Director">
+                    <div class="testimonial-info">
+                      <div class="testimonial-name">Digital Health Director</div>
+                      <div class="testimonial-role">Healthcare</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Slide 6 -->
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <blockquote class="testimonial-quote">
+                    "Our customers receive personalized financial guidance instantly. The compliance guardrails give us confidence to scale without risk."
+                  </blockquote>
+                  <div class="testimonial-author">
+                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=112&h=112&fit=crop&crop=face" alt="VP Customer Experience">
+                    <div class="testimonial-info">
+                      <div class="testimonial-name">VP Customer Experience</div>
+                      <div class="testimonial-role">Financial Services</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Slide 7 -->
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <blockquote class="testimonial-quote">
+                    "Post-purchase support is now a competitive advantage. Customers love getting instant help with setup and troubleshooting."
+                  </blockquote>
+                  <div class="testimonial-author">
+                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1598550874175-4d0ef436c909?w=112&h=112&fit=crop&crop=face" alt="Product Manager">
+                    <div class="testimonial-info">
+                      <div class="testimonial-name">Product Manager</div>
+                      <div class="testimonial-role">Consumer Electronics</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Slide 8 -->
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <blockquote class="testimonial-quote">
+                    "We reduced support costs by 40% while improving CSAT scores. The AI handles routine queries so our team can focus on complex issues."
+                  </blockquote>
+                  <div class="testimonial-author">
+                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=112&h=112&fit=crop&crop=face" alt="CX Operations Lead">
+                    <div class="testimonial-info">
+                      <div class="testimonial-name">CX Operations Lead</div>
+                      <div class="testimonial-role">Telecommunications</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Slide 9 -->
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <blockquote class="testimonial-quote">
+                    "Subscriber engagement increased significantly. The AI recommends content and handles account queries with our brand's personality."
+                  </blockquote>
+                  <div class="testimonial-author">
+                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1589386417686-0d34b5903d23?w=112&h=112&fit=crop&crop=face" alt="Head of Growth">
+                    <div class="testimonial-info">
+                      <div class="testimonial-name">Head of Growth</div>
+                      <div class="testimonial-role">Media &amp; Entertainment</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="testimonial-nav">
+            <button class="testimonial-arrow" id="prevSlide" aria-label="Previous">
+              <ChevronLeft size={20} />
+            </button>
+            <div class="testimonial-dots" id="testimonialDots">
+              <!-- Dots generated by JS -->
+            </div>
+            <button class="testimonial-arrow" id="nextSlide" aria-label="Next">
+              <ChevronRight size={20} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Signal -->
+    <section class="py-16 px-8">
+      <div class="max-w-[700px] mx-auto text-center">
+        <SectionHeader label="Pricing" heading="Pricing tied to outcomes, not seats" subtext="GLUCOSE's pricing model is aligned with the value it delivers. You pay for results — not licenses, not seats, not per-message fees." class="max-w-full mb-8" />
+        <a href="/contact" class="btn btn-accent">Talk to Sales</a>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-inner">
+        <h2>Ready to see the difference?</h2>
+        <p>Book a demo and discover how GLUCOSE can transform your customer engagement.</p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn btn-accent">Book a Demo</a>
+          <a href="/demo" class="btn btn-secondary">Watch Demo Videos</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  /* ========== VS HERO ========== */
+  .vs-hero {
+    padding: 6rem 2rem 4rem;
+    text-align: center;
+    background: linear-gradient(180deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+  }
+
+  .vs-hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .vs-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-accent-soft);
+    border: 1px solid var(--color-accent);
+    border-radius: 100px;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .vs-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .vs-hero h1 .highlight {
+    color: var(--color-accent);
+  }
+
+  .vs-hero p {
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    color: var(--color-text-secondary);
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+  }
+
+  .vs-hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+
+  /* ========== BUTTONS ========== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    font-family: var(--font-primary);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 100px;
+    transition: all var(--transition-medium);
+    cursor: pointer;
+    border: none;
+    letter-spacing: -0.01em;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-accent {
+    background: var(--color-accent);
+    color: var(--color-bg-primary);
+    box-shadow: 0 1px 2px rgba(255, 192, 0, 0.2);
+  }
+
+  .btn-accent:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(255, 192, 0, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+  }
+
+  .btn-secondary:hover {
+    background: var(--color-secondary);
+    color: var(--color-text-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(3, 94, 123, 0.3);
+  }
+
+  /* ========== COMPARISON BLOCKS ========== */
+  .comparison-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 6rem;
+  }
+
+  .comparison-block:last-child {
+    margin-bottom: 0;
+  }
+
+  .comparison-block.reverse {
+    direction: rtl;
+  }
+
+  .comparison-block.reverse > * {
+    direction: ltr;
+  }
+
+  .comparison-content h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .comparison-content p {
+    font-size: 1.0625rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .comparison-content ul {
+    list-style: none;
+  }
+
+  .comparison-content li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-text-secondary);
+  }
+
+  .comparison-content li svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--color-accent);
+  }
+
+  .comparison-visual {
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .visual-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--color-accent-soft);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .visual-icon svg {
+    width: 40px;
+    height: 40px;
+    color: var(--color-accent);
+  }
+
+  .visual-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .visual-desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Chat Mockup */
+  .chat-mockup {
+    background: var(--color-bg-secondary);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .chat-message {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .chat-message:last-child {
+    margin-bottom: 0;
+  }
+
+  .chat-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-bg-primary);
+  }
+
+  .chat-avatar.user {
+    background: var(--color-secondary);
+    color: white;
+  }
+
+  .chat-bubble {
+    background: var(--color-bg-tertiary);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    max-width: 85%;
+  }
+
+  .chat-bubble.ai {
+    border: 1px solid var(--color-accent-soft);
+  }
+
+  /* Flow Diagram */
+  .flow-diagram {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .flow-node {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    min-width: 80px;
+  }
+
+  .flow-node.highlight {
+    border-color: var(--color-accent);
+    background: var(--color-accent-soft);
+  }
+
+  .flow-node svg {
+    width: 24px;
+    height: 24px;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .flow-node span {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .flow-arrow {
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+  }
+
+  .flow-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* ========== VS COMPARISON PANELS ========== */
+  .vs-comparison {
+    display: flex;
+    gap: 2rem;
+    max-width: 960px;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+
+  .vs-panel {
+    flex: 1;
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .vs-panel--chatbot {
+    background: #2a2a2a;
+    border: 1px solid #444;
+    color: #f0f0f0;
+  }
+
+  .vs-panel--glucose {
+    background: #1a1a1a;
+    border: 1px solid #FFC000;
+    box-shadow: 0 0 30px rgba(255, 192, 0, 0.1);
+    color: #f0f0f0;
+  }
+
+  .vs-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .vs-panel-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .vs-panel-icon--bad {
+    background: #cc3333;
+    color: #fff;
+  }
+
+  .vs-panel-icon--good {
+    background: #33aa55;
+    color: #fff;
+  }
+
+  .vs-panel-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: #f0f0f0;
+    letter-spacing: 0.02em;
+  }
+
+  .vs-chat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .vs-msg {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+
+  .vs-msg--user {
+    flex-direction: row-reverse;
+  }
+
+  .vs-msg-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .vs-msg-avatar--user {
+    background: #555;
+    color: #ccc;
+  }
+
+  .vs-msg-avatar--bot {
+    background: #666;
+    color: #ddd;
+  }
+
+  .vs-msg-avatar--glucose {
+    background: var(--color-accent);
+    color: #1a1a1a;
+    font-weight: 700;
+  }
+
+  .vs-msg-label {
+    font-size: 0.6rem;
+    color: #888;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .vs-msg-bubble {
+    padding: 0.65rem 0.9rem;
+    border-radius: 14px;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    max-width: 85%;
+    color: #e8e8e8;
+  }
+
+  .vs-msg--user .vs-msg-bubble {
+    background: #3a3a3a;
+    border: 1px solid #555;
+    color: #e8e8e8;
+  }
+
+  .vs-panel--chatbot .vs-msg-bubble.vs-msg-bubble--bot {
+    background: #333;
+    border: 1px solid #4a4a4a;
+  }
+
+  .vs-panel--glucose .vs-msg-bubble.vs-msg-bubble--ai {
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+  }
+
+  .vs-msg-bubble--ai .vs-done {
+    color: #33aa55;
+    font-weight: 600;
+  }
+
+  .vs-result-emoji {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 1rem;
+  }
+
+  .vs-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  /* ========== COMPARISON TABLE ========== */
+  .comparison-table-section {
+    padding: 6rem 2rem;
+    background: var(--color-bg-secondary);
+  }
+
+  .comparison-table-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-bg-tertiary);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .comparison-table th {
+    background: var(--color-bg-secondary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .comparison-table th:first-child {
+    width: 40%;
+  }
+
+  .comparison-table th.glucose-col {
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    text-align: center;
+  }
+
+  .comparison-table td {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+  }
+
+  .comparison-table td:not(:first-child) {
+    text-align: center;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .comparison-table .check {
+    color: var(--color-secondary);
+  }
+
+  .comparison-table .cross {
+    color: var(--color-error);
+  }
+
+  .comparison-table .partial {
+    color: var(--color-text-muted);
+  }
+
+  .comparison-table svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* ========== TESTIMONIALS CAROUSEL ========== */
+  .testimonials-section {
+    padding: 6rem 0;
+    background: var(--color-bg-secondary);
+    overflow: hidden;
+  }
+
+  .testimonials-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .testimonial-carousel {
+    position: relative;
+    margin-top: 3rem;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    padding: 1rem 0;
+  }
+
+  .testimonial-viewport {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  }
+
+  .testimonial-slides {
+    display: flex;
+    gap: 2rem;
+    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  .testimonial-slides.no-transition {
+    transition: none;
+  }
+
+  .testimonial-slide {
+    min-width: clamp(500px, 65vw, 900px);
+    max-width: clamp(500px, 65vw, 900px);
+    flex-shrink: 0;
+    opacity: 0.35;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .testimonial-slide.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .testimonial-card {
+    padding: 3rem;
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: 24px;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .testimonial-quote {
+    font-family: var(--font-display);
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: var(--color-text-primary);
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .testimonial-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .testimonial-info {
+    text-align: left;
+  }
+
+  .testimonial-name {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .testimonial-role {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Carousel Navigation */
+  .testimonial-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .testimonial-dots {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .testimonial-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-border);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .testimonial-dot.active {
+    background: var(--color-accent);
+    transform: scale(1.2);
+  }
+
+  .testimonial-dot:hover {
+    background: var(--color-accent);
+  }
+
+  .testimonial-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+  }
+
+  .testimonial-arrow:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .testimonial-arrow svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--color-text-secondary);
+    transition: stroke var(--transition-fast);
+  }
+
+  .testimonial-arrow:hover svg {
+    stroke: var(--color-bg-primary);
+  }
+
+  /* ========== CTA SECTION ========== */
+  .cta-section {
+    padding: 8rem 2rem;
+    text-align: center;
+    background: linear-gradient(180deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+  }
+
+  .cta-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-section h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 1024px) {
+    .comparison-block {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .comparison-block.reverse {
+      direction: ltr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .vs-hero {
+      padding: 4rem 1.5rem 3rem;
+    }
+
+    .section {
+      padding: 4rem 1.5rem;
+    }
+
+    .comparison-visual {
+      min-height: auto;
+      padding: 2rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 1rem;
+      font-size: 0.8125rem;
+    }
+
+    .vs-comparison {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .vs-arrow {
+      transform: rotate(90deg);
+    }
+
+    .vs-panel {
+      padding: 1.25rem;
+    }
+
+    .vs-panel-title {
+      font-size: 1.1rem;
+    }
+
+    .testimonial-slide {
+      min-width: 85vw;
+      max-width: 85vw;
+    }
+
+    .testimonial-card {
+      padding: 1.5rem;
+    }
+
+    .testimonial-viewport {
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+    }
+
+    .testimonial-slides {
+      gap: 1rem;
+    }
+
+    .testimonial-arrow {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .vs-hero h1 {
+      font-size: 1.75rem;
+    }
+
+    .section {
+      padding: 3rem 1rem;
+    }
+  }
+</style>
+
+<script>
+  // Testimonial Carousel — infinite loop with peek on both sides
+  const carousel = document.getElementById('testimonialCarousel');
+  if (carousel) {
+    const viewport = carousel.querySelector('.testimonial-viewport') as HTMLElement;
+    const slidesContainer = carousel.querySelector('.testimonial-slides') as HTMLElement;
+    const originalSlides = Array.from(carousel.querySelectorAll('.testimonial-slide')) as HTMLElement[];
+    const dotsContainer = document.getElementById('testimonialDots') as HTMLElement;
+    const prevBtn = document.getElementById('prevSlide') as HTMLButtonElement;
+    const nextBtn = document.getElementById('nextSlide') as HTMLButtonElement;
+    const totalOriginal = originalSlides.length;
+    let currentIndex = totalOriginal;
+    let autoplayInterval: ReturnType<typeof setInterval>;
+    let isTransitioning = false;
+
+    originalSlides.forEach(s => slidesContainer.appendChild(s.cloneNode(true)));
+    [...originalSlides].reverse().forEach(s => slidesContainer.insertBefore(s.cloneNode(true), slidesContainer.firstChild));
+
+    const allSlides = Array.from(slidesContainer.querySelectorAll('.testimonial-slide')) as HTMLElement[];
+
+    originalSlides.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.classList.add('testimonial-dot');
+      if (index === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(index + totalOriginal));
+      dotsContainer.appendChild(dot);
+    });
+    const dots = dotsContainer.querySelectorAll('.testimonial-dot');
+
+    function getOffset(index: number): number {
+      const slide = allSlides[index];
+      const viewportWidth = viewport.offsetWidth;
+      const slideWidth = slide.offsetWidth;
+      return slide.offsetLeft - (viewportWidth - slideWidth) / 2;
+    }
+
+    function updateClasses(index: number): void {
+      allSlides.forEach((s, i) => s.classList.toggle('active', i === index));
+      const realIndex = ((index - totalOriginal) % totalOriginal + totalOriginal) % totalOriginal;
+      dots.forEach((d, i) => d.classList.toggle('active', i === realIndex));
+    }
+
+    function moveToSlide(index: number, animate: boolean = true): void {
+      if (animate !== false) {
+        slidesContainer.classList.remove('no-transition');
+      } else {
+        slidesContainer.classList.add('no-transition');
+      }
+      currentIndex = index;
+      slidesContainer.style.transform = `translateX(-${getOffset(index)}px)`;
+      updateClasses(index);
+    }
+
+    slidesContainer.addEventListener('transitionend', () => {
+      isTransitioning = false;
+      if (currentIndex < totalOriginal) {
+        moveToSlide(currentIndex + totalOriginal, false);
+      } else if (currentIndex >= totalOriginal * 2) {
+        moveToSlide(currentIndex - totalOriginal, false);
+      }
+    });
+
+    function goToSlide(index: number): void {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      moveToSlide(index);
+      resetAutoplay();
+    }
+
+    function next(): void { goToSlide(currentIndex + 1); }
+    function prev(): void { goToSlide(currentIndex - 1); }
+
+    function startAutoplay(): void {
+      autoplayInterval = setInterval(next, 6000);
+    }
+
+    function resetAutoplay(): void {
+      clearInterval(autoplayInterval);
+      startAutoplay();
+    }
+
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+
+    carousel.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+    carousel.addEventListener('mouseleave', startAutoplay);
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    carousel.addEventListener('touchstart', (e: TouchEvent) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+    carousel.addEventListener('touchend', (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
+    });
+
+    moveToSlide(totalOriginal, false);
+    window.addEventListener('resize', () => moveToSlide(currentIndex, false));
+
+    startAutoplay();
+  }
+</script>

@@ -1,0 +1,85 @@
+---
+import { ChevronDown } from 'lucide-astro';
+
+interface Value {
+  title: string;
+  body: string;
+  iconSVG: string;
+}
+
+interface Props {
+  values: Value[];
+}
+
+const { values } = Astro.props;
+---
+
+<section class="py-16 px-8">
+  <div class="max-w-[800px] mx-auto">
+    <div id="values-accordion" class="border border-border-theme rounded-[16px] overflow-hidden">
+      {values.map((value, index) => (
+        <div class={`value-item${index < values.length - 1 ? ' border-b border-border-theme' : ''}`}>
+          <button
+            class="value-header w-full flex items-center justify-between p-6 bg-transparent border-none cursor-pointer text-left"
+            onclick="toggleValue(this)"
+            aria-expanded={index === 0 ? 'true' : 'false'}
+          >
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-[10px] bg-accent-soft flex items-center justify-center text-accent shrink-0 [&_svg]:w-5 [&_svg]:h-5" set:html={value.iconSVG} />
+              <span class="text-[1.0625rem] font-semibold text-text-primary">{value.title}</span>
+            </div>
+            <ChevronDown
+              class="chevron shrink-0 text-text-muted transition-transform duration-300"
+              size={20}
+            />
+          </button>
+          <div
+            class="value-content overflow-hidden transition-[max-height,padding] duration-300 ease-in-out"
+            style={index === 0 ? '' : 'max-height: 0; padding: 0;'}
+          >
+            <p class="text-text-secondary leading-[1.7] px-6 pb-6 pl-[4.5rem]">{value.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function toggleValue(button: HTMLButtonElement) {
+    const item = button.closest('.value-item') as HTMLElement;
+    const content = item.querySelector('.value-content') as HTMLElement;
+    const chevron = button.querySelector('.chevron') as SVGElement;
+    const isOpen = button.getAttribute('aria-expanded') === 'true';
+
+    // Close all
+    document.querySelectorAll('.value-item').forEach((vi) => {
+      const btn = vi.querySelector('.value-header') as HTMLButtonElement;
+      const cnt = vi.querySelector('.value-content') as HTMLElement;
+      const chv = btn.querySelector('.chevron') as SVGElement;
+      btn.setAttribute('aria-expanded', 'false');
+      cnt.style.maxHeight = '0';
+      cnt.style.padding = '0';
+      chv.style.transform = '';
+    });
+
+    if (!isOpen) {
+      button.setAttribute('aria-expanded', 'true');
+      content.style.maxHeight = content.scrollHeight + 'px';
+      content.style.padding = '';
+      chevron.style.transform = 'rotate(180deg)';
+    }
+  }
+
+  // Open first item by default
+  const firstBtn = document.querySelector('.value-header') as HTMLButtonElement;
+  if (firstBtn) {
+    const firstContent = firstBtn.closest('.value-item')?.querySelector('.value-content') as HTMLElement;
+    const firstChevron = firstBtn.querySelector('.chevron') as SVGElement;
+    if (firstContent) {
+      firstBtn.setAttribute('aria-expanded', 'true');
+      firstContent.style.maxHeight = firstContent.scrollHeight + 'px';
+      if (firstChevron) firstChevron.style.transform = 'rotate(180deg)';
+    }
+  }
+</script>

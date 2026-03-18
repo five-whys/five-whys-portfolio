@@ -1,0 +1,330 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="GLUCOSE AI Demo - See Agentic AI in Action | 5.Y"
+  description="Watch GLUCOSE AI demos showcasing autonomous customer engagement, multi-channel support, and real-time AI conversations on WhatsApp, Telegram, and voice."
+  canonicalUrl="https://www.five-whys.com/demo"
+  activeNav="demo"
+>
+  <style>
+    /* pseudo-element video overlay */
+    .feature-video::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background 0.3s ease;
+      z-index: 1;
+    }
+    .feature-video:hover::before {
+      background: rgba(0,0,0,0.3);
+    }
+
+    /* descendant selectors */
+    .feature-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .feature-link svg { width: 1rem; height: 1rem; }
+    .play-button svg { width: 24px; height: 24px; margin-left: 3px; }
+    .video-modal-content video {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+    .video-modal-close svg { width: 20px; height: 20px; }
+
+    /* JS-toggled state classes */
+    .video-modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .video-modal.active .video-modal-content {
+      transform: scale(1);
+    }
+    .feature-section[data-industry].filtered-out {
+      display: none;
+    }
+
+    /* direction: rtl for reverse layout (not a Tailwind utility) */
+    .feature-inner-reverse { direction: rtl; }
+    .feature-inner-reverse > * { direction: ltr; }
+    @media (max-width: 768px) { .feature-inner-reverse { direction: ltr; } }
+  </style>
+
+  <main class="min-h-screen" style="background: var(--color-bg-primary);">
+    <!-- Hero -->
+    <section style="padding: 5rem 2rem 3rem; text-align: center; background: var(--color-bg-secondary); border-bottom: 1px solid var(--color-border);">
+      <span style="display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 1rem;">GLUCOSE Platform</span>
+      <h1 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 500; letter-spacing: -0.02em; color: var(--color-text-primary); margin-bottom: 1.25rem;">See GLUCOSE in Action</h1>
+      <p style="color: var(--color-text-secondary); font-size: 1.125rem; max-width: 600px; margin: 0 auto 2rem; line-height: 1.7;">Watch how autonomous AI agents transform customer engagement across industries, channels, and use cases.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/contact" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 2rem; background: var(--color-accent); color: #000; font-weight: 600; font-size: 0.9375rem; border-radius: 8px; text-decoration: none; transition: background 0.2s ease;">Request Demo</a>
+        <a href="#meet-glucose" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 2rem; background: transparent; color: var(--color-text-primary); font-weight: 500; font-size: 0.9375rem; border-radius: 8px; border: 1px solid var(--color-border); text-decoration: none; transition: border-color 0.2s ease;">Watch demos</a>
+      </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section style="max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 0;">
+      <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem;">
+        <button class="tab-button active" data-filter="all" onclick="filterDemos('all')" style="padding: 0.5rem 1.25rem; border-radius: 100px; border: 1px solid var(--color-border); background: var(--color-accent); color: #000; font-size: 0.8125rem; font-weight: 500; cursor: pointer; font-family: var(--font-primary);">All Demos</button>
+        <button class="tab-button" data-filter="automotive" onclick="filterDemos('automotive')" style="padding: 0.5rem 1.25rem; border-radius: 100px; border: 1px solid var(--color-border); background: var(--color-bg-tertiary); color: var(--color-text-secondary); font-size: 0.8125rem; font-weight: 500; cursor: pointer; font-family: var(--font-primary);">Automotive</button>
+        <button class="tab-button" data-filter="consumer" onclick="filterDemos('consumer')" style="padding: 0.5rem 1.25rem; border-radius: 100px; border: 1px solid var(--color-border); background: var(--color-bg-tertiary); color: var(--color-text-secondary); font-size: 0.8125rem; font-weight: 500; cursor: pointer; font-family: var(--font-primary);">Consumer</button>
+      </div>
+    </section>
+
+    <!-- Feature 1: Meet GLUCOSE -->
+    <section class="feature-section max-w-[1200px] mx-auto px-6 py-16 border-b border-border-theme" id="meet-glucose" data-industry="consumer">
+      <div class="grid grid-cols-2 gap-16 items-center max-md:grid-cols-1 max-md:gap-8">
+        <div>
+          <span class="inline-block text-xs font-semibold tracking-[0.08em] uppercase text-accent mb-3">Overview</span>
+          <h2 class="font-display text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] text-text-primary mb-4">Meet GLUCOSE</h2>
+          <p class="text-text-secondary leading-[1.7] mb-4" style="font-size: 0.875rem; color: var(--color-accent); margin-bottom: 0.5rem;">The complete autonomous brand engagement platform</p>
+          <p class="text-text-secondary leading-[1.7] mb-4">Discover GLUCOSE, our intuitive and reliable conversational Agentic-AI platform. See how it redefines customer engagement, enabling brands to autonomously enhance and personalize product experiences at scale.</p>
+          <a href="#" class="feature-link inline-flex items-center gap-2 text-accent text-[0.9375rem] font-medium no-underline mt-2 transition-[gap] duration-200 hover:gap-3" onclick="openVideoModal('Videos/Meet GLUCOSE, our intuitive and reliable conversational Agentic-AI..mp4'); return false;">
+            Watch full demo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="feature-video group relative rounded-2xl overflow-hidden cursor-pointer bg-bg-tertiary aspect-[16/10]" onclick="openVideoModal('Videos/Meet GLUCOSE, our intuitive and reliable conversational Agentic-AI..mp4')">
+          <video autoplay muted loop playsinline>
+            <source src="Videos/Meet GLUCOSE, our intuitive and reliable conversational Agentic-AI..mp4" type="video/mp4">
+          </video>
+          <div class="video-play-overlay absolute inset-0 flex items-center justify-center z-[2] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <div class="play-button w-16 h-16 bg-white/95 rounded-full flex items-center justify-center text-black transition-transform duration-200 group-hover:scale-105">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 2: Warning Light -->
+    <section class="feature-section max-w-[1200px] mx-auto px-6 py-16 border-b border-border-theme" data-industry="automotive">
+      <div class="grid grid-cols-2 gap-16 items-center max-md:grid-cols-1 max-md:gap-8 feature-inner-reverse">
+        <div>
+          <span class="inline-block text-xs font-semibold tracking-[0.08em] uppercase text-accent mb-3">Multimodal AI</span>
+          <h2 class="font-display text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] text-text-primary mb-4">Visual Understanding</h2>
+          <p class="text-text-secondary leading-[1.7] mb-4" style="font-size: 0.875rem; color: var(--color-accent); margin-bottom: 0.5rem;">Resolving customer issues faster with multimodal AI understanding</p>
+          <p class="text-text-secondary leading-[1.7] mb-4">GLUCOSE processes images and visual input to diagnose issues in real-time. Watch as it identifies a warning light on a vehicle dashboard and guides the user through resolution steps via WhatsApp.</p>
+          <a href="#" class="feature-link inline-flex items-center gap-2 text-accent text-[0.9375rem] font-medium no-underline mt-2 transition-[gap] duration-200 hover:gap-3" onclick="openVideoModal('Videos/5.Y GLUCOSE Agentic-AI - Multimodal Use Case - Warning Light.mp4'); return false;">
+            Watch full demo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="feature-video group relative rounded-2xl overflow-hidden cursor-pointer bg-bg-tertiary aspect-[16/10]" onclick="openVideoModal('Videos/5.Y GLUCOSE Agentic-AI - Multimodal Use Case - Warning Light.mp4')">
+          <video autoplay muted loop playsinline>
+            <source src="Videos/5.Y GLUCOSE Agentic-AI - Multimodal Use Case - Warning Light.mp4" type="video/mp4">
+          </video>
+          <div class="video-play-overlay absolute inset-0 flex items-center justify-center z-[2] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <div class="play-button w-16 h-16 bg-white/95 rounded-full flex items-center justify-center text-black transition-transform duration-200 group-hover:scale-105">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 3: Test Drive Booking -->
+    <section class="feature-section max-w-[1200px] mx-auto px-6 py-16 border-b border-border-theme" data-industry="automotive">
+      <div class="grid grid-cols-2 gap-16 items-center max-md:grid-cols-1 max-md:gap-8">
+        <div>
+          <span class="inline-block text-xs font-semibold tracking-[0.08em] uppercase text-accent mb-3">Sales Automation</span>
+          <h2 class="font-display text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] text-text-primary mb-4">Seamless Conversions</h2>
+          <p class="text-text-secondary leading-[1.7] mb-4" style="font-size: 0.875rem; color: var(--color-accent); margin-bottom: 0.5rem;">Converting interest into booked test drives autonomously</p>
+          <p class="text-text-secondary leading-[1.7] mb-4">Transform interest into action. GLUCOSE contextually highlights key features based on customer preferences and seamlessly books test drive appointments, all within a natural conversation flow.</p>
+          <a href="#" class="feature-link inline-flex items-center gap-2 text-accent text-[0.9375rem] font-medium no-underline mt-2 transition-[gap] duration-200 hover:gap-3" onclick="openVideoModal('Videos/5.Y GLUCOSE Agentic-AI - Sales Opportunity Signal - Test Drive Booking.mp4'); return false;">
+            Watch full demo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="feature-video group relative rounded-2xl overflow-hidden cursor-pointer bg-bg-tertiary aspect-[16/10]" onclick="openVideoModal('Videos/5.Y GLUCOSE Agentic-AI - Sales Opportunity Signal - Test Drive Booking.mp4')">
+          <video autoplay muted loop playsinline>
+            <source src="Videos/5.Y GLUCOSE Agentic-AI - Sales Opportunity Signal - Test Drive Booking.mp4" type="video/mp4">
+          </video>
+          <div class="video-play-overlay absolute inset-0 flex items-center justify-center z-[2] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <div class="play-button w-16 h-16 bg-white/95 rounded-full flex items-center justify-center text-black transition-transform duration-200 group-hover:scale-105">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 4: Voice Processing -->
+    <section class="feature-section max-w-[1200px] mx-auto px-6 py-16 border-b border-border-theme" data-industry="consumer">
+      <div class="grid grid-cols-2 gap-16 items-center max-md:grid-cols-1 max-md:gap-8 feature-inner-reverse">
+        <div>
+          <span class="inline-block text-xs font-semibold tracking-[0.08em] uppercase text-accent mb-3">Voice AI</span>
+          <h2 class="font-display text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] text-text-primary mb-4">Natural Voice Understanding</h2>
+          <p class="text-text-secondary leading-[1.7] mb-4" style="font-size: 0.875rem; color: var(--color-accent); margin-bottom: 0.5rem;">Turning negative experiences into brand loyalty moments</p>
+          <p class="text-text-secondary leading-[1.7] mb-4">Handle complex voice interactions with empathy. Watch GLUCOSE process voice messages from a frustrated customer, understand context and emotion, and deliver helpful, calming responses.</p>
+          <a href="#" class="feature-link inline-flex items-center gap-2 text-accent text-[0.9375rem] font-medium no-underline mt-2 transition-[gap] duration-200 hover:gap-3" onclick="openVideoModal('Videos/5.Y GLUCOSE Agentic-AI - Voice Multimodal Use Case -  Frustrated Customer.mp4'); return false;">
+            Watch full demo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="feature-video group relative rounded-2xl overflow-hidden cursor-pointer bg-bg-tertiary aspect-[16/10]" onclick="openVideoModal('Videos/5.Y GLUCOSE Agentic-AI - Voice Multimodal Use Case -  Frustrated Customer.mp4')">
+          <video autoplay muted loop playsinline>
+            <source src="Videos/5.Y GLUCOSE Agentic-AI - Voice Multimodal Use Case -  Frustrated Customer.mp4" type="video/mp4">
+          </video>
+          <div class="video-play-overlay absolute inset-0 flex items-center justify-center z-[2] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <div class="play-button w-16 h-16 bg-white/95 rounded-full flex items-center justify-center text-black transition-transform duration-200 group-hover:scale-105">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 5: Ownership & After Sales -->
+    <section class="feature-section max-w-[1200px] mx-auto px-6 py-16 border-b border-border-theme" data-industry="automotive">
+      <div class="grid grid-cols-2 gap-16 items-center max-md:grid-cols-1 max-md:gap-8">
+        <div>
+          <span class="inline-block text-xs font-semibold tracking-[0.08em] uppercase text-accent mb-3">Customer Lifecycle</span>
+          <h2 class="font-display text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] text-text-primary mb-4">Ownership Support</h2>
+          <p class="text-text-secondary leading-[1.7] mb-4" style="font-size: 0.875rem; color: var(--color-accent); margin-bottom: 0.5rem;">Reducing support cost while increasing service booking rates</p>
+          <p class="text-text-secondary leading-[1.7] mb-4">Support customers throughout their entire ownership journey. GLUCOSE autonomously diagnoses issues, provides guidance, and books service appointments directly via Telegram and other messaging platforms.</p>
+          <a href="#" class="feature-link inline-flex items-center gap-2 text-accent text-[0.9375rem] font-medium no-underline mt-2 transition-[gap] duration-200 hover:gap-3" onclick="openVideoModal('Videos/5.Y GLUCOSE - Demo - Ownership & After Sales - Telegram.mp4'); return false;">
+            Watch full demo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="feature-video group relative rounded-2xl overflow-hidden cursor-pointer bg-bg-tertiary aspect-[16/10]" onclick="openVideoModal('Videos/5.Y GLUCOSE - Demo - Ownership & After Sales - Telegram.mp4')">
+          <video autoplay muted loop playsinline>
+            <source src="Videos/5.Y GLUCOSE - Demo - Ownership & After Sales - Telegram.mp4" type="video/mp4">
+          </video>
+          <div class="video-play-overlay absolute inset-0 flex items-center justify-center z-[2] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <div class="play-button w-16 h-16 bg-white/95 rounded-full flex items-center justify-center text-black transition-transform duration-200 group-hover:scale-105">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 6: Deep Dive Podcast -->
+    <section class="feature-section max-w-[1200px] mx-auto px-6 py-16 border-b border-border-theme" data-industry="consumer">
+      <div class="grid grid-cols-2 gap-16 items-center max-md:grid-cols-1 max-md:gap-8 feature-inner-reverse">
+        <div>
+          <span class="inline-block text-xs font-semibold tracking-[0.08em] uppercase text-accent mb-3">The Pod</span>
+          <h2 class="font-display text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] text-text-primary mb-4">Deep Dive into GLUCOSE</h2>
+          <p class="text-text-secondary leading-[1.7] mb-4" style="font-size: 0.875rem; color: var(--color-accent); margin-bottom: 0.5rem;">Insights from founders on agentic AI and customer engagement</p>
+          <p class="text-text-secondary leading-[1.7] mb-4">Join 5.Y's founders for an in-depth conversation about the future of customer engagement, the technology behind GLUCOSE, and how agentic AI is transforming enterprise customer experiences.</p>
+          <a href="#" class="feature-link inline-flex items-center gap-2 text-accent text-[0.9375rem] font-medium no-underline mt-2 transition-[gap] duration-200 hover:gap-3" onclick="openVideoModal('Videos/The Pod  -  A Deep Dive Into 5.Y GLUCOSE Agentic AI.mp4'); return false;">
+            Watch full episode
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="feature-video group relative rounded-2xl overflow-hidden cursor-pointer bg-bg-tertiary aspect-[16/10]" onclick="openVideoModal('Videos/The Pod  -  A Deep Dive Into 5.Y GLUCOSE Agentic AI.mp4')">
+          <video autoplay muted loop playsinline>
+            <source src="Videos/The Pod  -  A Deep Dive Into 5.Y GLUCOSE Agentic AI.mp4" type="video/mp4">
+          </video>
+          <div class="video-play-overlay absolute inset-0 flex items-center justify-center z-[2] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <div class="play-button w-16 h-16 bg-white/95 rounded-full flex items-center justify-center text-black transition-transform duration-200 group-hover:scale-105">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="padding: 5rem 2rem; text-align: center; background: var(--color-bg-secondary); border-top: 1px solid var(--color-border);">
+      <h2 style="font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -0.02em; color: var(--color-text-primary); margin-bottom: 1rem;">Ready to transform your customer experience?</h2>
+      <p style="color: var(--color-text-secondary); font-size: 1.125rem; max-width: 560px; margin: 0 auto 2rem; line-height: 1.7;">See how GLUCOSE can help your enterprise deliver autonomous brand experiences that reach every customer, in every moment that matters.</p>
+      <a href="/contact" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 2rem; background: var(--color-accent); color: #000; font-weight: 600; font-size: 0.9375rem; border-radius: 8px; text-decoration: none;">Request Demo</a>
+    </section>
+  </main>
+
+  <!-- Video Modal -->
+  <div class="video-modal fixed inset-0 z-[2000] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300" id="video-modal">
+    <div class="video-modal-backdrop absolute inset-0 bg-black/90" onclick="closeVideoModal()"></div>
+    <div class="video-modal-content relative z-[1] w-[min(90vw,1000px)] scale-95 transition-transform duration-300">
+      <button class="video-modal-close absolute -top-12 right-0 bg-white/10 border border-white/20 rounded-lg text-white cursor-pointer p-2 flex items-center justify-center transition-colors duration-200 hover:bg-white/20" onclick="closeVideoModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <video id="modal-video" controls>
+        <source src="" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <script>
+    // Industry filter for demos
+    function filterDemos(industry: string) {
+      const sections = document.querySelectorAll<HTMLElement>('.feature-section[data-industry]');
+      const tabs = document.querySelectorAll<HTMLElement>('.tab-button');
+      tabs.forEach(tab => {
+        tab.classList.remove('active');
+        tab.style.background = 'var(--color-bg-tertiary)';
+        tab.style.color = 'var(--color-text-secondary)';
+        if (tab.getAttribute('data-filter') === industry) {
+          tab.classList.add('active');
+          tab.style.background = 'var(--color-accent)';
+          tab.style.color = '#000';
+        }
+      });
+      sections.forEach(section => {
+        const sectionIndustry = section.getAttribute('data-industry');
+        if (industry === 'all' || sectionIndustry === industry) {
+          section.classList.remove('filtered-out');
+        } else {
+          section.classList.add('filtered-out');
+        }
+      });
+    }
+
+    // Video Modal
+    const videoModal = document.getElementById('video-modal') as HTMLElement;
+    const modalVideo = document.getElementById('modal-video') as HTMLVideoElement;
+
+    function openVideoModal(videoSrc: string) {
+      modalVideo.src = videoSrc;
+      videoModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      modalVideo.play();
+    }
+
+    function closeVideoModal() {
+      videoModal.classList.remove('active');
+      document.body.style.overflow = '';
+      modalVideo.pause();
+      modalVideo.src = '';
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+        closeVideoModal();
+      }
+    });
+
+    // Intersection Observer for video autoplay
+    const videos = document.querySelectorAll<HTMLVideoElement>('.feature-video video');
+
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          (entry.target as HTMLVideoElement).play();
+        } else {
+          (entry.target as HTMLVideoElement).pause();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    videos.forEach(video => {
+      videoObserver.observe(video);
+    });
+
+    // Make functions globally available
+    (window as any).filterDemos = filterDemos;
+    (window as any).openVideoModal = openVideoModal;
+    (window as any).closeVideoModal = closeVideoModal;
+  </script>
+</BaseLayout>

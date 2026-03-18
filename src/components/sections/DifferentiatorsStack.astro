@@ -1,0 +1,113 @@
+---
+interface DiffItem {
+  number: string;
+  title: string;
+  description: string;
+  tags: string[];
+  imageSrc: string;
+  imageAlt: string;
+}
+
+interface Props {
+  label?: string;
+  heading: string;
+  subtext?: string;
+  items: DiffItem[];
+}
+
+const { label, heading, subtext, items } = Astro.props;
+---
+
+<section class="diff-stack-section py-16 px-8 bg-bg-primary" id="differentiators">
+  <div class="max-w-[1200px] mx-auto">
+    <div class="text-center mb-12">
+      {label && (
+        <span class="inline-block text-[0.75rem] font-semibold tracking-[0.08em] uppercase text-accent mb-3">
+          {label}
+        </span>
+      )}
+      <h2
+        class="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] text-text-primary mb-4"
+        set:html={heading}
+      />
+      {subtext && (
+        <p class="text-text-secondary text-[1.0625rem] max-w-[540px] mx-auto leading-[1.7]">
+          {subtext}
+        </p>
+      )}
+    </div>
+    <div class="flex flex-col gap-16 max-w-[1000px] mx-auto">
+      {items.map((item, index) => (
+        <div class={`diff-row grid grid-cols-2 gap-12 items-center relative max-md:grid-cols-1 diff-item-${index}`}>
+          <div class={`diff-img-col ${index % 2 === 1 ? 'md:order-2' : ''} bg-transparent p-0`}>
+            <img
+              src={item.imageSrc}
+              alt={item.imageAlt}
+              class="w-full max-w-[400px] h-auto rounded-[12px] shadow-[0_10px_40px_rgba(0,0,0,0.3)]"
+            />
+          </div>
+          <div class={`diff-text-col ${index % 2 === 1 ? 'md:order-1' : ''}`}>
+            <div class="text-[0.75rem] font-semibold tracking-[0.1em] uppercase text-accent mb-2">
+              {item.number}
+            </div>
+            <h3 class="font-[family-name:var(--font-display)] text-[clamp(1.5rem,2.5vw,2rem)] font-medium tracking-[-0.02em] text-text-primary mb-3">
+              {item.title}
+            </h3>
+            <p class="text-text-secondary leading-[1.7] mb-4">
+              {item.description}
+            </p>
+            <div class="flex flex-wrap gap-2">
+              {item.tags.map((tag) => (
+                <span class="inline-block px-3 py-1 bg-accent-soft text-accent rounded-[100px] text-[0.8125rem] font-medium">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // Section header
+    document.querySelectorAll('.diff-stack-section').forEach((section) => {
+      const header = section.querySelector('.text-center')
+      if (header) {
+        gsap.from(header, {
+          scrollTrigger: { trigger: header, start: 'top 85%' },
+          opacity: 0, y: 30, duration: 0.65, ease: 'power3.out',
+        })
+      }
+
+      // Each row: image and text slide in from opposite sides
+      section.querySelectorAll<HTMLElement>('.diff-row').forEach((row, i) => {
+        const imgCol  = row.querySelector('.diff-img-col')
+        const textCol = row.querySelector('.diff-text-col')
+        // Even rows: image left, text right. Odd rows: image right, text left.
+        const imgX  = i % 2 === 0 ? -50 : 50
+        const textX = i % 2 === 0 ? 50  : -50
+
+        if (imgCol) {
+          gsap.from(imgCol, {
+            scrollTrigger: { trigger: row, start: 'top 82%' },
+            opacity: 0, x: imgX, duration: 0.8, ease: 'power3.out',
+          })
+        }
+        if (textCol) {
+          gsap.from(textCol, {
+            scrollTrigger: { trigger: row, start: 'top 82%' },
+            opacity: 0, x: textX, duration: 0.8, delay: 0.1, ease: 'power3.out',
+          })
+        }
+      })
+    })
+  }
+</script>

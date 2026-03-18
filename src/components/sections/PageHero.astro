@@ -1,0 +1,52 @@
+---
+interface Props {
+  heading: string;
+  subtext?: string;
+  badge?: string;
+  label?: string;
+}
+
+const { heading, subtext, badge, label } = Astro.props;
+---
+
+<section class="page-hero-section pt-[72px] pb-12 px-8 text-center bg-bg-secondary border-b border-border-theme relative overflow-hidden">
+  <div class="max-w-[800px] mx-auto relative z-[1]">
+    {label && (
+      <span class="page-hero-label inline-block text-[0.75rem] font-semibold tracking-[0.08em] uppercase text-accent mb-3">
+        {label}
+      </span>
+    )}
+    {badge && (
+      <div class="page-hero-badge inline-flex items-center gap-2 bg-accent-soft border border-accent rounded-[100px] px-4 py-2 text-[0.75rem] font-semibold text-accent mb-6 uppercase tracking-[0.05em]">
+        {badge}
+      </div>
+    )}
+    <h1
+      class="page-hero-heading font-[family-name:var(--font-display)] text-[clamp(2.25rem,5vw,3.5rem)] font-medium leading-[1.15] tracking-[-0.02em] mb-4 text-text-primary"
+      set:html={heading}
+    />
+    {subtext && (
+      <p class="page-hero-subtext text-[clamp(1rem,1.5vw,1.25rem)] text-text-secondary max-w-[600px] mx-auto leading-[1.7]">
+        {subtext}
+      </p>
+    )}
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap'
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.page-hero-section').forEach((section) => {
+      const targets = [
+        section.querySelector('.page-hero-label'),
+        section.querySelector('.page-hero-badge'),
+        section.querySelector('.page-hero-heading'),
+        section.querySelector('.page-hero-subtext'),
+      ].filter(Boolean)
+
+      gsap.timeline({ delay: 0.1, defaults: { ease: 'power3.out', duration: 0.75 } })
+        .from(targets, { opacity: 0, y: 30, stagger: 0.1 })
+    })
+  }
+</script>

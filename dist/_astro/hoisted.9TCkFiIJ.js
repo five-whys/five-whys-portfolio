@@ -1,0 +1,1 @@
+import"./hoisted.DyIUDfEc.js";const e=document.querySelector(".value-header");if(e){const t=e.closest(".value-item")?.querySelector(".value-content"),r=e.querySelector(".chevron");t&&(e.setAttribute("aria-expanded","true"),t.style.maxHeight=t.scrollHeight+"px",r&&(r.style.transform="rotate(180deg)"))}

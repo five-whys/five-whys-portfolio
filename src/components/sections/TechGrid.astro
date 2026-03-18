@@ -1,0 +1,47 @@
+---
+interface TechCard {
+  iconSVG: string;
+  title: string;
+  body: string;
+}
+
+interface Props {
+  label?: string;
+  heading: string;
+  subtext?: string;
+  techCards: TechCard[];
+}
+
+const { label, heading, subtext, techCards } = Astro.props;
+---
+
+<section class="py-16 px-8 bg-bg-secondary border-t border-border-theme" id="technology">
+  <div class="max-w-[1200px] mx-auto">
+    <div class="text-center mb-8">
+      {label && (
+        <span class="inline-block text-[0.75rem] font-semibold tracking-[0.08em] uppercase text-accent mb-3">
+          {label}
+        </span>
+      )}
+      <h2
+        class="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] text-text-primary mb-4"
+        set:html={heading}
+      />
+      {subtext && (
+        <p class="text-text-secondary text-[1.0625rem] max-w-[540px] mx-auto mb-8 leading-[1.7]">
+          {subtext}
+        </p>
+      )}
+      <slot name="badges" />
+    </div>
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-5 mt-8">
+      {techCards.map((card) => (
+        <div class="p-6 bg-bg-secondary border border-border-theme rounded-[12px]">
+          <div class="w-9 h-9 text-accent mb-4 [&_svg]:w-full [&_svg]:h-full" set:html={card.iconSVG} />
+          <h4 class="text-base font-semibold text-text-primary mb-2">{card.title}</h4>
+          <p class="text-[0.875rem] text-text-secondary leading-[1.6]">{card.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

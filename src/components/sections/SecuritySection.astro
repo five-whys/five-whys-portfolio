@@ -1,0 +1,103 @@
+---
+interface Badge {
+  src: string;
+  alt: string;
+  label: string;
+}
+
+interface Props {
+  heading: string;
+  body: string;
+  badges: Badge[];
+  trustLinkHref: string;
+  trustLinkText: string;
+}
+
+const { heading, body, badges, trustLinkHref, trustLinkText } = Astro.props;
+---
+<section class="security-section-component py-[5rem] px-8 bg-bg-primary">
+  <div class="max-w-[1200px] mx-auto flex items-center gap-16 max-[1024px]:flex-col max-[1024px]:text-center max-[1024px]:gap-10">
+    <div class="security-text-col flex-1">
+      <h2
+        class="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.2] tracking-[-0.02em] mb-4"
+        set:html={heading}
+      />
+      <p class="text-lg text-text-secondary leading-[1.7]">
+        {body}
+      </p>
+    </div>
+    <div class="security-badges-col flex flex-col items-center gap-6">
+      <div class="flex gap-8 flex-wrap justify-center">
+        {badges.map((badge) => (
+          <div class="flex flex-col items-center gap-2 security-badge-item">
+            <img
+              src={badge.src}
+              alt={badge.alt}
+              class="w-16 h-16 object-contain transition-all duration-300"
+            />
+            <span class="text-base text-text-secondary text-center font-semibold">{badge.label}</span>
+          </div>
+        ))}
+      </div>
+      <a
+        href={trustLinkHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="security-trust-link-component inline-flex items-center gap-2 mt-6 text-brand-secondary underline underline-offset-[3px] text-base font-semibold transition-all duration-150"
+      >
+        {trustLinkText}
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="w-[18px] h-[18px]"
+        >
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.security-section-component').forEach((section) => {
+      const textCol   = section.querySelector('.security-text-col')
+      const badgesCol = section.querySelector('.security-badges-col')
+
+      if (textCol) {
+        gsap.from(textCol, {
+          scrollTrigger: { trigger: section, start: 'top 80%' },
+          opacity: 0, x: -40, duration: 0.8, ease: 'power3.out',
+        })
+      }
+      if (badgesCol) {
+        gsap.from(badgesCol.querySelectorAll('.security-badge-item'), {
+          scrollTrigger: { trigger: section, start: 'top 80%' },
+          opacity: 0, y: 25, duration: 0.55, stagger: 0.1, delay: 0.2, ease: 'power3.out',
+        })
+      }
+    })
+  }
+</script>
+
+<style>
+  .security-badge-item:hover img {
+    transform: scale(1.1);
+  }
+
+  .security-trust-link-component:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+</style>

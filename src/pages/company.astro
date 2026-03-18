@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TeamGrid from '../components/sections/TeamGrid.astro';
+import VisionCards from '../components/sections/VisionCards.astro';
+import ValuesAccordion from '../components/sections/ValuesAccordion.astro';
+import { teamMembers, visionCards, values, companyStats, offices } from '../data/company';
+---
+
+<BaseLayout
+  title="About 5.Y - The Company Behind GLUCOSE AI"
+  description="Learn about 5.Y, the company building GLUCOSE - the enterprise agentic AI platform. Meet our team and discover our mission to transform customer engagement."
+  keywords="5.Y company, Five Whys, GLUCOSE AI company, agentic AI startup, enterprise AI company, customer engagement AI company"
+  canonicalUrl="https://www.five-whys.com/company"
+  ogTitle="About 5.Y - The Company Behind GLUCOSE AI"
+  ogDescription="Meet the team building GLUCOSE - the enterprise agentic AI platform."
+  ogImage="https://www.five-whys.com/Images/og-image.png"
+  twitterTitle="About 5.Y | Company"
+  twitterDescription="The company behind GLUCOSE agentic AI."
+  activeNav="company"
+>
+  <!-- Hero About -->
+  <section style=" display: grid; grid-template-columns: 1fr 1fr; min-height: 60vh; overflow: hidden;">
+    <div style="display: flex; flex-direction: column; justify-content: center; padding: 4rem 3rem 4rem 4rem;">
+      <h1 style="font-family: var(--font-display); font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.5rem;">Who we are and why we're here</h1>
+      <p style="color: var(--color-text-secondary); font-size: 1.25rem;">About 5.Y.</p>
+    </div>
+    <div style="overflow: hidden; min-height: 400px;">
+      <img src="/Images/about.jpg" alt="5.Y Team" style="width: 100%; height: 100%; object-fit: cover;" />
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section style="padding: 5rem 2rem; background: var(--color-bg-secondary);">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <h2 style="font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 500; line-height: 1.3; letter-spacing: -0.02em; margin-bottom: 1.5rem;">5.Y helps enterprises run autonomous brand and product experiences that reach every customer, in every moment that matters.</h2>
+      <p style="color: var(--color-text-secondary); font-size: 1.125rem; line-height: 1.7;">By partnering with industry leaders in automotive, healthcare, consumer electronics, and financial services, we're transforming customer engagement with AI that acts, not just responds—delivering measurable business impact at scale.</p>
+    </div>
+  </section>
+
+  <!-- Values Accordion -->
+  <ValuesAccordion values={values} />
+
+  <!-- Team Grid -->
+  <TeamGrid
+    heading="Our founders &amp; Team"
+    subtext="5.Y was founded by a team of industry veterans who saw the opportunity to transform how enterprises engage with customers through autonomous AI."
+    members={teamMembers}
+  />
+
+  <!-- Vision Cards -->
+  <VisionCards
+    label="Our Vision"
+    heading="The brand that shows up, wins."
+    cards={visionCards}
+  />
+
+  <!-- About / Stats / Locations -->
+  <section id="about" style="padding: 4rem 2rem; background: var(--color-bg-secondary);">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-accent);">The Company</span>
+        <h2 style="font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -0.02em; margin-top: 0.5rem; margin-bottom: 1rem;">Building the future of customer engagement.</h2>
+        <p style="color: var(--color-text-secondary); font-size: 1.0625rem; max-width: 600px; margin: 0 auto;">5.Y is an agentic AI company building GLUCOSE—the platform that enables enterprises to run autonomous brand and product experiences.</p>
+      </div>
+
+      <!-- Stats -->
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 3rem;">
+        {companyStats.map((stat) => (
+          <div style="background: var(--color-bg-primary); border: 1px solid var(--color-border); border-radius: 16px; padding: 2rem; text-align: center;">
+            <div style="font-family: var(--font-display); font-size: 2.5rem; font-weight: 500; color: var(--color-accent); margin-bottom: 0.5rem;">{stat.value}</div>
+            <div style="font-size: 0.875rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.1em;">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Locations -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--color-text-primary); margin-bottom: 1rem;">Global Presence</h3>
+          <p style="color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 1rem;">With our headquarters in Singapore and a representative office in Seattle, we're building a global platform for autonomous customer engagement.</p>
+          <p style="color: var(--color-text-secondary); line-height: 1.7;">We chose Singapore for its position at the crossroads of global commerce, and Seattle for access to world-class AI talent and proximity to leading technology enterprises.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          {offices.map((office) => (
+            <div style="background: var(--color-bg-primary); border: 1px solid var(--color-border); border-radius: 12px; padding: 1.5rem;">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+                <div style="width: 36px; height: 36px; border-radius: 8px; background: var(--color-accent-soft); display: flex; align-items: center; justify-content: center; color: var(--color-accent);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <h4 style="font-weight: 600; color: var(--color-text-primary);">{office.name}</h4>
+              </div>
+              <p style="color: var(--color-text-secondary); font-size: 0.9375rem; line-height: 1.7;" set:html={office.address.replace(/\n/g, '<br />')}></p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="demo" style="background: var(--color-bg-primary); border-top: 1px solid var(--color-border); padding: 5rem 2rem; text-align: center;">
+    <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; letter-spacing: -0.02em; margin-bottom: 1rem;">See what GLUCOSE can do for you</h2>
+    <p style="color: var(--color-text-secondary); font-size: 1.125rem; max-width: 600px; margin: 0 auto 2rem;">Discover how GLUCOSE can help your enterprise run autonomous brand experiences that reach every customer, in every moment that matters.</p>
+    <a href="/contact" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.875rem 1.75rem; font-family: var(--font-primary); font-size: 0.9375rem; font-weight: 500; text-decoration: none; border-radius: 100px; background: var(--color-accent); color: var(--color-bg-primary); transition: all 0.3s cubic-bezier(0.4,0,0.2,1);">Request Demo</a>
+  </section>
+</BaseLayout>

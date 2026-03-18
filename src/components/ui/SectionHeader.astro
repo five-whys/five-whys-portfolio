@@ -1,0 +1,50 @@
+---
+interface Props {
+  label?: string;
+  heading: string;
+  subtext?: string;
+  centered?: boolean;
+  class?: string;
+}
+
+const {
+  label,
+  heading,
+  subtext,
+  centered = false,
+  class: className = 'max-w-[700px] mb-16',
+} = Astro.props;
+
+const alignClass = centered ? 'text-center mx-auto' : '';
+---
+
+<div class={`section-header-el ${className} ${alignClass}`}>
+  {label && (
+    <span class="inline-block text-xs font-semibold uppercase tracking-[0.15em] text-accent mb-4">
+      {label}
+    </span>
+  )}
+  <h2
+    class="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.2] tracking-[-0.02em] mb-4 text-text-primary"
+    set:html={heading}
+  />
+  {subtext && (
+    <p class="text-lg text-text-secondary leading-[1.7] max-w-[650px]">{subtext}</p>
+  )}
+</div>
+
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.section-header-el').forEach((el) => {
+      gsap.from(el.children, {
+        scrollTrigger: { trigger: el, start: 'top 85%' },
+        opacity: 0, y: 25, duration: 0.65, stagger: 0.1, ease: 'power3.out',
+      })
+    })
+  }
+</script>

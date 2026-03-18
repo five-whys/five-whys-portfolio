@@ -1,0 +1,942 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import {
+  Zap, Wrench, Building2, Monitor, Activity, Home, Briefcase,
+  Boxes, Globe, ShoppingCart, MessageSquare, BarChart3, Clock,
+  Bell, Users, BookOpen, Shield, Settings,
+} from 'lucide-astro';
+---
+
+<BaseLayout
+  title="AI Customer Engagement for Automotive, Healthcare & Retail | 5.Y"
+  description="GLUCOSE AI agents for automotive, healthcare, retail, and consumer electronics. WhatsApp chatbots, voice AI, and multi-channel customer engagement solutions."
+  canonicalUrl="https://www.five-whys.com/industries"
+  activeNav="industries"
+>
+  <style>
+    /* ── Industry Overview Cards ────────────────────────────────────────────── */
+    .industry-overview-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid var(--color-border);
+      background: var(--color-bg-tertiary);
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--color-text-primary);
+      /* CSS grid: icon col | title col, desc spans full width */
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      grid-template-rows: auto auto;
+      column-gap: 0.75rem;
+      row-gap: 0.625rem;
+      align-items: center;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    /* gold top-edge line */
+    .industry-overview-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,192,0,0.65), transparent);
+    }
+    /* radial glow from top */
+    .industry-overview-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 130% 55% at 50% 0%, rgba(255,192,0,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .industry-overview-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,192,0,0.28);
+      box-shadow: 0 16px 36px rgba(255,192,0,0.06);
+    }
+    /* place icon in grid cell 1,1 */
+    .industry-overview-icon {
+      grid-column: 1;
+      grid-row: 1;
+      align-self: center;
+      position: relative;
+      z-index: 1;
+    }
+    .industry-overview-icon svg { width: 100%; height: 100%; }
+    /* place title in grid cell 2,1 */
+    .industry-overview-card h3 {
+      grid-column: 2;
+      grid-row: 1;
+      position: relative;
+      z-index: 1;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin: 0;
+      line-height: 1.35;
+    }
+    /* desc spans both columns, row 2 */
+    .industry-overview-card p {
+      grid-column: 1 / 3;
+      grid-row: 2;
+      position: relative;
+      z-index: 1;
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── Grids ──────────────────────────────────────────────────────────────── */
+    .industries-overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .industry-features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .industry-features-grid--three {
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
+      max-width: 980px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cross-benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Cross-Benefit Cards ────────────────────────────────────────────────── */
+    .cross-benefit-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid var(--color-border);
+      background: var(--color-bg-tertiary);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .cross-benefit-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,192,0,0.65), transparent);
+    }
+    .cross-benefit-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 130% 55% at 50% 0%, rgba(255,192,0,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cross-benefit-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,192,0,0.28);
+    }
+    .cross-benefit-card > * { position: relative; z-index: 1; }
+    .cross-benefit-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-accent-soft);
+      color: var(--color-accent);
+      flex-shrink: 0;
+    }
+    .cross-benefit-icon svg { width: 20px; height: 20px; }
+    .cross-benefit-card h4 {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin: 0;
+    }
+    .cross-benefit-card p {
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* ── Industry Feature Cards ─────────────────────────────────────────────── */
+    .industry-feature-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid var(--color-border);
+      background: var(--color-bg-tertiary);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      height: 100%;
+      box-sizing: border-box;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .industry-feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,192,0,0.55), transparent);
+    }
+    .industry-feature-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 120% 50% at 50% 0%, rgba(255,192,0,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .industry-feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,192,0,0.25);
+      box-shadow: 0 12px 32px rgba(255,192,0,0.06);
+    }
+    .industry-feature-card > * { position: relative; z-index: 1; }
+    .industry-feature-card-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      color: var(--color-accent);
+      flex-shrink: 0;
+    }
+    .industry-feature-card-icon svg { width: 100%; height: 100%; }
+    .industry-feature-card h4 {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin: 0;
+      line-height: 1.4;
+    }
+    .industry-feature-card p {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ── Stats Row ──────────────────────────────────────────────────────────── */
+    .industry-stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+      border-radius: 16px;
+      border: 1px solid var(--color-border);
+      background: var(--color-bg-tertiary);
+      overflow: hidden;
+    }
+    .industry-stat {
+      flex: 1;
+      min-width: 140px;
+      padding: 1.25rem 1.75rem;
+      border-right: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+    }
+    .industry-stat:last-child { border-right: none; }
+    .industry-stat-value {
+      font-family: var(--font-display);
+      font-size: 1.875rem;
+      font-weight: 500;
+      color: var(--color-accent);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .industry-stat-label {
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+      line-height: 1.45;
+      max-width: 160px;
+    }
+
+    /* ── Section category pills ─────────────────────────────────────────────── */
+    .section-category-badge {
+      display: inline-block;
+      padding: 0.3rem 0.875rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(255,192,0,0.1);
+      color: var(--color-accent);
+      border: 1px solid rgba(255,192,0,0.2);
+      margin-bottom: 1.5rem;
+    }
+    .section-category-badge--muted {
+      background: rgba(255,255,255,0.05);
+      color: var(--color-text-muted);
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    /* ── Automotive Intro Layout ───────────────────────────────────────────── */
+    .automotive-intro-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 560px);
+      align-items: start;
+      column-gap: 2.25rem;
+      margin-bottom: 3.5rem;
+    }
+    .automotive-intro-copy {
+      display: flex;
+      justify-content: center;
+    }
+    .automotive-intro-media {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+    .automotive-intro-image {
+      width: 100%;
+      max-width: 700px;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    @media (max-width: 960px) {
+      .automotive-intro-layout {
+        grid-template-columns: 1fr;
+        row-gap: 1.5rem;
+      }
+      .automotive-intro-copy {
+        justify-content: flex-start;
+      }
+      .industry-features-grid--three {
+        grid-template-columns: repeat(2, minmax(220px, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .industry-features-grid--three {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <main class="min-h-screen" style="background: var(--color-bg-primary);">
+    <!-- Hero -->
+    <section style="padding: 5.5rem 2rem 4rem; text-align: center; background: var(--color-bg-secondary); border-bottom: 1px solid var(--color-border); position: relative; overflow: hidden;">
+      <!-- radial glow -->
+      <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(255,192,0,0.08) 0%, transparent 70%); pointer-events: none;"></div>
+      <div style="position: relative; z-index: 1;">
+        <span style="display: inline-block; padding: 0.3rem 0.875rem; border-radius: 100px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(255,192,0,0.1); color: var(--color-accent); border: 1px solid rgba(255,192,0,0.2); margin-bottom: 1.5rem;">Industries</span>
+        <h1 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 500; letter-spacing: -0.02em; color: var(--color-text-primary); margin: 0 0 1.25rem;">Your AI Agent for<br><span style="color: var(--color-accent);">Industry Leading</span> Experiences</h1>
+        <p style="color: var(--color-text-secondary); font-size: 1.125rem; max-width: 600px; margin: 0 auto; line-height: 1.7;">A new way to delight and support your customers, users, and operators across automotive, healthcare, consumer electronics, and beyond.</p>
+      </div>
+    </section>
+
+    <!-- Industries Overview -->
+    <section style="padding: 4rem 2rem; background: var(--color-bg-secondary);" id="industries">
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <SectionHeader
+          label="Industries"
+          heading="Complex products. Engaging journeys.<br/>One platform."
+          subtext="GLUCOSE is built for industries where customer engagement is hard: high intermediation, product complexity, education requirements, and economics that break traditional CRM."
+          centered={true}
+          class="max-w-[600px] mb-12"
+        />
+
+        <div class="section-category-badge">Where We Win First</div>
+
+        <div class="industries-overview-grid">
+          <a href="#automotive" class="industry-overview-card">
+            <div class="industry-overview-icon w-9 h-9 text-accent">
+              <Zap size={40} />
+            </div>
+            <h3 class="font-display text-base font-medium text-text-primary m-0">Automotive, Mobility & Transportation</h3>
+            <p>Revolutionize the entire ownership journey from consideration to second purchase.</p>
+          </a>
+          <a href="#commercial-vehicles" class="industry-overview-card">
+            <div class="industry-overview-icon w-9 h-9 text-accent">
+              <Wrench size={40} />
+            </div>
+            <h3 class="font-display text-base font-medium text-text-primary m-0">Commercial & Industrial Vehicles</h3>
+            <p>Keep fleets running with autonomous AI support for diagnostics, maintenance, and operations.</p>
+          </a>
+          <a href="#industrial" class="industry-overview-card">
+            <div class="industry-overview-icon w-9 h-9 text-accent">
+              <Building2 size={40} />
+            </div>
+            <h3 class="font-display text-base font-medium text-text-primary m-0">Industrial Appliances & Machineries</h3>
+            <p>Maximize asset utilization with real-time operator support and maintenance guidance.</p>
+          </a>
+          <a href="#electronics" class="industry-overview-card">
+            <div class="industry-overview-icon w-9 h-9 text-accent">
+              <Monitor size={40} />
+            </div>
+            <h3 class="font-display text-base font-medium text-text-primary m-0">Consumer Appliances</h3>
+            <p>Turn unboxing into brand loyalty with feature discovery and personalized guidance.</p>
+          </a>
+          <a href="#healthcare" class="industry-overview-card">
+            <div class="industry-overview-icon w-9 h-9 text-accent">
+              <Activity size={40} />
+            </div>
+            <h3 class="font-display text-base font-medium text-text-primary m-0">Healthcare</h3>
+            <p>Provide always-on, personalized care while managing costs and compliance.</p>
+          </a>
+        </div>
+
+        <div class="section-category-badge section-category-badge--muted" style="margin-top: 2rem;">Expansion Verticals</div>
+
+        <div class="industries-overview-grid">
+          <a href="#property" class="industry-overview-card">
+            <div class="industry-overview-icon w-9 h-9 text-accent">
+              <Home size={40} />
+            </div>
+            <h3 class="font-display text-base font-medium text-text-primary m-0">Buildings & Property Units</h3>
+            <p>Intelligent engagement for property occupants, tenants, and buyers.</p>
+          </a>
+          <a href="#financial" class="industry-overview-card">
+            <div class="industry-overview-icon w-9 h-9 text-accent">
+              <Briefcase size={40} />
+            </div>
+            <h3 class="font-display text-base font-medium text-text-primary m-0">Financial Services</h3>
+            <p>Build stronger relationships with immediate, personalized, and secure interactions.</p>
+          </a>
+          <a href="#energy" class="industry-overview-card">
+            <div class="industry-overview-icon w-9 h-9 text-accent">
+              <Zap size={40} />
+            </div>
+            <h3 class="font-display text-base font-medium text-text-primary m-0">Energy & Utilities</h3>
+            <p>Modernize customer engagement with proactive insights and automated support.</p>
+          </a>
+          <a href="#hospitality" class="industry-overview-card">
+            <div class="industry-overview-icon w-9 h-9 text-accent">
+              <Globe size={40} />
+            </div>
+            <h3 class="font-display text-base font-medium text-text-primary m-0">Hospitality & Travel</h3>
+            <p>Elevate the guest experience from booking to checkout with AI concierge.</p>
+          </a>
+          <a href="#consumer-goods" class="industry-overview-card">
+            <div class="industry-overview-icon w-9 h-9 text-accent">
+              <ShoppingCart size={40} />
+            </div>
+            <h3 class="font-display text-base font-medium text-text-primary m-0">Consumer Goods</h3>
+            <p>Own the direct-to-consumer relationship and drive repeat purchases.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Automotive -->
+    <section style="padding: 4rem 2rem; background: var(--color-bg-primary);" id="automotive">
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <div class="automotive-intro-layout">
+          <div class="automotive-intro-copy">
+            <SectionHeader
+              label="Automotive & Mobility"
+              heading="Transform the entire ownership journey"
+              subtext="From first consideration to second purchase, GLUCOSE engages customers at every touchpoint—discovery, configuration, ownership education, maintenance, feature discovery, and trade-in engagement."
+              class="max-w-[700px] mb-0"
+            />
+          </div>
+          <div class="automotive-intro-media">
+            <img
+              src="/Images/glucose-automotive-usecase.jpg"
+              alt="GLUCOSE helping diagnose car warning light via WhatsApp"
+              class="automotive-intro-image"
+            />
+          </div>
+        </div>
+        <div class="industry-features-grid">
+          <div class="industry-feature-card">
+            <h4>Vehicle Configuration & Discovery</h4>
+            <p>Help customers explore models, compare trims, understand features, and configure their perfect vehicle through natural conversation.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Ownership Onboarding</h4>
+            <p>Proactively introduce features, explain controls, and personalize the ownership experience from day one—reducing "how-to" support calls.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Service & Maintenance</h4>
+            <p>Schedule service appointments, explain maintenance alerts, guide troubleshooting, and integrate with DMS systems for seamless experience.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Feature Discovery</h4>
+            <p>Most owners never discover half the features they paid for. GLUCOSE contextually introduces features based on usage patterns and preferences.</p>
+          </div>
+        </div>
+        <div class="industry-stats-row">
+          <div class="industry-stat">
+            <span class="industry-stat-value">50%+</span>
+            <span class="industry-stat-label">of vehicle features go unused by owners</span>
+          </div>
+          <div class="industry-stat">
+            <span class="industry-stat-value">24/7</span>
+            <span class="industry-stat-label">support without call center overhead</span>
+          </div>
+          <div class="industry-stat">
+            <span class="industry-stat-value">50+</span>
+            <span class="industry-stat-label">languages for global deployment</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Healthcare -->
+    <section style="padding: 4rem 2rem; background: var(--color-bg-secondary); border-top: 1px solid var(--color-border);" id="healthcare">
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <SectionHeader
+          label="Healthcare"
+          heading="Personalized care that scales"
+          subtext="Patient engagement that respects complexity. Personalized guidance while maintaining compliance. Amplifying clinician reach, not replacing them."
+          class="max-w-[700px] mb-10"
+        />
+        <div class="industry-features-grid">
+          <div class="industry-feature-card">
+            <h4>Medical Device Education</h4>
+            <p>Guide patients through device setup, usage instructions, and ongoing support for complex medical equipment—from glucose monitors to CPAP machines.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Treatment Journey Support</h4>
+            <p>Proactive reminders, medication guidance, and personalized health information throughout the patient journey—with full compliance controls.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Appointment Management</h4>
+            <p>Schedule, reschedule, and provide pre-appointment instructions through natural conversation across messaging platforms.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Compliance & Guardrails</h4>
+            <p>Built-in IGDs (Instructions & Guidelines Documents) ensure GLUCOSE operates within strict healthcare compliance requirements.</p>
+          </div>
+        </div>
+        <div class="industry-stats-row">
+          <div class="industry-stat">
+            <span class="industry-stat-value">Always-On</span>
+            <span class="industry-stat-label">patient support outside office hours</span>
+          </div>
+          <div class="industry-stat">
+            <span class="industry-stat-value">Compliant</span>
+            <span class="industry-stat-label">with healthcare regulations</span>
+          </div>
+          <div class="industry-stat">
+            <span class="industry-stat-value">Multimodal</span>
+            <span class="industry-stat-label">text, voice, images for accessibility</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Consumer Appliances -->
+    <section style="padding: 4rem 2rem; background: var(--color-bg-primary); border-top: 1px solid var(--color-border);" id="electronics">
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <SectionHeader
+          label="Consumer Appliances"
+          heading="Turn unboxing into brand loyalty"
+          subtext="Most customers never discover half the features they paid for. GLUCOSE helps them explore, learn, and get more value—building brand love instead of support tickets."
+          class="max-w-[700px] mb-10"
+        />
+        <div class="industry-features-grid">
+          <div class="industry-feature-card">
+            <h4>Product Onboarding</h4>
+            <p>Guide users through setup, initial configuration, and first-use experiences for smart home devices, appliances, and electronics.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Feature Education</h4>
+            <p>Contextually introduce advanced features based on user behavior and preferences—turning casual users into power users.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Troubleshooting & Support</h4>
+            <p>Instant, 24/7 troubleshooting through natural conversation—reducing support ticket volume while improving customer satisfaction.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Accessory & Upgrade Recommendations</h4>
+            <p>Contextual recommendations for compatible accessories, software updates, and product upgrades based on usage patterns.</p>
+          </div>
+        </div>
+        <div class="industry-stats-row">
+          <div class="industry-stat">
+            <span class="industry-stat-value">Reduced</span>
+            <span class="industry-stat-label">support ticket volume</span>
+          </div>
+          <div class="industry-stat">
+            <span class="industry-stat-value">Increased</span>
+            <span class="industry-stat-label">feature adoption rates</span>
+          </div>
+          <div class="industry-stat">
+            <span class="industry-stat-value">Higher</span>
+            <span class="industry-stat-label">customer lifetime value</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Financial Services -->
+    <section style="padding: 4rem 2rem; background: var(--color-bg-secondary); border-top: 1px solid var(--color-border);" id="financial">
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <SectionHeader
+          label="Financial Services"
+          heading="Build trust at scale"
+          subtext="Contextual guidance for complex, personal financial products—account questions, product education, life-stage recommendations—with control and compliance built in."
+          class="max-w-[700px] mb-10"
+        />
+        <div class="industry-features-grid">
+          <div class="industry-feature-card">
+            <h4>Product Recommendations</h4>
+            <p>Provide personalized guidance to help customers choose the best financial products for their needs—increasing acquisition and cross-sell rates.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Account Support</h4>
+            <p>Respond immediately to questions about account balances, fees, transactions, and policies—boosting customer trust and satisfaction.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Life-Stage Engagement</h4>
+            <p>Proactively engage customers during major life events—home buying, retirement planning, education funding—with contextual product information.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Security & Compliance</h4>
+            <p>Enterprise-grade security with encrypted data, compliance guardrails, and audit logging for regulated financial services.</p>
+          </div>
+        </div>
+        <div class="industry-stats-row">
+          <div class="industry-stat">
+            <span class="industry-stat-value">Secure</span>
+            <span class="industry-stat-label">enterprise-grade encryption</span>
+          </div>
+          <div class="industry-stat">
+            <span class="industry-stat-value">Compliant</span>
+            <span class="industry-stat-label">with financial regulations</span>
+          </div>
+          <div class="industry-stat">
+            <span class="industry-stat-value">Immediate</span>
+            <span class="industry-stat-label">personalized responses</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Retail & Consumer Goods (retail id) -->
+    <section style="padding: 4rem 2rem; background: var(--color-bg-primary); border-top: 1px solid var(--color-border);" id="retail">
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <SectionHeader
+          label="Retail & Consumer Goods"
+          heading="Seamless customer experiences"
+          subtext="Boost brand loyalty, conversion, and lifetime value with personalized product guidance and post-purchase support."
+          class="max-w-[700px] mb-10"
+        />
+        <div class="industry-features-grid">
+          <div class="industry-feature-card">
+            <h4>Product Discovery</h4>
+            <p>Help shoppers find the perfect product through conversational commerce—understanding needs and recommending solutions.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Order Support</h4>
+            <p>Track orders, handle returns, process exchanges, and resolve issues instantly through natural conversation.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Product Usage Guidance</h4>
+            <p>Provide ongoing support for complex products—assembly instructions, care guides, usage tips, and troubleshooting.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Loyalty & Re-engagement</h4>
+            <p>Personalized recommendations, reorder reminders, and loyalty program engagement to drive repeat purchases.</p>
+          </div>
+        </div>
+        <div class="industry-stats-row">
+          <div class="industry-stat">
+            <span class="industry-stat-value">Increased</span>
+            <span class="industry-stat-label">conversion rates</span>
+          </div>
+          <div class="industry-stat">
+            <span class="industry-stat-value">Reduced</span>
+            <span class="industry-stat-label">return and exchange rates</span>
+          </div>
+          <div class="industry-stat">
+            <span class="industry-stat-value">Higher</span>
+            <span class="industry-stat-label">repeat purchase rates</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Industrial Equipment -->
+    <section style="padding: 4rem 2rem; background: var(--color-bg-primary); border-top: 1px solid var(--color-border);" id="industrial">
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <SectionHeader
+          label="Industrial Equipment & Machinery"
+          heading="Maximize asset utilization"
+          subtext="GLUCOSE provides tailored, real-time insights and assistance for complex industrial equipment—enhancing operational efficiency for fleet managers and operators alike."
+          class="max-w-[700px] mb-10"
+        />
+        <div class="industry-features-grid">
+          <div class="industry-feature-card">
+            <h4>Operator Training</h4>
+            <p>On-demand guidance for equipment operation, safety procedures, and best practices—reducing training time and errors.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Maintenance Support</h4>
+            <p>Proactive maintenance reminders, troubleshooting assistance, and service scheduling integrated with your systems.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>IoT Integration</h4>
+            <p>Connect GLUCOSE to IoT sensors for context-aware support—responding to equipment alerts with relevant guidance.</p>
+          </div>
+          <div class="industry-feature-card">
+            <h4>Documentation Access</h4>
+            <p>Instant access to manuals, specifications, and procedures through natural conversation—no more searching through binders.</p>
+          </div>
+        </div>
+        <div class="industry-stats-row">
+          <div class="industry-stat">
+            <span class="industry-stat-value">Minimized</span>
+            <span class="industry-stat-label">equipment downtime</span>
+          </div>
+          <div class="industry-stat">
+            <span class="industry-stat-value">Improved</span>
+            <span class="industry-stat-label">safety compliance</span>
+          </div>
+          <div class="industry-stat">
+            <span class="industry-stat-value">Enhanced</span>
+            <span class="industry-stat-label">operator efficiency</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Commercial & Industrial Vehicles -->
+    <section style="padding: 4rem 2rem; background: var(--color-bg-secondary); border-top: 1px solid var(--color-border);" id="commercial-vehicles">
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <SectionHeader
+          label="Commercial & Industrial Vehicles"
+          heading="Keep fleets running with autonomous AI support"
+          subtext="From trucks and buses to construction equipment, GLUCOSE enables OEMs and fleet operators to provide instant diagnostics, maintenance scheduling, and driver support — reducing downtime and operational costs."
+          centered={true}
+          class="max-w-[700px] mb-10 mx-auto"
+        />
+        <div class="industry-features-grid industry-features-grid--three">
+          <div class="industry-feature-card">
+            <div class="industry-feature-card-icon"><Wrench size={24} /></div>
+            <h4>Predictive Maintenance</h4>
+            <p>AI agents that alert operators before breakdowns, schedule service, and coordinate parts availability.</p>
+          </div>
+          <div class="industry-feature-card">
+            <div class="industry-feature-card-icon"><MessageSquare size={24} /></div>
+            <h4>Driver & Operator Support</h4>
+            <p>24/7 multimodal assistance for vehicle operation, troubleshooting, and compliance documentation.</p>
+          </div>
+          <div class="industry-feature-card">
+            <div class="industry-feature-card-icon"><BarChart3 size={24} /></div>
+            <h4>Fleet Analytics</h4>
+            <p>Capture first-party data on usage patterns, common issues, and operator needs across your entire fleet.</p>
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <a href="/contact" class="inline-flex items-center py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90" style="margin-top: 2rem;">Explore Commercial Vehicles</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Buildings & Property -->
+    <section style="padding: 4rem 2rem; background: var(--color-bg-secondary); border-top: 1px solid var(--color-border);" id="property">
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <SectionHeader
+          label="Buildings & Property Units"
+          heading="Intelligent engagement for property occupants and buyers"
+          subtext="From smart buildings to residential developments, GLUCOSE helps property managers and developers engage with tenants, buyers, and visitors through autonomous AI that handles inquiries, schedules viewings, and manages facility requests."
+          centered={true}
+          class="max-w-[700px] mb-10 mx-auto"
+        />
+        <div class="industry-features-grid industry-features-grid--three">
+          <div class="industry-feature-card">
+            <div class="industry-feature-card-icon"><Boxes size={24} /></div>
+            <h4>Tenant Support</h4>
+            <p>Autonomous handling of maintenance requests, facility bookings, and community communications.</p>
+          </div>
+          <div class="industry-feature-card">
+            <div class="industry-feature-card-icon"><Home size={24} /></div>
+            <h4>Property Sales</h4>
+            <p>Qualify leads, schedule viewings, and guide prospective buyers through property features via WhatsApp and chat.</p>
+          </div>
+          <div class="industry-feature-card">
+            <div class="industry-feature-card-icon"><Clock size={24} /></div>
+            <h4>Smart Building Integration</h4>
+            <p>Connect to IoT systems for real-time facility management, energy monitoring, and occupant notifications.</p>
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <a href="/contact" class="inline-flex items-center py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90" style="margin-top: 2rem;">Explore Property Solutions</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Energy & Utilities -->
+    <section style="padding: 4rem 2rem; background: var(--color-bg-secondary); border-top: 1px solid var(--color-border);" id="energy">
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <SectionHeader
+          label="Energy & Utilities"
+          heading="Modernize customer engagement for energy providers"
+          subtext="GLUCOSE helps energy and utility companies automate customer support, manage service requests, and deliver proactive usage insights — improving satisfaction while reducing operational burden."
+          centered={true}
+          class="max-w-[700px] mb-10 mx-auto"
+        />
+        <div class="industry-features-grid industry-features-grid--three">
+          <div class="industry-feature-card">
+            <div class="industry-feature-card-icon"><Zap size={24} /></div>
+            <h4>Usage & Billing Support</h4>
+            <p>Autonomous agents that explain bills, compare plans, and process account changes instantly.</p>
+          </div>
+          <div class="industry-feature-card">
+            <div class="industry-feature-card-icon"><Bell size={24} /></div>
+            <h4>Proactive Notifications</h4>
+            <p>Alert customers about outages, maintenance windows, and consumption anomalies before they contact you.</p>
+          </div>
+          <div class="industry-feature-card">
+            <div class="industry-feature-card-icon"><Activity size={24} /></div>
+            <h4>Demand Response</h4>
+            <p>Engage customers in energy-saving programs through intelligent, personalized communication campaigns.</p>
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <a href="/contact" class="inline-flex items-center py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90" style="margin-top: 2rem;">Explore Energy Solutions</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hospitality & Travel -->
+    <section style="padding: 4rem 2rem; background: var(--color-bg-primary); border-top: 1px solid var(--color-border);" id="hospitality">
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <SectionHeader
+          label="Hospitality & Travel"
+          heading="Elevate the guest experience from booking to checkout"
+          subtext="GLUCOSE enables hotels, resorts, and travel operators to deliver concierge-level service at scale — handling reservations, answering questions, and personalizing recommendations via the channels guests already use."
+          centered={true}
+          class="max-w-[700px] mb-10 mx-auto"
+        />
+        <div class="industry-features-grid industry-features-grid--three">
+          <div class="industry-feature-card">
+            <div class="industry-feature-card-icon"><MessageSquare size={24} /></div>
+            <h4>AI Concierge</h4>
+            <p>Autonomous guest support for bookings, room service, local recommendations, and special requests.</p>
+          </div>
+          <div class="industry-feature-card">
+            <div class="industry-feature-card-icon"><Globe size={24} /></div>
+            <h4>Multilingual Engagement</h4>
+            <p>Serve international guests in 50+ languages across WhatsApp, LINE, and other regional channels.</p>
+          </div>
+          <div class="industry-feature-card">
+            <div class="industry-feature-card-icon"><Users size={24} /></div>
+            <h4>Loyalty & Upsell</h4>
+            <p>Proactively engage guests with personalized upgrade offers, loyalty rewards, and post-stay follow-ups.</p>
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <a href="/contact" class="inline-flex items-center py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90" style="margin-top: 2rem;">Explore Hospitality Solutions</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Consumer Goods -->
+    <section style="padding: 4rem 2rem; background: var(--color-bg-secondary); border-top: 1px solid var(--color-border);" id="consumer-goods">
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <SectionHeader
+          label="Consumer Goods"
+          heading="Own the direct-to-consumer relationship"
+          subtext="GLUCOSE helps CPG and consumer goods brands engage directly with end consumers, bypassing retail intermediaries to build brand loyalty, gather product feedback, and drive repeat purchases."
+          centered={true}
+          class="max-w-[700px] mb-10 mx-auto"
+        />
+        <div class="industry-features-grid industry-features-grid--three">
+          <div class="industry-feature-card">
+            <div class="industry-feature-card-icon"><BookOpen size={24} /></div>
+            <h4>Product Education</h4>
+            <p>Guide consumers through product features, usage tips, and care instructions via conversational AI.</p>
+          </div>
+          <div class="industry-feature-card">
+            <div class="industry-feature-card-icon"><BarChart3 size={24} /></div>
+            <h4>Consumer Insights</h4>
+            <p>Capture first-party data on preferences, feedback, and purchase intent directly from conversations.</p>
+          </div>
+          <div class="industry-feature-card">
+            <div class="industry-feature-card-icon"><Bell size={24} /></div>
+            <h4>Lifecycle Engagement</h4>
+            <p>Proactive re-engagement for refills, upgrades, and loyalty programs — building long-term brand relationships.</p>
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <a href="/contact" class="inline-flex items-center py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90" style="margin-top: 2rem;">Explore Consumer Solutions</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cross-Industry Benefits -->
+    <section style="padding: 4rem 2rem; background: var(--color-bg-secondary); border-top: 1px solid var(--color-border);" id="benefits">
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <SectionHeader
+          label="Why GLUCOSE"
+          heading="One platform for every industry"
+          subtext="Regardless of your industry, GLUCOSE delivers consistent value through its enterprise-grade agentic AI platform."
+          centered={true}
+          class="max-w-[540px] mb-12"
+        />
+        <div class="cross-benefits-grid">
+          <div class="cross-benefit-card">
+            <div class="cross-benefit-icon">
+              <Globe size={24} />
+            </div>
+            <h4>Multilingual</h4>
+            <p>50+ languages for global deployment</p>
+          </div>
+          <div class="cross-benefit-card">
+            <div class="cross-benefit-icon">
+              <Monitor size={24} />
+            </div>
+            <h4>Multimodal</h4>
+            <p>Text, voice, images, and video</p>
+          </div>
+          <div class="cross-benefit-card">
+            <div class="cross-benefit-icon">
+              <MessageSquare size={24} />
+            </div>
+            <h4>Omnichannel</h4>
+            <p>WhatsApp, Telegram, Line, Viber, and more</p>
+          </div>
+          <div class="cross-benefit-card">
+            <div class="cross-benefit-icon">
+              <Shield size={24} />
+            </div>
+            <h4>Enterprise Security</h4>
+            <p>AWS-powered, encrypted, compliant</p>
+          </div>
+          <div class="cross-benefit-card">
+            <div class="cross-benefit-icon">
+              <Activity size={24} />
+            </div>
+            <h4>Analytics</h4>
+            <p>First-party data and contextual insights</p>
+          </div>
+          <div class="cross-benefit-card">
+            <div class="cross-benefit-icon">
+              <Settings size={24} />
+            </div>
+            <h4>No-Code Management</h4>
+            <p>Configure without technical expertise</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="padding: 5rem 2rem; text-align: center; background: var(--color-bg-primary); border-top: 1px solid var(--color-border); position: relative; overflow: hidden;" id="demo">
+      <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 55% at 50% 100%, rgba(255,192,0,0.07) 0%, transparent 70%); pointer-events: none;"></div>
+      <div style="position: relative; z-index: 1; max-width: 600px; margin: 0 auto;">
+        <span style="display: inline-block; padding: 0.3rem 0.875rem; border-radius: 100px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(255,192,0,0.1); color: var(--color-accent); border: 1px solid rgba(255,192,0,0.2); margin-bottom: 1.5rem;">Get Started</span>
+        <h2 style="font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -0.02em; color: var(--color-text-primary); margin: 0 0 1rem;">Discover what GLUCOSE can do<br>for your industry</h2>
+        <p style="color: var(--color-text-secondary); font-size: 1.0625rem; margin: 0 auto 2rem; line-height: 1.7;">See how GLUCOSE can help your enterprise deliver autonomous brand and product experiences that reach every customer, in every moment that matters.</p>
+        <a href="/contact" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 2rem; background: var(--color-accent); color: #000; font-weight: 700; font-size: 0.9375rem; border-radius: 10px; text-decoration: none; transition: opacity 0.2s ease; letter-spacing: 0.01em;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Request a Demo</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
