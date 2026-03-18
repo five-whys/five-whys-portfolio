@@ -309,7 +309,7 @@ const { activeNav = '', transparent = false } = Astro.props;
     }
   });
 
-  document.querySelectorAll('a[href="/contact"].btn-accent').forEach(btn => {
+  document.querySelectorAll('a[href="/contact"]:not(.nav-dropdown-item):not(.mobile-dropdown-item)').forEach(btn => {
     btn.addEventListener('click', (window as any).openDemoModal);
   });
 </script>
