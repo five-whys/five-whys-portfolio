@@ -1,0 +1,29 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/Images"
+public_folder: "/Images"
+
+collections:
+  - name: "pages"
+    label: "📄 Pages"
+    files:
+      - name: "terms"
+        label: "Terms & Conditions"
+        file: "src/content/pages/terms.md"
+        fields:
+          - label: "Page Title"
+            name: "title"
+            widget: "string"
+            hint: "Shown as the big heading at the top of the page"
+
+          - label: "Page Subtitle"
+            name: "subtitle"
+            widget: "string"
+            hint: "Smaller description line below the title"
+
+          - label: "Body Content"
+            name: "body"
+            widget: "markdown"
+            hint: "Use ## for section headings, ### for sub-headings, and regular text for paragraphs"
