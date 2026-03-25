@@ -1,8 +1,10 @@
 local_backend: true   # remove this line before pushing to production
 
 backend:
-  name: git-gateway
+  name: github
+  repo: five-whys/five-whys-portfolio
   branch: main
+  base_url: https://api.netlify.com
 
 media_folder: "public/Images"
 public_folder: "/Images"
