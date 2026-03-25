@@ -37,7 +37,7 @@ const { label, heading, subtext, members } = Astro.props;
         </p>
       )}
     </div>
-    <div class="grid gap-8" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="grid gap-8">
       {members.map((member) => (
         <div class="team-card bg-bg-primary border border-border-theme rounded-[20px] p-8 text-center">
           {member.imageSrc ? (

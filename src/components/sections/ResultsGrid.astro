@@ -46,7 +46,7 @@ const { results } = Astro.props;
               alt={result.logoAlt}
               class="absolute top-4 left-4 h-7 w-auto bg-white p-1 px-2 rounded"
             />
-            <div class="absolute bottom-0 left-0 right-0 px-4 py-3 flex gap-6" style="background: linear-gradient(transparent, rgba(0,0,0,0.8));">
+            <div class="absolute bottom-0 left-0 right-0 px-4 py-3 flex gap-6 bg-[linear-gradient(transparent,rgba(0,0,0,0.8))]">
               {result.metrics.map((metric) => (
                 <div>
                   <div class="text-[0.625rem] text-[rgba(255,255,255,0.7)] uppercase">{metric.label}</div>

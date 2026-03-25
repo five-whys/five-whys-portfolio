@@ -326,21 +326,21 @@ import {
     }
   </style>
 
-  <main class="min-h-screen" style="background: var(--color-bg-primary);">
+  <main class="min-h-screen bg-bg-primary">
     <!-- Hero -->
-    <section style="padding: 5.5rem 2rem 4rem; text-align: center; background: var(--color-bg-secondary); border-bottom: 1px solid var(--color-border); position: relative; overflow: hidden;">
+    <section class="pt-[5.5rem] px-8 pb-16 text-center bg-bg-secondary border-b border-border-theme relative overflow-hidden">
       <!-- radial glow -->
-      <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(255,192,0,0.08) 0%, transparent 70%); pointer-events: none;"></div>
-      <div style="position: relative; z-index: 1;">
-        <span style="display: inline-block; padding: 0.3rem 0.875rem; border-radius: 100px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(255,192,0,0.1); color: var(--color-accent); border: 1px solid rgba(255,192,0,0.2); margin-bottom: 1.5rem;">Industries</span>
-        <h1 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 500; letter-spacing: -0.02em; color: var(--color-text-primary); margin: 0 0 1.25rem;">Your AI Agent for<br><span style="color: var(--color-accent);">Industry Leading</span> Experiences</h1>
-        <p style="color: var(--color-text-secondary); font-size: 1.125rem; max-width: 600px; margin: 0 auto; line-height: 1.7;">A new way to delight and support your customers, users, and operators across automotive, healthcare, consumer electronics, and beyond.</p>
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(255,192,0,0.08)_0%,transparent_70%)] pointer-events-none"></div>
+      <div class="relative z-10">
+        <span class="inline-block py-[0.3rem] px-[0.875rem] rounded-full text-xs font-bold tracking-[0.1em] uppercase bg-[rgba(255,192,0,0.1)] text-accent border border-[rgba(255,192,0,0.2)] mb-6">Industries</span>
+        <h1 class="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,4rem)] font-medium tracking-[-0.02em] text-text-primary m-0 mb-5">Your AI Agent for<br><span class="text-accent">Industry Leading</span> Experiences</h1>
+        <p class="text-text-secondary text-lg max-w-[600px] mx-auto leading-[1.7]">A new way to delight and support your customers, users, and operators across automotive, healthcare, consumer electronics, and beyond.</p>
       </div>
     </section>
 
     <!-- Industries Overview -->
-    <section style="padding: 4rem 2rem; background: var(--color-bg-secondary);" id="industries">
-      <div style="max-width: 1200px; margin: 0 auto;">
+    <section class="py-16 px-8 bg-bg-secondary" id="industries">
+      <div class="max-w-[1200px] mx-auto">
         <SectionHeader
           label="Industries"
           heading="Complex products. Engaging journeys.<br/>One platform."
@@ -389,7 +389,7 @@ import {
           </a>
         </div>
 
-        <div class="section-category-badge section-category-badge--muted" style="margin-top: 2rem;">Expansion Verticals</div>
+        <div class="section-category-badge section-category-badge--muted mt-8">Expansion Verticals</div>
 
         <div class="industries-overview-grid">
           <a href="#property" class="industry-overview-card">
@@ -432,8 +432,8 @@ import {
     </section>
 
     <!-- Automotive -->
-    <section style="padding: 4rem 2rem; background: var(--color-bg-primary);" id="automotive">
-      <div style="max-width: 1200px; margin: 0 auto;">
+    <section class="py-16 px-8 bg-bg-primary" id="automotive">
+      <div class="max-w-[1200px] mx-auto">
         <div class="automotive-intro-layout">
           <div class="automotive-intro-copy">
             <SectionHeader
@@ -487,8 +487,8 @@ import {
     </section>
 
     <!-- Healthcare -->
-    <section style="padding: 4rem 2rem; background: var(--color-bg-secondary); border-top: 1px solid var(--color-border);" id="healthcare">
-      <div style="max-width: 1200px; margin: 0 auto;">
+    <section class="py-16 px-8 bg-bg-secondary border-t border-border-theme" id="healthcare">
+      <div class="max-w-[1200px] mx-auto">
         <SectionHeader
           label="Healthcare"
           heading="Personalized care that scales"
@@ -531,8 +531,8 @@ import {
     </section>
 
     <!-- Consumer Appliances -->
-    <section style="padding: 4rem 2rem; background: var(--color-bg-primary); border-top: 1px solid var(--color-border);" id="electronics">
-      <div style="max-width: 1200px; margin: 0 auto;">
+    <section class="py-16 px-8 bg-bg-primary border-t border-border-theme" id="electronics">
+      <div class="max-w-[1200px] mx-auto">
         <SectionHeader
           label="Consumer Appliances"
           heading="Turn unboxing into brand loyalty"
@@ -575,8 +575,8 @@ import {
     </section>
 
     <!-- Financial Services -->
-    <section style="padding: 4rem 2rem; background: var(--color-bg-secondary); border-top: 1px solid var(--color-border);" id="financial">
-      <div style="max-width: 1200px; margin: 0 auto;">
+    <section class="py-16 px-8 bg-bg-secondary border-t border-border-theme" id="financial">
+      <div class="max-w-[1200px] mx-auto">
         <SectionHeader
           label="Financial Services"
           heading="Build trust at scale"
@@ -619,8 +619,8 @@ import {
     </section>
 
     <!-- Retail & Consumer Goods (retail id) -->
-    <section style="padding: 4rem 2rem; background: var(--color-bg-primary); border-top: 1px solid var(--color-border);" id="retail">
-      <div style="max-width: 1200px; margin: 0 auto;">
+    <section class="py-16 px-8 bg-bg-primary border-t border-border-theme" id="retail">
+      <div class="max-w-[1200px] mx-auto">
         <SectionHeader
           label="Retail & Consumer Goods"
           heading="Seamless customer experiences"
@@ -663,8 +663,8 @@ import {
     </section>
 
     <!-- Industrial Equipment -->
-    <section style="padding: 4rem 2rem; background: var(--color-bg-primary); border-top: 1px solid var(--color-border);" id="industrial">
-      <div style="max-width: 1200px; margin: 0 auto;">
+    <section class="py-16 px-8 bg-bg-primary border-t border-border-theme" id="industrial">
+      <div class="max-w-[1200px] mx-auto">
         <SectionHeader
           label="Industrial Equipment & Machinery"
           heading="Maximize asset utilization"
@@ -707,8 +707,8 @@ import {
     </section>
 
     <!-- Commercial & Industrial Vehicles -->
-    <section style="padding: 4rem 2rem; background: var(--color-bg-secondary); border-top: 1px solid var(--color-border);" id="commercial-vehicles">
-      <div style="max-width: 1200px; margin: 0 auto;">
+    <section class="py-16 px-8 bg-bg-secondary border-t border-border-theme" id="commercial-vehicles">
+      <div class="max-w-[1200px] mx-auto">
         <SectionHeader
           label="Commercial & Industrial Vehicles"
           heading="Keep fleets running with autonomous AI support"
@@ -733,15 +733,15 @@ import {
             <p>Capture first-party data on usage patterns, common issues, and operator needs across your entire fleet.</p>
           </div>
         </div>
-        <div style="text-align: center;">
-          <a href="/contact" class="inline-flex items-center py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90" style="margin-top: 2rem;">Explore Commercial Vehicles</a>
+        <div class="text-center">
+          <a href="/contact" class="inline-flex items-center mt-8 py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90">Explore Commercial Vehicles</a>
         </div>
       </div>
     </section>
 
     <!-- Buildings & Property -->
-    <section style="padding: 4rem 2rem; background: var(--color-bg-secondary); border-top: 1px solid var(--color-border);" id="property">
-      <div style="max-width: 1200px; margin: 0 auto;">
+    <section class="py-16 px-8 bg-bg-secondary border-t border-border-theme" id="property">
+      <div class="max-w-[1200px] mx-auto">
         <SectionHeader
           label="Buildings & Property Units"
           heading="Intelligent engagement for property occupants and buyers"
@@ -766,15 +766,15 @@ import {
             <p>Connect to IoT systems for real-time facility management, energy monitoring, and occupant notifications.</p>
           </div>
         </div>
-        <div style="text-align: center;">
-          <a href="/contact" class="inline-flex items-center py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90" style="margin-top: 2rem;">Explore Property Solutions</a>
+        <div class="text-center">
+          <a href="/contact" class="inline-flex items-center mt-8 py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90">Explore Property Solutions</a>
         </div>
       </div>
     </section>
 
     <!-- Energy & Utilities -->
-    <section style="padding: 4rem 2rem; background: var(--color-bg-secondary); border-top: 1px solid var(--color-border);" id="energy">
-      <div style="max-width: 1200px; margin: 0 auto;">
+    <section class="py-16 px-8 bg-bg-secondary border-t border-border-theme" id="energy">
+      <div class="max-w-[1200px] mx-auto">
         <SectionHeader
           label="Energy & Utilities"
           heading="Modernize customer engagement for energy providers"
@@ -799,15 +799,15 @@ import {
             <p>Engage customers in energy-saving programs through intelligent, personalized communication campaigns.</p>
           </div>
         </div>
-        <div style="text-align: center;">
-          <a href="/contact" class="inline-flex items-center py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90" style="margin-top: 2rem;">Explore Energy Solutions</a>
+        <div class="text-center">
+          <a href="/contact" class="inline-flex items-center mt-8 py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90">Explore Energy Solutions</a>
         </div>
       </div>
     </section>
 
     <!-- Hospitality & Travel -->
-    <section style="padding: 4rem 2rem; background: var(--color-bg-primary); border-top: 1px solid var(--color-border);" id="hospitality">
-      <div style="max-width: 1200px; margin: 0 auto;">
+    <section class="py-16 px-8 bg-bg-primary border-t border-border-theme" id="hospitality">
+      <div class="max-w-[1200px] mx-auto">
         <SectionHeader
           label="Hospitality & Travel"
           heading="Elevate the guest experience from booking to checkout"
@@ -832,15 +832,15 @@ import {
             <p>Proactively engage guests with personalized upgrade offers, loyalty rewards, and post-stay follow-ups.</p>
           </div>
         </div>
-        <div style="text-align: center;">
-          <a href="/contact" class="inline-flex items-center py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90" style="margin-top: 2rem;">Explore Hospitality Solutions</a>
+        <div class="text-center">
+          <a href="/contact" class="inline-flex items-center mt-8 py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90">Explore Hospitality Solutions</a>
         </div>
       </div>
     </section>
 
     <!-- Consumer Goods -->
-    <section style="padding: 4rem 2rem; background: var(--color-bg-secondary); border-top: 1px solid var(--color-border);" id="consumer-goods">
-      <div style="max-width: 1200px; margin: 0 auto;">
+    <section class="py-16 px-8 bg-bg-secondary border-t border-border-theme" id="consumer-goods">
+      <div class="max-w-[1200px] mx-auto">
         <SectionHeader
           label="Consumer Goods"
           heading="Own the direct-to-consumer relationship"
@@ -865,15 +865,15 @@ import {
             <p>Proactive re-engagement for refills, upgrades, and loyalty programs — building long-term brand relationships.</p>
           </div>
         </div>
-        <div style="text-align: center;">
-          <a href="/contact" class="inline-flex items-center py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90" style="margin-top: 2rem;">Explore Consumer Solutions</a>
+        <div class="text-center">
+          <a href="/contact" class="inline-flex items-center mt-8 py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90">Explore Consumer Solutions</a>
         </div>
       </div>
     </section>
 
     <!-- Cross-Industry Benefits -->
-    <section style="padding: 4rem 2rem; background: var(--color-bg-secondary); border-top: 1px solid var(--color-border);" id="benefits">
-      <div style="max-width: 1200px; margin: 0 auto;">
+    <section class="py-16 px-8 bg-bg-secondary border-t border-border-theme" id="benefits">
+      <div class="max-w-[1200px] mx-auto">
         <SectionHeader
           label="Why GLUCOSE"
           heading="One platform for every industry"
@@ -929,13 +929,13 @@ import {
     </section>
 
     <!-- CTA -->
-    <section style="padding: 5rem 2rem; text-align: center; background: var(--color-bg-primary); border-top: 1px solid var(--color-border); position: relative; overflow: hidden;" id="demo">
-      <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 55% at 50% 100%, rgba(255,192,0,0.07) 0%, transparent 70%); pointer-events: none;"></div>
-      <div style="position: relative; z-index: 1; max-width: 600px; margin: 0 auto;">
-        <span style="display: inline-block; padding: 0.3rem 0.875rem; border-radius: 100px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(255,192,0,0.1); color: var(--color-accent); border: 1px solid rgba(255,192,0,0.2); margin-bottom: 1.5rem;">Get Started</span>
-        <h2 style="font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -0.02em; color: var(--color-text-primary); margin: 0 0 1rem;">Discover what GLUCOSE can do<br>for your industry</h2>
-        <p style="color: var(--color-text-secondary); font-size: 1.0625rem; margin: 0 auto 2rem; line-height: 1.7;">See how GLUCOSE can help your enterprise deliver autonomous brand and product experiences that reach every customer, in every moment that matters.</p>
-        <a href="/contact" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 2rem; background: var(--color-accent); color: #000; font-weight: 700; font-size: 0.9375rem; border-radius: 10px; text-decoration: none; transition: opacity 0.2s ease; letter-spacing: 0.01em;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Request a Demo</a>
+    <section class="py-20 px-8 text-center bg-bg-primary border-t border-border-theme relative overflow-hidden" id="demo">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_100%,rgba(255,192,0,0.07)_0%,transparent_70%)] pointer-events-none"></div>
+      <div class="relative z-10 max-w-[600px] mx-auto">
+        <span class="inline-block py-[0.3rem] px-[0.875rem] rounded-full text-xs font-bold tracking-[0.1em] uppercase bg-[rgba(255,192,0,0.1)] text-accent border border-[rgba(255,192,0,0.2)] mb-6">Get Started</span>
+        <h2 class="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] text-text-primary m-0 mb-4">Discover what GLUCOSE can do<br>for your industry</h2>
+        <p class="text-text-secondary text-[1.0625rem] mx-auto mb-8 leading-[1.7]">See how GLUCOSE can help your enterprise deliver autonomous brand and product experiences that reach every customer, in every moment that matters.</p>
+        <a href="/contact" class="inline-flex items-center gap-2 py-[0.875rem] px-8 bg-accent text-black font-bold text-[0.9375rem] rounded-[10px] no-underline transition-opacity duration-200 tracking-[0.01em] hover:opacity-90">Request a Demo</a>
       </div>
     </section>
   </main>

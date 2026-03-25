@@ -11,16 +11,18 @@ interface Props {
 const { href, imageSrc, imageAlt, brand, title, body } = Astro.props;
 ---
 
-<a
-  href={href}
-  style="background: var(--color-bg-primary); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: all 0.3s cubic-bezier(0.4,0,0.2,1);"
-  onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='var(--color-accent)'"
-  onmouseout="this.style.transform='';this.style.borderColor='var(--color-border)'"
->
-  <img src={imageSrc} alt={imageAlt} style="width: 100%; height: 180px; object-fit: cover;" />
-  <div style="padding: 1.25rem;">
-    <span style="font-size: 0.6875rem; font-weight: 600; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.12em;">{brand}</span>
-    <h3 style="font-size: 1rem; font-weight: 600; color: var(--color-text-primary); margin: 0.5rem 0; line-height: 1.4;">{title}</h3>
-    <p style="font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.6;">{body}</p>
+<a href={href} class="story-card bg-bg-primary border border-border-theme rounded-[12px] overflow-hidden no-underline text-inherit transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]">
+  <img src={imageSrc} alt={imageAlt} class="w-full h-[180px] object-cover" />
+  <div class="p-5">
+    <span class="text-[0.6875rem] font-semibold text-accent uppercase tracking-[0.12em]">{brand}</span>
+    <h3 class="text-base font-semibold text-text-primary my-2 leading-[1.4]">{title}</h3>
+    <p class="text-sm text-text-secondary leading-[1.6]">{body}</p>
   </div>
 </a>
+
+<style>
+  .story-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-accent);
+  }
+</style>

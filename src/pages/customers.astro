@@ -26,26 +26,29 @@ import { successStories, results, featuredCustomer, featuredTestimonial } from '
   />
 
   <!-- Featured Customer - IHH Healthcare -->
-  <section style="max-width: 1200px; margin: 0 auto 4rem; padding: 0 2rem;">
-    <a href={featuredCustomer.href} style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 0; background: var(--color-bg-tertiary); border-radius: 20px; overflow: hidden; border: 1px solid var(--color-border); transition: all 0.3s cubic-bezier(0.4,0,0.2,1); text-decoration: none; color: inherit;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 60px rgba(0,0,0,0.2)';this.style.borderColor='var(--color-accent)'" onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--color-border)'">
-      <div style="position: relative; min-height: 400px; background: linear-gradient(135deg,#1a1a2e 0%,#16213e 100%); overflow: hidden;">
-        <img src={featuredCustomer.imageSrc} alt={featuredCustomer.imageAlt} style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;" />
-        <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; background: linear-gradient(transparent,rgba(0,0,0,0.8));">
-          <img src={featuredCustomer.logoSrc} alt={featuredCustomer.logoAlt} style="height: 40px; width: auto;" />
+  <section class="max-w-[1200px] mx-auto mb-16 px-8">
+    <a
+      href={featuredCustomer.href}
+      class="featured-card grid grid-cols-[1.2fr_1fr] gap-0 bg-bg-tertiary rounded-[20px] overflow-hidden border border-border-theme no-underline text-inherit transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
+    >
+      <div class="relative min-h-[400px] bg-[linear-gradient(135deg,#1a1a2e_0%,#16213e_100%)] overflow-hidden">
+        <img src={featuredCustomer.imageSrc} alt={featuredCustomer.imageAlt} class="w-full h-full object-cover opacity-90" />
+        <div class="absolute bottom-0 left-0 right-0 p-8 bg-[linear-gradient(transparent,rgba(0,0,0,0.8))]">
+          <img src={featuredCustomer.logoSrc} alt={featuredCustomer.logoAlt} class="h-10 w-auto" />
         </div>
       </div>
-      <div style="padding: 3rem; display: flex; flex-direction: column; justify-content: center;">
-        <div style="display: flex; gap: 2rem; margin-bottom: 2rem;">
+      <div class="p-12 flex flex-col justify-center">
+        <div class="flex gap-8 mb-8">
           {featuredCustomer.metrics.map((m) => (
             <div>
-              <div style="font-size: 0.75rem; font-weight: 500; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem;">{m.label}</div>
-              <div style="font-size: 2rem; font-weight: 700; color: var(--color-accent);">{m.value}</div>
+              <div class="text-[0.75rem] font-medium text-text-muted uppercase tracking-[0.1em] mb-1">{m.label}</div>
+              <div class="text-[2rem] font-bold text-accent">{m.value}</div>
             </div>
           ))}
         </div>
-        <h2 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; color: var(--color-text-primary); margin-bottom: 1rem; line-height: 1.3;">{featuredCustomer.heading}</h2>
-        <p style="color: var(--color-text-secondary); font-size: 0.9375rem; line-height: 1.6; margin-bottom: 1.5rem;">{featuredCustomer.body}</p>
-        <span style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--color-accent); font-size: 0.875rem; font-weight: 500;">
+        <h2 class="font-[family-name:var(--font-display)] text-2xl font-medium text-text-primary mb-4 leading-[1.3]">{featuredCustomer.heading}</h2>
+        <p class="text-text-secondary text-[0.9375rem] leading-[1.6] mb-6">{featuredCustomer.body}</p>
+        <span class="inline-flex items-center gap-2 text-accent text-sm font-medium">
           Read the story
           <ArrowRight size={16} />
         </span>
@@ -57,26 +60,26 @@ import { successStories, results, featuredCustomer, featuredTestimonial } from '
   <ResultsGrid results={results} />
 
   <!-- Success Stories -->
-  <section style="background: var(--color-bg-secondary); padding: 4rem 2rem;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-      <h2 style="font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -0.02em; margin-bottom: 2.5rem;">Success Stories</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+  <section class="bg-bg-secondary py-16 px-8">
+    <div class="max-w-[1200px] mx-auto">
+      <h2 class="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] mb-10">Success Stories</h2>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6">
         {successStories.map((story) => <SuccessStoryCard {...story} />)}
       </div>
     </div>
   </section>
 
   <!-- Testimonial -->
-  <section style="padding: 4rem 2rem; background: var(--color-bg-primary);">
-    <div style="max-width: 800px; margin: 0 auto;">
-      <div style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: 20px; padding: 3rem; text-align: center;">
-        <img src={featuredTestimonial.logoSrc} alt={featuredTestimonial.logoAlt} style="height: 36px; width: auto; margin: 0 auto 2rem;" />
-        <blockquote style="font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 400; color: var(--color-text-primary); line-height: 1.6; letter-spacing: -0.01em; margin-bottom: 2rem;">"{featuredTestimonial.quote}"</blockquote>
-        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem;">
-          <img src={featuredTestimonial.avatarSrc} alt={featuredTestimonial.avatarAlt} style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;" />
-          <div style="text-align: left;">
-            <div style="font-weight: 600; color: var(--color-text-primary); font-size: 0.9375rem;">{featuredTestimonial.name}</div>
-            <div style="color: var(--color-text-secondary); font-size: 0.875rem;">{featuredTestimonial.role}</div>
+  <section class="py-16 px-8 bg-bg-primary">
+    <div class="max-w-[800px] mx-auto">
+      <div class="bg-bg-secondary border border-border-theme rounded-[20px] p-12 text-center">
+        <img src={featuredTestimonial.logoSrc} alt={featuredTestimonial.logoAlt} class="h-9 w-auto mx-auto mb-8" />
+        <blockquote class="font-[family-name:var(--font-display)] text-[clamp(1.25rem,2vw,1.5rem)] font-normal text-text-primary leading-[1.6] tracking-[-0.01em] mb-8">"{featuredTestimonial.quote}"</blockquote>
+        <div class="flex items-center justify-center gap-4">
+          <img src={featuredTestimonial.avatarSrc} alt={featuredTestimonial.avatarAlt} class="w-12 h-12 rounded-full object-cover" />
+          <div class="text-left">
+            <div class="font-semibold text-text-primary text-[0.9375rem]">{featuredTestimonial.name}</div>
+            <div class="text-text-secondary text-sm">{featuredTestimonial.role}</div>
           </div>
         </div>
       </div>
@@ -84,9 +87,17 @@ import { successStories, results, featuredCustomer, featuredTestimonial } from '
   </section>
 
   <!-- CTA -->
-  <section style="background: var(--color-bg-secondary); border-top: 1px solid var(--color-border); padding: 5rem 2rem; text-align: center;" id="demo">
-    <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; letter-spacing: -0.02em; margin-bottom: 1rem;">See what GLUCOSE can do for you</h2>
-    <p style="color: var(--color-text-secondary); font-size: 1.125rem; max-width: 600px; margin: 0 auto 2rem;">Discover how GLUCOSE can help your enterprise run autonomous brand experiences that reach every customer, in every moment that matters.</p>
-    <a href="/contact" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.875rem 1.75rem; font-family: var(--font-primary); font-size: 0.9375rem; font-weight: 500; text-decoration: none; border-radius: 100px; background: var(--color-accent); color: var(--color-bg-primary); transition: all 0.3s cubic-bezier(0.4,0,0.2,1);">Request Demo</a>
+  <section class="bg-bg-secondary border-t border-border-theme py-20 px-8 text-center" id="demo">
+    <h2 class="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3rem)] font-medium tracking-[-0.02em] mb-4">See what GLUCOSE can do for you</h2>
+    <p class="text-text-secondary text-lg max-w-[600px] mx-auto mb-8">Discover how GLUCOSE can help your enterprise run autonomous brand experiences that reach every customer, in every moment that matters.</p>
+    <a href="/contact" class="inline-flex items-center justify-center gap-2 font-[family-name:var(--font-primary)] text-[0.9375rem] font-medium no-underline rounded-pill bg-accent text-bg-primary py-[0.875rem] px-7 transition-all duration-300">Request Demo</a>
   </section>
 </BaseLayout>
+
+<style>
+  .featured-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    border-color: var(--color-accent);
+  }
+</style>
