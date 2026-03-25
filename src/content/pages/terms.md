@@ -1,6 +1,6 @@
 ---
 title: Terms & Conditions
-subtitle: Please read these terms carefully before using our website and services. updated
+subtitle: Please read these terms carefully before using our website and services.
 ---
 
 Welcome to the official website of 5Y Holdings Pte. Ltd. (5.Y). By accessing or using this site, you agree to the terms outlined below.
