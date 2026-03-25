@@ -7,7 +7,7 @@ Welcome to the official website of 5Y Holdings Pte. Ltd. (5.Y). By accessing or 
 
 ## The Basics
 
-The content provided on this website is intended for general informational purposes and may be modified at any time without prior notice. While we aim to ensure the accuracy of our content, we cannot guarantee that the site will always be error-free or uninterrupted. These Terms & Conditions (T&Cs) only apply to this website. 5.Y Products and Services are governed with separate T&Cs.
+The content provided on this website is intended for general informational purposes and may be modified at any time without prior notice. While we aim to ensure the accuracy of our content, we cannot guarantee that the site will always be error-free or uninterrupted. These Terms & Conditions (T\&Cs) only apply to this website. 5.Y Products and Services are governed with separate T\&Cs.
 
 ### Intellectual Property
 
