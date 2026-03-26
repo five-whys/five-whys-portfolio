@@ -136,6 +136,76 @@ fragment CustomersPageParts on CustomersPage {
   }
 }
 
+fragment IndexPageParts on IndexPage {
+  __typename
+  heroBadgePlatform
+  heroHeadingPart1
+  heroHeadingAccent
+  heroHeadingPart2
+  heroSubtext
+  heroCtaText
+  shiftLabel
+  shiftHeading
+  shiftCallout
+  shiftCards {
+    __typename
+    label
+    title
+    body
+  }
+  glucoseLabel
+  glucoseHeading
+  glucoseDescBlocks {
+    __typename
+    heading
+    body
+  }
+  demoHighlightBadge
+  demoHighlightHeading
+  demoHighlightBody
+  demoVideoCategory
+  demoVideoTitle
+  whyLabel
+  whyHeading
+  whyCards {
+    __typename
+    iconName
+    title
+    body
+  }
+  platformBadge
+  platformHeadingLine1
+  platformHeadingLine2
+  platformSubtext
+  channelsLabel
+  securityHeadingLine1
+  securityHeadingHighlight
+  securityBody
+  securityTrustLinkText
+  ctaHeadingPre
+  ctaHeadingPost
+  ctaBody
+  metrics {
+    __typename
+    value
+    label
+  }
+  securityBadges {
+    __typename
+    src
+    alt
+    label
+  }
+  testimonials {
+    __typename
+    quote
+    avatarSrc
+    avatarAlt
+    name
+    role
+  }
+}
+
 fragment CompanyPageParts on CompanyPage {
   __typename
   heroLabel
@@ -200,6 +270,162 @@ fragment ContactPageParts on ContactPage {
   formRedirectUrl
   demoFeatures
   industryOptions
+}
+
+fragment ProductPageParts on ProductPage {
+  __typename
+  heroHeadingPart1
+  heroHeadingAccent
+  heroSubtext
+  whyLabel
+  whyHeading
+  whySubtext
+  diffLabel
+  diffHeading
+  diffSubtext
+  connectorsLabel
+  connectorsHeading
+  connectorsSubtext
+  connectorFeatures {
+    __typename
+    iconName
+    title
+    body
+  }
+  analyticsLabel
+  analyticsHeading
+  analyticsSubtext
+  analyticsFeatures {
+    __typename
+    iconName
+    title
+    body
+  }
+  technologyLabel
+  technologyHeading
+  technologySubtext
+  technologyBadges
+  agnosticLabel
+  agnosticHeading
+  agnosticSubtext
+  platformLabel
+  glucoseCoreHeading
+  glucoseCoreBody
+  gmcTitle
+  gmcSubtitle
+  gmcBody
+  gmcTags
+  corpusTitle
+  corpusSubtitle
+  corpusBody
+  toolsTitle
+  toolsSubtitle
+  toolsBody
+  archAnalyticsTitle
+  archAnalyticsSubtitle
+  archAnalyticsBody
+  archAnalyticsCaptures
+  archAnalyticsSyncsTo
+  comparisonLegacyLabel
+  comparisonGlucoseLabel
+  traditionalChatbotItems
+  glucoseAgentItems
+  devBadge
+  devHeading
+  devBody
+  devCtaText
+  ctaHeading
+  ctaBody
+  ctaButtonText
+}
+
+fragment IndustriesPageParts on IndustriesPage {
+  __typename
+  heroBadge
+  heroHeadingPart1
+  heroHeadingAccent
+  heroHeadingPart2
+  heroSubtext
+  overviewLabel
+  overviewHeading
+  overviewSubtext
+  overviewPrimaryBadge
+  overviewExpansionBadge
+  overviewPrimary {
+    __typename
+    href
+    iconName
+    title
+    desc
+  }
+  overviewExpansion {
+    __typename
+    href
+    iconName
+    title
+    desc
+  }
+  automotiveLabel
+  automotiveHeading
+  automotiveSubtext
+  automotiveImageSrc
+  automotiveImageAlt
+  automotiveCards {
+    __typename
+    title
+    body
+  }
+  automotiveStats {
+    __typename
+    v
+    l
+  }
+  primarySections {
+    __typename
+    id
+    bg
+    label
+    heading
+    subtext
+    cards {
+      __typename
+      title
+      body
+    }
+    stats {
+      __typename
+      v
+      l
+    }
+  }
+  expansionSections {
+    __typename
+    id
+    bg
+    label
+    heading
+    subtext
+    ctaText
+    cards {
+      __typename
+      iconName
+      title
+      body
+    }
+  }
+  crossBenefitsLabel
+  crossBenefitsHeading
+  crossBenefitsSubtext
+  crossBenefits {
+    __typename
+    iconName
+    title
+    desc
+  }
+  ctaBadge
+  ctaHeading
+  ctaBody
+  ctaButtonText
 }
 
 fragment DemoPageParts on DemoPage {

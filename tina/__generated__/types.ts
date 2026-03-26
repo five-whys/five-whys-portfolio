@@ -88,10 +88,16 @@ export type Query = {
   vsPageConnection: VsPageConnection;
   customersPage: CustomersPage;
   customersPageConnection: CustomersPageConnection;
+  indexPage: IndexPage;
+  indexPageConnection: IndexPageConnection;
   companyPage: CompanyPage;
   companyPageConnection: CompanyPageConnection;
   contactPage: ContactPage;
   contactPageConnection: ContactPageConnection;
+  productPage: ProductPage;
+  productPageConnection: ProductPageConnection;
+  industriesPage: IndustriesPage;
+  industriesPageConnection: IndustriesPageConnection;
   demoPage: DemoPage;
   demoPageConnection: DemoPageConnection;
 };
@@ -163,6 +169,21 @@ export type QueryCustomersPageConnectionArgs = {
 };
 
 
+export type QueryIndexPageArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryIndexPageConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<IndexPageFilter>;
+};
+
+
 export type QueryCompanyPageArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
@@ -193,6 +214,36 @@ export type QueryContactPageConnectionArgs = {
 };
 
 
+export type QueryProductPageArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryProductPageConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<ProductPageFilter>;
+};
+
+
+export type QueryIndustriesPageArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryIndustriesPageConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<IndustriesPageFilter>;
+};
+
+
 export type QueryDemoPageArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
@@ -211,8 +262,11 @@ export type DocumentFilter = {
   pages?: InputMaybe<PagesFilter>;
   vsPage?: InputMaybe<VsPageFilter>;
   customersPage?: InputMaybe<CustomersPageFilter>;
+  indexPage?: InputMaybe<IndexPageFilter>;
   companyPage?: InputMaybe<CompanyPageFilter>;
   contactPage?: InputMaybe<ContactPageFilter>;
+  productPage?: InputMaybe<ProductPageFilter>;
+  industriesPage?: InputMaybe<IndustriesPageFilter>;
   demoPage?: InputMaybe<DemoPageFilter>;
 };
 
@@ -253,7 +307,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Pages | VsPage | CustomersPage | CompanyPage | ContactPage | DemoPage | Folder;
+export type DocumentNode = Pages | VsPage | CustomersPage | IndexPage | CompanyPage | ContactPage | ProductPage | IndustriesPage | DemoPage | Folder;
 
 export type Pages = Node & Document & {
   __typename?: 'Pages';
@@ -638,6 +692,179 @@ export type CustomersPageConnection = Connection & {
   edges?: Maybe<Array<Maybe<CustomersPageConnectionEdges>>>;
 };
 
+export type IndexPageShiftCards = {
+  __typename?: 'IndexPageShiftCards';
+  label?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['String']['output']>;
+};
+
+export type IndexPageGlucoseDescBlocks = {
+  __typename?: 'IndexPageGlucoseDescBlocks';
+  heading?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['String']['output']>;
+};
+
+export type IndexPageWhyCards = {
+  __typename?: 'IndexPageWhyCards';
+  iconName?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['String']['output']>;
+};
+
+export type IndexPageMetrics = {
+  __typename?: 'IndexPageMetrics';
+  value?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+};
+
+export type IndexPageSecurityBadges = {
+  __typename?: 'IndexPageSecurityBadges';
+  src?: Maybe<Scalars['String']['output']>;
+  alt?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+};
+
+export type IndexPageTestimonials = {
+  __typename?: 'IndexPageTestimonials';
+  quote?: Maybe<Scalars['String']['output']>;
+  avatarSrc?: Maybe<Scalars['String']['output']>;
+  avatarAlt?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  role?: Maybe<Scalars['String']['output']>;
+};
+
+export type IndexPage = Node & Document & {
+  __typename?: 'IndexPage';
+  heroBadgePlatform?: Maybe<Scalars['String']['output']>;
+  heroHeadingPart1?: Maybe<Scalars['String']['output']>;
+  heroHeadingAccent?: Maybe<Scalars['String']['output']>;
+  heroHeadingPart2?: Maybe<Scalars['String']['output']>;
+  heroSubtext?: Maybe<Scalars['String']['output']>;
+  heroCtaText?: Maybe<Scalars['String']['output']>;
+  shiftLabel?: Maybe<Scalars['String']['output']>;
+  shiftHeading?: Maybe<Scalars['String']['output']>;
+  shiftCallout?: Maybe<Scalars['String']['output']>;
+  shiftCards?: Maybe<Array<Maybe<IndexPageShiftCards>>>;
+  glucoseLabel?: Maybe<Scalars['String']['output']>;
+  glucoseHeading?: Maybe<Scalars['String']['output']>;
+  glucoseDescBlocks?: Maybe<Array<Maybe<IndexPageGlucoseDescBlocks>>>;
+  demoHighlightBadge?: Maybe<Scalars['String']['output']>;
+  demoHighlightHeading?: Maybe<Scalars['String']['output']>;
+  demoHighlightBody?: Maybe<Scalars['String']['output']>;
+  demoVideoCategory?: Maybe<Scalars['String']['output']>;
+  demoVideoTitle?: Maybe<Scalars['String']['output']>;
+  whyLabel?: Maybe<Scalars['String']['output']>;
+  whyHeading?: Maybe<Scalars['String']['output']>;
+  whyCards?: Maybe<Array<Maybe<IndexPageWhyCards>>>;
+  platformBadge?: Maybe<Scalars['String']['output']>;
+  platformHeadingLine1?: Maybe<Scalars['String']['output']>;
+  platformHeadingLine2?: Maybe<Scalars['String']['output']>;
+  platformSubtext?: Maybe<Scalars['String']['output']>;
+  channelsLabel?: Maybe<Scalars['String']['output']>;
+  securityHeadingLine1?: Maybe<Scalars['String']['output']>;
+  securityHeadingHighlight?: Maybe<Scalars['String']['output']>;
+  securityBody?: Maybe<Scalars['String']['output']>;
+  securityTrustLinkText?: Maybe<Scalars['String']['output']>;
+  ctaHeadingPre?: Maybe<Scalars['String']['output']>;
+  ctaHeadingPost?: Maybe<Scalars['String']['output']>;
+  ctaBody?: Maybe<Scalars['String']['output']>;
+  metrics?: Maybe<Array<Maybe<IndexPageMetrics>>>;
+  securityBadges?: Maybe<Array<Maybe<IndexPageSecurityBadges>>>;
+  testimonials?: Maybe<Array<Maybe<IndexPageTestimonials>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type IndexPageShiftCardsFilter = {
+  label?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  body?: InputMaybe<StringFilter>;
+};
+
+export type IndexPageGlucoseDescBlocksFilter = {
+  heading?: InputMaybe<StringFilter>;
+  body?: InputMaybe<StringFilter>;
+};
+
+export type IndexPageWhyCardsFilter = {
+  iconName?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  body?: InputMaybe<StringFilter>;
+};
+
+export type IndexPageMetricsFilter = {
+  value?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export type IndexPageSecurityBadgesFilter = {
+  src?: InputMaybe<ImageFilter>;
+  alt?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export type IndexPageTestimonialsFilter = {
+  quote?: InputMaybe<StringFilter>;
+  avatarSrc?: InputMaybe<ImageFilter>;
+  avatarAlt?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  role?: InputMaybe<StringFilter>;
+};
+
+export type IndexPageFilter = {
+  heroBadgePlatform?: InputMaybe<StringFilter>;
+  heroHeadingPart1?: InputMaybe<StringFilter>;
+  heroHeadingAccent?: InputMaybe<StringFilter>;
+  heroHeadingPart2?: InputMaybe<StringFilter>;
+  heroSubtext?: InputMaybe<StringFilter>;
+  heroCtaText?: InputMaybe<StringFilter>;
+  shiftLabel?: InputMaybe<StringFilter>;
+  shiftHeading?: InputMaybe<StringFilter>;
+  shiftCallout?: InputMaybe<StringFilter>;
+  shiftCards?: InputMaybe<IndexPageShiftCardsFilter>;
+  glucoseLabel?: InputMaybe<StringFilter>;
+  glucoseHeading?: InputMaybe<StringFilter>;
+  glucoseDescBlocks?: InputMaybe<IndexPageGlucoseDescBlocksFilter>;
+  demoHighlightBadge?: InputMaybe<StringFilter>;
+  demoHighlightHeading?: InputMaybe<StringFilter>;
+  demoHighlightBody?: InputMaybe<StringFilter>;
+  demoVideoCategory?: InputMaybe<StringFilter>;
+  demoVideoTitle?: InputMaybe<StringFilter>;
+  whyLabel?: InputMaybe<StringFilter>;
+  whyHeading?: InputMaybe<StringFilter>;
+  whyCards?: InputMaybe<IndexPageWhyCardsFilter>;
+  platformBadge?: InputMaybe<StringFilter>;
+  platformHeadingLine1?: InputMaybe<StringFilter>;
+  platformHeadingLine2?: InputMaybe<StringFilter>;
+  platformSubtext?: InputMaybe<StringFilter>;
+  channelsLabel?: InputMaybe<StringFilter>;
+  securityHeadingLine1?: InputMaybe<StringFilter>;
+  securityHeadingHighlight?: InputMaybe<StringFilter>;
+  securityBody?: InputMaybe<StringFilter>;
+  securityTrustLinkText?: InputMaybe<StringFilter>;
+  ctaHeadingPre?: InputMaybe<StringFilter>;
+  ctaHeadingPost?: InputMaybe<StringFilter>;
+  ctaBody?: InputMaybe<StringFilter>;
+  metrics?: InputMaybe<IndexPageMetricsFilter>;
+  securityBadges?: InputMaybe<IndexPageSecurityBadgesFilter>;
+  testimonials?: InputMaybe<IndexPageTestimonialsFilter>;
+};
+
+export type IndexPageConnectionEdges = {
+  __typename?: 'IndexPageConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<IndexPage>;
+};
+
+export type IndexPageConnection = Connection & {
+  __typename?: 'IndexPageConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<IndexPageConnectionEdges>>>;
+};
+
 export type CompanyPageTeamMembers = {
   __typename?: 'CompanyPageTeamMembers';
   imageSrc?: Maybe<Scalars['String']['output']>;
@@ -815,6 +1042,384 @@ export type ContactPageConnection = Connection & {
   edges?: Maybe<Array<Maybe<ContactPageConnectionEdges>>>;
 };
 
+export type ProductPageConnectorFeatures = {
+  __typename?: 'ProductPageConnectorFeatures';
+  iconName?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['String']['output']>;
+};
+
+export type ProductPageAnalyticsFeatures = {
+  __typename?: 'ProductPageAnalyticsFeatures';
+  iconName?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['String']['output']>;
+};
+
+export type ProductPage = Node & Document & {
+  __typename?: 'ProductPage';
+  heroHeadingPart1?: Maybe<Scalars['String']['output']>;
+  heroHeadingAccent?: Maybe<Scalars['String']['output']>;
+  heroSubtext?: Maybe<Scalars['String']['output']>;
+  whyLabel?: Maybe<Scalars['String']['output']>;
+  whyHeading?: Maybe<Scalars['String']['output']>;
+  whySubtext?: Maybe<Scalars['String']['output']>;
+  diffLabel?: Maybe<Scalars['String']['output']>;
+  diffHeading?: Maybe<Scalars['String']['output']>;
+  diffSubtext?: Maybe<Scalars['String']['output']>;
+  connectorsLabel?: Maybe<Scalars['String']['output']>;
+  connectorsHeading?: Maybe<Scalars['String']['output']>;
+  connectorsSubtext?: Maybe<Scalars['String']['output']>;
+  connectorFeatures?: Maybe<Array<Maybe<ProductPageConnectorFeatures>>>;
+  analyticsLabel?: Maybe<Scalars['String']['output']>;
+  analyticsHeading?: Maybe<Scalars['String']['output']>;
+  analyticsSubtext?: Maybe<Scalars['String']['output']>;
+  analyticsFeatures?: Maybe<Array<Maybe<ProductPageAnalyticsFeatures>>>;
+  technologyLabel?: Maybe<Scalars['String']['output']>;
+  technologyHeading?: Maybe<Scalars['String']['output']>;
+  technologySubtext?: Maybe<Scalars['String']['output']>;
+  technologyBadges?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  agnosticLabel?: Maybe<Scalars['String']['output']>;
+  agnosticHeading?: Maybe<Scalars['String']['output']>;
+  agnosticSubtext?: Maybe<Scalars['String']['output']>;
+  platformLabel?: Maybe<Scalars['String']['output']>;
+  glucoseCoreHeading?: Maybe<Scalars['String']['output']>;
+  glucoseCoreBody?: Maybe<Scalars['String']['output']>;
+  gmcTitle?: Maybe<Scalars['String']['output']>;
+  gmcSubtitle?: Maybe<Scalars['String']['output']>;
+  gmcBody?: Maybe<Scalars['String']['output']>;
+  gmcTags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  corpusTitle?: Maybe<Scalars['String']['output']>;
+  corpusSubtitle?: Maybe<Scalars['String']['output']>;
+  corpusBody?: Maybe<Scalars['String']['output']>;
+  toolsTitle?: Maybe<Scalars['String']['output']>;
+  toolsSubtitle?: Maybe<Scalars['String']['output']>;
+  toolsBody?: Maybe<Scalars['String']['output']>;
+  archAnalyticsTitle?: Maybe<Scalars['String']['output']>;
+  archAnalyticsSubtitle?: Maybe<Scalars['String']['output']>;
+  archAnalyticsBody?: Maybe<Scalars['String']['output']>;
+  archAnalyticsCaptures?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  archAnalyticsSyncsTo?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  comparisonLegacyLabel?: Maybe<Scalars['String']['output']>;
+  comparisonGlucoseLabel?: Maybe<Scalars['String']['output']>;
+  traditionalChatbotItems?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  glucoseAgentItems?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  devBadge?: Maybe<Scalars['String']['output']>;
+  devHeading?: Maybe<Scalars['String']['output']>;
+  devBody?: Maybe<Scalars['String']['output']>;
+  devCtaText?: Maybe<Scalars['String']['output']>;
+  ctaHeading?: Maybe<Scalars['String']['output']>;
+  ctaBody?: Maybe<Scalars['String']['output']>;
+  ctaButtonText?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type ProductPageConnectorFeaturesFilter = {
+  iconName?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  body?: InputMaybe<StringFilter>;
+};
+
+export type ProductPageAnalyticsFeaturesFilter = {
+  iconName?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  body?: InputMaybe<StringFilter>;
+};
+
+export type ProductPageFilter = {
+  heroHeadingPart1?: InputMaybe<StringFilter>;
+  heroHeadingAccent?: InputMaybe<StringFilter>;
+  heroSubtext?: InputMaybe<StringFilter>;
+  whyLabel?: InputMaybe<StringFilter>;
+  whyHeading?: InputMaybe<StringFilter>;
+  whySubtext?: InputMaybe<StringFilter>;
+  diffLabel?: InputMaybe<StringFilter>;
+  diffHeading?: InputMaybe<StringFilter>;
+  diffSubtext?: InputMaybe<StringFilter>;
+  connectorsLabel?: InputMaybe<StringFilter>;
+  connectorsHeading?: InputMaybe<StringFilter>;
+  connectorsSubtext?: InputMaybe<StringFilter>;
+  connectorFeatures?: InputMaybe<ProductPageConnectorFeaturesFilter>;
+  analyticsLabel?: InputMaybe<StringFilter>;
+  analyticsHeading?: InputMaybe<StringFilter>;
+  analyticsSubtext?: InputMaybe<StringFilter>;
+  analyticsFeatures?: InputMaybe<ProductPageAnalyticsFeaturesFilter>;
+  technologyLabel?: InputMaybe<StringFilter>;
+  technologyHeading?: InputMaybe<StringFilter>;
+  technologySubtext?: InputMaybe<StringFilter>;
+  technologyBadges?: InputMaybe<StringFilter>;
+  agnosticLabel?: InputMaybe<StringFilter>;
+  agnosticHeading?: InputMaybe<StringFilter>;
+  agnosticSubtext?: InputMaybe<StringFilter>;
+  platformLabel?: InputMaybe<StringFilter>;
+  glucoseCoreHeading?: InputMaybe<StringFilter>;
+  glucoseCoreBody?: InputMaybe<StringFilter>;
+  gmcTitle?: InputMaybe<StringFilter>;
+  gmcSubtitle?: InputMaybe<StringFilter>;
+  gmcBody?: InputMaybe<StringFilter>;
+  gmcTags?: InputMaybe<StringFilter>;
+  corpusTitle?: InputMaybe<StringFilter>;
+  corpusSubtitle?: InputMaybe<StringFilter>;
+  corpusBody?: InputMaybe<StringFilter>;
+  toolsTitle?: InputMaybe<StringFilter>;
+  toolsSubtitle?: InputMaybe<StringFilter>;
+  toolsBody?: InputMaybe<StringFilter>;
+  archAnalyticsTitle?: InputMaybe<StringFilter>;
+  archAnalyticsSubtitle?: InputMaybe<StringFilter>;
+  archAnalyticsBody?: InputMaybe<StringFilter>;
+  archAnalyticsCaptures?: InputMaybe<StringFilter>;
+  archAnalyticsSyncsTo?: InputMaybe<StringFilter>;
+  comparisonLegacyLabel?: InputMaybe<StringFilter>;
+  comparisonGlucoseLabel?: InputMaybe<StringFilter>;
+  traditionalChatbotItems?: InputMaybe<StringFilter>;
+  glucoseAgentItems?: InputMaybe<StringFilter>;
+  devBadge?: InputMaybe<StringFilter>;
+  devHeading?: InputMaybe<StringFilter>;
+  devBody?: InputMaybe<StringFilter>;
+  devCtaText?: InputMaybe<StringFilter>;
+  ctaHeading?: InputMaybe<StringFilter>;
+  ctaBody?: InputMaybe<StringFilter>;
+  ctaButtonText?: InputMaybe<StringFilter>;
+};
+
+export type ProductPageConnectionEdges = {
+  __typename?: 'ProductPageConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<ProductPage>;
+};
+
+export type ProductPageConnection = Connection & {
+  __typename?: 'ProductPageConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<ProductPageConnectionEdges>>>;
+};
+
+export type IndustriesPageOverviewPrimary = {
+  __typename?: 'IndustriesPageOverviewPrimary';
+  href?: Maybe<Scalars['String']['output']>;
+  iconName?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  desc?: Maybe<Scalars['String']['output']>;
+};
+
+export type IndustriesPageOverviewExpansion = {
+  __typename?: 'IndustriesPageOverviewExpansion';
+  href?: Maybe<Scalars['String']['output']>;
+  iconName?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  desc?: Maybe<Scalars['String']['output']>;
+};
+
+export type IndustriesPageAutomotiveCards = {
+  __typename?: 'IndustriesPageAutomotiveCards';
+  title?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['String']['output']>;
+};
+
+export type IndustriesPageAutomotiveStats = {
+  __typename?: 'IndustriesPageAutomotiveStats';
+  v?: Maybe<Scalars['String']['output']>;
+  l?: Maybe<Scalars['String']['output']>;
+};
+
+export type IndustriesPagePrimarySectionsCards = {
+  __typename?: 'IndustriesPagePrimarySectionsCards';
+  title?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['String']['output']>;
+};
+
+export type IndustriesPagePrimarySectionsStats = {
+  __typename?: 'IndustriesPagePrimarySectionsStats';
+  v?: Maybe<Scalars['String']['output']>;
+  l?: Maybe<Scalars['String']['output']>;
+};
+
+export type IndustriesPagePrimarySections = {
+  __typename?: 'IndustriesPagePrimarySections';
+  id?: Maybe<Scalars['String']['output']>;
+  bg?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  subtext?: Maybe<Scalars['String']['output']>;
+  cards?: Maybe<Array<Maybe<IndustriesPagePrimarySectionsCards>>>;
+  stats?: Maybe<Array<Maybe<IndustriesPagePrimarySectionsStats>>>;
+};
+
+export type IndustriesPageExpansionSectionsCards = {
+  __typename?: 'IndustriesPageExpansionSectionsCards';
+  iconName?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['String']['output']>;
+};
+
+export type IndustriesPageExpansionSections = {
+  __typename?: 'IndustriesPageExpansionSections';
+  id?: Maybe<Scalars['String']['output']>;
+  bg?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  subtext?: Maybe<Scalars['String']['output']>;
+  ctaText?: Maybe<Scalars['String']['output']>;
+  cards?: Maybe<Array<Maybe<IndustriesPageExpansionSectionsCards>>>;
+};
+
+export type IndustriesPageCrossBenefits = {
+  __typename?: 'IndustriesPageCrossBenefits';
+  iconName?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  desc?: Maybe<Scalars['String']['output']>;
+};
+
+export type IndustriesPage = Node & Document & {
+  __typename?: 'IndustriesPage';
+  heroBadge?: Maybe<Scalars['String']['output']>;
+  heroHeadingPart1?: Maybe<Scalars['String']['output']>;
+  heroHeadingAccent?: Maybe<Scalars['String']['output']>;
+  heroHeadingPart2?: Maybe<Scalars['String']['output']>;
+  heroSubtext?: Maybe<Scalars['String']['output']>;
+  overviewLabel?: Maybe<Scalars['String']['output']>;
+  overviewHeading?: Maybe<Scalars['String']['output']>;
+  overviewSubtext?: Maybe<Scalars['String']['output']>;
+  overviewPrimaryBadge?: Maybe<Scalars['String']['output']>;
+  overviewExpansionBadge?: Maybe<Scalars['String']['output']>;
+  overviewPrimary?: Maybe<Array<Maybe<IndustriesPageOverviewPrimary>>>;
+  overviewExpansion?: Maybe<Array<Maybe<IndustriesPageOverviewExpansion>>>;
+  automotiveLabel?: Maybe<Scalars['String']['output']>;
+  automotiveHeading?: Maybe<Scalars['String']['output']>;
+  automotiveSubtext?: Maybe<Scalars['String']['output']>;
+  automotiveImageSrc?: Maybe<Scalars['String']['output']>;
+  automotiveImageAlt?: Maybe<Scalars['String']['output']>;
+  automotiveCards?: Maybe<Array<Maybe<IndustriesPageAutomotiveCards>>>;
+  automotiveStats?: Maybe<Array<Maybe<IndustriesPageAutomotiveStats>>>;
+  primarySections?: Maybe<Array<Maybe<IndustriesPagePrimarySections>>>;
+  expansionSections?: Maybe<Array<Maybe<IndustriesPageExpansionSections>>>;
+  crossBenefitsLabel?: Maybe<Scalars['String']['output']>;
+  crossBenefitsHeading?: Maybe<Scalars['String']['output']>;
+  crossBenefitsSubtext?: Maybe<Scalars['String']['output']>;
+  crossBenefits?: Maybe<Array<Maybe<IndustriesPageCrossBenefits>>>;
+  ctaBadge?: Maybe<Scalars['String']['output']>;
+  ctaHeading?: Maybe<Scalars['String']['output']>;
+  ctaBody?: Maybe<Scalars['String']['output']>;
+  ctaButtonText?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type IndustriesPageOverviewPrimaryFilter = {
+  href?: InputMaybe<StringFilter>;
+  iconName?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  desc?: InputMaybe<StringFilter>;
+};
+
+export type IndustriesPageOverviewExpansionFilter = {
+  href?: InputMaybe<StringFilter>;
+  iconName?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  desc?: InputMaybe<StringFilter>;
+};
+
+export type IndustriesPageAutomotiveCardsFilter = {
+  title?: InputMaybe<StringFilter>;
+  body?: InputMaybe<StringFilter>;
+};
+
+export type IndustriesPageAutomotiveStatsFilter = {
+  v?: InputMaybe<StringFilter>;
+  l?: InputMaybe<StringFilter>;
+};
+
+export type IndustriesPagePrimarySectionsCardsFilter = {
+  title?: InputMaybe<StringFilter>;
+  body?: InputMaybe<StringFilter>;
+};
+
+export type IndustriesPagePrimarySectionsStatsFilter = {
+  v?: InputMaybe<StringFilter>;
+  l?: InputMaybe<StringFilter>;
+};
+
+export type IndustriesPagePrimarySectionsFilter = {
+  id?: InputMaybe<StringFilter>;
+  bg?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  subtext?: InputMaybe<StringFilter>;
+  cards?: InputMaybe<IndustriesPagePrimarySectionsCardsFilter>;
+  stats?: InputMaybe<IndustriesPagePrimarySectionsStatsFilter>;
+};
+
+export type IndustriesPageExpansionSectionsCardsFilter = {
+  iconName?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  body?: InputMaybe<StringFilter>;
+};
+
+export type IndustriesPageExpansionSectionsFilter = {
+  id?: InputMaybe<StringFilter>;
+  bg?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  subtext?: InputMaybe<StringFilter>;
+  ctaText?: InputMaybe<StringFilter>;
+  cards?: InputMaybe<IndustriesPageExpansionSectionsCardsFilter>;
+};
+
+export type IndustriesPageCrossBenefitsFilter = {
+  iconName?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  desc?: InputMaybe<StringFilter>;
+};
+
+export type IndustriesPageFilter = {
+  heroBadge?: InputMaybe<StringFilter>;
+  heroHeadingPart1?: InputMaybe<StringFilter>;
+  heroHeadingAccent?: InputMaybe<StringFilter>;
+  heroHeadingPart2?: InputMaybe<StringFilter>;
+  heroSubtext?: InputMaybe<StringFilter>;
+  overviewLabel?: InputMaybe<StringFilter>;
+  overviewHeading?: InputMaybe<StringFilter>;
+  overviewSubtext?: InputMaybe<StringFilter>;
+  overviewPrimaryBadge?: InputMaybe<StringFilter>;
+  overviewExpansionBadge?: InputMaybe<StringFilter>;
+  overviewPrimary?: InputMaybe<IndustriesPageOverviewPrimaryFilter>;
+  overviewExpansion?: InputMaybe<IndustriesPageOverviewExpansionFilter>;
+  automotiveLabel?: InputMaybe<StringFilter>;
+  automotiveHeading?: InputMaybe<StringFilter>;
+  automotiveSubtext?: InputMaybe<StringFilter>;
+  automotiveImageSrc?: InputMaybe<ImageFilter>;
+  automotiveImageAlt?: InputMaybe<StringFilter>;
+  automotiveCards?: InputMaybe<IndustriesPageAutomotiveCardsFilter>;
+  automotiveStats?: InputMaybe<IndustriesPageAutomotiveStatsFilter>;
+  primarySections?: InputMaybe<IndustriesPagePrimarySectionsFilter>;
+  expansionSections?: InputMaybe<IndustriesPageExpansionSectionsFilter>;
+  crossBenefitsLabel?: InputMaybe<StringFilter>;
+  crossBenefitsHeading?: InputMaybe<StringFilter>;
+  crossBenefitsSubtext?: InputMaybe<StringFilter>;
+  crossBenefits?: InputMaybe<IndustriesPageCrossBenefitsFilter>;
+  ctaBadge?: InputMaybe<StringFilter>;
+  ctaHeading?: InputMaybe<StringFilter>;
+  ctaBody?: InputMaybe<StringFilter>;
+  ctaButtonText?: InputMaybe<StringFilter>;
+};
+
+export type IndustriesPageConnectionEdges = {
+  __typename?: 'IndustriesPageConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<IndustriesPage>;
+};
+
+export type IndustriesPageConnection = Connection & {
+  __typename?: 'IndustriesPageConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<IndustriesPageConnectionEdges>>>;
+};
+
 export type DemoPageFeatureSections = {
   __typename?: 'DemoPageFeatureSections';
   id?: Maybe<Scalars['String']['output']>;
@@ -893,10 +1498,16 @@ export type Mutation = {
   createVsPage: VsPage;
   updateCustomersPage: CustomersPage;
   createCustomersPage: CustomersPage;
+  updateIndexPage: IndexPage;
+  createIndexPage: IndexPage;
   updateCompanyPage: CompanyPage;
   createCompanyPage: CompanyPage;
   updateContactPage: ContactPage;
   createContactPage: ContactPage;
+  updateProductPage: ProductPage;
+  createProductPage: ProductPage;
+  updateIndustriesPage: IndustriesPage;
+  createIndustriesPage: IndustriesPage;
   updateDemoPage: DemoPage;
   createDemoPage: DemoPage;
 };
@@ -971,6 +1582,18 @@ export type MutationCreateCustomersPageArgs = {
 };
 
 
+export type MutationUpdateIndexPageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: IndexPageMutation;
+};
+
+
+export type MutationCreateIndexPageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: IndexPageMutation;
+};
+
+
 export type MutationUpdateCompanyPageArgs = {
   relativePath: Scalars['String']['input'];
   params: CompanyPageMutation;
@@ -995,6 +1618,30 @@ export type MutationCreateContactPageArgs = {
 };
 
 
+export type MutationUpdateProductPageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: ProductPageMutation;
+};
+
+
+export type MutationCreateProductPageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: ProductPageMutation;
+};
+
+
+export type MutationUpdateIndustriesPageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: IndustriesPageMutation;
+};
+
+
+export type MutationCreateIndustriesPageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: IndustriesPageMutation;
+};
+
+
 export type MutationUpdateDemoPageArgs = {
   relativePath: Scalars['String']['input'];
   params: DemoPageMutation;
@@ -1010,8 +1657,11 @@ export type DocumentUpdateMutation = {
   pages?: InputMaybe<PagesMutation>;
   vsPage?: InputMaybe<VsPageMutation>;
   customersPage?: InputMaybe<CustomersPageMutation>;
+  indexPage?: InputMaybe<IndexPageMutation>;
   companyPage?: InputMaybe<CompanyPageMutation>;
   contactPage?: InputMaybe<ContactPageMutation>;
+  productPage?: InputMaybe<ProductPageMutation>;
+  industriesPage?: InputMaybe<IndustriesPageMutation>;
   demoPage?: InputMaybe<DemoPageMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
@@ -1020,8 +1670,11 @@ export type DocumentMutation = {
   pages?: InputMaybe<PagesMutation>;
   vsPage?: InputMaybe<VsPageMutation>;
   customersPage?: InputMaybe<CustomersPageMutation>;
+  indexPage?: InputMaybe<IndexPageMutation>;
   companyPage?: InputMaybe<CompanyPageMutation>;
   contactPage?: InputMaybe<ContactPageMutation>;
+  productPage?: InputMaybe<ProductPageMutation>;
+  industriesPage?: InputMaybe<IndustriesPageMutation>;
   demoPage?: InputMaybe<DemoPageMutation>;
 };
 
@@ -1174,6 +1827,81 @@ export type CustomersPageMutation = {
   successStories?: InputMaybe<Array<InputMaybe<CustomersPageSuccessStoriesMutation>>>;
 };
 
+export type IndexPageShiftCardsMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IndexPageGlucoseDescBlocksMutation = {
+  heading?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IndexPageWhyCardsMutation = {
+  iconName?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IndexPageMetricsMutation = {
+  value?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IndexPageSecurityBadgesMutation = {
+  src?: InputMaybe<Scalars['String']['input']>;
+  alt?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IndexPageTestimonialsMutation = {
+  quote?: InputMaybe<Scalars['String']['input']>;
+  avatarSrc?: InputMaybe<Scalars['String']['input']>;
+  avatarAlt?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  role?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IndexPageMutation = {
+  heroBadgePlatform?: InputMaybe<Scalars['String']['input']>;
+  heroHeadingPart1?: InputMaybe<Scalars['String']['input']>;
+  heroHeadingAccent?: InputMaybe<Scalars['String']['input']>;
+  heroHeadingPart2?: InputMaybe<Scalars['String']['input']>;
+  heroSubtext?: InputMaybe<Scalars['String']['input']>;
+  heroCtaText?: InputMaybe<Scalars['String']['input']>;
+  shiftLabel?: InputMaybe<Scalars['String']['input']>;
+  shiftHeading?: InputMaybe<Scalars['String']['input']>;
+  shiftCallout?: InputMaybe<Scalars['String']['input']>;
+  shiftCards?: InputMaybe<Array<InputMaybe<IndexPageShiftCardsMutation>>>;
+  glucoseLabel?: InputMaybe<Scalars['String']['input']>;
+  glucoseHeading?: InputMaybe<Scalars['String']['input']>;
+  glucoseDescBlocks?: InputMaybe<Array<InputMaybe<IndexPageGlucoseDescBlocksMutation>>>;
+  demoHighlightBadge?: InputMaybe<Scalars['String']['input']>;
+  demoHighlightHeading?: InputMaybe<Scalars['String']['input']>;
+  demoHighlightBody?: InputMaybe<Scalars['String']['input']>;
+  demoVideoCategory?: InputMaybe<Scalars['String']['input']>;
+  demoVideoTitle?: InputMaybe<Scalars['String']['input']>;
+  whyLabel?: InputMaybe<Scalars['String']['input']>;
+  whyHeading?: InputMaybe<Scalars['String']['input']>;
+  whyCards?: InputMaybe<Array<InputMaybe<IndexPageWhyCardsMutation>>>;
+  platformBadge?: InputMaybe<Scalars['String']['input']>;
+  platformHeadingLine1?: InputMaybe<Scalars['String']['input']>;
+  platformHeadingLine2?: InputMaybe<Scalars['String']['input']>;
+  platformSubtext?: InputMaybe<Scalars['String']['input']>;
+  channelsLabel?: InputMaybe<Scalars['String']['input']>;
+  securityHeadingLine1?: InputMaybe<Scalars['String']['input']>;
+  securityHeadingHighlight?: InputMaybe<Scalars['String']['input']>;
+  securityBody?: InputMaybe<Scalars['String']['input']>;
+  securityTrustLinkText?: InputMaybe<Scalars['String']['input']>;
+  ctaHeadingPre?: InputMaybe<Scalars['String']['input']>;
+  ctaHeadingPost?: InputMaybe<Scalars['String']['input']>;
+  ctaBody?: InputMaybe<Scalars['String']['input']>;
+  metrics?: InputMaybe<Array<InputMaybe<IndexPageMetricsMutation>>>;
+  securityBadges?: InputMaybe<Array<InputMaybe<IndexPageSecurityBadgesMutation>>>;
+  testimonials?: InputMaybe<Array<InputMaybe<IndexPageTestimonialsMutation>>>;
+};
+
 export type CompanyPageTeamMembersMutation = {
   imageSrc?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
@@ -1243,6 +1971,172 @@ export type ContactPageMutation = {
   industryOptions?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+export type ProductPageConnectorFeaturesMutation = {
+  iconName?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ProductPageAnalyticsFeaturesMutation = {
+  iconName?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ProductPageMutation = {
+  heroHeadingPart1?: InputMaybe<Scalars['String']['input']>;
+  heroHeadingAccent?: InputMaybe<Scalars['String']['input']>;
+  heroSubtext?: InputMaybe<Scalars['String']['input']>;
+  whyLabel?: InputMaybe<Scalars['String']['input']>;
+  whyHeading?: InputMaybe<Scalars['String']['input']>;
+  whySubtext?: InputMaybe<Scalars['String']['input']>;
+  diffLabel?: InputMaybe<Scalars['String']['input']>;
+  diffHeading?: InputMaybe<Scalars['String']['input']>;
+  diffSubtext?: InputMaybe<Scalars['String']['input']>;
+  connectorsLabel?: InputMaybe<Scalars['String']['input']>;
+  connectorsHeading?: InputMaybe<Scalars['String']['input']>;
+  connectorsSubtext?: InputMaybe<Scalars['String']['input']>;
+  connectorFeatures?: InputMaybe<Array<InputMaybe<ProductPageConnectorFeaturesMutation>>>;
+  analyticsLabel?: InputMaybe<Scalars['String']['input']>;
+  analyticsHeading?: InputMaybe<Scalars['String']['input']>;
+  analyticsSubtext?: InputMaybe<Scalars['String']['input']>;
+  analyticsFeatures?: InputMaybe<Array<InputMaybe<ProductPageAnalyticsFeaturesMutation>>>;
+  technologyLabel?: InputMaybe<Scalars['String']['input']>;
+  technologyHeading?: InputMaybe<Scalars['String']['input']>;
+  technologySubtext?: InputMaybe<Scalars['String']['input']>;
+  technologyBadges?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  agnosticLabel?: InputMaybe<Scalars['String']['input']>;
+  agnosticHeading?: InputMaybe<Scalars['String']['input']>;
+  agnosticSubtext?: InputMaybe<Scalars['String']['input']>;
+  platformLabel?: InputMaybe<Scalars['String']['input']>;
+  glucoseCoreHeading?: InputMaybe<Scalars['String']['input']>;
+  glucoseCoreBody?: InputMaybe<Scalars['String']['input']>;
+  gmcTitle?: InputMaybe<Scalars['String']['input']>;
+  gmcSubtitle?: InputMaybe<Scalars['String']['input']>;
+  gmcBody?: InputMaybe<Scalars['String']['input']>;
+  gmcTags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  corpusTitle?: InputMaybe<Scalars['String']['input']>;
+  corpusSubtitle?: InputMaybe<Scalars['String']['input']>;
+  corpusBody?: InputMaybe<Scalars['String']['input']>;
+  toolsTitle?: InputMaybe<Scalars['String']['input']>;
+  toolsSubtitle?: InputMaybe<Scalars['String']['input']>;
+  toolsBody?: InputMaybe<Scalars['String']['input']>;
+  archAnalyticsTitle?: InputMaybe<Scalars['String']['input']>;
+  archAnalyticsSubtitle?: InputMaybe<Scalars['String']['input']>;
+  archAnalyticsBody?: InputMaybe<Scalars['String']['input']>;
+  archAnalyticsCaptures?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  archAnalyticsSyncsTo?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  comparisonLegacyLabel?: InputMaybe<Scalars['String']['input']>;
+  comparisonGlucoseLabel?: InputMaybe<Scalars['String']['input']>;
+  traditionalChatbotItems?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  glucoseAgentItems?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  devBadge?: InputMaybe<Scalars['String']['input']>;
+  devHeading?: InputMaybe<Scalars['String']['input']>;
+  devBody?: InputMaybe<Scalars['String']['input']>;
+  devCtaText?: InputMaybe<Scalars['String']['input']>;
+  ctaHeading?: InputMaybe<Scalars['String']['input']>;
+  ctaBody?: InputMaybe<Scalars['String']['input']>;
+  ctaButtonText?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IndustriesPageOverviewPrimaryMutation = {
+  href?: InputMaybe<Scalars['String']['input']>;
+  iconName?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  desc?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IndustriesPageOverviewExpansionMutation = {
+  href?: InputMaybe<Scalars['String']['input']>;
+  iconName?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  desc?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IndustriesPageAutomotiveCardsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IndustriesPageAutomotiveStatsMutation = {
+  v?: InputMaybe<Scalars['String']['input']>;
+  l?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IndustriesPagePrimarySectionsCardsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IndustriesPagePrimarySectionsStatsMutation = {
+  v?: InputMaybe<Scalars['String']['input']>;
+  l?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IndustriesPagePrimarySectionsMutation = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  bg?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+  subtext?: InputMaybe<Scalars['String']['input']>;
+  cards?: InputMaybe<Array<InputMaybe<IndustriesPagePrimarySectionsCardsMutation>>>;
+  stats?: InputMaybe<Array<InputMaybe<IndustriesPagePrimarySectionsStatsMutation>>>;
+};
+
+export type IndustriesPageExpansionSectionsCardsMutation = {
+  iconName?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IndustriesPageExpansionSectionsMutation = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  bg?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+  subtext?: InputMaybe<Scalars['String']['input']>;
+  ctaText?: InputMaybe<Scalars['String']['input']>;
+  cards?: InputMaybe<Array<InputMaybe<IndustriesPageExpansionSectionsCardsMutation>>>;
+};
+
+export type IndustriesPageCrossBenefitsMutation = {
+  iconName?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  desc?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IndustriesPageMutation = {
+  heroBadge?: InputMaybe<Scalars['String']['input']>;
+  heroHeadingPart1?: InputMaybe<Scalars['String']['input']>;
+  heroHeadingAccent?: InputMaybe<Scalars['String']['input']>;
+  heroHeadingPart2?: InputMaybe<Scalars['String']['input']>;
+  heroSubtext?: InputMaybe<Scalars['String']['input']>;
+  overviewLabel?: InputMaybe<Scalars['String']['input']>;
+  overviewHeading?: InputMaybe<Scalars['String']['input']>;
+  overviewSubtext?: InputMaybe<Scalars['String']['input']>;
+  overviewPrimaryBadge?: InputMaybe<Scalars['String']['input']>;
+  overviewExpansionBadge?: InputMaybe<Scalars['String']['input']>;
+  overviewPrimary?: InputMaybe<Array<InputMaybe<IndustriesPageOverviewPrimaryMutation>>>;
+  overviewExpansion?: InputMaybe<Array<InputMaybe<IndustriesPageOverviewExpansionMutation>>>;
+  automotiveLabel?: InputMaybe<Scalars['String']['input']>;
+  automotiveHeading?: InputMaybe<Scalars['String']['input']>;
+  automotiveSubtext?: InputMaybe<Scalars['String']['input']>;
+  automotiveImageSrc?: InputMaybe<Scalars['String']['input']>;
+  automotiveImageAlt?: InputMaybe<Scalars['String']['input']>;
+  automotiveCards?: InputMaybe<Array<InputMaybe<IndustriesPageAutomotiveCardsMutation>>>;
+  automotiveStats?: InputMaybe<Array<InputMaybe<IndustriesPageAutomotiveStatsMutation>>>;
+  primarySections?: InputMaybe<Array<InputMaybe<IndustriesPagePrimarySectionsMutation>>>;
+  expansionSections?: InputMaybe<Array<InputMaybe<IndustriesPageExpansionSectionsMutation>>>;
+  crossBenefitsLabel?: InputMaybe<Scalars['String']['input']>;
+  crossBenefitsHeading?: InputMaybe<Scalars['String']['input']>;
+  crossBenefitsSubtext?: InputMaybe<Scalars['String']['input']>;
+  crossBenefits?: InputMaybe<Array<InputMaybe<IndustriesPageCrossBenefitsMutation>>>;
+  ctaBadge?: InputMaybe<Scalars['String']['input']>;
+  ctaHeading?: InputMaybe<Scalars['String']['input']>;
+  ctaBody?: InputMaybe<Scalars['String']['input']>;
+  ctaButtonText?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type DemoPageFeatureSectionsMutation = {
   id?: InputMaybe<Scalars['String']['input']>;
   industry?: InputMaybe<Scalars['String']['input']>;
@@ -1270,9 +2164,15 @@ export type VsPagePartsFragment = { __typename: 'VsPage', heroHeading?: string |
 
 export type CustomersPagePartsFragment = { __typename: 'CustomersPage', heroHeading?: string | null, heroSubtext?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, featuredCustomer?: { __typename: 'CustomersPageFeaturedCustomer', heading?: string | null, body?: string | null, href?: string | null, imageSrc?: string | null, imageAlt?: string | null, logoSrc?: string | null, logoAlt?: string | null, metrics?: Array<{ __typename: 'CustomersPageFeaturedCustomerMetrics', label?: string | null, value?: string | null } | null> | null } | null, featuredTestimonial?: { __typename: 'CustomersPageFeaturedTestimonial', quote?: string | null, name?: string | null, role?: string | null, logoSrc?: string | null, logoAlt?: string | null, avatarSrc?: string | null, avatarAlt?: string | null } | null, results?: Array<{ __typename: 'CustomersPageResults', title?: string | null, industry?: string | null, href?: string | null, imageSrc?: string | null, imageAlt?: string | null, logoSrc?: string | null, logoAlt?: string | null, metrics?: Array<{ __typename: 'CustomersPageResultsMetrics', label?: string | null, value?: string | null } | null> | null } | null> | null, successStories?: Array<{ __typename: 'CustomersPageSuccessStories', brand?: string | null, title?: string | null, body?: string | null, href?: string | null, imageSrc?: string | null, imageAlt?: string | null } | null> | null };
 
+export type IndexPagePartsFragment = { __typename: 'IndexPage', heroBadgePlatform?: string | null, heroHeadingPart1?: string | null, heroHeadingAccent?: string | null, heroHeadingPart2?: string | null, heroSubtext?: string | null, heroCtaText?: string | null, shiftLabel?: string | null, shiftHeading?: string | null, shiftCallout?: string | null, glucoseLabel?: string | null, glucoseHeading?: string | null, demoHighlightBadge?: string | null, demoHighlightHeading?: string | null, demoHighlightBody?: string | null, demoVideoCategory?: string | null, demoVideoTitle?: string | null, whyLabel?: string | null, whyHeading?: string | null, platformBadge?: string | null, platformHeadingLine1?: string | null, platformHeadingLine2?: string | null, platformSubtext?: string | null, channelsLabel?: string | null, securityHeadingLine1?: string | null, securityHeadingHighlight?: string | null, securityBody?: string | null, securityTrustLinkText?: string | null, ctaHeadingPre?: string | null, ctaHeadingPost?: string | null, ctaBody?: string | null, shiftCards?: Array<{ __typename: 'IndexPageShiftCards', label?: string | null, title?: string | null, body?: string | null } | null> | null, glucoseDescBlocks?: Array<{ __typename: 'IndexPageGlucoseDescBlocks', heading?: string | null, body?: string | null } | null> | null, whyCards?: Array<{ __typename: 'IndexPageWhyCards', iconName?: string | null, title?: string | null, body?: string | null } | null> | null, metrics?: Array<{ __typename: 'IndexPageMetrics', value?: string | null, label?: string | null } | null> | null, securityBadges?: Array<{ __typename: 'IndexPageSecurityBadges', src?: string | null, alt?: string | null, label?: string | null } | null> | null, testimonials?: Array<{ __typename: 'IndexPageTestimonials', quote?: string | null, avatarSrc?: string | null, avatarAlt?: string | null, name?: string | null, role?: string | null } | null> | null };
+
 export type CompanyPagePartsFragment = { __typename: 'CompanyPage', heroLabel?: string | null, heroHeading?: string | null, heroSubtext?: string | null, heroImageSrc?: string | null, heroImageAlt?: string | null, missionHeading?: string | null, missionBody?: string | null, teamHeading?: string | null, teamSubtext?: string | null, visionLabel?: string | null, visionHeading?: string | null, statsLabel?: string | null, statsHeading?: string | null, statsSubtext?: string | null, globalPresenceHeading?: string | null, globalPresenceBody1?: string | null, globalPresenceBody2?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, teamMembers?: Array<{ __typename: 'CompanyPageTeamMembers', imageSrc?: string | null, name?: string | null, role?: string | null, bio?: string | null, linkedInHref?: string | null } | null> | null, visionCards?: Array<{ __typename: 'CompanyPageVisionCards', title?: string | null, body?: string | null } | null> | null, values?: Array<{ __typename: 'CompanyPageValues', title?: string | null, body?: string | null, iconName?: string | null } | null> | null, companyStats?: Array<{ __typename: 'CompanyPageCompanyStats', value?: string | null, label?: string | null } | null> | null, offices?: Array<{ __typename: 'CompanyPageOffices', name?: string | null, address?: string | null } | null> | null };
 
 export type ContactPagePartsFragment = { __typename: 'ContactPage', heroHeading?: string | null, formHeading?: string | null, formSubtext?: string | null, trustedBrandsLabel?: string | null, trustedBrandsSubtext?: string | null, formAction?: string | null, formSubject?: string | null, formRedirectUrl?: string | null, demoFeatures?: Array<string | null> | null, industryOptions?: Array<string | null> | null };
+
+export type ProductPagePartsFragment = { __typename: 'ProductPage', heroHeadingPart1?: string | null, heroHeadingAccent?: string | null, heroSubtext?: string | null, whyLabel?: string | null, whyHeading?: string | null, whySubtext?: string | null, diffLabel?: string | null, diffHeading?: string | null, diffSubtext?: string | null, connectorsLabel?: string | null, connectorsHeading?: string | null, connectorsSubtext?: string | null, analyticsLabel?: string | null, analyticsHeading?: string | null, analyticsSubtext?: string | null, technologyLabel?: string | null, technologyHeading?: string | null, technologySubtext?: string | null, technologyBadges?: Array<string | null> | null, agnosticLabel?: string | null, agnosticHeading?: string | null, agnosticSubtext?: string | null, platformLabel?: string | null, glucoseCoreHeading?: string | null, glucoseCoreBody?: string | null, gmcTitle?: string | null, gmcSubtitle?: string | null, gmcBody?: string | null, gmcTags?: Array<string | null> | null, corpusTitle?: string | null, corpusSubtitle?: string | null, corpusBody?: string | null, toolsTitle?: string | null, toolsSubtitle?: string | null, toolsBody?: string | null, archAnalyticsTitle?: string | null, archAnalyticsSubtitle?: string | null, archAnalyticsBody?: string | null, archAnalyticsCaptures?: Array<string | null> | null, archAnalyticsSyncsTo?: Array<string | null> | null, comparisonLegacyLabel?: string | null, comparisonGlucoseLabel?: string | null, traditionalChatbotItems?: Array<string | null> | null, glucoseAgentItems?: Array<string | null> | null, devBadge?: string | null, devHeading?: string | null, devBody?: string | null, devCtaText?: string | null, ctaHeading?: string | null, ctaBody?: string | null, ctaButtonText?: string | null, connectorFeatures?: Array<{ __typename: 'ProductPageConnectorFeatures', iconName?: string | null, title?: string | null, body?: string | null } | null> | null, analyticsFeatures?: Array<{ __typename: 'ProductPageAnalyticsFeatures', iconName?: string | null, title?: string | null, body?: string | null } | null> | null };
+
+export type IndustriesPagePartsFragment = { __typename: 'IndustriesPage', heroBadge?: string | null, heroHeadingPart1?: string | null, heroHeadingAccent?: string | null, heroHeadingPart2?: string | null, heroSubtext?: string | null, overviewLabel?: string | null, overviewHeading?: string | null, overviewSubtext?: string | null, overviewPrimaryBadge?: string | null, overviewExpansionBadge?: string | null, automotiveLabel?: string | null, automotiveHeading?: string | null, automotiveSubtext?: string | null, automotiveImageSrc?: string | null, automotiveImageAlt?: string | null, crossBenefitsLabel?: string | null, crossBenefitsHeading?: string | null, crossBenefitsSubtext?: string | null, ctaBadge?: string | null, ctaHeading?: string | null, ctaBody?: string | null, ctaButtonText?: string | null, overviewPrimary?: Array<{ __typename: 'IndustriesPageOverviewPrimary', href?: string | null, iconName?: string | null, title?: string | null, desc?: string | null } | null> | null, overviewExpansion?: Array<{ __typename: 'IndustriesPageOverviewExpansion', href?: string | null, iconName?: string | null, title?: string | null, desc?: string | null } | null> | null, automotiveCards?: Array<{ __typename: 'IndustriesPageAutomotiveCards', title?: string | null, body?: string | null } | null> | null, automotiveStats?: Array<{ __typename: 'IndustriesPageAutomotiveStats', v?: string | null, l?: string | null } | null> | null, primarySections?: Array<{ __typename: 'IndustriesPagePrimarySections', id?: string | null, bg?: string | null, label?: string | null, heading?: string | null, subtext?: string | null, cards?: Array<{ __typename: 'IndustriesPagePrimarySectionsCards', title?: string | null, body?: string | null } | null> | null, stats?: Array<{ __typename: 'IndustriesPagePrimarySectionsStats', v?: string | null, l?: string | null } | null> | null } | null> | null, expansionSections?: Array<{ __typename: 'IndustriesPageExpansionSections', id?: string | null, bg?: string | null, label?: string | null, heading?: string | null, subtext?: string | null, ctaText?: string | null, cards?: Array<{ __typename: 'IndustriesPageExpansionSectionsCards', iconName?: string | null, title?: string | null, body?: string | null } | null> | null } | null> | null, crossBenefits?: Array<{ __typename: 'IndustriesPageCrossBenefits', iconName?: string | null, title?: string | null, desc?: string | null } | null> | null };
 
 export type DemoPagePartsFragment = { __typename: 'DemoPage', heroLabel?: string | null, heroHeading?: string | null, heroSubtext?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, featureSections?: Array<{ __typename: 'DemoPageFeatureSections', id?: string | null, industry?: string | null, reversed?: boolean | null, label?: string | null, heading?: string | null, tagline?: string | null, body?: string | null, linkText?: string | null, videoSrc?: string | null } | null> | null };
 
@@ -1333,6 +2233,25 @@ export type CustomersPageConnectionQueryVariables = Exact<{
 
 export type CustomersPageConnectionQuery = { __typename?: 'Query', customersPageConnection: { __typename?: 'CustomersPageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'CustomersPageConnectionEdges', cursor: string, node?: { __typename: 'CustomersPage', id: string, heroHeading?: string | null, heroSubtext?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, featuredCustomer?: { __typename: 'CustomersPageFeaturedCustomer', heading?: string | null, body?: string | null, href?: string | null, imageSrc?: string | null, imageAlt?: string | null, logoSrc?: string | null, logoAlt?: string | null, metrics?: Array<{ __typename: 'CustomersPageFeaturedCustomerMetrics', label?: string | null, value?: string | null } | null> | null } | null, featuredTestimonial?: { __typename: 'CustomersPageFeaturedTestimonial', quote?: string | null, name?: string | null, role?: string | null, logoSrc?: string | null, logoAlt?: string | null, avatarSrc?: string | null, avatarAlt?: string | null } | null, results?: Array<{ __typename: 'CustomersPageResults', title?: string | null, industry?: string | null, href?: string | null, imageSrc?: string | null, imageAlt?: string | null, logoSrc?: string | null, logoAlt?: string | null, metrics?: Array<{ __typename: 'CustomersPageResultsMetrics', label?: string | null, value?: string | null } | null> | null } | null> | null, successStories?: Array<{ __typename: 'CustomersPageSuccessStories', brand?: string | null, title?: string | null, body?: string | null, href?: string | null, imageSrc?: string | null, imageAlt?: string | null } | null> | null } | null } | null> | null } };
 
+export type IndexPageQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type IndexPageQuery = { __typename?: 'Query', indexPage: { __typename: 'IndexPage', id: string, heroBadgePlatform?: string | null, heroHeadingPart1?: string | null, heroHeadingAccent?: string | null, heroHeadingPart2?: string | null, heroSubtext?: string | null, heroCtaText?: string | null, shiftLabel?: string | null, shiftHeading?: string | null, shiftCallout?: string | null, glucoseLabel?: string | null, glucoseHeading?: string | null, demoHighlightBadge?: string | null, demoHighlightHeading?: string | null, demoHighlightBody?: string | null, demoVideoCategory?: string | null, demoVideoTitle?: string | null, whyLabel?: string | null, whyHeading?: string | null, platformBadge?: string | null, platformHeadingLine1?: string | null, platformHeadingLine2?: string | null, platformSubtext?: string | null, channelsLabel?: string | null, securityHeadingLine1?: string | null, securityHeadingHighlight?: string | null, securityBody?: string | null, securityTrustLinkText?: string | null, ctaHeadingPre?: string | null, ctaHeadingPost?: string | null, ctaBody?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, shiftCards?: Array<{ __typename: 'IndexPageShiftCards', label?: string | null, title?: string | null, body?: string | null } | null> | null, glucoseDescBlocks?: Array<{ __typename: 'IndexPageGlucoseDescBlocks', heading?: string | null, body?: string | null } | null> | null, whyCards?: Array<{ __typename: 'IndexPageWhyCards', iconName?: string | null, title?: string | null, body?: string | null } | null> | null, metrics?: Array<{ __typename: 'IndexPageMetrics', value?: string | null, label?: string | null } | null> | null, securityBadges?: Array<{ __typename: 'IndexPageSecurityBadges', src?: string | null, alt?: string | null, label?: string | null } | null> | null, testimonials?: Array<{ __typename: 'IndexPageTestimonials', quote?: string | null, avatarSrc?: string | null, avatarAlt?: string | null, name?: string | null, role?: string | null } | null> | null } };
+
+export type IndexPageConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<IndexPageFilter>;
+}>;
+
+
+export type IndexPageConnectionQuery = { __typename?: 'Query', indexPageConnection: { __typename?: 'IndexPageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'IndexPageConnectionEdges', cursor: string, node?: { __typename: 'IndexPage', id: string, heroBadgePlatform?: string | null, heroHeadingPart1?: string | null, heroHeadingAccent?: string | null, heroHeadingPart2?: string | null, heroSubtext?: string | null, heroCtaText?: string | null, shiftLabel?: string | null, shiftHeading?: string | null, shiftCallout?: string | null, glucoseLabel?: string | null, glucoseHeading?: string | null, demoHighlightBadge?: string | null, demoHighlightHeading?: string | null, demoHighlightBody?: string | null, demoVideoCategory?: string | null, demoVideoTitle?: string | null, whyLabel?: string | null, whyHeading?: string | null, platformBadge?: string | null, platformHeadingLine1?: string | null, platformHeadingLine2?: string | null, platformSubtext?: string | null, channelsLabel?: string | null, securityHeadingLine1?: string | null, securityHeadingHighlight?: string | null, securityBody?: string | null, securityTrustLinkText?: string | null, ctaHeadingPre?: string | null, ctaHeadingPost?: string | null, ctaBody?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, shiftCards?: Array<{ __typename: 'IndexPageShiftCards', label?: string | null, title?: string | null, body?: string | null } | null> | null, glucoseDescBlocks?: Array<{ __typename: 'IndexPageGlucoseDescBlocks', heading?: string | null, body?: string | null } | null> | null, whyCards?: Array<{ __typename: 'IndexPageWhyCards', iconName?: string | null, title?: string | null, body?: string | null } | null> | null, metrics?: Array<{ __typename: 'IndexPageMetrics', value?: string | null, label?: string | null } | null> | null, securityBadges?: Array<{ __typename: 'IndexPageSecurityBadges', src?: string | null, alt?: string | null, label?: string | null } | null> | null, testimonials?: Array<{ __typename: 'IndexPageTestimonials', quote?: string | null, avatarSrc?: string | null, avatarAlt?: string | null, name?: string | null, role?: string | null } | null> | null } | null } | null> | null } };
+
 export type CompanyPageQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
@@ -1370,6 +2289,44 @@ export type ContactPageConnectionQueryVariables = Exact<{
 
 
 export type ContactPageConnectionQuery = { __typename?: 'Query', contactPageConnection: { __typename?: 'ContactPageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ContactPageConnectionEdges', cursor: string, node?: { __typename: 'ContactPage', id: string, heroHeading?: string | null, formHeading?: string | null, formSubtext?: string | null, trustedBrandsLabel?: string | null, trustedBrandsSubtext?: string | null, formAction?: string | null, formSubject?: string | null, formRedirectUrl?: string | null, demoFeatures?: Array<string | null> | null, industryOptions?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type ProductPageQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type ProductPageQuery = { __typename?: 'Query', productPage: { __typename: 'ProductPage', id: string, heroHeadingPart1?: string | null, heroHeadingAccent?: string | null, heroSubtext?: string | null, whyLabel?: string | null, whyHeading?: string | null, whySubtext?: string | null, diffLabel?: string | null, diffHeading?: string | null, diffSubtext?: string | null, connectorsLabel?: string | null, connectorsHeading?: string | null, connectorsSubtext?: string | null, analyticsLabel?: string | null, analyticsHeading?: string | null, analyticsSubtext?: string | null, technologyLabel?: string | null, technologyHeading?: string | null, technologySubtext?: string | null, technologyBadges?: Array<string | null> | null, agnosticLabel?: string | null, agnosticHeading?: string | null, agnosticSubtext?: string | null, platformLabel?: string | null, glucoseCoreHeading?: string | null, glucoseCoreBody?: string | null, gmcTitle?: string | null, gmcSubtitle?: string | null, gmcBody?: string | null, gmcTags?: Array<string | null> | null, corpusTitle?: string | null, corpusSubtitle?: string | null, corpusBody?: string | null, toolsTitle?: string | null, toolsSubtitle?: string | null, toolsBody?: string | null, archAnalyticsTitle?: string | null, archAnalyticsSubtitle?: string | null, archAnalyticsBody?: string | null, archAnalyticsCaptures?: Array<string | null> | null, archAnalyticsSyncsTo?: Array<string | null> | null, comparisonLegacyLabel?: string | null, comparisonGlucoseLabel?: string | null, traditionalChatbotItems?: Array<string | null> | null, glucoseAgentItems?: Array<string | null> | null, devBadge?: string | null, devHeading?: string | null, devBody?: string | null, devCtaText?: string | null, ctaHeading?: string | null, ctaBody?: string | null, ctaButtonText?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, connectorFeatures?: Array<{ __typename: 'ProductPageConnectorFeatures', iconName?: string | null, title?: string | null, body?: string | null } | null> | null, analyticsFeatures?: Array<{ __typename: 'ProductPageAnalyticsFeatures', iconName?: string | null, title?: string | null, body?: string | null } | null> | null } };
+
+export type ProductPageConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<ProductPageFilter>;
+}>;
+
+
+export type ProductPageConnectionQuery = { __typename?: 'Query', productPageConnection: { __typename?: 'ProductPageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ProductPageConnectionEdges', cursor: string, node?: { __typename: 'ProductPage', id: string, heroHeadingPart1?: string | null, heroHeadingAccent?: string | null, heroSubtext?: string | null, whyLabel?: string | null, whyHeading?: string | null, whySubtext?: string | null, diffLabel?: string | null, diffHeading?: string | null, diffSubtext?: string | null, connectorsLabel?: string | null, connectorsHeading?: string | null, connectorsSubtext?: string | null, analyticsLabel?: string | null, analyticsHeading?: string | null, analyticsSubtext?: string | null, technologyLabel?: string | null, technologyHeading?: string | null, technologySubtext?: string | null, technologyBadges?: Array<string | null> | null, agnosticLabel?: string | null, agnosticHeading?: string | null, agnosticSubtext?: string | null, platformLabel?: string | null, glucoseCoreHeading?: string | null, glucoseCoreBody?: string | null, gmcTitle?: string | null, gmcSubtitle?: string | null, gmcBody?: string | null, gmcTags?: Array<string | null> | null, corpusTitle?: string | null, corpusSubtitle?: string | null, corpusBody?: string | null, toolsTitle?: string | null, toolsSubtitle?: string | null, toolsBody?: string | null, archAnalyticsTitle?: string | null, archAnalyticsSubtitle?: string | null, archAnalyticsBody?: string | null, archAnalyticsCaptures?: Array<string | null> | null, archAnalyticsSyncsTo?: Array<string | null> | null, comparisonLegacyLabel?: string | null, comparisonGlucoseLabel?: string | null, traditionalChatbotItems?: Array<string | null> | null, glucoseAgentItems?: Array<string | null> | null, devBadge?: string | null, devHeading?: string | null, devBody?: string | null, devCtaText?: string | null, ctaHeading?: string | null, ctaBody?: string | null, ctaButtonText?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, connectorFeatures?: Array<{ __typename: 'ProductPageConnectorFeatures', iconName?: string | null, title?: string | null, body?: string | null } | null> | null, analyticsFeatures?: Array<{ __typename: 'ProductPageAnalyticsFeatures', iconName?: string | null, title?: string | null, body?: string | null } | null> | null } | null } | null> | null } };
+
+export type IndustriesPageQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type IndustriesPageQuery = { __typename?: 'Query', industriesPage: { __typename: 'IndustriesPage', id: string, heroBadge?: string | null, heroHeadingPart1?: string | null, heroHeadingAccent?: string | null, heroHeadingPart2?: string | null, heroSubtext?: string | null, overviewLabel?: string | null, overviewHeading?: string | null, overviewSubtext?: string | null, overviewPrimaryBadge?: string | null, overviewExpansionBadge?: string | null, automotiveLabel?: string | null, automotiveHeading?: string | null, automotiveSubtext?: string | null, automotiveImageSrc?: string | null, automotiveImageAlt?: string | null, crossBenefitsLabel?: string | null, crossBenefitsHeading?: string | null, crossBenefitsSubtext?: string | null, ctaBadge?: string | null, ctaHeading?: string | null, ctaBody?: string | null, ctaButtonText?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, overviewPrimary?: Array<{ __typename: 'IndustriesPageOverviewPrimary', href?: string | null, iconName?: string | null, title?: string | null, desc?: string | null } | null> | null, overviewExpansion?: Array<{ __typename: 'IndustriesPageOverviewExpansion', href?: string | null, iconName?: string | null, title?: string | null, desc?: string | null } | null> | null, automotiveCards?: Array<{ __typename: 'IndustriesPageAutomotiveCards', title?: string | null, body?: string | null } | null> | null, automotiveStats?: Array<{ __typename: 'IndustriesPageAutomotiveStats', v?: string | null, l?: string | null } | null> | null, primarySections?: Array<{ __typename: 'IndustriesPagePrimarySections', id?: string | null, bg?: string | null, label?: string | null, heading?: string | null, subtext?: string | null, cards?: Array<{ __typename: 'IndustriesPagePrimarySectionsCards', title?: string | null, body?: string | null } | null> | null, stats?: Array<{ __typename: 'IndustriesPagePrimarySectionsStats', v?: string | null, l?: string | null } | null> | null } | null> | null, expansionSections?: Array<{ __typename: 'IndustriesPageExpansionSections', id?: string | null, bg?: string | null, label?: string | null, heading?: string | null, subtext?: string | null, ctaText?: string | null, cards?: Array<{ __typename: 'IndustriesPageExpansionSectionsCards', iconName?: string | null, title?: string | null, body?: string | null } | null> | null } | null> | null, crossBenefits?: Array<{ __typename: 'IndustriesPageCrossBenefits', iconName?: string | null, title?: string | null, desc?: string | null } | null> | null } };
+
+export type IndustriesPageConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<IndustriesPageFilter>;
+}>;
+
+
+export type IndustriesPageConnectionQuery = { __typename?: 'Query', industriesPageConnection: { __typename?: 'IndustriesPageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'IndustriesPageConnectionEdges', cursor: string, node?: { __typename: 'IndustriesPage', id: string, heroBadge?: string | null, heroHeadingPart1?: string | null, heroHeadingAccent?: string | null, heroHeadingPart2?: string | null, heroSubtext?: string | null, overviewLabel?: string | null, overviewHeading?: string | null, overviewSubtext?: string | null, overviewPrimaryBadge?: string | null, overviewExpansionBadge?: string | null, automotiveLabel?: string | null, automotiveHeading?: string | null, automotiveSubtext?: string | null, automotiveImageSrc?: string | null, automotiveImageAlt?: string | null, crossBenefitsLabel?: string | null, crossBenefitsHeading?: string | null, crossBenefitsSubtext?: string | null, ctaBadge?: string | null, ctaHeading?: string | null, ctaBody?: string | null, ctaButtonText?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, overviewPrimary?: Array<{ __typename: 'IndustriesPageOverviewPrimary', href?: string | null, iconName?: string | null, title?: string | null, desc?: string | null } | null> | null, overviewExpansion?: Array<{ __typename: 'IndustriesPageOverviewExpansion', href?: string | null, iconName?: string | null, title?: string | null, desc?: string | null } | null> | null, automotiveCards?: Array<{ __typename: 'IndustriesPageAutomotiveCards', title?: string | null, body?: string | null } | null> | null, automotiveStats?: Array<{ __typename: 'IndustriesPageAutomotiveStats', v?: string | null, l?: string | null } | null> | null, primarySections?: Array<{ __typename: 'IndustriesPagePrimarySections', id?: string | null, bg?: string | null, label?: string | null, heading?: string | null, subtext?: string | null, cards?: Array<{ __typename: 'IndustriesPagePrimarySectionsCards', title?: string | null, body?: string | null } | null> | null, stats?: Array<{ __typename: 'IndustriesPagePrimarySectionsStats', v?: string | null, l?: string | null } | null> | null } | null> | null, expansionSections?: Array<{ __typename: 'IndustriesPageExpansionSections', id?: string | null, bg?: string | null, label?: string | null, heading?: string | null, subtext?: string | null, ctaText?: string | null, cards?: Array<{ __typename: 'IndustriesPageExpansionSectionsCards', iconName?: string | null, title?: string | null, body?: string | null } | null> | null } | null> | null, crossBenefits?: Array<{ __typename: 'IndustriesPageCrossBenefits', iconName?: string | null, title?: string | null, desc?: string | null } | null> | null } | null } | null> | null } };
 
 export type DemoPageQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1531,6 +2488,77 @@ export const CustomersPagePartsFragmentDoc = gql`
   }
 }
     `;
+export const IndexPagePartsFragmentDoc = gql`
+    fragment IndexPageParts on IndexPage {
+  __typename
+  heroBadgePlatform
+  heroHeadingPart1
+  heroHeadingAccent
+  heroHeadingPart2
+  heroSubtext
+  heroCtaText
+  shiftLabel
+  shiftHeading
+  shiftCallout
+  shiftCards {
+    __typename
+    label
+    title
+    body
+  }
+  glucoseLabel
+  glucoseHeading
+  glucoseDescBlocks {
+    __typename
+    heading
+    body
+  }
+  demoHighlightBadge
+  demoHighlightHeading
+  demoHighlightBody
+  demoVideoCategory
+  demoVideoTitle
+  whyLabel
+  whyHeading
+  whyCards {
+    __typename
+    iconName
+    title
+    body
+  }
+  platformBadge
+  platformHeadingLine1
+  platformHeadingLine2
+  platformSubtext
+  channelsLabel
+  securityHeadingLine1
+  securityHeadingHighlight
+  securityBody
+  securityTrustLinkText
+  ctaHeadingPre
+  ctaHeadingPost
+  ctaBody
+  metrics {
+    __typename
+    value
+    label
+  }
+  securityBadges {
+    __typename
+    src
+    alt
+    label
+  }
+  testimonials {
+    __typename
+    quote
+    avatarSrc
+    avatarAlt
+    name
+    role
+  }
+}
+    `;
 export const CompanyPagePartsFragmentDoc = gql`
     fragment CompanyPageParts on CompanyPage {
   __typename
@@ -1597,6 +2625,164 @@ export const ContactPagePartsFragmentDoc = gql`
   formRedirectUrl
   demoFeatures
   industryOptions
+}
+    `;
+export const ProductPagePartsFragmentDoc = gql`
+    fragment ProductPageParts on ProductPage {
+  __typename
+  heroHeadingPart1
+  heroHeadingAccent
+  heroSubtext
+  whyLabel
+  whyHeading
+  whySubtext
+  diffLabel
+  diffHeading
+  diffSubtext
+  connectorsLabel
+  connectorsHeading
+  connectorsSubtext
+  connectorFeatures {
+    __typename
+    iconName
+    title
+    body
+  }
+  analyticsLabel
+  analyticsHeading
+  analyticsSubtext
+  analyticsFeatures {
+    __typename
+    iconName
+    title
+    body
+  }
+  technologyLabel
+  technologyHeading
+  technologySubtext
+  technologyBadges
+  agnosticLabel
+  agnosticHeading
+  agnosticSubtext
+  platformLabel
+  glucoseCoreHeading
+  glucoseCoreBody
+  gmcTitle
+  gmcSubtitle
+  gmcBody
+  gmcTags
+  corpusTitle
+  corpusSubtitle
+  corpusBody
+  toolsTitle
+  toolsSubtitle
+  toolsBody
+  archAnalyticsTitle
+  archAnalyticsSubtitle
+  archAnalyticsBody
+  archAnalyticsCaptures
+  archAnalyticsSyncsTo
+  comparisonLegacyLabel
+  comparisonGlucoseLabel
+  traditionalChatbotItems
+  glucoseAgentItems
+  devBadge
+  devHeading
+  devBody
+  devCtaText
+  ctaHeading
+  ctaBody
+  ctaButtonText
+}
+    `;
+export const IndustriesPagePartsFragmentDoc = gql`
+    fragment IndustriesPageParts on IndustriesPage {
+  __typename
+  heroBadge
+  heroHeadingPart1
+  heroHeadingAccent
+  heroHeadingPart2
+  heroSubtext
+  overviewLabel
+  overviewHeading
+  overviewSubtext
+  overviewPrimaryBadge
+  overviewExpansionBadge
+  overviewPrimary {
+    __typename
+    href
+    iconName
+    title
+    desc
+  }
+  overviewExpansion {
+    __typename
+    href
+    iconName
+    title
+    desc
+  }
+  automotiveLabel
+  automotiveHeading
+  automotiveSubtext
+  automotiveImageSrc
+  automotiveImageAlt
+  automotiveCards {
+    __typename
+    title
+    body
+  }
+  automotiveStats {
+    __typename
+    v
+    l
+  }
+  primarySections {
+    __typename
+    id
+    bg
+    label
+    heading
+    subtext
+    cards {
+      __typename
+      title
+      body
+    }
+    stats {
+      __typename
+      v
+      l
+    }
+  }
+  expansionSections {
+    __typename
+    id
+    bg
+    label
+    heading
+    subtext
+    ctaText
+    cards {
+      __typename
+      iconName
+      title
+      body
+    }
+  }
+  crossBenefitsLabel
+  crossBenefitsHeading
+  crossBenefitsSubtext
+  crossBenefits {
+    __typename
+    iconName
+    title
+    desc
+  }
+  ctaBadge
+  ctaHeading
+  ctaBody
+  ctaButtonText
 }
     `;
 export const DemoPagePartsFragmentDoc = gql`
@@ -1792,6 +2978,63 @@ export const CustomersPageConnectionDocument = gql`
   }
 }
     ${CustomersPagePartsFragmentDoc}`;
+export const IndexPageDocument = gql`
+    query indexPage($relativePath: String!) {
+  indexPage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...IndexPageParts
+  }
+}
+    ${IndexPagePartsFragmentDoc}`;
+export const IndexPageConnectionDocument = gql`
+    query indexPageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: IndexPageFilter) {
+  indexPageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...IndexPageParts
+      }
+    }
+  }
+}
+    ${IndexPagePartsFragmentDoc}`;
 export const CompanyPageDocument = gql`
     query companyPage($relativePath: String!) {
   companyPage(relativePath: $relativePath) {
@@ -1906,6 +3149,120 @@ export const ContactPageConnectionDocument = gql`
   }
 }
     ${ContactPagePartsFragmentDoc}`;
+export const ProductPageDocument = gql`
+    query productPage($relativePath: String!) {
+  productPage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...ProductPageParts
+  }
+}
+    ${ProductPagePartsFragmentDoc}`;
+export const ProductPageConnectionDocument = gql`
+    query productPageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ProductPageFilter) {
+  productPageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...ProductPageParts
+      }
+    }
+  }
+}
+    ${ProductPagePartsFragmentDoc}`;
+export const IndustriesPageDocument = gql`
+    query industriesPage($relativePath: String!) {
+  industriesPage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...IndustriesPageParts
+  }
+}
+    ${IndustriesPagePartsFragmentDoc}`;
+export const IndustriesPageConnectionDocument = gql`
+    query industriesPageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: IndustriesPageFilter) {
+  industriesPageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...IndustriesPageParts
+      }
+    }
+  }
+}
+    ${IndustriesPagePartsFragmentDoc}`;
 export const DemoPageDocument = gql`
     query demoPage($relativePath: String!) {
   demoPage(relativePath: $relativePath) {
@@ -1984,6 +3341,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     customersPageConnection(variables?: CustomersPageConnectionQueryVariables, options?: C): Promise<{data: CustomersPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CustomersPageConnectionQueryVariables, query: string}> {
         return requester<{data: CustomersPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CustomersPageConnectionQueryVariables, query: string}, CustomersPageConnectionQueryVariables>(CustomersPageConnectionDocument, variables, options);
       },
+    indexPage(variables: IndexPageQueryVariables, options?: C): Promise<{data: IndexPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: IndexPageQueryVariables, query: string}> {
+        return requester<{data: IndexPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: IndexPageQueryVariables, query: string}, IndexPageQueryVariables>(IndexPageDocument, variables, options);
+      },
+    indexPageConnection(variables?: IndexPageConnectionQueryVariables, options?: C): Promise<{data: IndexPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: IndexPageConnectionQueryVariables, query: string}> {
+        return requester<{data: IndexPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: IndexPageConnectionQueryVariables, query: string}, IndexPageConnectionQueryVariables>(IndexPageConnectionDocument, variables, options);
+      },
     companyPage(variables: CompanyPageQueryVariables, options?: C): Promise<{data: CompanyPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CompanyPageQueryVariables, query: string}> {
         return requester<{data: CompanyPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CompanyPageQueryVariables, query: string}, CompanyPageQueryVariables>(CompanyPageDocument, variables, options);
       },
@@ -1995,6 +3358,18 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     contactPageConnection(variables?: ContactPageConnectionQueryVariables, options?: C): Promise<{data: ContactPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactPageConnectionQueryVariables, query: string}> {
         return requester<{data: ContactPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactPageConnectionQueryVariables, query: string}, ContactPageConnectionQueryVariables>(ContactPageConnectionDocument, variables, options);
+      },
+    productPage(variables: ProductPageQueryVariables, options?: C): Promise<{data: ProductPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ProductPageQueryVariables, query: string}> {
+        return requester<{data: ProductPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ProductPageQueryVariables, query: string}, ProductPageQueryVariables>(ProductPageDocument, variables, options);
+      },
+    productPageConnection(variables?: ProductPageConnectionQueryVariables, options?: C): Promise<{data: ProductPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ProductPageConnectionQueryVariables, query: string}> {
+        return requester<{data: ProductPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ProductPageConnectionQueryVariables, query: string}, ProductPageConnectionQueryVariables>(ProductPageConnectionDocument, variables, options);
+      },
+    industriesPage(variables: IndustriesPageQueryVariables, options?: C): Promise<{data: IndustriesPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: IndustriesPageQueryVariables, query: string}> {
+        return requester<{data: IndustriesPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: IndustriesPageQueryVariables, query: string}, IndustriesPageQueryVariables>(IndustriesPageDocument, variables, options);
+      },
+    industriesPageConnection(variables?: IndustriesPageConnectionQueryVariables, options?: C): Promise<{data: IndustriesPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: IndustriesPageConnectionQueryVariables, query: string}> {
+        return requester<{data: IndustriesPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: IndustriesPageConnectionQueryVariables, query: string}, IndustriesPageConnectionQueryVariables>(IndustriesPageConnectionDocument, variables, options);
       },
     demoPage(variables: DemoPageQueryVariables, options?: C): Promise<{data: DemoPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: DemoPageQueryVariables, query: string}> {
         return requester<{data: DemoPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: DemoPageQueryVariables, query: string}, DemoPageQueryVariables>(DemoPageDocument, variables, options);

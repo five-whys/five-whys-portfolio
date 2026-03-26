@@ -1,1 +1,0 @@
-import{g as e,S as o}from"./hoisted.DyIUDfEc.js";e.registerPlugin(o);window.matchMedia("(prefers-reduced-motion: reduce)").matches||document.querySelectorAll(".section-header-el").forEach(r=>{e.from(r.children,{scrollTrigger:{trigger:r,start:"top 85%"},opacity:0,y:25,duration:.65,stagger:.1,ease:"power3.out"})});

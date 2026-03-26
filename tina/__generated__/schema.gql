@@ -60,10 +60,16 @@ type Query {
   vsPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: VsPageFilter): VsPageConnection!
   customersPage(relativePath: String): CustomersPage!
   customersPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: CustomersPageFilter): CustomersPageConnection!
+  indexPage(relativePath: String): IndexPage!
+  indexPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: IndexPageFilter): IndexPageConnection!
   companyPage(relativePath: String): CompanyPage!
   companyPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: CompanyPageFilter): CompanyPageConnection!
   contactPage(relativePath: String): ContactPage!
   contactPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ContactPageFilter): ContactPageConnection!
+  productPage(relativePath: String): ProductPage!
+  productPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ProductPageFilter): ProductPageConnection!
+  industriesPage(relativePath: String): IndustriesPage!
+  industriesPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: IndustriesPageFilter): IndustriesPageConnection!
   demoPage(relativePath: String): DemoPage!
   demoPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DemoPageFilter): DemoPageConnection!
 }
@@ -72,8 +78,11 @@ input DocumentFilter {
   pages: PagesFilter
   vsPage: VsPageFilter
   customersPage: CustomersPageFilter
+  indexPage: IndexPageFilter
   companyPage: CompanyPageFilter
   contactPage: ContactPageFilter
+  productPage: ProductPageFilter
+  industriesPage: IndustriesPageFilter
   demoPage: DemoPageFilter
 }
 
@@ -100,7 +109,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Pages | VsPage | CustomersPage | CompanyPage | ContactPage | DemoPage | Folder
+union DocumentNode = Pages | VsPage | CustomersPage | IndexPage | CompanyPage | ContactPage | ProductPage | IndustriesPage | DemoPage | Folder
 
 type Pages implements Node & Document {
   title: String!
@@ -462,6 +471,170 @@ type CustomersPageConnection implements Connection {
   edges: [CustomersPageConnectionEdges]
 }
 
+type IndexPageShiftCards {
+  label: String
+  title: String
+  body: String
+}
+
+type IndexPageGlucoseDescBlocks {
+  heading: String
+  body: String
+}
+
+type IndexPageWhyCards {
+  iconName: String
+  title: String
+  body: String
+}
+
+type IndexPageMetrics {
+  value: String
+  label: String
+}
+
+type IndexPageSecurityBadges {
+  src: String
+  alt: String
+  label: String
+}
+
+type IndexPageTestimonials {
+  quote: String
+  avatarSrc: String
+  avatarAlt: String
+  name: String
+  role: String
+}
+
+type IndexPage implements Node & Document {
+  heroBadgePlatform: String
+  heroHeadingPart1: String
+  heroHeadingAccent: String
+  heroHeadingPart2: String
+  heroSubtext: String
+  heroCtaText: String
+  shiftLabel: String
+  shiftHeading: String
+  shiftCallout: String
+  shiftCards: [IndexPageShiftCards]
+  glucoseLabel: String
+  glucoseHeading: String
+  glucoseDescBlocks: [IndexPageGlucoseDescBlocks]
+  demoHighlightBadge: String
+  demoHighlightHeading: String
+  demoHighlightBody: String
+  demoVideoCategory: String
+  demoVideoTitle: String
+  whyLabel: String
+  whyHeading: String
+  whyCards: [IndexPageWhyCards]
+  platformBadge: String
+  platformHeadingLine1: String
+  platformHeadingLine2: String
+  platformSubtext: String
+  channelsLabel: String
+  securityHeadingLine1: String
+  securityHeadingHighlight: String
+  securityBody: String
+  securityTrustLinkText: String
+  ctaHeadingPre: String
+  ctaHeadingPost: String
+  ctaBody: String
+  metrics: [IndexPageMetrics]
+  securityBadges: [IndexPageSecurityBadges]
+  testimonials: [IndexPageTestimonials]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input IndexPageShiftCardsFilter {
+  label: StringFilter
+  title: StringFilter
+  body: StringFilter
+}
+
+input IndexPageGlucoseDescBlocksFilter {
+  heading: StringFilter
+  body: StringFilter
+}
+
+input IndexPageWhyCardsFilter {
+  iconName: StringFilter
+  title: StringFilter
+  body: StringFilter
+}
+
+input IndexPageMetricsFilter {
+  value: StringFilter
+  label: StringFilter
+}
+
+input IndexPageSecurityBadgesFilter {
+  src: ImageFilter
+  alt: StringFilter
+  label: StringFilter
+}
+
+input IndexPageTestimonialsFilter {
+  quote: StringFilter
+  avatarSrc: ImageFilter
+  avatarAlt: StringFilter
+  name: StringFilter
+  role: StringFilter
+}
+
+input IndexPageFilter {
+  heroBadgePlatform: StringFilter
+  heroHeadingPart1: StringFilter
+  heroHeadingAccent: StringFilter
+  heroHeadingPart2: StringFilter
+  heroSubtext: StringFilter
+  heroCtaText: StringFilter
+  shiftLabel: StringFilter
+  shiftHeading: StringFilter
+  shiftCallout: StringFilter
+  shiftCards: IndexPageShiftCardsFilter
+  glucoseLabel: StringFilter
+  glucoseHeading: StringFilter
+  glucoseDescBlocks: IndexPageGlucoseDescBlocksFilter
+  demoHighlightBadge: StringFilter
+  demoHighlightHeading: StringFilter
+  demoHighlightBody: StringFilter
+  demoVideoCategory: StringFilter
+  demoVideoTitle: StringFilter
+  whyLabel: StringFilter
+  whyHeading: StringFilter
+  whyCards: IndexPageWhyCardsFilter
+  platformBadge: StringFilter
+  platformHeadingLine1: StringFilter
+  platformHeadingLine2: StringFilter
+  platformSubtext: StringFilter
+  channelsLabel: StringFilter
+  securityHeadingLine1: StringFilter
+  securityHeadingHighlight: StringFilter
+  securityBody: StringFilter
+  securityTrustLinkText: StringFilter
+  ctaHeadingPre: StringFilter
+  ctaHeadingPost: StringFilter
+  ctaBody: StringFilter
+  metrics: IndexPageMetricsFilter
+  securityBadges: IndexPageSecurityBadgesFilter
+  testimonials: IndexPageTestimonialsFilter
+}
+
+type IndexPageConnectionEdges {
+  cursor: String!
+  node: IndexPage
+}
+
+type IndexPageConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [IndexPageConnectionEdges]
+}
+
 type CompanyPageTeamMembers {
   imageSrc: String
   name: String
@@ -628,6 +801,366 @@ type ContactPageConnection implements Connection {
   edges: [ContactPageConnectionEdges]
 }
 
+type ProductPageConnectorFeatures {
+  iconName: String
+  title: String
+  body: String
+}
+
+type ProductPageAnalyticsFeatures {
+  iconName: String
+  title: String
+  body: String
+}
+
+type ProductPage implements Node & Document {
+  heroHeadingPart1: String
+  heroHeadingAccent: String
+  heroSubtext: String
+  whyLabel: String
+  whyHeading: String
+  whySubtext: String
+  diffLabel: String
+  diffHeading: String
+  diffSubtext: String
+  connectorsLabel: String
+  connectorsHeading: String
+  connectorsSubtext: String
+  connectorFeatures: [ProductPageConnectorFeatures]
+  analyticsLabel: String
+  analyticsHeading: String
+  analyticsSubtext: String
+  analyticsFeatures: [ProductPageAnalyticsFeatures]
+  technologyLabel: String
+  technologyHeading: String
+  technologySubtext: String
+  technologyBadges: [String]
+  agnosticLabel: String
+  agnosticHeading: String
+  agnosticSubtext: String
+  platformLabel: String
+  glucoseCoreHeading: String
+  glucoseCoreBody: String
+  gmcTitle: String
+  gmcSubtitle: String
+  gmcBody: String
+  gmcTags: [String]
+  corpusTitle: String
+  corpusSubtitle: String
+  corpusBody: String
+  toolsTitle: String
+  toolsSubtitle: String
+  toolsBody: String
+  archAnalyticsTitle: String
+  archAnalyticsSubtitle: String
+  archAnalyticsBody: String
+  archAnalyticsCaptures: [String]
+  archAnalyticsSyncsTo: [String]
+  comparisonLegacyLabel: String
+  comparisonGlucoseLabel: String
+  traditionalChatbotItems: [String]
+  glucoseAgentItems: [String]
+  devBadge: String
+  devHeading: String
+  devBody: String
+  devCtaText: String
+  ctaHeading: String
+  ctaBody: String
+  ctaButtonText: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input ProductPageConnectorFeaturesFilter {
+  iconName: StringFilter
+  title: StringFilter
+  body: StringFilter
+}
+
+input ProductPageAnalyticsFeaturesFilter {
+  iconName: StringFilter
+  title: StringFilter
+  body: StringFilter
+}
+
+input ProductPageFilter {
+  heroHeadingPart1: StringFilter
+  heroHeadingAccent: StringFilter
+  heroSubtext: StringFilter
+  whyLabel: StringFilter
+  whyHeading: StringFilter
+  whySubtext: StringFilter
+  diffLabel: StringFilter
+  diffHeading: StringFilter
+  diffSubtext: StringFilter
+  connectorsLabel: StringFilter
+  connectorsHeading: StringFilter
+  connectorsSubtext: StringFilter
+  connectorFeatures: ProductPageConnectorFeaturesFilter
+  analyticsLabel: StringFilter
+  analyticsHeading: StringFilter
+  analyticsSubtext: StringFilter
+  analyticsFeatures: ProductPageAnalyticsFeaturesFilter
+  technologyLabel: StringFilter
+  technologyHeading: StringFilter
+  technologySubtext: StringFilter
+  technologyBadges: StringFilter
+  agnosticLabel: StringFilter
+  agnosticHeading: StringFilter
+  agnosticSubtext: StringFilter
+  platformLabel: StringFilter
+  glucoseCoreHeading: StringFilter
+  glucoseCoreBody: StringFilter
+  gmcTitle: StringFilter
+  gmcSubtitle: StringFilter
+  gmcBody: StringFilter
+  gmcTags: StringFilter
+  corpusTitle: StringFilter
+  corpusSubtitle: StringFilter
+  corpusBody: StringFilter
+  toolsTitle: StringFilter
+  toolsSubtitle: StringFilter
+  toolsBody: StringFilter
+  archAnalyticsTitle: StringFilter
+  archAnalyticsSubtitle: StringFilter
+  archAnalyticsBody: StringFilter
+  archAnalyticsCaptures: StringFilter
+  archAnalyticsSyncsTo: StringFilter
+  comparisonLegacyLabel: StringFilter
+  comparisonGlucoseLabel: StringFilter
+  traditionalChatbotItems: StringFilter
+  glucoseAgentItems: StringFilter
+  devBadge: StringFilter
+  devHeading: StringFilter
+  devBody: StringFilter
+  devCtaText: StringFilter
+  ctaHeading: StringFilter
+  ctaBody: StringFilter
+  ctaButtonText: StringFilter
+}
+
+type ProductPageConnectionEdges {
+  cursor: String!
+  node: ProductPage
+}
+
+type ProductPageConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [ProductPageConnectionEdges]
+}
+
+type IndustriesPageOverviewPrimary {
+  href: String
+  iconName: String
+  title: String
+  desc: String
+}
+
+type IndustriesPageOverviewExpansion {
+  href: String
+  iconName: String
+  title: String
+  desc: String
+}
+
+type IndustriesPageAutomotiveCards {
+  title: String
+  body: String
+}
+
+type IndustriesPageAutomotiveStats {
+  v: String
+  l: String
+}
+
+type IndustriesPagePrimarySectionsCards {
+  title: String
+  body: String
+}
+
+type IndustriesPagePrimarySectionsStats {
+  v: String
+  l: String
+}
+
+type IndustriesPagePrimarySections {
+  id: String
+  bg: String
+  label: String
+  heading: String
+  subtext: String
+  cards: [IndustriesPagePrimarySectionsCards]
+  stats: [IndustriesPagePrimarySectionsStats]
+}
+
+type IndustriesPageExpansionSectionsCards {
+  iconName: String
+  title: String
+  body: String
+}
+
+type IndustriesPageExpansionSections {
+  id: String
+  bg: String
+  label: String
+  heading: String
+  subtext: String
+  ctaText: String
+  cards: [IndustriesPageExpansionSectionsCards]
+}
+
+type IndustriesPageCrossBenefits {
+  iconName: String
+  title: String
+  desc: String
+}
+
+type IndustriesPage implements Node & Document {
+  heroBadge: String
+  heroHeadingPart1: String
+  heroHeadingAccent: String
+  heroHeadingPart2: String
+  heroSubtext: String
+  overviewLabel: String
+  overviewHeading: String
+  overviewSubtext: String
+  overviewPrimaryBadge: String
+  overviewExpansionBadge: String
+  overviewPrimary: [IndustriesPageOverviewPrimary]
+  overviewExpansion: [IndustriesPageOverviewExpansion]
+  automotiveLabel: String
+  automotiveHeading: String
+  automotiveSubtext: String
+  automotiveImageSrc: String
+  automotiveImageAlt: String
+  automotiveCards: [IndustriesPageAutomotiveCards]
+  automotiveStats: [IndustriesPageAutomotiveStats]
+  primarySections: [IndustriesPagePrimarySections]
+  expansionSections: [IndustriesPageExpansionSections]
+  crossBenefitsLabel: String
+  crossBenefitsHeading: String
+  crossBenefitsSubtext: String
+  crossBenefits: [IndustriesPageCrossBenefits]
+  ctaBadge: String
+  ctaHeading: String
+  ctaBody: String
+  ctaButtonText: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input IndustriesPageOverviewPrimaryFilter {
+  href: StringFilter
+  iconName: StringFilter
+  title: StringFilter
+  desc: StringFilter
+}
+
+input IndustriesPageOverviewExpansionFilter {
+  href: StringFilter
+  iconName: StringFilter
+  title: StringFilter
+  desc: StringFilter
+}
+
+input IndustriesPageAutomotiveCardsFilter {
+  title: StringFilter
+  body: StringFilter
+}
+
+input IndustriesPageAutomotiveStatsFilter {
+  v: StringFilter
+  l: StringFilter
+}
+
+input IndustriesPagePrimarySectionsCardsFilter {
+  title: StringFilter
+  body: StringFilter
+}
+
+input IndustriesPagePrimarySectionsStatsFilter {
+  v: StringFilter
+  l: StringFilter
+}
+
+input IndustriesPagePrimarySectionsFilter {
+  id: StringFilter
+  bg: StringFilter
+  label: StringFilter
+  heading: StringFilter
+  subtext: StringFilter
+  cards: IndustriesPagePrimarySectionsCardsFilter
+  stats: IndustriesPagePrimarySectionsStatsFilter
+}
+
+input IndustriesPageExpansionSectionsCardsFilter {
+  iconName: StringFilter
+  title: StringFilter
+  body: StringFilter
+}
+
+input IndustriesPageExpansionSectionsFilter {
+  id: StringFilter
+  bg: StringFilter
+  label: StringFilter
+  heading: StringFilter
+  subtext: StringFilter
+  ctaText: StringFilter
+  cards: IndustriesPageExpansionSectionsCardsFilter
+}
+
+input IndustriesPageCrossBenefitsFilter {
+  iconName: StringFilter
+  title: StringFilter
+  desc: StringFilter
+}
+
+input IndustriesPageFilter {
+  heroBadge: StringFilter
+  heroHeadingPart1: StringFilter
+  heroHeadingAccent: StringFilter
+  heroHeadingPart2: StringFilter
+  heroSubtext: StringFilter
+  overviewLabel: StringFilter
+  overviewHeading: StringFilter
+  overviewSubtext: StringFilter
+  overviewPrimaryBadge: StringFilter
+  overviewExpansionBadge: StringFilter
+  overviewPrimary: IndustriesPageOverviewPrimaryFilter
+  overviewExpansion: IndustriesPageOverviewExpansionFilter
+  automotiveLabel: StringFilter
+  automotiveHeading: StringFilter
+  automotiveSubtext: StringFilter
+  automotiveImageSrc: ImageFilter
+  automotiveImageAlt: StringFilter
+  automotiveCards: IndustriesPageAutomotiveCardsFilter
+  automotiveStats: IndustriesPageAutomotiveStatsFilter
+  primarySections: IndustriesPagePrimarySectionsFilter
+  expansionSections: IndustriesPageExpansionSectionsFilter
+  crossBenefitsLabel: StringFilter
+  crossBenefitsHeading: StringFilter
+  crossBenefitsSubtext: StringFilter
+  crossBenefits: IndustriesPageCrossBenefitsFilter
+  ctaBadge: StringFilter
+  ctaHeading: StringFilter
+  ctaBody: StringFilter
+  ctaButtonText: StringFilter
+}
+
+type IndustriesPageConnectionEdges {
+  cursor: String!
+  node: IndustriesPage
+}
+
+type IndustriesPageConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [IndustriesPageConnectionEdges]
+}
+
 type DemoPageFeatureSections {
   id: String
   industry: String
@@ -701,10 +1234,16 @@ type Mutation {
   createVsPage(relativePath: String!, params: VsPageMutation!): VsPage!
   updateCustomersPage(relativePath: String!, params: CustomersPageMutation!): CustomersPage!
   createCustomersPage(relativePath: String!, params: CustomersPageMutation!): CustomersPage!
+  updateIndexPage(relativePath: String!, params: IndexPageMutation!): IndexPage!
+  createIndexPage(relativePath: String!, params: IndexPageMutation!): IndexPage!
   updateCompanyPage(relativePath: String!, params: CompanyPageMutation!): CompanyPage!
   createCompanyPage(relativePath: String!, params: CompanyPageMutation!): CompanyPage!
   updateContactPage(relativePath: String!, params: ContactPageMutation!): ContactPage!
   createContactPage(relativePath: String!, params: ContactPageMutation!): ContactPage!
+  updateProductPage(relativePath: String!, params: ProductPageMutation!): ProductPage!
+  createProductPage(relativePath: String!, params: ProductPageMutation!): ProductPage!
+  updateIndustriesPage(relativePath: String!, params: IndustriesPageMutation!): IndustriesPage!
+  createIndustriesPage(relativePath: String!, params: IndustriesPageMutation!): IndustriesPage!
   updateDemoPage(relativePath: String!, params: DemoPageMutation!): DemoPage!
   createDemoPage(relativePath: String!, params: DemoPageMutation!): DemoPage!
 }
@@ -713,8 +1252,11 @@ input DocumentUpdateMutation {
   pages: PagesMutation
   vsPage: VsPageMutation
   customersPage: CustomersPageMutation
+  indexPage: IndexPageMutation
   companyPage: CompanyPageMutation
   contactPage: ContactPageMutation
+  productPage: ProductPageMutation
+  industriesPage: IndustriesPageMutation
   demoPage: DemoPageMutation
   relativePath: String
 }
@@ -723,8 +1265,11 @@ input DocumentMutation {
   pages: PagesMutation
   vsPage: VsPageMutation
   customersPage: CustomersPageMutation
+  indexPage: IndexPageMutation
   companyPage: CompanyPageMutation
   contactPage: ContactPageMutation
+  productPage: ProductPageMutation
+  industriesPage: IndustriesPageMutation
   demoPage: DemoPageMutation
 }
 
@@ -877,6 +1422,81 @@ input CustomersPageMutation {
   successStories: [CustomersPageSuccessStoriesMutation]
 }
 
+input IndexPageShiftCardsMutation {
+  label: String
+  title: String
+  body: String
+}
+
+input IndexPageGlucoseDescBlocksMutation {
+  heading: String
+  body: String
+}
+
+input IndexPageWhyCardsMutation {
+  iconName: String
+  title: String
+  body: String
+}
+
+input IndexPageMetricsMutation {
+  value: String
+  label: String
+}
+
+input IndexPageSecurityBadgesMutation {
+  src: String
+  alt: String
+  label: String
+}
+
+input IndexPageTestimonialsMutation {
+  quote: String
+  avatarSrc: String
+  avatarAlt: String
+  name: String
+  role: String
+}
+
+input IndexPageMutation {
+  heroBadgePlatform: String
+  heroHeadingPart1: String
+  heroHeadingAccent: String
+  heroHeadingPart2: String
+  heroSubtext: String
+  heroCtaText: String
+  shiftLabel: String
+  shiftHeading: String
+  shiftCallout: String
+  shiftCards: [IndexPageShiftCardsMutation]
+  glucoseLabel: String
+  glucoseHeading: String
+  glucoseDescBlocks: [IndexPageGlucoseDescBlocksMutation]
+  demoHighlightBadge: String
+  demoHighlightHeading: String
+  demoHighlightBody: String
+  demoVideoCategory: String
+  demoVideoTitle: String
+  whyLabel: String
+  whyHeading: String
+  whyCards: [IndexPageWhyCardsMutation]
+  platformBadge: String
+  platformHeadingLine1: String
+  platformHeadingLine2: String
+  platformSubtext: String
+  channelsLabel: String
+  securityHeadingLine1: String
+  securityHeadingHighlight: String
+  securityBody: String
+  securityTrustLinkText: String
+  ctaHeadingPre: String
+  ctaHeadingPost: String
+  ctaBody: String
+  metrics: [IndexPageMetricsMutation]
+  securityBadges: [IndexPageSecurityBadgesMutation]
+  testimonials: [IndexPageTestimonialsMutation]
+}
+
 input CompanyPageTeamMembersMutation {
   imageSrc: String
   name: String
@@ -944,6 +1564,172 @@ input ContactPageMutation {
   formRedirectUrl: String
   demoFeatures: [String]
   industryOptions: [String]
+}
+
+input ProductPageConnectorFeaturesMutation {
+  iconName: String
+  title: String
+  body: String
+}
+
+input ProductPageAnalyticsFeaturesMutation {
+  iconName: String
+  title: String
+  body: String
+}
+
+input ProductPageMutation {
+  heroHeadingPart1: String
+  heroHeadingAccent: String
+  heroSubtext: String
+  whyLabel: String
+  whyHeading: String
+  whySubtext: String
+  diffLabel: String
+  diffHeading: String
+  diffSubtext: String
+  connectorsLabel: String
+  connectorsHeading: String
+  connectorsSubtext: String
+  connectorFeatures: [ProductPageConnectorFeaturesMutation]
+  analyticsLabel: String
+  analyticsHeading: String
+  analyticsSubtext: String
+  analyticsFeatures: [ProductPageAnalyticsFeaturesMutation]
+  technologyLabel: String
+  technologyHeading: String
+  technologySubtext: String
+  technologyBadges: [String]
+  agnosticLabel: String
+  agnosticHeading: String
+  agnosticSubtext: String
+  platformLabel: String
+  glucoseCoreHeading: String
+  glucoseCoreBody: String
+  gmcTitle: String
+  gmcSubtitle: String
+  gmcBody: String
+  gmcTags: [String]
+  corpusTitle: String
+  corpusSubtitle: String
+  corpusBody: String
+  toolsTitle: String
+  toolsSubtitle: String
+  toolsBody: String
+  archAnalyticsTitle: String
+  archAnalyticsSubtitle: String
+  archAnalyticsBody: String
+  archAnalyticsCaptures: [String]
+  archAnalyticsSyncsTo: [String]
+  comparisonLegacyLabel: String
+  comparisonGlucoseLabel: String
+  traditionalChatbotItems: [String]
+  glucoseAgentItems: [String]
+  devBadge: String
+  devHeading: String
+  devBody: String
+  devCtaText: String
+  ctaHeading: String
+  ctaBody: String
+  ctaButtonText: String
+}
+
+input IndustriesPageOverviewPrimaryMutation {
+  href: String
+  iconName: String
+  title: String
+  desc: String
+}
+
+input IndustriesPageOverviewExpansionMutation {
+  href: String
+  iconName: String
+  title: String
+  desc: String
+}
+
+input IndustriesPageAutomotiveCardsMutation {
+  title: String
+  body: String
+}
+
+input IndustriesPageAutomotiveStatsMutation {
+  v: String
+  l: String
+}
+
+input IndustriesPagePrimarySectionsCardsMutation {
+  title: String
+  body: String
+}
+
+input IndustriesPagePrimarySectionsStatsMutation {
+  v: String
+  l: String
+}
+
+input IndustriesPagePrimarySectionsMutation {
+  id: String
+  bg: String
+  label: String
+  heading: String
+  subtext: String
+  cards: [IndustriesPagePrimarySectionsCardsMutation]
+  stats: [IndustriesPagePrimarySectionsStatsMutation]
+}
+
+input IndustriesPageExpansionSectionsCardsMutation {
+  iconName: String
+  title: String
+  body: String
+}
+
+input IndustriesPageExpansionSectionsMutation {
+  id: String
+  bg: String
+  label: String
+  heading: String
+  subtext: String
+  ctaText: String
+  cards: [IndustriesPageExpansionSectionsCardsMutation]
+}
+
+input IndustriesPageCrossBenefitsMutation {
+  iconName: String
+  title: String
+  desc: String
+}
+
+input IndustriesPageMutation {
+  heroBadge: String
+  heroHeadingPart1: String
+  heroHeadingAccent: String
+  heroHeadingPart2: String
+  heroSubtext: String
+  overviewLabel: String
+  overviewHeading: String
+  overviewSubtext: String
+  overviewPrimaryBadge: String
+  overviewExpansionBadge: String
+  overviewPrimary: [IndustriesPageOverviewPrimaryMutation]
+  overviewExpansion: [IndustriesPageOverviewExpansionMutation]
+  automotiveLabel: String
+  automotiveHeading: String
+  automotiveSubtext: String
+  automotiveImageSrc: String
+  automotiveImageAlt: String
+  automotiveCards: [IndustriesPageAutomotiveCardsMutation]
+  automotiveStats: [IndustriesPageAutomotiveStatsMutation]
+  primarySections: [IndustriesPagePrimarySectionsMutation]
+  expansionSections: [IndustriesPageExpansionSectionsMutation]
+  crossBenefitsLabel: String
+  crossBenefitsHeading: String
+  crossBenefitsSubtext: String
+  crossBenefits: [IndustriesPageCrossBenefitsMutation]
+  ctaBadge: String
+  ctaHeading: String
+  ctaBody: String
+  ctaButtonText: String
 }
 
 input DemoPageFeatureSectionsMutation {

@@ -1,4 +1,5 @@
 ---
+import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/ui/SectionHeader.astro';
 import {
@@ -7,104 +8,17 @@ import {
   Bell, Users, BookOpen, Shield, Settings,
 } from 'lucide-astro';
 
-// ── Overview grids ─────────────────────────────────────────────────────────
-const overviewPrimary = [
-  { href: '#automotive',          Icon: Zap,          title: 'Automotive, Mobility & Transportation',  desc: 'Revolutionize the entire ownership journey from consideration to second purchase.' },
-  { href: '#commercial-vehicles', Icon: Wrench,       title: 'Commercial & Industrial Vehicles',        desc: 'Keep fleets running with autonomous AI support for diagnostics, maintenance, and operations.' },
-  { href: '#industrial',          Icon: Building2,    title: 'Industrial Appliances & Machineries',     desc: 'Maximize asset utilization with real-time operator support and maintenance guidance.' },
-  { href: '#electronics',         Icon: Monitor,      title: 'Consumer Appliances',                     desc: 'Turn unboxing into brand loyalty with feature discovery and personalized guidance.' },
-  { href: '#healthcare',          Icon: Activity,     title: 'Healthcare',                              desc: 'Provide always-on, personalized care while managing costs and compliance.' },
-];
-const overviewExpansion = [
-  { href: '#property',       Icon: Home,         title: 'Buildings & Property Units', desc: 'Intelligent engagement for property occupants, tenants, and buyers.' },
-  { href: '#financial',      Icon: Briefcase,    title: 'Financial Services',          desc: 'Build stronger relationships with immediate, personalized, and secure interactions.' },
-  { href: '#energy',         Icon: Zap,          title: 'Energy & Utilities',          desc: 'Modernize customer engagement with proactive insights and automated support.' },
-  { href: '#hospitality',    Icon: Globe,        title: 'Hospitality & Travel',        desc: 'Elevate the guest experience from booking to checkout with AI concierge.' },
-  { href: '#consumer-goods', Icon: ShoppingCart, title: 'Consumer Goods',              desc: 'Own the direct-to-consumer relationship and drive repeat purchases.' },
-];
+const cmsEntry = await getEntry('industriesPage', 'index');
+if (!cmsEntry) throw new Error('industriesPage CMS entry not found');
+const p = cmsEntry.data;
 
-// ── Industry feature cards (no icons) ──────────────────────────────────────
-const automotiveCards = [
-  { title: 'Vehicle Configuration & Discovery', body: 'Help customers explore models, compare trims, understand features, and configure their perfect vehicle through natural conversation.' },
-  { title: 'Ownership Onboarding',              body: 'Proactively introduce features, explain controls, and personalize the ownership experience from day one—reducing "how-to" support calls.' },
-  { title: 'Service & Maintenance',             body: 'Schedule service appointments, explain maintenance alerts, guide troubleshooting, and integrate with DMS systems for seamless experience.' },
-  { title: 'Feature Discovery',                 body: 'Most owners never discover half the features they paid for. GLUCOSE contextually introduces features based on usage patterns and preferences.' },
-];
-const healthcareCards = [
-  { title: 'Medical Device Education',   body: 'Guide patients through device setup, usage instructions, and ongoing support for complex medical equipment—from glucose monitors to CPAP machines.' },
-  { title: 'Treatment Journey Support',  body: 'Proactive reminders, medication guidance, and personalized health information throughout the patient journey—with full compliance controls.' },
-  { title: 'Appointment Management',     body: 'Schedule, reschedule, and provide pre-appointment instructions through natural conversation across messaging platforms.' },
-  { title: 'Compliance & Guardrails',    body: 'Built-in IGDs (Instructions & Guidelines Documents) ensure GLUCOSE operates within strict healthcare compliance requirements.' },
-];
-const appliancesCards = [
-  { title: 'Product Onboarding',                   body: 'Guide users through setup, initial configuration, and first-use experiences for smart home devices, appliances, and electronics.' },
-  { title: 'Feature Education',                     body: 'Contextually introduce advanced features based on user behavior and preferences—turning casual users into power users.' },
-  { title: 'Troubleshooting & Support',             body: 'Instant, 24/7 troubleshooting through natural conversation—reducing support ticket volume while improving customer satisfaction.' },
-  { title: 'Accessory & Upgrade Recommendations',  body: 'Contextual recommendations for compatible accessories, software updates, and product upgrades based on usage patterns.' },
-];
-const financialCards = [
-  { title: 'Product Recommendations', body: 'Provide personalized guidance to help customers choose the best financial products for their needs—increasing acquisition and cross-sell rates.' },
-  { title: 'Account Support',         body: 'Respond immediately to questions about account balances, fees, transactions, and policies—boosting customer trust and satisfaction.' },
-  { title: 'Life-Stage Engagement',   body: 'Proactively engage customers during major life events—home buying, retirement planning, education funding—with contextual product information.' },
-  { title: 'Security & Compliance',   body: 'Enterprise-grade security with encrypted data, compliance guardrails, and audit logging for regulated financial services.' },
-];
-const retailCards = [
-  { title: 'Product Discovery',         body: 'Help shoppers find the perfect product through conversational commerce—understanding needs and recommending solutions.' },
-  { title: 'Order Support',             body: 'Track orders, handle returns, process exchanges, and resolve issues instantly through natural conversation.' },
-  { title: 'Product Usage Guidance',    body: 'Provide ongoing support for complex products—assembly instructions, care guides, usage tips, and troubleshooting.' },
-  { title: 'Loyalty & Re-engagement',  body: 'Personalized recommendations, reorder reminders, and loyalty program engagement to drive repeat purchases.' },
-];
-const industrialCards = [
-  { title: 'Operator Training',   body: 'On-demand guidance for equipment operation, safety procedures, and best practices—reducing training time and errors.' },
-  { title: 'Maintenance Support', body: 'Proactive maintenance reminders, troubleshooting assistance, and service scheduling integrated with your systems.' },
-  { title: 'IoT Integration',     body: 'Connect GLUCOSE to IoT sensors for context-aware support—responding to equipment alerts with relevant guidance.' },
-  { title: 'Documentation Access', body: 'Instant access to manuals, specifications, and procedures through natural conversation—no more searching through binders.' },
-];
+// Icon resolution map for CMS iconName strings
+const industryIconMap: Record<string, any> = {
+  Zap, Wrench, Building2, Monitor, Activity, Home, Briefcase,
+  Boxes, Globe, ShoppingCart, MessageSquare, BarChart3, Clock,
+  Bell, Users, BookOpen, Shield, Settings,
+};
 
-// ── Industry feature cards (with icons, 3-col) ─────────────────────────────
-const commercialCards = [
-  { Icon: Wrench,       title: 'Predictive Maintenance',      body: 'AI agents that alert operators before breakdowns, schedule service, and coordinate parts availability.' },
-  { Icon: MessageSquare, title: 'Driver & Operator Support',  body: '24/7 multimodal assistance for vehicle operation, troubleshooting, and compliance documentation.' },
-  { Icon: BarChart3,    title: 'Fleet Analytics',             body: 'Capture first-party data on usage patterns, common issues, and operator needs across your entire fleet.' },
-];
-const propertyCards = [
-  { Icon: Boxes,   title: 'Tenant Support',              body: 'Autonomous handling of maintenance requests, facility bookings, and community communications.' },
-  { Icon: Home,    title: 'Property Sales',              body: 'Qualify leads, schedule viewings, and guide prospective buyers through property features via WhatsApp and chat.' },
-  { Icon: Clock,   title: 'Smart Building Integration',  body: 'Connect to IoT systems for real-time facility management, energy monitoring, and occupant notifications.' },
-];
-const energyCards = [
-  { Icon: Zap,      title: 'Usage & Billing Support',   body: 'Autonomous agents that explain bills, compare plans, and process account changes instantly.' },
-  { Icon: Bell,     title: 'Proactive Notifications',   body: 'Alert customers about outages, maintenance windows, and consumption anomalies before they contact you.' },
-  { Icon: Activity, title: 'Demand Response',           body: 'Engage customers in energy-saving programs through intelligent, personalized communication campaigns.' },
-];
-const hospitalityCards = [
-  { Icon: MessageSquare, title: 'AI Concierge',            body: 'Autonomous guest support for bookings, room service, local recommendations, and special requests.' },
-  { Icon: Globe,         title: 'Multilingual Engagement', body: 'Serve international guests in 50+ languages across WhatsApp, LINE, and other regional channels.' },
-  { Icon: Users,         title: 'Loyalty & Upsell',        body: 'Proactively engage guests with personalized upgrade offers, loyalty rewards, and post-stay follow-ups.' },
-];
-const consumerGoodsCards = [
-  { Icon: BookOpen,  title: 'Product Education',   body: 'Guide consumers through product features, usage tips, and care instructions via conversational AI.' },
-  { Icon: BarChart3, title: 'Consumer Insights',   body: 'Capture first-party data on preferences, feedback, and purchase intent directly from conversations.' },
-  { Icon: Bell,      title: 'Lifecycle Engagement', body: 'Proactive re-engagement for refills, upgrades, and loyalty programs — building long-term brand relationships.' },
-];
-
-// ── Stats rows ─────────────────────────────────────────────────────────────
-const automotiveStats   = [{ v: '50%+', l: 'of vehicle features go unused by owners' }, { v: '24/7', l: 'support without call center overhead' }, { v: '50+', l: 'languages for global deployment' }];
-const healthcareStats   = [{ v: 'Always-On', l: 'patient support outside office hours' }, { v: 'Compliant', l: 'with healthcare regulations' }, { v: 'Multimodal', l: 'text, voice, images for accessibility' }];
-const appliancesStats   = [{ v: 'Reduced', l: 'support ticket volume' }, { v: 'Increased', l: 'feature adoption rates' }, { v: 'Higher', l: 'customer lifetime value' }];
-const financialStats    = [{ v: 'Secure', l: 'enterprise-grade encryption' }, { v: 'Compliant', l: 'with financial regulations' }, { v: 'Immediate', l: 'personalized responses' }];
-const retailStats       = [{ v: 'Increased', l: 'conversion rates' }, { v: 'Reduced', l: 'return and exchange rates' }, { v: 'Higher', l: 'repeat purchase rates' }];
-const industrialStats   = [{ v: 'Minimized', l: 'equipment downtime' }, { v: 'Improved', l: 'safety compliance' }, { v: 'Enhanced', l: 'operator efficiency' }];
-
-// ── Cross-industry benefits ────────────────────────────────────────────────
-const crossBenefits = [
-  { Icon: Globe,        title: 'Multilingual',          desc: '50+ languages for global deployment' },
-  { Icon: Monitor,      title: 'Multimodal',            desc: 'Text, voice, images, and video' },
-  { Icon: MessageSquare, title: 'Omnichannel',          desc: 'WhatsApp, Telegram, Line, Viber, and more' },
-  { Icon: Shield,       title: 'Enterprise Security',   desc: 'AWS-powered, encrypted, compliant' },
-  { Icon: Activity,     title: 'Analytics',             desc: 'First-party data and contextual insights' },
-  { Icon: Settings,     title: 'No-Code Management',    desc: 'Configure without technical expertise' },
-];
 ---
 
 <BaseLayout
@@ -437,9 +351,9 @@ const crossBenefits = [
       <!-- radial glow -->
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(255,192,0,0.08)_0%,transparent_70%)] pointer-events-none"></div>
       <div class="relative z-10">
-        <span class="inline-block py-[0.3rem] px-[0.875rem] rounded-full text-xs font-bold tracking-[0.1em] uppercase bg-[rgba(255,192,0,0.1)] text-accent border border-[rgba(255,192,0,0.2)] mb-6">Industries</span>
-        <h1 class="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,4rem)] font-medium tracking-[-0.02em] text-text-primary m-0 mb-5">Your AI Agent for<br><span class="text-accent">Industry Leading</span> Experiences</h1>
-        <p class="text-text-secondary text-lg max-w-[600px] mx-auto leading-[1.7]">A new way to delight and support your customers, users, and operators across automotive, healthcare, consumer electronics, and beyond.</p>
+        <span class="inline-block py-[0.3rem] px-[0.875rem] rounded-full text-xs font-bold tracking-[0.1em] uppercase bg-[rgba(255,192,0,0.1)] text-accent border border-[rgba(255,192,0,0.2)] mb-6">{p.heroBadge}</span>
+        <h1 class="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,4rem)] font-medium tracking-[-0.02em] text-text-primary m-0 mb-5">{p.heroHeadingPart1}<br><span class="text-accent">{p.heroHeadingAccent}</span> {p.heroHeadingPart2}</h1>
+        <p class="text-text-secondary text-lg max-w-[600px] mx-auto leading-[1.7]">{p.heroSubtext}</p>
       </div>
     </section>
 
@@ -447,33 +361,39 @@ const crossBenefits = [
     <section class="py-16 px-8 bg-bg-secondary" id="industries">
       <div class="max-w-[1200px] mx-auto">
         <SectionHeader
-          label="Industries"
-          heading="Complex products. Engaging journeys.<br/>One platform."
-          subtext="GLUCOSE is built for industries where customer engagement is hard: high intermediation, product complexity, education requirements, and economics that break traditional CRM."
+          label={p.overviewLabel}
+          heading={p.overviewHeading}
+          subtext={p.overviewSubtext}
           centered={true}
           class="max-w-[600px] mb-12"
         />
 
-        <div class="section-category-badge">Where We Win First</div>
+        <div class="section-category-badge">{p.overviewPrimaryBadge}</div>
         <div class="industries-overview-grid">
-          {overviewPrimary.map(({ href, Icon, title, desc }) => (
-            <a href={href} class="industry-overview-card">
-              <div class="industry-overview-icon w-9 h-9 text-accent"><Icon size={40} /></div>
-              <h3 class="font-display text-base font-medium text-text-primary m-0">{title}</h3>
-              <p>{desc}</p>
-            </a>
-          ))}
+          {p.overviewPrimary.map(({ href, iconName, title, desc }) => {
+            const Icon = industryIconMap[iconName];
+            return (
+              <a href={href} class="industry-overview-card">
+                <div class="industry-overview-icon w-9 h-9 text-accent"><Icon size={40} /></div>
+                <h3 class="font-display text-base font-medium text-text-primary m-0">{title}</h3>
+                <p>{desc}</p>
+              </a>
+            );
+          })}
         </div>
 
-        <div class="section-category-badge section-category-badge--muted mt-8">Expansion Verticals</div>
+        <div class="section-category-badge section-category-badge--muted mt-8">{p.overviewExpansionBadge}</div>
         <div class="industries-overview-grid">
-          {overviewExpansion.map(({ href, Icon, title, desc }) => (
-            <a href={href} class="industry-overview-card">
-              <div class="industry-overview-icon w-9 h-9 text-accent"><Icon size={40} /></div>
-              <h3 class="font-display text-base font-medium text-text-primary m-0">{title}</h3>
-              <p>{desc}</p>
-            </a>
-          ))}
+          {p.overviewExpansion.map(({ href, iconName, title, desc }) => {
+            const Icon = industryIconMap[iconName];
+            return (
+              <a href={href} class="industry-overview-card">
+                <div class="industry-overview-icon w-9 h-9 text-accent"><Icon size={40} /></div>
+                <h3 class="font-display text-base font-medium text-text-primary m-0">{title}</h3>
+                <p>{desc}</p>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -484,22 +404,22 @@ const crossBenefits = [
         <div class="automotive-intro-layout">
           <div class="automotive-intro-copy">
             <SectionHeader
-              label="Automotive & Mobility"
-              heading="Transform the entire ownership journey"
-              subtext="From first consideration to second purchase, GLUCOSE engages customers at every touchpoint—discovery, configuration, ownership education, maintenance, feature discovery, and trade-in engagement."
+              label={p.automotiveLabel}
+              heading={p.automotiveHeading}
+              subtext={p.automotiveSubtext}
               class="max-w-[700px] mb-0"
             />
           </div>
           <div class="automotive-intro-media">
             <img
-              src="/Images/glucose-automotive-usecase.jpg"
-              alt="GLUCOSE helping diagnose car warning light via WhatsApp"
+              src={p.automotiveImageSrc}
+              alt={p.automotiveImageAlt}
               class="automotive-intro-image"
             />
           </div>
         </div>
         <div class="industry-features-grid">
-          {automotiveCards.map(({ title, body }) => (
+          {p.automotiveCards.map(({ title, body }) => (
             <div class="industry-feature-card">
               <h4>{title}</h4>
               <p>{body}</p>
@@ -507,7 +427,7 @@ const crossBenefits = [
           ))}
         </div>
         <div class="industry-stats-row">
-          {automotiveStats.map(({ v, l }) => (
+          {p.automotiveStats.map(({ v, l }) => (
             <div class="industry-stat">
               <span class="industry-stat-value">{v}</span>
               <span class="industry-stat-label">{l}</span>
@@ -517,299 +437,87 @@ const crossBenefits = [
       </div>
     </section>
 
-    <!-- Healthcare -->
-    <section class="py-16 px-8 bg-bg-secondary border-t border-border-theme" id="healthcare">
-      <div class="max-w-[1200px] mx-auto">
-        <SectionHeader
-          label="Healthcare"
-          heading="Personalized care that scales"
-          subtext="Patient engagement that respects complexity. Personalized guidance while maintaining compliance. Amplifying clinician reach, not replacing them."
-          class="max-w-[700px] mb-10"
-        />
-        <div class="industry-features-grid">
-          {healthcareCards.map(({ title, body }) => (
-            <div class="industry-feature-card">
-              <h4>{title}</h4>
-              <p>{body}</p>
-            </div>
-          ))}
-        </div>
-        <div class="industry-stats-row">
-          {healthcareStats.map(({ v, l }) => (
-            <div class="industry-stat">
-              <span class="industry-stat-value">{v}</span>
-              <span class="industry-stat-label">{l}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Consumer Appliances -->
-    <section class="py-16 px-8 bg-bg-primary border-t border-border-theme" id="electronics">
-      <div class="max-w-[1200px] mx-auto">
-        <SectionHeader
-          label="Consumer Appliances"
-          heading="Turn unboxing into brand loyalty"
-          subtext="Most customers never discover half the features they paid for. GLUCOSE helps them explore, learn, and get more value—building brand love instead of support tickets."
-          class="max-w-[700px] mb-10"
-        />
-        <div class="industry-features-grid">
-          {appliancesCards.map(({ title, body }) => (
-            <div class="industry-feature-card">
-              <h4>{title}</h4>
-              <p>{body}</p>
-            </div>
-          ))}
-        </div>
-        <div class="industry-stats-row">
-          {appliancesStats.map(({ v, l }) => (
-            <div class="industry-stat">
-              <span class="industry-stat-value">{v}</span>
-              <span class="industry-stat-label">{l}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Financial Services -->
-    <section class="py-16 px-8 bg-bg-secondary border-t border-border-theme" id="financial">
-      <div class="max-w-[1200px] mx-auto">
-        <SectionHeader
-          label="Financial Services"
-          heading="Build trust at scale"
-          subtext="Contextual guidance for complex, personal financial products—account questions, product education, life-stage recommendations—with control and compliance built in."
-          class="max-w-[700px] mb-10"
-        />
-        <div class="industry-features-grid">
-          {financialCards.map(({ title, body }) => (
-            <div class="industry-feature-card">
-              <h4>{title}</h4>
-              <p>{body}</p>
-            </div>
-          ))}
-        </div>
-        <div class="industry-stats-row">
-          {financialStats.map(({ v, l }) => (
-            <div class="industry-stat">
-              <span class="industry-stat-value">{v}</span>
-              <span class="industry-stat-label">{l}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Retail & Consumer Goods (retail id) -->
-    <section class="py-16 px-8 bg-bg-primary border-t border-border-theme" id="retail">
-      <div class="max-w-[1200px] mx-auto">
-        <SectionHeader
-          label="Retail & Consumer Goods"
-          heading="Seamless customer experiences"
-          subtext="Boost brand loyalty, conversion, and lifetime value with personalized product guidance and post-purchase support."
-          class="max-w-[700px] mb-10"
-        />
-        <div class="industry-features-grid">
-          {retailCards.map(({ title, body }) => (
-            <div class="industry-feature-card">
-              <h4>{title}</h4>
-              <p>{body}</p>
-            </div>
-          ))}
-        </div>
-        <div class="industry-stats-row">
-          {retailStats.map(({ v, l }) => (
-            <div class="industry-stat">
-              <span class="industry-stat-value">{v}</span>
-              <span class="industry-stat-label">{l}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Industrial Equipment -->
-    <section class="py-16 px-8 bg-bg-primary border-t border-border-theme" id="industrial">
-      <div class="max-w-[1200px] mx-auto">
-        <SectionHeader
-          label="Industrial Equipment & Machinery"
-          heading="Maximize asset utilization"
-          subtext="GLUCOSE provides tailored, real-time insights and assistance for complex industrial equipment—enhancing operational efficiency for fleet managers and operators alike."
-          class="max-w-[700px] mb-10"
-        />
-        <div class="industry-features-grid">
-          {industrialCards.map(({ title, body }) => (
-            <div class="industry-feature-card">
-              <h4>{title}</h4>
-              <p>{body}</p>
-            </div>
-          ))}
-        </div>
-        <div class="industry-stats-row">
-          {industrialStats.map(({ v, l }) => (
-            <div class="industry-stat">
-              <span class="industry-stat-value">{v}</span>
-              <span class="industry-stat-label">{l}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Commercial & Industrial Vehicles -->
-    <section class="py-16 px-8 bg-bg-secondary border-t border-border-theme" id="commercial-vehicles">
-      <div class="max-w-[1200px] mx-auto">
-        <SectionHeader
-          label="Commercial & Industrial Vehicles"
-          heading="Keep fleets running with autonomous AI support"
-          subtext="From trucks and buses to construction equipment, GLUCOSE enables OEMs and fleet operators to provide instant diagnostics, maintenance scheduling, and driver support — reducing downtime and operational costs."
-          centered={true}
-          class="max-w-[700px] mb-10 mx-auto"
-        />
-        <div class="industry-features-grid industry-features-grid--three">
-          {commercialCards.map(({ Icon, title, body }) => (
-            <div class="industry-feature-card">
-              <div class="industry-feature-card-header">
-                <div class="industry-feature-card-icon"><Icon size={20} /></div>
+    {p.primarySections.map((s) => (
+      <section class={`py-16 px-8 ${s.bg} border-t border-border-theme`} id={s.id}>
+        <div class="max-w-[1200px] mx-auto">
+          <SectionHeader
+            label={s.label}
+            heading={s.heading}
+            subtext={s.subtext}
+            class="max-w-[700px] mb-10"
+          />
+          <div class="industry-features-grid">
+            {s.cards.map(({ title, body }) => (
+              <div class="industry-feature-card">
                 <h4>{title}</h4>
+                <p>{body}</p>
               </div>
-              <p>{body}</p>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div class="industry-stats-row">
+            {s.stats.map(({ v, l }) => (
+              <div class="industry-stat">
+                <span class="industry-stat-value">{v}</span>
+                <span class="industry-stat-label">{l}</span>
+              </div>
+            ))}
+          </div>
         </div>
-        <div class="text-center">
-          <a href="/contact" class="inline-flex items-center mt-8 py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90">Explore Commercial Vehicles</a>
-        </div>
-      </div>
-    </section>
+      </section>
+    ))}
 
-    <!-- Buildings & Property -->
-    <section class="py-16 px-8 bg-bg-secondary border-t border-border-theme" id="property">
-      <div class="max-w-[1200px] mx-auto">
-        <SectionHeader
-          label="Buildings & Property Units"
-          heading="Intelligent engagement for property occupants and buyers"
-          subtext="From smart buildings to residential developments, GLUCOSE helps property managers and developers engage with tenants, buyers, and visitors through autonomous AI that handles inquiries, schedules viewings, and manages facility requests."
-          centered={true}
-          class="max-w-[700px] mb-10 mx-auto"
-        />
-        <div class="industry-features-grid industry-features-grid--three">
-          {propertyCards.map(({ Icon, title, body }) => (
-            <div class="industry-feature-card">
-              <div class="industry-feature-card-header">
-                <div class="industry-feature-card-icon"><Icon size={20} /></div>
-                <h4>{title}</h4>
-              </div>
-              <p>{body}</p>
-            </div>
-          ))}
+    {p.expansionSections.map((s) => (
+      <section class={`py-16 px-8 ${s.bg} border-t border-border-theme`} id={s.id}>
+        <div class="max-w-[1200px] mx-auto">
+          <SectionHeader
+            label={s.label}
+            heading={s.heading}
+            subtext={s.subtext}
+            centered={true}
+            class="max-w-[700px] mb-10 mx-auto"
+          />
+          <div class="industry-features-grid industry-features-grid--three">
+            {s.cards.map(({ iconName, title, body }) => {
+              const Icon = industryIconMap[iconName];
+              return (
+                <div class="industry-feature-card">
+                  <div class="industry-feature-card-header">
+                    <div class="industry-feature-card-icon"><Icon size={20} /></div>
+                    <h4>{title}</h4>
+                  </div>
+                  <p>{body}</p>
+                </div>
+              );
+            })}
+          </div>
+          <div class="text-center">
+            <a href="/contact" class="inline-flex items-center mt-8 py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90">{s.ctaText}</a>
+          </div>
         </div>
-        <div class="text-center">
-          <a href="/contact" class="inline-flex items-center mt-8 py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90">Explore Property Solutions</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Energy & Utilities -->
-    <section class="py-16 px-8 bg-bg-secondary border-t border-border-theme" id="energy">
-      <div class="max-w-[1200px] mx-auto">
-        <SectionHeader
-          label="Energy & Utilities"
-          heading="Modernize customer engagement for energy providers"
-          subtext="GLUCOSE helps energy and utility companies automate customer support, manage service requests, and deliver proactive usage insights — improving satisfaction while reducing operational burden."
-          centered={true}
-          class="max-w-[700px] mb-10 mx-auto"
-        />
-        <div class="industry-features-grid industry-features-grid--three">
-          {energyCards.map(({ Icon, title, body }) => (
-            <div class="industry-feature-card">
-              <div class="industry-feature-card-header">
-                <div class="industry-feature-card-icon"><Icon size={20} /></div>
-                <h4>{title}</h4>
-              </div>
-              <p>{body}</p>
-            </div>
-          ))}
-        </div>
-        <div class="text-center">
-          <a href="/contact" class="inline-flex items-center mt-8 py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90">Explore Energy Solutions</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Hospitality & Travel -->
-    <section class="py-16 px-8 bg-bg-primary border-t border-border-theme" id="hospitality">
-      <div class="max-w-[1200px] mx-auto">
-        <SectionHeader
-          label="Hospitality & Travel"
-          heading="Elevate the guest experience from booking to checkout"
-          subtext="GLUCOSE enables hotels, resorts, and travel operators to deliver concierge-level service at scale — handling reservations, answering questions, and personalizing recommendations via the channels guests already use."
-          centered={true}
-          class="max-w-[700px] mb-10 mx-auto"
-        />
-        <div class="industry-features-grid industry-features-grid--three">
-          {hospitalityCards.map(({ Icon, title, body }) => (
-            <div class="industry-feature-card">
-              <div class="industry-feature-card-header">
-                <div class="industry-feature-card-icon"><Icon size={20} /></div>
-                <h4>{title}</h4>
-              </div>
-              <p>{body}</p>
-            </div>
-          ))}
-        </div>
-        <div class="text-center">
-          <a href="/contact" class="inline-flex items-center mt-8 py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90">Explore Hospitality Solutions</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Consumer Goods -->
-    <section class="py-16 px-8 bg-bg-secondary border-t border-border-theme" id="consumer-goods">
-      <div class="max-w-[1200px] mx-auto">
-        <SectionHeader
-          label="Consumer Goods"
-          heading="Own the direct-to-consumer relationship"
-          subtext="GLUCOSE helps CPG and consumer goods brands engage directly with end consumers, bypassing retail intermediaries to build brand loyalty, gather product feedback, and drive repeat purchases."
-          centered={true}
-          class="max-w-[700px] mb-10 mx-auto"
-        />
-        <div class="industry-features-grid industry-features-grid--three">
-          {consumerGoodsCards.map(({ Icon, title, body }) => (
-            <div class="industry-feature-card">
-              <div class="industry-feature-card-header">
-                <div class="industry-feature-card-icon"><Icon size={20} /></div>
-                <h4>{title}</h4>
-              </div>
-              <p>{body}</p>
-            </div>
-          ))}
-        </div>
-        <div class="text-center">
-          <a href="/contact" class="inline-flex items-center mt-8 py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90">Explore Consumer Solutions</a>
-        </div>
-      </div>
-    </section>
+      </section>
+    ))}
 
     <!-- Cross-Industry Benefits -->
     <section class="py-16 px-8 bg-bg-secondary border-t border-border-theme" id="benefits">
       <div class="max-w-[1200px] mx-auto">
         <SectionHeader
-          label="Why GLUCOSE"
-          heading="One platform for every industry"
-          subtext="Regardless of your industry, GLUCOSE delivers consistent value through its enterprise-grade agentic AI platform."
+          label={p.crossBenefitsLabel}
+          heading={p.crossBenefitsHeading}
+          subtext={p.crossBenefitsSubtext}
           centered={true}
           class="max-w-[540px] mb-12"
         />
         <div class="cross-benefits-grid">
-          {crossBenefits.map(({ Icon, title, desc }) => (
-            <div class="cross-benefit-card">
-              <div class="cross-benefit-icon"><Icon size={20} /></div>
-              <h4>{title}</h4>
-              <p>{desc}</p>
-            </div>
-          ))}
+          {p.crossBenefits.map(({ iconName, title, desc }) => {
+            const Icon = industryIconMap[iconName];
+            return (
+              <div class="cross-benefit-card">
+                <div class="cross-benefit-icon"><Icon size={20} /></div>
+                <h4>{title}</h4>
+                <p>{desc}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -818,10 +526,10 @@ const crossBenefits = [
     <section class="py-20 px-8 text-center bg-bg-primary border-t border-border-theme relative overflow-hidden" id="demo">
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_100%,rgba(255,192,0,0.07)_0%,transparent_70%)] pointer-events-none"></div>
       <div class="relative z-10 max-w-[600px] mx-auto">
-        <span class="inline-block py-[0.3rem] px-[0.875rem] rounded-full text-xs font-bold tracking-[0.1em] uppercase bg-[rgba(255,192,0,0.1)] text-accent border border-[rgba(255,192,0,0.2)] mb-6">Get Started</span>
-        <h2 class="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] text-text-primary m-0 mb-4">Discover what GLUCOSE can do<br>for your industry</h2>
-        <p class="text-text-secondary text-[1.0625rem] mx-auto mb-8 leading-[1.7]">See how GLUCOSE can help your enterprise deliver autonomous brand and product experiences that reach every customer, in every moment that matters.</p>
-        <a href="/contact" class="inline-flex items-center gap-2 py-[0.875rem] px-8 bg-accent text-black font-bold text-[0.9375rem] rounded-[10px] no-underline transition-opacity duration-200 tracking-[0.01em] hover:opacity-90">Request a Demo</a>
+        <span class="inline-block py-[0.3rem] px-[0.875rem] rounded-full text-xs font-bold tracking-[0.1em] uppercase bg-[rgba(255,192,0,0.1)] text-accent border border-[rgba(255,192,0,0.2)] mb-6">{p.ctaBadge}</span>
+        <h2 class="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] text-text-primary m-0 mb-4">{p.ctaHeading}</h2>
+        <p class="text-text-secondary text-[1.0625rem] mx-auto mb-8 leading-[1.7]">{p.ctaBody}</p>
+        <a href="/contact" class="inline-flex items-center gap-2 py-[0.875rem] px-8 bg-accent text-black font-bold text-[0.9375rem] rounded-[10px] no-underline transition-opacity duration-200 tracking-[0.01em] hover:opacity-90">{p.ctaButtonText}</a>
       </div>
     </section>
   </main>

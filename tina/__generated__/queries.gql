@@ -163,6 +163,61 @@ query customersPageConnection($before: String, $after: String, $first: Float, $l
   }
 }
 
+query indexPage($relativePath: String!) {
+  indexPage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...IndexPageParts
+  }
+}
+
+query indexPageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: IndexPageFilter) {
+  indexPageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...IndexPageParts
+      }
+    }
+  }
+}
+
 query companyPage($relativePath: String!) {
   companyPage(relativePath: $relativePath) {
     ... on Document {
@@ -268,6 +323,116 @@ query contactPageConnection($before: String, $after: String, $first: Float, $las
           id
         }
         ...ContactPageParts
+      }
+    }
+  }
+}
+
+query productPage($relativePath: String!) {
+  productPage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...ProductPageParts
+  }
+}
+
+query productPageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ProductPageFilter) {
+  productPageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...ProductPageParts
+      }
+    }
+  }
+}
+
+query industriesPage($relativePath: String!) {
+  industriesPage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...IndustriesPageParts
+  }
+}
+
+query industriesPageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: IndustriesPageFilter) {
+  industriesPageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...IndustriesPageParts
       }
     }
   }

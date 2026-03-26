@@ -1,0 +1,196 @@
+{
+  "heroBadge": "Industries",
+  "heroHeadingPart1": "Your AI Agent for",
+  "heroHeadingAccent": "Industry Leading",
+  "heroHeadingPart2": "Experiences",
+  "heroSubtext": "A new way to delight and support your customers, users, and operators across automotive, healthcare, consumer electronics, and beyond.",
+  "overviewLabel": "Industries",
+  "overviewHeading": "Complex products. Engaging journeys.<br/>One platform.",
+  "overviewSubtext": "GLUCOSE is built for industries where customer engagement is hard: high intermediation, product complexity, education requirements, and economics that break traditional CRM.",
+  "overviewPrimaryBadge": "Where We Win First",
+  "overviewExpansionBadge": "Expansion Verticals",
+  "overviewPrimary": [
+    { "href": "#automotive",          "iconName": "Zap",          "title": "Automotive, Mobility & Transportation",  "desc": "Revolutionize the entire ownership journey from consideration to second purchase." },
+    { "href": "#commercial-vehicles", "iconName": "Wrench",       "title": "Commercial & Industrial Vehicles",        "desc": "Keep fleets running with autonomous AI support for diagnostics, maintenance, and operations." },
+    { "href": "#industrial",          "iconName": "Building2",    "title": "Industrial Appliances & Machineries",     "desc": "Maximize asset utilization with real-time operator support and maintenance guidance." },
+    { "href": "#electronics",         "iconName": "Monitor",      "title": "Consumer Appliances",                     "desc": "Turn unboxing into brand loyalty with feature discovery and personalized guidance." },
+    { "href": "#healthcare",          "iconName": "Activity",     "title": "Healthcare",                              "desc": "Provide always-on, personalized care while managing costs and compliance." }
+  ],
+  "overviewExpansion": [
+    { "href": "#property",       "iconName": "Home",         "title": "Buildings & Property Units", "desc": "Intelligent engagement for property occupants, tenants, and buyers." },
+    { "href": "#financial",      "iconName": "Briefcase",    "title": "Financial Services",          "desc": "Build stronger relationships with immediate, personalized, and secure interactions." },
+    { "href": "#energy",         "iconName": "Zap",          "title": "Energy & Utilities",          "desc": "Modernize customer engagement with proactive insights and automated support." },
+    { "href": "#hospitality",    "iconName": "Globe",        "title": "Hospitality & Travel",        "desc": "Elevate the guest experience from booking to checkout with AI concierge." },
+    { "href": "#consumer-goods", "iconName": "ShoppingCart", "title": "Consumer Goods",              "desc": "Own the direct-to-consumer relationship and drive repeat purchases." }
+  ],
+  "automotiveLabel": "Automotive & Mobility",
+  "automotiveHeading": "Transform the entire ownership journey",
+  "automotiveSubtext": "From first consideration to second purchase, GLUCOSE engages customers at every touchpoint—discovery, configuration, ownership education, maintenance, feature discovery, and trade-in engagement.",
+  "automotiveImageSrc": "/Images/glucose-automotive-usecase.jpg",
+  "automotiveImageAlt": "GLUCOSE helping diagnose car warning light via WhatsApp",
+  "automotiveCards": [
+    { "title": "Vehicle Configuration & Discovery", "body": "Help customers explore models, compare trims, understand features, and configure their perfect vehicle through natural conversation." },
+    { "title": "Ownership Onboarding",              "body": "Proactively introduce features, explain controls, and personalize the ownership experience from day one—reducing \"how-to\" support calls." },
+    { "title": "Service & Maintenance",             "body": "Schedule service appointments, explain maintenance alerts, guide troubleshooting, and integrate with DMS systems for seamless experience." },
+    { "title": "Feature Discovery",                 "body": "Most owners never discover half the features they paid for. GLUCOSE contextually introduces features based on usage patterns and preferences." }
+  ],
+  "automotiveStats": [
+    { "v": "50%+",  "l": "of vehicle features go unused by owners" },
+    { "v": "24/7",  "l": "support without call center overhead" },
+    { "v": "50+",   "l": "languages for global deployment" }
+  ],
+  "primarySections": [
+    {
+      "id": "healthcare", "bg": "bg-bg-secondary",
+      "label": "Healthcare", "heading": "Personalized care that scales",
+      "subtext": "Patient engagement that respects complexity. Personalized guidance while maintaining compliance. Amplifying clinician reach, not replacing them.",
+      "cards": [
+        { "title": "Medical Device Education",   "body": "Guide patients through device setup, usage instructions, and ongoing support for complex medical equipment—from glucose monitors to CPAP machines." },
+        { "title": "Treatment Journey Support",  "body": "Proactive reminders, medication guidance, and personalized health information throughout the patient journey—with full compliance controls." },
+        { "title": "Appointment Management",     "body": "Schedule, reschedule, and provide pre-appointment instructions through natural conversation across messaging platforms." },
+        { "title": "Compliance & Guardrails",    "body": "Built-in IGDs (Instructions & Guidelines Documents) ensure GLUCOSE operates within strict healthcare compliance requirements." }
+      ],
+      "stats": [
+        { "v": "Always-On",  "l": "patient support outside office hours" },
+        { "v": "Compliant",  "l": "with healthcare regulations" },
+        { "v": "Multimodal", "l": "text, voice, images for accessibility" }
+      ]
+    },
+    {
+      "id": "electronics", "bg": "bg-bg-primary",
+      "label": "Consumer Appliances", "heading": "Turn unboxing into brand loyalty",
+      "subtext": "Most customers never discover half the features they paid for. GLUCOSE helps them explore, learn, and get more value—building brand love instead of support tickets.",
+      "cards": [
+        { "title": "Product Onboarding",                   "body": "Guide users through setup, initial configuration, and first-use experiences for smart home devices, appliances, and electronics." },
+        { "title": "Feature Education",                     "body": "Contextually introduce advanced features based on user behavior and preferences—turning casual users into power users." },
+        { "title": "Troubleshooting & Support",             "body": "Instant, 24/7 troubleshooting through natural conversation—reducing support ticket volume while improving customer satisfaction." },
+        { "title": "Accessory & Upgrade Recommendations",  "body": "Contextual recommendations for compatible accessories, software updates, and product upgrades based on usage patterns." }
+      ],
+      "stats": [
+        { "v": "Reduced",  "l": "support ticket volume" },
+        { "v": "Increased", "l": "feature adoption rates" },
+        { "v": "Higher",   "l": "customer lifetime value" }
+      ]
+    },
+    {
+      "id": "financial", "bg": "bg-bg-secondary",
+      "label": "Financial Services", "heading": "Build trust at scale",
+      "subtext": "Contextual guidance for complex, personal financial products—account questions, product education, life-stage recommendations—with control and compliance built in.",
+      "cards": [
+        { "title": "Product Recommendations", "body": "Provide personalized guidance to help customers choose the best financial products for their needs—increasing acquisition and cross-sell rates." },
+        { "title": "Account Support",         "body": "Respond immediately to questions about account balances, fees, transactions, and policies—boosting customer trust and satisfaction." },
+        { "title": "Life-Stage Engagement",   "body": "Proactively engage customers during major life events—home buying, retirement planning, education funding—with contextual product information." },
+        { "title": "Security & Compliance",   "body": "Enterprise-grade security with encrypted data, compliance guardrails, and audit logging for regulated financial services." }
+      ],
+      "stats": [
+        { "v": "Secure",    "l": "enterprise-grade encryption" },
+        { "v": "Compliant", "l": "with financial regulations" },
+        { "v": "Immediate", "l": "personalized responses" }
+      ]
+    },
+    {
+      "id": "retail", "bg": "bg-bg-primary",
+      "label": "Retail & Consumer Goods", "heading": "Seamless customer experiences",
+      "subtext": "Boost brand loyalty, conversion, and lifetime value with personalized product guidance and post-purchase support.",
+      "cards": [
+        { "title": "Product Discovery",         "body": "Help shoppers find the perfect product through conversational commerce—understanding needs and recommending solutions." },
+        { "title": "Order Support",             "body": "Track orders, handle returns, process exchanges, and resolve issues instantly through natural conversation." },
+        { "title": "Product Usage Guidance",    "body": "Provide ongoing support for complex products—assembly instructions, care guides, usage tips, and troubleshooting." },
+        { "title": "Loyalty & Re-engagement",  "body": "Personalized recommendations, reorder reminders, and loyalty program engagement to drive repeat purchases." }
+      ],
+      "stats": [
+        { "v": "Increased", "l": "conversion rates" },
+        { "v": "Reduced",   "l": "return and exchange rates" },
+        { "v": "Higher",    "l": "repeat purchase rates" }
+      ]
+    },
+    {
+      "id": "industrial", "bg": "bg-bg-primary",
+      "label": "Industrial Equipment & Machinery", "heading": "Maximize asset utilization",
+      "subtext": "GLUCOSE provides tailored, real-time insights and assistance for complex industrial equipment—enhancing operational efficiency for fleet managers and operators alike.",
+      "cards": [
+        { "title": "Operator Training",    "body": "On-demand guidance for equipment operation, safety procedures, and best practices—reducing training time and errors." },
+        { "title": "Maintenance Support",  "body": "Proactive maintenance reminders, troubleshooting assistance, and service scheduling integrated with your systems." },
+        { "title": "IoT Integration",      "body": "Connect GLUCOSE to IoT sensors for context-aware support—responding to equipment alerts with relevant guidance." },
+        { "title": "Documentation Access", "body": "Instant access to manuals, specifications, and procedures through natural conversation—no more searching through binders." }
+      ],
+      "stats": [
+        { "v": "Minimized", "l": "equipment downtime" },
+        { "v": "Improved",  "l": "safety compliance" },
+        { "v": "Enhanced",  "l": "operator efficiency" }
+      ]
+    }
+  ],
+  "expansionSections": [
+    {
+      "id": "commercial-vehicles", "bg": "bg-bg-secondary",
+      "label": "Commercial & Industrial Vehicles", "heading": "Keep fleets running with autonomous AI support",
+      "subtext": "From trucks and buses to construction equipment, GLUCOSE enables OEMs and fleet operators to provide instant diagnostics, maintenance scheduling, and driver support — reducing downtime and operational costs.",
+      "ctaText": "Explore Commercial Vehicles",
+      "cards": [
+        { "iconName": "Wrench",        "title": "Predictive Maintenance",     "body": "AI agents that alert operators before breakdowns, schedule service, and coordinate parts availability." },
+        { "iconName": "MessageSquare", "title": "Driver & Operator Support",  "body": "24/7 multimodal assistance for vehicle operation, troubleshooting, and compliance documentation." },
+        { "iconName": "BarChart3",     "title": "Fleet Analytics",            "body": "Capture first-party data on usage patterns, common issues, and operator needs across your entire fleet." }
+      ]
+    },
+    {
+      "id": "property", "bg": "bg-bg-secondary",
+      "label": "Buildings & Property Units", "heading": "Intelligent engagement for property occupants and buyers",
+      "subtext": "From smart buildings to residential developments, GLUCOSE helps property managers and developers engage with tenants, buyers, and visitors through autonomous AI that handles inquiries, schedules viewings, and manages facility requests.",
+      "ctaText": "Explore Property Solutions",
+      "cards": [
+        { "iconName": "Boxes", "title": "Tenant Support",             "body": "Autonomous handling of maintenance requests, facility bookings, and community communications." },
+        { "iconName": "Home",  "title": "Property Sales",             "body": "Qualify leads, schedule viewings, and guide prospective buyers through property features via WhatsApp and chat." },
+        { "iconName": "Clock", "title": "Smart Building Integration", "body": "Connect to IoT systems for real-time facility management, energy monitoring, and occupant notifications." }
+      ]
+    },
+    {
+      "id": "energy", "bg": "bg-bg-secondary",
+      "label": "Energy & Utilities", "heading": "Modernize customer engagement for energy providers",
+      "subtext": "GLUCOSE helps energy and utility companies automate customer support, manage service requests, and deliver proactive usage insights — improving satisfaction while reducing operational burden.",
+      "ctaText": "Explore Energy Solutions",
+      "cards": [
+        { "iconName": "Zap",      "title": "Usage & Billing Support",  "body": "Autonomous agents that explain bills, compare plans, and process account changes instantly." },
+        { "iconName": "Bell",     "title": "Proactive Notifications",  "body": "Alert customers about outages, maintenance windows, and consumption anomalies before they contact you." },
+        { "iconName": "Activity", "title": "Demand Response",          "body": "Engage customers in energy-saving programs through intelligent, personalized communication campaigns." }
+      ]
+    },
+    {
+      "id": "hospitality", "bg": "bg-bg-primary",
+      "label": "Hospitality & Travel", "heading": "Elevate the guest experience from booking to checkout",
+      "subtext": "GLUCOSE enables hotels, resorts, and travel operators to deliver concierge-level service at scale — handling reservations, answering questions, and personalizing recommendations via the channels guests already use.",
+      "ctaText": "Explore Hospitality Solutions",
+      "cards": [
+        { "iconName": "MessageSquare", "title": "AI Concierge",            "body": "Autonomous guest support for bookings, room service, local recommendations, and special requests." },
+        { "iconName": "Globe",         "title": "Multilingual Engagement", "body": "Serve international guests in 50+ languages across WhatsApp, LINE, and other regional channels." },
+        { "iconName": "Users",         "title": "Loyalty & Upsell",        "body": "Proactively engage guests with personalized upgrade offers, loyalty rewards, and post-stay follow-ups." }
+      ]
+    },
+    {
+      "id": "consumer-goods", "bg": "bg-bg-secondary",
+      "label": "Consumer Goods", "heading": "Own the direct-to-consumer relationship",
+      "subtext": "GLUCOSE helps CPG and consumer goods brands engage directly with end consumers, bypassing retail intermediaries to build brand loyalty, gather product feedback, and drive repeat purchases.",
+      "ctaText": "Explore Consumer Solutions",
+      "cards": [
+        { "iconName": "BookOpen",  "title": "Product Education",    "body": "Guide consumers through product features, usage tips, and care instructions via conversational AI." },
+        { "iconName": "BarChart3", "title": "Consumer Insights",    "body": "Capture first-party data on preferences, feedback, and purchase intent directly from conversations." },
+        { "iconName": "Bell",      "title": "Lifecycle Engagement", "body": "Proactive re-engagement for refills, upgrades, and loyalty programs — building long-term brand relationships." }
+      ]
+    }
+  ],
+  "crossBenefitsLabel": "Why GLUCOSE",
+  "crossBenefitsHeading": "One platform for every industry",
+  "crossBenefitsSubtext": "Regardless of your industry, GLUCOSE delivers consistent value through its enterprise-grade agentic AI platform.",
+  "crossBenefits": [
+    { "iconName": "Globe",         "title": "Multilingual",       "desc": "50+ languages for global deployment" },
+    { "iconName": "Monitor",       "title": "Multimodal",         "desc": "Text, voice, images, and video" },
+    { "iconName": "MessageSquare", "title": "Omnichannel",        "desc": "WhatsApp, Telegram, Line, Viber, and more" },
+    { "iconName": "Shield",        "title": "Enterprise Security","desc": "AWS-powered, encrypted, compliant" },
+    { "iconName": "Activity",      "title": "Analytics",          "desc": "First-party data and contextual insights" },
+    { "iconName": "Settings",      "title": "No-Code Management", "desc": "Configure without technical expertise" }
+  ],
+  "ctaBadge": "Get Started",
+  "ctaHeading": "Discover what GLUCOSE can do for your industry",
+  "ctaBody": "See how GLUCOSE can help your enterprise deliver autonomous brand and product experiences that reach every customer, in every moment that matters.",
+  "ctaButtonText": "Request a Demo"
+}
