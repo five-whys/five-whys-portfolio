@@ -88,6 +88,12 @@ export type Query = {
   vsPageConnection: VsPageConnection;
   customersPage: CustomersPage;
   customersPageConnection: CustomersPageConnection;
+  companyPage: CompanyPage;
+  companyPageConnection: CompanyPageConnection;
+  contactPage: ContactPage;
+  contactPageConnection: ContactPageConnection;
+  demoPage: DemoPage;
+  demoPageConnection: DemoPageConnection;
 };
 
 
@@ -156,10 +162,58 @@ export type QueryCustomersPageConnectionArgs = {
   filter?: InputMaybe<CustomersPageFilter>;
 };
 
+
+export type QueryCompanyPageArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryCompanyPageConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<CompanyPageFilter>;
+};
+
+
+export type QueryContactPageArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryContactPageConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<ContactPageFilter>;
+};
+
+
+export type QueryDemoPageArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryDemoPageConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<DemoPageFilter>;
+};
+
 export type DocumentFilter = {
   pages?: InputMaybe<PagesFilter>;
   vsPage?: InputMaybe<VsPageFilter>;
   customersPage?: InputMaybe<CustomersPageFilter>;
+  companyPage?: InputMaybe<CompanyPageFilter>;
+  contactPage?: InputMaybe<ContactPageFilter>;
+  demoPage?: InputMaybe<DemoPageFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -199,7 +253,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Pages | VsPage | CustomersPage | Folder;
+export type DocumentNode = Pages | VsPage | CustomersPage | CompanyPage | ContactPage | DemoPage | Folder;
 
 export type Pages = Node & Document & {
   __typename?: 'Pages';
@@ -584,6 +638,248 @@ export type CustomersPageConnection = Connection & {
   edges?: Maybe<Array<Maybe<CustomersPageConnectionEdges>>>;
 };
 
+export type CompanyPageTeamMembers = {
+  __typename?: 'CompanyPageTeamMembers';
+  imageSrc?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  role?: Maybe<Scalars['String']['output']>;
+  bio?: Maybe<Scalars['String']['output']>;
+  linkedInHref?: Maybe<Scalars['String']['output']>;
+};
+
+export type CompanyPageVisionCards = {
+  __typename?: 'CompanyPageVisionCards';
+  title?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['String']['output']>;
+};
+
+export type CompanyPageValues = {
+  __typename?: 'CompanyPageValues';
+  title?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['String']['output']>;
+  iconName?: Maybe<Scalars['String']['output']>;
+};
+
+export type CompanyPageCompanyStats = {
+  __typename?: 'CompanyPageCompanyStats';
+  value?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+};
+
+export type CompanyPageOffices = {
+  __typename?: 'CompanyPageOffices';
+  name?: Maybe<Scalars['String']['output']>;
+  address?: Maybe<Scalars['String']['output']>;
+};
+
+export type CompanyPage = Node & Document & {
+  __typename?: 'CompanyPage';
+  heroLabel?: Maybe<Scalars['String']['output']>;
+  heroHeading?: Maybe<Scalars['String']['output']>;
+  heroSubtext?: Maybe<Scalars['String']['output']>;
+  heroImageSrc?: Maybe<Scalars['String']['output']>;
+  heroImageAlt?: Maybe<Scalars['String']['output']>;
+  missionHeading?: Maybe<Scalars['String']['output']>;
+  missionBody?: Maybe<Scalars['String']['output']>;
+  teamHeading?: Maybe<Scalars['String']['output']>;
+  teamSubtext?: Maybe<Scalars['String']['output']>;
+  visionLabel?: Maybe<Scalars['String']['output']>;
+  visionHeading?: Maybe<Scalars['String']['output']>;
+  statsLabel?: Maybe<Scalars['String']['output']>;
+  statsHeading?: Maybe<Scalars['String']['output']>;
+  statsSubtext?: Maybe<Scalars['String']['output']>;
+  globalPresenceHeading?: Maybe<Scalars['String']['output']>;
+  globalPresenceBody1?: Maybe<Scalars['String']['output']>;
+  globalPresenceBody2?: Maybe<Scalars['String']['output']>;
+  ctaHeading?: Maybe<Scalars['String']['output']>;
+  ctaSubtext?: Maybe<Scalars['String']['output']>;
+  teamMembers?: Maybe<Array<Maybe<CompanyPageTeamMembers>>>;
+  visionCards?: Maybe<Array<Maybe<CompanyPageVisionCards>>>;
+  values?: Maybe<Array<Maybe<CompanyPageValues>>>;
+  companyStats?: Maybe<Array<Maybe<CompanyPageCompanyStats>>>;
+  offices?: Maybe<Array<Maybe<CompanyPageOffices>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type CompanyPageTeamMembersFilter = {
+  imageSrc?: InputMaybe<ImageFilter>;
+  name?: InputMaybe<StringFilter>;
+  role?: InputMaybe<StringFilter>;
+  bio?: InputMaybe<StringFilter>;
+  linkedInHref?: InputMaybe<StringFilter>;
+};
+
+export type CompanyPageVisionCardsFilter = {
+  title?: InputMaybe<StringFilter>;
+  body?: InputMaybe<StringFilter>;
+};
+
+export type CompanyPageValuesFilter = {
+  title?: InputMaybe<StringFilter>;
+  body?: InputMaybe<StringFilter>;
+  iconName?: InputMaybe<StringFilter>;
+};
+
+export type CompanyPageCompanyStatsFilter = {
+  value?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export type CompanyPageOfficesFilter = {
+  name?: InputMaybe<StringFilter>;
+  address?: InputMaybe<StringFilter>;
+};
+
+export type CompanyPageFilter = {
+  heroLabel?: InputMaybe<StringFilter>;
+  heroHeading?: InputMaybe<StringFilter>;
+  heroSubtext?: InputMaybe<StringFilter>;
+  heroImageSrc?: InputMaybe<ImageFilter>;
+  heroImageAlt?: InputMaybe<StringFilter>;
+  missionHeading?: InputMaybe<StringFilter>;
+  missionBody?: InputMaybe<StringFilter>;
+  teamHeading?: InputMaybe<StringFilter>;
+  teamSubtext?: InputMaybe<StringFilter>;
+  visionLabel?: InputMaybe<StringFilter>;
+  visionHeading?: InputMaybe<StringFilter>;
+  statsLabel?: InputMaybe<StringFilter>;
+  statsHeading?: InputMaybe<StringFilter>;
+  statsSubtext?: InputMaybe<StringFilter>;
+  globalPresenceHeading?: InputMaybe<StringFilter>;
+  globalPresenceBody1?: InputMaybe<StringFilter>;
+  globalPresenceBody2?: InputMaybe<StringFilter>;
+  ctaHeading?: InputMaybe<StringFilter>;
+  ctaSubtext?: InputMaybe<StringFilter>;
+  teamMembers?: InputMaybe<CompanyPageTeamMembersFilter>;
+  visionCards?: InputMaybe<CompanyPageVisionCardsFilter>;
+  values?: InputMaybe<CompanyPageValuesFilter>;
+  companyStats?: InputMaybe<CompanyPageCompanyStatsFilter>;
+  offices?: InputMaybe<CompanyPageOfficesFilter>;
+};
+
+export type CompanyPageConnectionEdges = {
+  __typename?: 'CompanyPageConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<CompanyPage>;
+};
+
+export type CompanyPageConnection = Connection & {
+  __typename?: 'CompanyPageConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<CompanyPageConnectionEdges>>>;
+};
+
+export type ContactPage = Node & Document & {
+  __typename?: 'ContactPage';
+  heroHeading?: Maybe<Scalars['String']['output']>;
+  formHeading?: Maybe<Scalars['String']['output']>;
+  formSubtext?: Maybe<Scalars['String']['output']>;
+  trustedBrandsLabel?: Maybe<Scalars['String']['output']>;
+  trustedBrandsSubtext?: Maybe<Scalars['String']['output']>;
+  formAction?: Maybe<Scalars['String']['output']>;
+  formSubject?: Maybe<Scalars['String']['output']>;
+  formRedirectUrl?: Maybe<Scalars['String']['output']>;
+  demoFeatures?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  industryOptions?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type ContactPageFilter = {
+  heroHeading?: InputMaybe<StringFilter>;
+  formHeading?: InputMaybe<StringFilter>;
+  formSubtext?: InputMaybe<StringFilter>;
+  trustedBrandsLabel?: InputMaybe<StringFilter>;
+  trustedBrandsSubtext?: InputMaybe<StringFilter>;
+  formAction?: InputMaybe<StringFilter>;
+  formSubject?: InputMaybe<StringFilter>;
+  formRedirectUrl?: InputMaybe<StringFilter>;
+  demoFeatures?: InputMaybe<StringFilter>;
+  industryOptions?: InputMaybe<StringFilter>;
+};
+
+export type ContactPageConnectionEdges = {
+  __typename?: 'ContactPageConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<ContactPage>;
+};
+
+export type ContactPageConnection = Connection & {
+  __typename?: 'ContactPageConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<ContactPageConnectionEdges>>>;
+};
+
+export type DemoPageFeatureSections = {
+  __typename?: 'DemoPageFeatureSections';
+  id?: Maybe<Scalars['String']['output']>;
+  industry?: Maybe<Scalars['String']['output']>;
+  reversed?: Maybe<Scalars['Boolean']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  tagline?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['String']['output']>;
+  linkText?: Maybe<Scalars['String']['output']>;
+  videoSrc?: Maybe<Scalars['String']['output']>;
+};
+
+export type DemoPage = Node & Document & {
+  __typename?: 'DemoPage';
+  heroLabel?: Maybe<Scalars['String']['output']>;
+  heroHeading?: Maybe<Scalars['String']['output']>;
+  heroSubtext?: Maybe<Scalars['String']['output']>;
+  ctaHeading?: Maybe<Scalars['String']['output']>;
+  ctaSubtext?: Maybe<Scalars['String']['output']>;
+  featureSections?: Maybe<Array<Maybe<DemoPageFeatureSections>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type BooleanFilter = {
+  eq?: InputMaybe<Scalars['Boolean']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type DemoPageFeatureSectionsFilter = {
+  id?: InputMaybe<StringFilter>;
+  industry?: InputMaybe<StringFilter>;
+  reversed?: InputMaybe<BooleanFilter>;
+  label?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  tagline?: InputMaybe<StringFilter>;
+  body?: InputMaybe<StringFilter>;
+  linkText?: InputMaybe<StringFilter>;
+  videoSrc?: InputMaybe<StringFilter>;
+};
+
+export type DemoPageFilter = {
+  heroLabel?: InputMaybe<StringFilter>;
+  heroHeading?: InputMaybe<StringFilter>;
+  heroSubtext?: InputMaybe<StringFilter>;
+  ctaHeading?: InputMaybe<StringFilter>;
+  ctaSubtext?: InputMaybe<StringFilter>;
+  featureSections?: InputMaybe<DemoPageFeatureSectionsFilter>;
+};
+
+export type DemoPageConnectionEdges = {
+  __typename?: 'DemoPageConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<DemoPage>;
+};
+
+export type DemoPageConnection = Connection & {
+  __typename?: 'DemoPageConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<DemoPageConnectionEdges>>>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
@@ -597,6 +893,12 @@ export type Mutation = {
   createVsPage: VsPage;
   updateCustomersPage: CustomersPage;
   createCustomersPage: CustomersPage;
+  updateCompanyPage: CompanyPage;
+  createCompanyPage: CompanyPage;
+  updateContactPage: ContactPage;
+  createContactPage: ContactPage;
+  updateDemoPage: DemoPage;
+  createDemoPage: DemoPage;
 };
 
 
@@ -668,10 +970,49 @@ export type MutationCreateCustomersPageArgs = {
   params: CustomersPageMutation;
 };
 
+
+export type MutationUpdateCompanyPageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: CompanyPageMutation;
+};
+
+
+export type MutationCreateCompanyPageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: CompanyPageMutation;
+};
+
+
+export type MutationUpdateContactPageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: ContactPageMutation;
+};
+
+
+export type MutationCreateContactPageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: ContactPageMutation;
+};
+
+
+export type MutationUpdateDemoPageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: DemoPageMutation;
+};
+
+
+export type MutationCreateDemoPageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: DemoPageMutation;
+};
+
 export type DocumentUpdateMutation = {
   pages?: InputMaybe<PagesMutation>;
   vsPage?: InputMaybe<VsPageMutation>;
   customersPage?: InputMaybe<CustomersPageMutation>;
+  companyPage?: InputMaybe<CompanyPageMutation>;
+  contactPage?: InputMaybe<ContactPageMutation>;
+  demoPage?: InputMaybe<DemoPageMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -679,6 +1020,9 @@ export type DocumentMutation = {
   pages?: InputMaybe<PagesMutation>;
   vsPage?: InputMaybe<VsPageMutation>;
   customersPage?: InputMaybe<CustomersPageMutation>;
+  companyPage?: InputMaybe<CompanyPageMutation>;
+  contactPage?: InputMaybe<ContactPageMutation>;
+  demoPage?: InputMaybe<DemoPageMutation>;
 };
 
 export type PagesMutation = {
@@ -830,11 +1174,107 @@ export type CustomersPageMutation = {
   successStories?: InputMaybe<Array<InputMaybe<CustomersPageSuccessStoriesMutation>>>;
 };
 
+export type CompanyPageTeamMembersMutation = {
+  imageSrc?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  role?: InputMaybe<Scalars['String']['input']>;
+  bio?: InputMaybe<Scalars['String']['input']>;
+  linkedInHref?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CompanyPageVisionCardsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CompanyPageValuesMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['String']['input']>;
+  iconName?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CompanyPageCompanyStatsMutation = {
+  value?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CompanyPageOfficesMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  address?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CompanyPageMutation = {
+  heroLabel?: InputMaybe<Scalars['String']['input']>;
+  heroHeading?: InputMaybe<Scalars['String']['input']>;
+  heroSubtext?: InputMaybe<Scalars['String']['input']>;
+  heroImageSrc?: InputMaybe<Scalars['String']['input']>;
+  heroImageAlt?: InputMaybe<Scalars['String']['input']>;
+  missionHeading?: InputMaybe<Scalars['String']['input']>;
+  missionBody?: InputMaybe<Scalars['String']['input']>;
+  teamHeading?: InputMaybe<Scalars['String']['input']>;
+  teamSubtext?: InputMaybe<Scalars['String']['input']>;
+  visionLabel?: InputMaybe<Scalars['String']['input']>;
+  visionHeading?: InputMaybe<Scalars['String']['input']>;
+  statsLabel?: InputMaybe<Scalars['String']['input']>;
+  statsHeading?: InputMaybe<Scalars['String']['input']>;
+  statsSubtext?: InputMaybe<Scalars['String']['input']>;
+  globalPresenceHeading?: InputMaybe<Scalars['String']['input']>;
+  globalPresenceBody1?: InputMaybe<Scalars['String']['input']>;
+  globalPresenceBody2?: InputMaybe<Scalars['String']['input']>;
+  ctaHeading?: InputMaybe<Scalars['String']['input']>;
+  ctaSubtext?: InputMaybe<Scalars['String']['input']>;
+  teamMembers?: InputMaybe<Array<InputMaybe<CompanyPageTeamMembersMutation>>>;
+  visionCards?: InputMaybe<Array<InputMaybe<CompanyPageVisionCardsMutation>>>;
+  values?: InputMaybe<Array<InputMaybe<CompanyPageValuesMutation>>>;
+  companyStats?: InputMaybe<Array<InputMaybe<CompanyPageCompanyStatsMutation>>>;
+  offices?: InputMaybe<Array<InputMaybe<CompanyPageOfficesMutation>>>;
+};
+
+export type ContactPageMutation = {
+  heroHeading?: InputMaybe<Scalars['String']['input']>;
+  formHeading?: InputMaybe<Scalars['String']['input']>;
+  formSubtext?: InputMaybe<Scalars['String']['input']>;
+  trustedBrandsLabel?: InputMaybe<Scalars['String']['input']>;
+  trustedBrandsSubtext?: InputMaybe<Scalars['String']['input']>;
+  formAction?: InputMaybe<Scalars['String']['input']>;
+  formSubject?: InputMaybe<Scalars['String']['input']>;
+  formRedirectUrl?: InputMaybe<Scalars['String']['input']>;
+  demoFeatures?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  industryOptions?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type DemoPageFeatureSectionsMutation = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  industry?: InputMaybe<Scalars['String']['input']>;
+  reversed?: InputMaybe<Scalars['Boolean']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+  tagline?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['String']['input']>;
+  linkText?: InputMaybe<Scalars['String']['input']>;
+  videoSrc?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type DemoPageMutation = {
+  heroLabel?: InputMaybe<Scalars['String']['input']>;
+  heroHeading?: InputMaybe<Scalars['String']['input']>;
+  heroSubtext?: InputMaybe<Scalars['String']['input']>;
+  ctaHeading?: InputMaybe<Scalars['String']['input']>;
+  ctaSubtext?: InputMaybe<Scalars['String']['input']>;
+  featureSections?: InputMaybe<Array<InputMaybe<DemoPageFeatureSectionsMutation>>>;
+};
+
 export type PagesPartsFragment = { __typename: 'Pages', title: string, subtitle?: string | null, body?: any | null };
 
 export type VsPagePartsFragment = { __typename: 'VsPage', heroHeading?: string | null, heroSubtext?: string | null, sectionLabel?: string | null, sectionHeading?: string | null, sectionSubtext?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, pricingLabel?: string | null, pricingHeading?: string | null, pricingSubtext?: string | null, comparisonBlocks?: Array<{ __typename: 'VsPageComparisonBlocks', heading?: string | null, body?: string | null, bullets?: Array<string | null> | null, visualTitle?: string | null, visualDesc?: string | null } | null> | null, featureTable1?: { __typename: 'VsPageFeatureTable1', label?: string | null, heading?: string | null, subtext?: string | null, col2?: string | null, col3?: string | null, rows?: Array<{ __typename: 'VsPageFeatureTable1Rows', feature?: string | null, glucose?: string | null, col2?: string | null, col3?: string | null } | null> | null } | null, featureTable2?: { __typename: 'VsPageFeatureTable2', label?: string | null, heading?: string | null, subtext?: string | null, col2?: string | null, col3?: string | null, rows?: Array<{ __typename: 'VsPageFeatureTable2Rows', feature?: string | null, glucose?: string | null, col2?: string | null, col3?: string | null } | null> | null } | null, engagementStack?: { __typename: 'VsPageEngagementStack', heading?: string | null, legacyLabel?: string | null, legacyItems?: Array<string | null> | null, agenticLabel?: string | null, agenticItems?: Array<string | null> | null } | null, testimonials?: { __typename: 'VsPageTestimonials', label?: string | null, heading?: string | null, subtext?: string | null, items?: Array<{ __typename: 'VsPageTestimonialsItems', quote?: string | null, name?: string | null, role?: string | null, avatarSrc?: string | null, avatarAlt?: string | null } | null> | null } | null };
 
 export type CustomersPagePartsFragment = { __typename: 'CustomersPage', heroHeading?: string | null, heroSubtext?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, featuredCustomer?: { __typename: 'CustomersPageFeaturedCustomer', heading?: string | null, body?: string | null, href?: string | null, imageSrc?: string | null, imageAlt?: string | null, logoSrc?: string | null, logoAlt?: string | null, metrics?: Array<{ __typename: 'CustomersPageFeaturedCustomerMetrics', label?: string | null, value?: string | null } | null> | null } | null, featuredTestimonial?: { __typename: 'CustomersPageFeaturedTestimonial', quote?: string | null, name?: string | null, role?: string | null, logoSrc?: string | null, logoAlt?: string | null, avatarSrc?: string | null, avatarAlt?: string | null } | null, results?: Array<{ __typename: 'CustomersPageResults', title?: string | null, industry?: string | null, href?: string | null, imageSrc?: string | null, imageAlt?: string | null, logoSrc?: string | null, logoAlt?: string | null, metrics?: Array<{ __typename: 'CustomersPageResultsMetrics', label?: string | null, value?: string | null } | null> | null } | null> | null, successStories?: Array<{ __typename: 'CustomersPageSuccessStories', brand?: string | null, title?: string | null, body?: string | null, href?: string | null, imageSrc?: string | null, imageAlt?: string | null } | null> | null };
+
+export type CompanyPagePartsFragment = { __typename: 'CompanyPage', heroLabel?: string | null, heroHeading?: string | null, heroSubtext?: string | null, heroImageSrc?: string | null, heroImageAlt?: string | null, missionHeading?: string | null, missionBody?: string | null, teamHeading?: string | null, teamSubtext?: string | null, visionLabel?: string | null, visionHeading?: string | null, statsLabel?: string | null, statsHeading?: string | null, statsSubtext?: string | null, globalPresenceHeading?: string | null, globalPresenceBody1?: string | null, globalPresenceBody2?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, teamMembers?: Array<{ __typename: 'CompanyPageTeamMembers', imageSrc?: string | null, name?: string | null, role?: string | null, bio?: string | null, linkedInHref?: string | null } | null> | null, visionCards?: Array<{ __typename: 'CompanyPageVisionCards', title?: string | null, body?: string | null } | null> | null, values?: Array<{ __typename: 'CompanyPageValues', title?: string | null, body?: string | null, iconName?: string | null } | null> | null, companyStats?: Array<{ __typename: 'CompanyPageCompanyStats', value?: string | null, label?: string | null } | null> | null, offices?: Array<{ __typename: 'CompanyPageOffices', name?: string | null, address?: string | null } | null> | null };
+
+export type ContactPagePartsFragment = { __typename: 'ContactPage', heroHeading?: string | null, formHeading?: string | null, formSubtext?: string | null, trustedBrandsLabel?: string | null, trustedBrandsSubtext?: string | null, formAction?: string | null, formSubject?: string | null, formRedirectUrl?: string | null, demoFeatures?: Array<string | null> | null, industryOptions?: Array<string | null> | null };
+
+export type DemoPagePartsFragment = { __typename: 'DemoPage', heroLabel?: string | null, heroHeading?: string | null, heroSubtext?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, featureSections?: Array<{ __typename: 'DemoPageFeatureSections', id?: string | null, industry?: string | null, reversed?: boolean | null, label?: string | null, heading?: string | null, tagline?: string | null, body?: string | null, linkText?: string | null, videoSrc?: string | null } | null> | null };
 
 export type PagesQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -892,6 +1332,63 @@ export type CustomersPageConnectionQueryVariables = Exact<{
 
 
 export type CustomersPageConnectionQuery = { __typename?: 'Query', customersPageConnection: { __typename?: 'CustomersPageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'CustomersPageConnectionEdges', cursor: string, node?: { __typename: 'CustomersPage', id: string, heroHeading?: string | null, heroSubtext?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, featuredCustomer?: { __typename: 'CustomersPageFeaturedCustomer', heading?: string | null, body?: string | null, href?: string | null, imageSrc?: string | null, imageAlt?: string | null, logoSrc?: string | null, logoAlt?: string | null, metrics?: Array<{ __typename: 'CustomersPageFeaturedCustomerMetrics', label?: string | null, value?: string | null } | null> | null } | null, featuredTestimonial?: { __typename: 'CustomersPageFeaturedTestimonial', quote?: string | null, name?: string | null, role?: string | null, logoSrc?: string | null, logoAlt?: string | null, avatarSrc?: string | null, avatarAlt?: string | null } | null, results?: Array<{ __typename: 'CustomersPageResults', title?: string | null, industry?: string | null, href?: string | null, imageSrc?: string | null, imageAlt?: string | null, logoSrc?: string | null, logoAlt?: string | null, metrics?: Array<{ __typename: 'CustomersPageResultsMetrics', label?: string | null, value?: string | null } | null> | null } | null> | null, successStories?: Array<{ __typename: 'CustomersPageSuccessStories', brand?: string | null, title?: string | null, body?: string | null, href?: string | null, imageSrc?: string | null, imageAlt?: string | null } | null> | null } | null } | null> | null } };
+
+export type CompanyPageQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type CompanyPageQuery = { __typename?: 'Query', companyPage: { __typename: 'CompanyPage', id: string, heroLabel?: string | null, heroHeading?: string | null, heroSubtext?: string | null, heroImageSrc?: string | null, heroImageAlt?: string | null, missionHeading?: string | null, missionBody?: string | null, teamHeading?: string | null, teamSubtext?: string | null, visionLabel?: string | null, visionHeading?: string | null, statsLabel?: string | null, statsHeading?: string | null, statsSubtext?: string | null, globalPresenceHeading?: string | null, globalPresenceBody1?: string | null, globalPresenceBody2?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, teamMembers?: Array<{ __typename: 'CompanyPageTeamMembers', imageSrc?: string | null, name?: string | null, role?: string | null, bio?: string | null, linkedInHref?: string | null } | null> | null, visionCards?: Array<{ __typename: 'CompanyPageVisionCards', title?: string | null, body?: string | null } | null> | null, values?: Array<{ __typename: 'CompanyPageValues', title?: string | null, body?: string | null, iconName?: string | null } | null> | null, companyStats?: Array<{ __typename: 'CompanyPageCompanyStats', value?: string | null, label?: string | null } | null> | null, offices?: Array<{ __typename: 'CompanyPageOffices', name?: string | null, address?: string | null } | null> | null } };
+
+export type CompanyPageConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<CompanyPageFilter>;
+}>;
+
+
+export type CompanyPageConnectionQuery = { __typename?: 'Query', companyPageConnection: { __typename?: 'CompanyPageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'CompanyPageConnectionEdges', cursor: string, node?: { __typename: 'CompanyPage', id: string, heroLabel?: string | null, heroHeading?: string | null, heroSubtext?: string | null, heroImageSrc?: string | null, heroImageAlt?: string | null, missionHeading?: string | null, missionBody?: string | null, teamHeading?: string | null, teamSubtext?: string | null, visionLabel?: string | null, visionHeading?: string | null, statsLabel?: string | null, statsHeading?: string | null, statsSubtext?: string | null, globalPresenceHeading?: string | null, globalPresenceBody1?: string | null, globalPresenceBody2?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, teamMembers?: Array<{ __typename: 'CompanyPageTeamMembers', imageSrc?: string | null, name?: string | null, role?: string | null, bio?: string | null, linkedInHref?: string | null } | null> | null, visionCards?: Array<{ __typename: 'CompanyPageVisionCards', title?: string | null, body?: string | null } | null> | null, values?: Array<{ __typename: 'CompanyPageValues', title?: string | null, body?: string | null, iconName?: string | null } | null> | null, companyStats?: Array<{ __typename: 'CompanyPageCompanyStats', value?: string | null, label?: string | null } | null> | null, offices?: Array<{ __typename: 'CompanyPageOffices', name?: string | null, address?: string | null } | null> | null } | null } | null> | null } };
+
+export type ContactPageQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type ContactPageQuery = { __typename?: 'Query', contactPage: { __typename: 'ContactPage', id: string, heroHeading?: string | null, formHeading?: string | null, formSubtext?: string | null, trustedBrandsLabel?: string | null, trustedBrandsSubtext?: string | null, formAction?: string | null, formSubject?: string | null, formRedirectUrl?: string | null, demoFeatures?: Array<string | null> | null, industryOptions?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type ContactPageConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<ContactPageFilter>;
+}>;
+
+
+export type ContactPageConnectionQuery = { __typename?: 'Query', contactPageConnection: { __typename?: 'ContactPageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ContactPageConnectionEdges', cursor: string, node?: { __typename: 'ContactPage', id: string, heroHeading?: string | null, formHeading?: string | null, formSubtext?: string | null, trustedBrandsLabel?: string | null, trustedBrandsSubtext?: string | null, formAction?: string | null, formSubject?: string | null, formRedirectUrl?: string | null, demoFeatures?: Array<string | null> | null, industryOptions?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type DemoPageQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type DemoPageQuery = { __typename?: 'Query', demoPage: { __typename: 'DemoPage', id: string, heroLabel?: string | null, heroHeading?: string | null, heroSubtext?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, featureSections?: Array<{ __typename: 'DemoPageFeatureSections', id?: string | null, industry?: string | null, reversed?: boolean | null, label?: string | null, heading?: string | null, tagline?: string | null, body?: string | null, linkText?: string | null, videoSrc?: string | null } | null> | null } };
+
+export type DemoPageConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<DemoPageFilter>;
+}>;
+
+
+export type DemoPageConnectionQuery = { __typename?: 'Query', demoPageConnection: { __typename?: 'DemoPageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'DemoPageConnectionEdges', cursor: string, node?: { __typename: 'DemoPage', id: string, heroLabel?: string | null, heroHeading?: string | null, heroSubtext?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, featureSections?: Array<{ __typename: 'DemoPageFeatureSections', id?: string | null, industry?: string | null, reversed?: boolean | null, label?: string | null, heading?: string | null, tagline?: string | null, body?: string | null, linkText?: string | null, videoSrc?: string | null } | null> | null } | null } | null> | null } };
 
 export const PagesPartsFragmentDoc = gql`
     fragment PagesParts on Pages {
@@ -1031,6 +1528,96 @@ export const CustomersPagePartsFragmentDoc = gql`
     href
     imageSrc
     imageAlt
+  }
+}
+    `;
+export const CompanyPagePartsFragmentDoc = gql`
+    fragment CompanyPageParts on CompanyPage {
+  __typename
+  heroLabel
+  heroHeading
+  heroSubtext
+  heroImageSrc
+  heroImageAlt
+  missionHeading
+  missionBody
+  teamHeading
+  teamSubtext
+  visionLabel
+  visionHeading
+  statsLabel
+  statsHeading
+  statsSubtext
+  globalPresenceHeading
+  globalPresenceBody1
+  globalPresenceBody2
+  ctaHeading
+  ctaSubtext
+  teamMembers {
+    __typename
+    imageSrc
+    name
+    role
+    bio
+    linkedInHref
+  }
+  visionCards {
+    __typename
+    title
+    body
+  }
+  values {
+    __typename
+    title
+    body
+    iconName
+  }
+  companyStats {
+    __typename
+    value
+    label
+  }
+  offices {
+    __typename
+    name
+    address
+  }
+}
+    `;
+export const ContactPagePartsFragmentDoc = gql`
+    fragment ContactPageParts on ContactPage {
+  __typename
+  heroHeading
+  formHeading
+  formSubtext
+  trustedBrandsLabel
+  trustedBrandsSubtext
+  formAction
+  formSubject
+  formRedirectUrl
+  demoFeatures
+  industryOptions
+}
+    `;
+export const DemoPagePartsFragmentDoc = gql`
+    fragment DemoPageParts on DemoPage {
+  __typename
+  heroLabel
+  heroHeading
+  heroSubtext
+  ctaHeading
+  ctaSubtext
+  featureSections {
+    __typename
+    id
+    industry
+    reversed
+    label
+    heading
+    tagline
+    body
+    linkText
+    videoSrc
   }
 }
     `;
@@ -1205,6 +1792,177 @@ export const CustomersPageConnectionDocument = gql`
   }
 }
     ${CustomersPagePartsFragmentDoc}`;
+export const CompanyPageDocument = gql`
+    query companyPage($relativePath: String!) {
+  companyPage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...CompanyPageParts
+  }
+}
+    ${CompanyPagePartsFragmentDoc}`;
+export const CompanyPageConnectionDocument = gql`
+    query companyPageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: CompanyPageFilter) {
+  companyPageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...CompanyPageParts
+      }
+    }
+  }
+}
+    ${CompanyPagePartsFragmentDoc}`;
+export const ContactPageDocument = gql`
+    query contactPage($relativePath: String!) {
+  contactPage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...ContactPageParts
+  }
+}
+    ${ContactPagePartsFragmentDoc}`;
+export const ContactPageConnectionDocument = gql`
+    query contactPageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ContactPageFilter) {
+  contactPageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...ContactPageParts
+      }
+    }
+  }
+}
+    ${ContactPagePartsFragmentDoc}`;
+export const DemoPageDocument = gql`
+    query demoPage($relativePath: String!) {
+  demoPage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...DemoPageParts
+  }
+}
+    ${DemoPagePartsFragmentDoc}`;
+export const DemoPageConnectionDocument = gql`
+    query demoPageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DemoPageFilter) {
+  demoPageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...DemoPageParts
+      }
+    }
+  }
+}
+    ${DemoPagePartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -1225,6 +1983,24 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     customersPageConnection(variables?: CustomersPageConnectionQueryVariables, options?: C): Promise<{data: CustomersPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CustomersPageConnectionQueryVariables, query: string}> {
         return requester<{data: CustomersPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CustomersPageConnectionQueryVariables, query: string}, CustomersPageConnectionQueryVariables>(CustomersPageConnectionDocument, variables, options);
+      },
+    companyPage(variables: CompanyPageQueryVariables, options?: C): Promise<{data: CompanyPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CompanyPageQueryVariables, query: string}> {
+        return requester<{data: CompanyPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CompanyPageQueryVariables, query: string}, CompanyPageQueryVariables>(CompanyPageDocument, variables, options);
+      },
+    companyPageConnection(variables?: CompanyPageConnectionQueryVariables, options?: C): Promise<{data: CompanyPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CompanyPageConnectionQueryVariables, query: string}> {
+        return requester<{data: CompanyPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CompanyPageConnectionQueryVariables, query: string}, CompanyPageConnectionQueryVariables>(CompanyPageConnectionDocument, variables, options);
+      },
+    contactPage(variables: ContactPageQueryVariables, options?: C): Promise<{data: ContactPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactPageQueryVariables, query: string}> {
+        return requester<{data: ContactPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactPageQueryVariables, query: string}, ContactPageQueryVariables>(ContactPageDocument, variables, options);
+      },
+    contactPageConnection(variables?: ContactPageConnectionQueryVariables, options?: C): Promise<{data: ContactPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactPageConnectionQueryVariables, query: string}> {
+        return requester<{data: ContactPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactPageConnectionQueryVariables, query: string}, ContactPageConnectionQueryVariables>(ContactPageConnectionDocument, variables, options);
+      },
+    demoPage(variables: DemoPageQueryVariables, options?: C): Promise<{data: DemoPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: DemoPageQueryVariables, query: string}> {
+        return requester<{data: DemoPageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: DemoPageQueryVariables, query: string}, DemoPageQueryVariables>(DemoPageDocument, variables, options);
+      },
+    demoPageConnection(variables?: DemoPageConnectionQueryVariables, options?: C): Promise<{data: DemoPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: DemoPageConnectionQueryVariables, query: string}> {
+        return requester<{data: DemoPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: DemoPageConnectionQueryVariables, query: string}, DemoPageConnectionQueryVariables>(DemoPageConnectionDocument, variables, options);
       }
     };
   }

@@ -1,6 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { industryOptions, demoFeatures, formConfig } from '../data/contact';
+import { getEntry } from 'astro:content';
+
+const cms = await getEntry('contactPage', 'contact');
+if (!cms) throw new Error('Missing contactPage/contact content entry');
+
+const {
+  heroHeading, formHeading, formSubtext,
+  trustedBrandsLabel, trustedBrandsSubtext,
+  formAction, formSubject, formRedirectUrl,
+} = cms.data;
+
+const demoFeatures    = cms.data.demoFeatures    as string[];
+const industryOptions = cms.data.industryOptions as string[];
 ---
 
 <BaseLayout
@@ -16,14 +28,14 @@ import { industryOptions, demoFeatures, formConfig } from '../data/contact';
     <div class="demo-content">
       <!-- Left Column - Info -->
       <div class="demo-info">
-        <h1>5.Y helps enterprises build better, more human customer experiences.</h1>
+        <h1>{heroHeading}</h1>
         <ul class="demo-features">
           {demoFeatures.map((f) => <li>{f}</li>)}
         </ul>
         <div class="trusted-brands">
-          <h4>Trusted by leading brands</h4>
+          <h4>{trustedBrandsLabel}</h4>
           <div class="brand-logos">
-            <span class="text-text-muted text-sm">Enterprise customers across Automotive, Healthcare, Financial Services, and more</span>
+            <span class="text-text-muted text-sm">{trustedBrandsSubtext}</span>
           </div>
         </div>
       </div>
@@ -31,12 +43,12 @@ import { industryOptions, demoFeatures, formConfig } from '../data/contact';
       <!-- Right Column - Form -->
       <div class="demo-form-container">
         <div class="demo-form-wrapper">
-          <h2>Get in Touch</h2>
-          <p class="form-subtitle">Let us know a bit about yourself, and we will reach out soon.</p>
+          <h2>{formHeading}</h2>
+          <p class="form-subtitle">{formSubtext}</p>
 
-          <form class="demo-form" id="demo-form" action={formConfig.action} method="POST">
-            <input type="hidden" name="_subject" value={formConfig.subject} />
-            <input type="hidden" name="_next" value={formConfig.redirectUrl} />
+          <form class="demo-form" id="demo-form" action={formAction} method="POST">
+            <input type="hidden" name="_subject" value={formSubject} />
+            <input type="hidden" name="_next" value={formRedirectUrl} />
 
             <div class="form-row">
               <div class="form-group">

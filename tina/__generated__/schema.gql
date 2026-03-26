@@ -60,12 +60,21 @@ type Query {
   vsPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: VsPageFilter): VsPageConnection!
   customersPage(relativePath: String): CustomersPage!
   customersPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: CustomersPageFilter): CustomersPageConnection!
+  companyPage(relativePath: String): CompanyPage!
+  companyPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: CompanyPageFilter): CompanyPageConnection!
+  contactPage(relativePath: String): ContactPage!
+  contactPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ContactPageFilter): ContactPageConnection!
+  demoPage(relativePath: String): DemoPage!
+  demoPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DemoPageFilter): DemoPageConnection!
 }
 
 input DocumentFilter {
   pages: PagesFilter
   vsPage: VsPageFilter
   customersPage: CustomersPageFilter
+  companyPage: CompanyPageFilter
+  contactPage: ContactPageFilter
+  demoPage: DemoPageFilter
 }
 
 type DocumentConnectionEdges {
@@ -91,7 +100,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Pages | VsPage | CustomersPage | Folder
+union DocumentNode = Pages | VsPage | CustomersPage | CompanyPage | ContactPage | DemoPage | Folder
 
 type Pages implements Node & Document {
   title: String!
@@ -453,6 +462,233 @@ type CustomersPageConnection implements Connection {
   edges: [CustomersPageConnectionEdges]
 }
 
+type CompanyPageTeamMembers {
+  imageSrc: String
+  name: String
+  role: String
+  bio: String
+  linkedInHref: String
+}
+
+type CompanyPageVisionCards {
+  title: String
+  body: String
+}
+
+type CompanyPageValues {
+  title: String
+  body: String
+  iconName: String
+}
+
+type CompanyPageCompanyStats {
+  value: String
+  label: String
+}
+
+type CompanyPageOffices {
+  name: String
+  address: String
+}
+
+type CompanyPage implements Node & Document {
+  heroLabel: String
+  heroHeading: String
+  heroSubtext: String
+  heroImageSrc: String
+  heroImageAlt: String
+  missionHeading: String
+  missionBody: String
+  teamHeading: String
+  teamSubtext: String
+  visionLabel: String
+  visionHeading: String
+  statsLabel: String
+  statsHeading: String
+  statsSubtext: String
+  globalPresenceHeading: String
+  globalPresenceBody1: String
+  globalPresenceBody2: String
+  ctaHeading: String
+  ctaSubtext: String
+  teamMembers: [CompanyPageTeamMembers]
+  visionCards: [CompanyPageVisionCards]
+  values: [CompanyPageValues]
+  companyStats: [CompanyPageCompanyStats]
+  offices: [CompanyPageOffices]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input CompanyPageTeamMembersFilter {
+  imageSrc: ImageFilter
+  name: StringFilter
+  role: StringFilter
+  bio: StringFilter
+  linkedInHref: StringFilter
+}
+
+input CompanyPageVisionCardsFilter {
+  title: StringFilter
+  body: StringFilter
+}
+
+input CompanyPageValuesFilter {
+  title: StringFilter
+  body: StringFilter
+  iconName: StringFilter
+}
+
+input CompanyPageCompanyStatsFilter {
+  value: StringFilter
+  label: StringFilter
+}
+
+input CompanyPageOfficesFilter {
+  name: StringFilter
+  address: StringFilter
+}
+
+input CompanyPageFilter {
+  heroLabel: StringFilter
+  heroHeading: StringFilter
+  heroSubtext: StringFilter
+  heroImageSrc: ImageFilter
+  heroImageAlt: StringFilter
+  missionHeading: StringFilter
+  missionBody: StringFilter
+  teamHeading: StringFilter
+  teamSubtext: StringFilter
+  visionLabel: StringFilter
+  visionHeading: StringFilter
+  statsLabel: StringFilter
+  statsHeading: StringFilter
+  statsSubtext: StringFilter
+  globalPresenceHeading: StringFilter
+  globalPresenceBody1: StringFilter
+  globalPresenceBody2: StringFilter
+  ctaHeading: StringFilter
+  ctaSubtext: StringFilter
+  teamMembers: CompanyPageTeamMembersFilter
+  visionCards: CompanyPageVisionCardsFilter
+  values: CompanyPageValuesFilter
+  companyStats: CompanyPageCompanyStatsFilter
+  offices: CompanyPageOfficesFilter
+}
+
+type CompanyPageConnectionEdges {
+  cursor: String!
+  node: CompanyPage
+}
+
+type CompanyPageConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [CompanyPageConnectionEdges]
+}
+
+type ContactPage implements Node & Document {
+  heroHeading: String
+  formHeading: String
+  formSubtext: String
+  trustedBrandsLabel: String
+  trustedBrandsSubtext: String
+  formAction: String
+  formSubject: String
+  formRedirectUrl: String
+  demoFeatures: [String]
+  industryOptions: [String]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input ContactPageFilter {
+  heroHeading: StringFilter
+  formHeading: StringFilter
+  formSubtext: StringFilter
+  trustedBrandsLabel: StringFilter
+  trustedBrandsSubtext: StringFilter
+  formAction: StringFilter
+  formSubject: StringFilter
+  formRedirectUrl: StringFilter
+  demoFeatures: StringFilter
+  industryOptions: StringFilter
+}
+
+type ContactPageConnectionEdges {
+  cursor: String!
+  node: ContactPage
+}
+
+type ContactPageConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [ContactPageConnectionEdges]
+}
+
+type DemoPageFeatureSections {
+  id: String
+  industry: String
+  reversed: Boolean
+  label: String
+  heading: String
+  tagline: String
+  body: String
+  linkText: String
+  videoSrc: String
+}
+
+type DemoPage implements Node & Document {
+  heroLabel: String
+  heroHeading: String
+  heroSubtext: String
+  ctaHeading: String
+  ctaSubtext: String
+  featureSections: [DemoPageFeatureSections]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input BooleanFilter {
+  eq: Boolean
+  exists: Boolean
+}
+
+input DemoPageFeatureSectionsFilter {
+  id: StringFilter
+  industry: StringFilter
+  reversed: BooleanFilter
+  label: StringFilter
+  heading: StringFilter
+  tagline: StringFilter
+  body: StringFilter
+  linkText: StringFilter
+  videoSrc: StringFilter
+}
+
+input DemoPageFilter {
+  heroLabel: StringFilter
+  heroHeading: StringFilter
+  heroSubtext: StringFilter
+  ctaHeading: StringFilter
+  ctaSubtext: StringFilter
+  featureSections: DemoPageFeatureSectionsFilter
+}
+
+type DemoPageConnectionEdges {
+  cursor: String!
+  node: DemoPage
+}
+
+type DemoPageConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [DemoPageConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -465,12 +701,21 @@ type Mutation {
   createVsPage(relativePath: String!, params: VsPageMutation!): VsPage!
   updateCustomersPage(relativePath: String!, params: CustomersPageMutation!): CustomersPage!
   createCustomersPage(relativePath: String!, params: CustomersPageMutation!): CustomersPage!
+  updateCompanyPage(relativePath: String!, params: CompanyPageMutation!): CompanyPage!
+  createCompanyPage(relativePath: String!, params: CompanyPageMutation!): CompanyPage!
+  updateContactPage(relativePath: String!, params: ContactPageMutation!): ContactPage!
+  createContactPage(relativePath: String!, params: ContactPageMutation!): ContactPage!
+  updateDemoPage(relativePath: String!, params: DemoPageMutation!): DemoPage!
+  createDemoPage(relativePath: String!, params: DemoPageMutation!): DemoPage!
 }
 
 input DocumentUpdateMutation {
   pages: PagesMutation
   vsPage: VsPageMutation
   customersPage: CustomersPageMutation
+  companyPage: CompanyPageMutation
+  contactPage: ContactPageMutation
+  demoPage: DemoPageMutation
   relativePath: String
 }
 
@@ -478,6 +723,9 @@ input DocumentMutation {
   pages: PagesMutation
   vsPage: VsPageMutation
   customersPage: CustomersPageMutation
+  companyPage: CompanyPageMutation
+  contactPage: ContactPageMutation
+  demoPage: DemoPageMutation
 }
 
 input PagesMutation {
@@ -627,6 +875,96 @@ input CustomersPageMutation {
   featuredTestimonial: CustomersPageFeaturedTestimonialMutation
   results: [CustomersPageResultsMutation]
   successStories: [CustomersPageSuccessStoriesMutation]
+}
+
+input CompanyPageTeamMembersMutation {
+  imageSrc: String
+  name: String
+  role: String
+  bio: String
+  linkedInHref: String
+}
+
+input CompanyPageVisionCardsMutation {
+  title: String
+  body: String
+}
+
+input CompanyPageValuesMutation {
+  title: String
+  body: String
+  iconName: String
+}
+
+input CompanyPageCompanyStatsMutation {
+  value: String
+  label: String
+}
+
+input CompanyPageOfficesMutation {
+  name: String
+  address: String
+}
+
+input CompanyPageMutation {
+  heroLabel: String
+  heroHeading: String
+  heroSubtext: String
+  heroImageSrc: String
+  heroImageAlt: String
+  missionHeading: String
+  missionBody: String
+  teamHeading: String
+  teamSubtext: String
+  visionLabel: String
+  visionHeading: String
+  statsLabel: String
+  statsHeading: String
+  statsSubtext: String
+  globalPresenceHeading: String
+  globalPresenceBody1: String
+  globalPresenceBody2: String
+  ctaHeading: String
+  ctaSubtext: String
+  teamMembers: [CompanyPageTeamMembersMutation]
+  visionCards: [CompanyPageVisionCardsMutation]
+  values: [CompanyPageValuesMutation]
+  companyStats: [CompanyPageCompanyStatsMutation]
+  offices: [CompanyPageOfficesMutation]
+}
+
+input ContactPageMutation {
+  heroHeading: String
+  formHeading: String
+  formSubtext: String
+  trustedBrandsLabel: String
+  trustedBrandsSubtext: String
+  formAction: String
+  formSubject: String
+  formRedirectUrl: String
+  demoFeatures: [String]
+  industryOptions: [String]
+}
+
+input DemoPageFeatureSectionsMutation {
+  id: String
+  industry: String
+  reversed: Boolean
+  label: String
+  heading: String
+  tagline: String
+  body: String
+  linkText: String
+  videoSrc: String
+}
+
+input DemoPageMutation {
+  heroLabel: String
+  heroHeading: String
+  heroSubtext: String
+  ctaHeading: String
+  ctaSubtext: String
+  featureSections: [DemoPageFeatureSectionsMutation]
 }
 
 schema {

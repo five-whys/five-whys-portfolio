@@ -256,6 +256,163 @@ var config_default = defineConfig({
             ]
           }
         ]
+      },
+      // ── Company Page ──────────────────────────────────────────────────────────
+      {
+        name: "companyPage",
+        label: "\u{1F3E2} Company Page",
+        path: "src/content/companyPage",
+        format: "json",
+        fields: [
+          // Hero
+          { type: "string", name: "heroLabel", label: "Hero Label" },
+          { type: "string", name: "heroHeading", label: "Hero Heading" },
+          { type: "string", name: "heroSubtext", label: "Hero Subtext", ui: { component: "textarea" } },
+          { type: "image", name: "heroImageSrc", label: "Hero Image" },
+          { type: "string", name: "heroImageAlt", label: "Hero Image Alt" },
+          // Mission
+          { type: "string", name: "missionHeading", label: "Mission Heading", ui: { component: "textarea" } },
+          { type: "string", name: "missionBody", label: "Mission Body", ui: { component: "textarea" } },
+          // Team
+          { type: "string", name: "teamHeading", label: "Team Section Heading" },
+          { type: "string", name: "teamSubtext", label: "Team Section Subtext", ui: { component: "textarea" } },
+          // Vision
+          { type: "string", name: "visionLabel", label: "Vision Label" },
+          { type: "string", name: "visionHeading", label: "Vision Heading" },
+          // Stats
+          { type: "string", name: "statsLabel", label: "Stats Section Label" },
+          { type: "string", name: "statsHeading", label: "Stats Section Heading" },
+          { type: "string", name: "statsSubtext", label: "Stats Section Subtext", ui: { component: "textarea" } },
+          // Global Presence
+          { type: "string", name: "globalPresenceHeading", label: "Global Presence Heading" },
+          { type: "string", name: "globalPresenceBody1", label: "Global Presence Body 1", ui: { component: "textarea" } },
+          { type: "string", name: "globalPresenceBody2", label: "Global Presence Body 2", ui: { component: "textarea" } },
+          // CTA
+          { type: "string", name: "ctaHeading", label: "CTA Heading" },
+          { type: "string", name: "ctaSubtext", label: "CTA Subtext", ui: { component: "textarea" } },
+          // Team Members
+          {
+            type: "object",
+            name: "teamMembers",
+            label: "Team Members",
+            list: true,
+            fields: [
+              { type: "image", name: "imageSrc", label: "Photo" },
+              { type: "string", name: "name", label: "Name" },
+              { type: "string", name: "role", label: "Role" },
+              { type: "string", name: "bio", label: "Bio", ui: { component: "textarea" } },
+              { type: "string", name: "linkedInHref", label: "LinkedIn URL" }
+            ]
+          },
+          // Vision Cards
+          {
+            type: "object",
+            name: "visionCards",
+            label: "Vision Cards",
+            list: true,
+            fields: [
+              { type: "string", name: "title", label: "Title" },
+              { type: "string", name: "body", label: "Body", ui: { component: "textarea" } }
+            ]
+          },
+          // Values
+          {
+            type: "object",
+            name: "values",
+            label: "Company Values",
+            list: true,
+            fields: [
+              { type: "string", name: "title", label: "Title" },
+              { type: "string", name: "body", label: "Body", ui: { component: "textarea" } },
+              {
+                type: "string",
+                name: "iconName",
+                label: "Icon",
+                options: ["trustShield", "smiley", "star", "lightning", "heart"]
+              }
+            ]
+          },
+          // Company Stats
+          {
+            type: "object",
+            name: "companyStats",
+            label: "Company Stats",
+            list: true,
+            fields: [
+              { type: "string", name: "value", label: "Value" },
+              { type: "string", name: "label", label: "Label" }
+            ]
+          },
+          // Offices
+          {
+            type: "object",
+            name: "offices",
+            label: "Office Locations",
+            list: true,
+            fields: [
+              { type: "string", name: "name", label: "Office Name" },
+              { type: "string", name: "address", label: "Address", ui: { component: "textarea" } }
+            ]
+          }
+        ]
+      },
+      // ── Contact Page ──────────────────────────────────────────────────────────
+      {
+        name: "contactPage",
+        label: "\u{1F4EC} Contact Page",
+        path: "src/content/contactPage",
+        format: "json",
+        fields: [
+          { type: "string", name: "heroHeading", label: "Left Column Heading", ui: { component: "textarea" } },
+          { type: "string", name: "formHeading", label: "Form Heading" },
+          { type: "string", name: "formSubtext", label: "Form Subtext", ui: { component: "textarea" } },
+          { type: "string", name: "trustedBrandsLabel", label: "Trusted Brands Label" },
+          { type: "string", name: "trustedBrandsSubtext", label: "Trusted Brands Subtext", ui: { component: "textarea" } },
+          { type: "string", name: "formAction", label: "Form Action URL" },
+          { type: "string", name: "formSubject", label: "Form Email Subject" },
+          { type: "string", name: "formRedirectUrl", label: "Form Redirect URL" },
+          { type: "string", name: "demoFeatures", label: "Feature Bullets", list: true },
+          { type: "string", name: "industryOptions", label: "Industry Dropdown Options", list: true }
+        ]
+      },
+      // ── Demo Page ─────────────────────────────────────────────────────────────
+      {
+        name: "demoPage",
+        label: "\u{1F3AC} Demo Page",
+        path: "src/content/demoPage",
+        format: "json",
+        fields: [
+          // Hero
+          { type: "string", name: "heroLabel", label: "Hero Label" },
+          { type: "string", name: "heroHeading", label: "Hero Heading" },
+          { type: "string", name: "heroSubtext", label: "Hero Subtext", ui: { component: "textarea" } },
+          // CTA
+          { type: "string", name: "ctaHeading", label: "CTA Heading" },
+          { type: "string", name: "ctaSubtext", label: "CTA Subtext", ui: { component: "textarea" } },
+          // Feature Sections
+          {
+            type: "object",
+            name: "featureSections",
+            label: "Feature Sections",
+            list: true,
+            fields: [
+              { type: "string", name: "id", label: "Section ID (anchor)" },
+              {
+                type: "string",
+                name: "industry",
+                label: "Industry Filter Tag",
+                options: ["automotive", "consumer"]
+              },
+              { type: "boolean", name: "reversed", label: "Reversed Layout (video on left)" },
+              { type: "string", name: "label", label: "Category Badge" },
+              { type: "string", name: "heading", label: "Heading" },
+              { type: "string", name: "tagline", label: "Tagline (accent text)" },
+              { type: "string", name: "body", label: "Body", ui: { component: "textarea" } },
+              { type: "string", name: "linkText", label: "Link Text" },
+              { type: "string", name: "videoSrc", label: "Video Path (e.g. Videos/filename.mp4)" }
+            ]
+          }
+        ]
       }
     ]
   }

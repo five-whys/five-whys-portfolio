@@ -3,7 +3,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import TeamGrid from '../components/sections/TeamGrid.astro';
 import VisionCards from '../components/sections/VisionCards.astro';
 import ValuesAccordion from '../components/sections/ValuesAccordion.astro';
-import { teamMembers, visionCards, values, companyStats, offices } from '../data/company';
+import { getEntry } from 'astro:content';
+import { icons, type IconName } from '../assets/icons/svgs';
+
+const cms = await getEntry('companyPage', 'company');
+if (!cms) throw new Error('Missing companyPage/company content entry');
+
+const {
+  heroLabel, heroHeading, heroSubtext, heroImageSrc, heroImageAlt,
+  missionHeading, missionBody,
+  teamHeading, teamSubtext,
+  visionLabel, visionHeading,
+  statsLabel, statsHeading, statsSubtext,
+  globalPresenceHeading, globalPresenceBody1, globalPresenceBody2,
+  ctaHeading, ctaSubtext,
+} = cms.data;
+
+type TeamMember  = { imageSrc: string; name: string; role: string; bio: string; linkedInHref: string };
+type VisionCard  = { title: string; body: string };
+type ValueItem   = { title: string; body: string; iconName: string };
+type StatItem    = { value: string; label: string };
+type OfficeItem  = { name: string; address: string };
+
+const teamMembers  = cms.data.teamMembers  as TeamMember[];
+const visionCards  = cms.data.visionCards  as VisionCard[];
+const companyStats = cms.data.companyStats as StatItem[];
+const offices      = cms.data.offices      as OfficeItem[];
+
+// Map iconName → iconSVG for ValuesAccordion
+const values = (cms.data.values as ValueItem[]).map((v) => ({
+  title:   v.title,
+  body:    v.body,
+  iconSVG: icons[v.iconName as IconName] ?? '',
+}));
 ---
 
 <BaseLayout
@@ -22,13 +54,13 @@ import { teamMembers, visionCards, values, companyStats, offices } from '../data
   <section class="pt-[6rem] px-8 pb-16 bg-[linear-gradient(180deg,var(--color-bg-secondary)_0%,var(--color-bg-primary)_100%)] border-b border-border-theme font-[family-name:var(--font-primary)]">
     <div class="max-w-[1100px] mx-auto">
       <div class="text-center max-w-[760px] mx-auto mb-10">
-        <span class="inline-block mb-3 text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-accent">About 5.Y</span>
-        <h1 class="font-[family-name:var(--font-display)] text-[clamp(2.2rem,5vw,4rem)] font-medium leading-[1.1] tracking-[-0.02em] mb-4">Who we are and why we're here</h1>
-        <p class="text-text-secondary text-[clamp(1rem,1.8vw,1.2rem)] leading-[1.7]">We build autonomous AI experiences that help enterprises engage every customer in every moment that matters.</p>
+        <span class="inline-block mb-3 text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-accent">{heroLabel}</span>
+        <h1 class="font-[family-name:var(--font-display)] text-[clamp(2.2rem,5vw,4rem)] font-medium leading-[1.1] tracking-[-0.02em] mb-4">{heroHeading}</h1>
+        <p class="text-text-secondary text-[clamp(1rem,1.8vw,1.2rem)] leading-[1.7]">{heroSubtext}</p>
       </div>
 
       <div class="border border-border-theme rounded-[20px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.18)] max-h-[min(68vh,620px)]">
-        <img src="/Images/about.jpg" alt="5.Y Team" class="w-full h-full min-h-[340px] object-cover object-center" />
+        <img src={heroImageSrc} alt={heroImageAlt} class="w-full h-full min-h-[340px] object-cover object-center" />
       </div>
     </div>
   </section>
@@ -36,8 +68,8 @@ import { teamMembers, visionCards, values, companyStats, offices } from '../data
   <!-- Mission -->
   <section class="py-20 px-8 bg-bg-secondary font-[family-name:var(--font-primary)]">
     <div class="max-w-[900px] mx-auto text-center">
-      <h2 class="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] font-medium leading-[1.3] tracking-[-0.02em] mb-6">5.Y helps enterprises run autonomous brand and product experiences that reach every customer, in every moment that matters.</h2>
-      <p class="text-text-secondary text-lg leading-[1.7]">By partnering with industry leaders in automotive, healthcare, consumer electronics, and financial services, we're transforming customer engagement with AI that acts, not just responds—delivering measurable business impact at scale.</p>
+      <h2 class="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] font-medium leading-[1.3] tracking-[-0.02em] mb-6">{missionHeading}</h2>
+      <p class="text-text-secondary text-lg leading-[1.7]">{missionBody}</p>
     </div>
   </section>
 
@@ -46,15 +78,15 @@ import { teamMembers, visionCards, values, companyStats, offices } from '../data
 
   <!-- Team Grid -->
   <TeamGrid
-    heading="Our founders &amp; Team"
-    subtext="5.Y was founded by a team of industry veterans who saw the opportunity to transform how enterprises engage with customers through autonomous AI."
+    heading={teamHeading}
+    subtext={teamSubtext}
     members={teamMembers}
   />
 
   <!-- Vision Cards -->
   <VisionCards
-    label="Our Vision"
-    heading="The brand that shows up, wins."
+    label={visionLabel}
+    heading={visionHeading}
     cards={visionCards}
   />
 
@@ -62,9 +94,9 @@ import { teamMembers, visionCards, values, companyStats, offices } from '../data
   <section id="about" class="py-16 px-8 bg-bg-secondary font-[family-name:var(--font-primary)]">
     <div class="max-w-[1200px] mx-auto">
       <div class="text-center mb-12">
-        <span class="text-[0.75rem] font-semibold uppercase tracking-[0.15em] text-accent">The Company</span>
-        <h2 class="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] mt-2 mb-4">Building the future of customer engagement.</h2>
-        <p class="text-text-secondary text-[1.0625rem] max-w-[600px] mx-auto">5.Y is an agentic AI company building GLUCOSE—the platform that enables enterprises to run autonomous brand and product experiences.</p>
+        <span class="text-[0.75rem] font-semibold uppercase tracking-[0.15em] text-accent">{statsLabel}</span>
+        <h2 class="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] mt-2 mb-4">{statsHeading}</h2>
+        <p class="text-text-secondary text-[1.0625rem] max-w-[600px] mx-auto">{statsSubtext}</p>
       </div>
 
       <!-- Stats -->
@@ -80,9 +112,9 @@ import { teamMembers, visionCards, values, companyStats, offices } from '../data
       <!-- Locations -->
       <div class="grid grid-cols-2 gap-8">
         <div>
-          <h3 class="text-[1.25rem] font-semibold text-text-primary mb-4">Global Presence</h3>
-          <p class="text-text-secondary leading-[1.7] mb-4">With our headquarters in Singapore and a representative office in Seattle, we're building a global platform for autonomous customer engagement.</p>
-          <p class="text-text-secondary leading-[1.7]">We chose Singapore for its position at the crossroads of global commerce, and Seattle for access to world-class AI talent and proximity to leading technology enterprises.</p>
+          <h3 class="text-[1.25rem] font-semibold text-text-primary mb-4">{globalPresenceHeading}</h3>
+          <p class="text-text-secondary leading-[1.7] mb-4">{globalPresenceBody1}</p>
+          <p class="text-text-secondary leading-[1.7]">{globalPresenceBody2}</p>
         </div>
         <div class="flex flex-col gap-4">
           {offices.map((office) => (
@@ -103,8 +135,8 @@ import { teamMembers, visionCards, values, companyStats, offices } from '../data
 
   <!-- CTA -->
   <section id="demo" class="bg-bg-primary border-t border-border-theme py-20 px-8 text-center font-[family-name:var(--font-primary)]">
-    <h2 class="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3rem)] font-medium tracking-[-0.02em] mb-4">See what GLUCOSE can do for you</h2>
-    <p class="text-text-secondary text-lg max-w-[600px] mx-auto mb-8">Discover how GLUCOSE can help your enterprise run autonomous brand experiences that reach every customer, in every moment that matters.</p>
+    <h2 class="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3rem)] font-medium tracking-[-0.02em] mb-4">{ctaHeading}</h2>
+    <p class="text-text-secondary text-lg max-w-[600px] mx-auto mb-8">{ctaSubtext}</p>
     <a href="/contact" class="inline-flex items-center justify-center gap-2 font-[family-name:var(--font-primary)] text-[0.9375rem] font-medium no-underline rounded-pill bg-accent text-bg-primary py-[0.875rem] px-7 transition-all duration-300">Request Demo</a>
   </section>
 </BaseLayout>

@@ -1,0 +1,75 @@
+{
+  "heroLabel": "GLUCOSE Platform",
+  "heroHeading": "See GLUCOSE in Action",
+  "heroSubtext": "Watch how autonomous AI agents transform customer engagement across industries, channels, and use cases.",
+  "ctaHeading": "Ready to transform your customer experience?",
+  "ctaSubtext": "See how GLUCOSE can help your enterprise deliver autonomous brand experiences that reach every customer, in every moment that matters.",
+  "featureSections": [
+    {
+      "id": "meet-glucose",
+      "industry": "consumer",
+      "reversed": false,
+      "label": "Overview",
+      "heading": "Meet GLUCOSE",
+      "tagline": "The complete autonomous brand engagement platform",
+      "body": "Discover GLUCOSE, our intuitive and reliable conversational Agentic-AI platform. See how it redefines customer engagement, enabling brands to autonomously enhance and personalize product experiences at scale.",
+      "linkText": "Watch full demo",
+      "videoSrc": "Videos/Meet GLUCOSE, our intuitive and reliable conversational Agentic-AI..mp4"
+    },
+    {
+      "id": "warning-light",
+      "industry": "automotive",
+      "reversed": true,
+      "label": "Multimodal AI",
+      "heading": "Visual Understanding",
+      "tagline": "Resolving customer issues faster with multimodal AI understanding",
+      "body": "GLUCOSE processes images and visual input to diagnose issues in real-time. Watch as it identifies a warning light on a vehicle dashboard and guides the user through resolution steps via WhatsApp.",
+      "linkText": "Watch full demo",
+      "videoSrc": "Videos/5.Y GLUCOSE Agentic-AI - Multimodal Use Case - Warning Light.mp4"
+    },
+    {
+      "id": "test-drive",
+      "industry": "automotive",
+      "reversed": false,
+      "label": "Sales Automation",
+      "heading": "Seamless Conversions",
+      "tagline": "Converting interest into booked test drives autonomously",
+      "body": "Transform interest into action. GLUCOSE contextually highlights key features based on customer preferences and seamlessly books test drive appointments, all within a natural conversation flow.",
+      "linkText": "Watch full demo",
+      "videoSrc": "Videos/5.Y GLUCOSE Agentic-AI - Sales Opportunity Signal - Test Drive Booking.mp4"
+    },
+    {
+      "id": "voice-processing",
+      "industry": "consumer",
+      "reversed": true,
+      "label": "Voice AI",
+      "heading": "Natural Voice Understanding",
+      "tagline": "Turning negative experiences into brand loyalty moments",
+      "body": "Handle complex voice interactions with empathy. Watch GLUCOSE process voice messages from a frustrated customer, understand context and emotion, and deliver helpful, calming responses.",
+      "linkText": "Watch full demo",
+      "videoSrc": "Videos/5.Y GLUCOSE Agentic-AI - Voice Multimodal Use Case -  Frustrated Customer.mp4"
+    },
+    {
+      "id": "ownership-support",
+      "industry": "automotive",
+      "reversed": false,
+      "label": "Customer Lifecycle",
+      "heading": "Ownership Support",
+      "tagline": "Reducing support cost while increasing service booking rates",
+      "body": "Support customers throughout their entire ownership journey. GLUCOSE autonomously diagnoses issues, provides guidance, and books service appointments directly via Telegram and other messaging platforms.",
+      "linkText": "Watch full demo",
+      "videoSrc": "Videos/5.Y GLUCOSE - Demo - Ownership & After Sales - Telegram.mp4"
+    },
+    {
+      "id": "deep-dive",
+      "industry": "consumer",
+      "reversed": true,
+      "label": "The Pod",
+      "heading": "Deep Dive into GLUCOSE",
+      "tagline": "Insights from founders on agentic AI and customer engagement",
+      "body": "Join 5.Y's founders for an in-depth conversation about the future of customer engagement, the technology behind GLUCOSE, and how agentic AI is transforming enterprise customer experiences.",
+      "linkText": "Watch full episode",
+      "videoSrc": "Videos/The Pod  -  A Deep Dive Into 5.Y GLUCOSE Agentic AI.mp4"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "heroLabel": "About 5.Y",
+  "heroHeading": "Who we are and why we're here",
+  "heroSubtext": "We build autonomous AI experiences that help enterprises engage every customer in every moment that matters.",
+  "heroImageSrc": "/Images/about.jpg",
+  "heroImageAlt": "5.Y Team",
+  "missionHeading": "5.Y helps enterprises run autonomous brand and product experiences that reach every customer, in every moment that matters.",
+  "missionBody": "By partnering with industry leaders in automotive, healthcare, consumer electronics, and financial services, we're transforming customer engagement with AI that acts, not just responds—delivering measurable business impact at scale.",
+  "teamHeading": "Our founders & Team",
+  "teamSubtext": "5.Y was founded by a team of industry veterans who saw the opportunity to transform how enterprises engage with customers through autonomous AI.",
+  "visionLabel": "Our Vision",
+  "visionHeading": "The brand that shows up, wins.",
+  "statsLabel": "The Company",
+  "statsHeading": "Building the future of customer engagement.",
+  "statsSubtext": "5.Y is an agentic AI company building GLUCOSE—the platform that enables enterprises to run autonomous brand and product experiences.",
+  "globalPresenceHeading": "Global Presence",
+  "globalPresenceBody1": "With our headquarters in Singapore and a representative office in Seattle, we're building a global platform for autonomous customer engagement.",
+  "globalPresenceBody2": "We chose Singapore for its position at the crossroads of global commerce, and Seattle for access to world-class AI talent and proximity to leading technology enterprises.",
+  "ctaHeading": "See what GLUCOSE can do for you",
+  "ctaSubtext": "Discover how GLUCOSE can help your enterprise run autonomous brand experiences that reach every customer, in every moment that matters.",
+  "teamMembers": [
+    {
+      "imageSrc": "/Images/Christophe Bacon.png",
+      "name": "Christophe Bacon",
+      "role": "Cofounder & CEO",
+      "bio": "25+ years leading digital transformation across automotive and enterprise. Built and scaled international digital ventures across global markets.",
+      "linkedInHref": "https://www.linkedin.com/in/christophebacon/"
+    },
+    {
+      "imageSrc": "/Images/Vasily Malanin.png",
+      "name": "Vasily Malanin",
+      "role": "Cofounder & CTO",
+      "bio": "15+ years engineering large-scale cloud systems. Connected vehicles, smart manufacturing, AI infrastructure.",
+      "linkedInHref": "https://www.linkedin.com/in/vasmalanin/"
+    },
+    {
+      "imageSrc": "/Images/Denis Kotlyarov.png",
+      "name": "Denis Kotlyarov",
+      "role": "Cofounder & CPO",
+      "bio": "20+ years in AI/ML and distributed systems. Former Head of Developer platforms at Microsoft serving 2M+ users across 180+ countries.",
+      "linkedInHref": "https://www.linkedin.com/in/deniskotlyarov/"
+    },
+    {
+      "imageSrc": "/Images/Tameem Ud Din.png",
+      "name": "Tameem Ud Din",
+      "role": "Founding Engineer",
+      "bio": "Founding engineer at 5.Y. Architect of cloud-native AI infrastructure, serverless systems, and data pipelines powering GLUCOSE globally on AWS.",
+      "linkedInHref": "https://www.linkedin.com/in/tameem623/"
+    },
+    {
+      "imageSrc": "/Images/Danil Suryawan.png",
+      "name": "Danil H. Suryawan",
+      "role": "Full-Stack Engineer",
+      "bio": "Full-stack engineer driving critical architecture and product delivery. Led major data rearchitecture and cross-functional engineering initiatives at 5.Y.",
+      "linkedInHref": "https://www.linkedin.com/in/danilhendrasr/"
+    }
+  ],
+  "visionCards": [
+    {
+      "title": "The Shift",
+      "body": "We're entering an assistant-mediated world. Ask Gemini about a product. Ask ChatGPT for a recommendation. The interface between customers and brands is increasingly AI—and increasingly not owned by the brand."
+    },
+    {
+      "title": "The Risk",
+      "body": "Brands that rely on platform-owned AI risk becoming commodities. Your product is a line item in someone else's response. Your brand voice is compressed into a generic summary."
+    },
+    {
+      "title": "The Opportunity",
+      "body": "The brands that win will be the ones that show up autonomously, contextually, authentically—wherever their customers are. Not waiting for inquiries. Not reacting to tickets. Present."
+    },
+    {
+      "title": "Our Bet",
+      "body": "Customer engagement is leaving the era of human-operated workflows. The next era is autonomous. And the platforms that enable it will define the category. 5.Y is building that platform."
+    },
+    {
+      "title": "Why Now",
+      "body": "CRM is 20+ years old. Assistant-mediated interfaces are emerging. Enterprises are shifting from AI experimentation to deployment. Agentic AI is projected to replace 20–25% of SaaS workflow logic by 2030."
+    },
+    {
+      "title": "Our Architecture",
+      "body": "The value is not in the model — it's in the orchestration architecture. Journey Definition Language, autonomous Planner, deterministic guardrails, and enterprise explainability create lasting defensibility."
+    }
+  ],
+  "values": [
+    {
+      "title": "Trust & Control",
+      "body": "We build trust with our customers through transparency, reliability, and control. AI should amplify human judgment, not replace it. Our platform gives enterprises full visibility into every decision their AI makes, with guardrails that ensure brand consistency and compliance.",
+      "iconName": "trustShield"
+    },
+    {
+      "title": "Customer Obsession",
+      "body": "We deeply understand our customers' business goals and relentlessly focus on driving outcomes, not just technical milestones. Every feature we build starts with a customer problem. When our customer is having an issue, we drop everything and fix it.",
+      "iconName": "smiley"
+    },
+    {
+      "title": "Craftsmanship",
+      "body": "We get the details right, from the prompts we write to the system architecture. We value good taste and believe that quality is non-negotiable. When we notice something isn't right, we take the time to fix it. We are proud of the products we build.",
+      "iconName": "star"
+    },
+    {
+      "title": "Velocity",
+      "body": "We know we don't have the luxury of patience. The AI landscape moves fast, and we move faster. We play to win. We care about our product being the best, and when it isn't, we fix it. When we fail, we talk about it openly so we succeed the next time.",
+      "iconName": "lightning"
+    },
+    {
+      "title": "Team First",
+      "body": "We know that balance and velocity are compatible. We're building something meaningful, and we're doing it together. We support and respect each other, celebrating both personal and professional achievements. Great companies are built by great teams.",
+      "iconName": "heart"
+    }
+  ],
+  "companyStats": [
+    { "value": "2023", "label": "Founded" },
+    { "value": "5",    "label": "Regions" },
+    { "value": "8",    "label": "Industries" },
+    { "value": "∞",    "label": "Scale" }
+  ],
+  "offices": [
+    {
+      "name": "Singapore HQ",
+      "address": "36 Carpenter St\nCarpenter Haus\nSingapore 059915"
+    },
+    {
+      "name": "Seattle, USA",
+      "address": "Representative Office\nSeattle, WA\nUnited States"
+    }
+  ]
+}

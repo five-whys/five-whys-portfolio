@@ -135,3 +135,90 @@ fragment CustomersPageParts on CustomersPage {
     imageAlt
   }
 }
+
+fragment CompanyPageParts on CompanyPage {
+  __typename
+  heroLabel
+  heroHeading
+  heroSubtext
+  heroImageSrc
+  heroImageAlt
+  missionHeading
+  missionBody
+  teamHeading
+  teamSubtext
+  visionLabel
+  visionHeading
+  statsLabel
+  statsHeading
+  statsSubtext
+  globalPresenceHeading
+  globalPresenceBody1
+  globalPresenceBody2
+  ctaHeading
+  ctaSubtext
+  teamMembers {
+    __typename
+    imageSrc
+    name
+    role
+    bio
+    linkedInHref
+  }
+  visionCards {
+    __typename
+    title
+    body
+  }
+  values {
+    __typename
+    title
+    body
+    iconName
+  }
+  companyStats {
+    __typename
+    value
+    label
+  }
+  offices {
+    __typename
+    name
+    address
+  }
+}
+
+fragment ContactPageParts on ContactPage {
+  __typename
+  heroHeading
+  formHeading
+  formSubtext
+  trustedBrandsLabel
+  trustedBrandsSubtext
+  formAction
+  formSubject
+  formRedirectUrl
+  demoFeatures
+  industryOptions
+}
+
+fragment DemoPageParts on DemoPage {
+  __typename
+  heroLabel
+  heroHeading
+  heroSubtext
+  ctaHeading
+  ctaSubtext
+  featureSections {
+    __typename
+    id
+    industry
+    reversed
+    label
+    heading
+    tagline
+    body
+    linkText
+    videoSrc
+  }
+}
