@@ -6,6 +6,105 @@ import {
   Boxes, Globe, ShoppingCart, MessageSquare, BarChart3, Clock,
   Bell, Users, BookOpen, Shield, Settings,
 } from 'lucide-astro';
+
+// ── Overview grids ─────────────────────────────────────────────────────────
+const overviewPrimary = [
+  { href: '#automotive',          Icon: Zap,          title: 'Automotive, Mobility & Transportation',  desc: 'Revolutionize the entire ownership journey from consideration to second purchase.' },
+  { href: '#commercial-vehicles', Icon: Wrench,       title: 'Commercial & Industrial Vehicles',        desc: 'Keep fleets running with autonomous AI support for diagnostics, maintenance, and operations.' },
+  { href: '#industrial',          Icon: Building2,    title: 'Industrial Appliances & Machineries',     desc: 'Maximize asset utilization with real-time operator support and maintenance guidance.' },
+  { href: '#electronics',         Icon: Monitor,      title: 'Consumer Appliances',                     desc: 'Turn unboxing into brand loyalty with feature discovery and personalized guidance.' },
+  { href: '#healthcare',          Icon: Activity,     title: 'Healthcare',                              desc: 'Provide always-on, personalized care while managing costs and compliance.' },
+];
+const overviewExpansion = [
+  { href: '#property',       Icon: Home,         title: 'Buildings & Property Units', desc: 'Intelligent engagement for property occupants, tenants, and buyers.' },
+  { href: '#financial',      Icon: Briefcase,    title: 'Financial Services',          desc: 'Build stronger relationships with immediate, personalized, and secure interactions.' },
+  { href: '#energy',         Icon: Zap,          title: 'Energy & Utilities',          desc: 'Modernize customer engagement with proactive insights and automated support.' },
+  { href: '#hospitality',    Icon: Globe,        title: 'Hospitality & Travel',        desc: 'Elevate the guest experience from booking to checkout with AI concierge.' },
+  { href: '#consumer-goods', Icon: ShoppingCart, title: 'Consumer Goods',              desc: 'Own the direct-to-consumer relationship and drive repeat purchases.' },
+];
+
+// ── Industry feature cards (no icons) ──────────────────────────────────────
+const automotiveCards = [
+  { title: 'Vehicle Configuration & Discovery', body: 'Help customers explore models, compare trims, understand features, and configure their perfect vehicle through natural conversation.' },
+  { title: 'Ownership Onboarding',              body: 'Proactively introduce features, explain controls, and personalize the ownership experience from day one—reducing "how-to" support calls.' },
+  { title: 'Service & Maintenance',             body: 'Schedule service appointments, explain maintenance alerts, guide troubleshooting, and integrate with DMS systems for seamless experience.' },
+  { title: 'Feature Discovery',                 body: 'Most owners never discover half the features they paid for. GLUCOSE contextually introduces features based on usage patterns and preferences.' },
+];
+const healthcareCards = [
+  { title: 'Medical Device Education',   body: 'Guide patients through device setup, usage instructions, and ongoing support for complex medical equipment—from glucose monitors to CPAP machines.' },
+  { title: 'Treatment Journey Support',  body: 'Proactive reminders, medication guidance, and personalized health information throughout the patient journey—with full compliance controls.' },
+  { title: 'Appointment Management',     body: 'Schedule, reschedule, and provide pre-appointment instructions through natural conversation across messaging platforms.' },
+  { title: 'Compliance & Guardrails',    body: 'Built-in IGDs (Instructions & Guidelines Documents) ensure GLUCOSE operates within strict healthcare compliance requirements.' },
+];
+const appliancesCards = [
+  { title: 'Product Onboarding',                   body: 'Guide users through setup, initial configuration, and first-use experiences for smart home devices, appliances, and electronics.' },
+  { title: 'Feature Education',                     body: 'Contextually introduce advanced features based on user behavior and preferences—turning casual users into power users.' },
+  { title: 'Troubleshooting & Support',             body: 'Instant, 24/7 troubleshooting through natural conversation—reducing support ticket volume while improving customer satisfaction.' },
+  { title: 'Accessory & Upgrade Recommendations',  body: 'Contextual recommendations for compatible accessories, software updates, and product upgrades based on usage patterns.' },
+];
+const financialCards = [
+  { title: 'Product Recommendations', body: 'Provide personalized guidance to help customers choose the best financial products for their needs—increasing acquisition and cross-sell rates.' },
+  { title: 'Account Support',         body: 'Respond immediately to questions about account balances, fees, transactions, and policies—boosting customer trust and satisfaction.' },
+  { title: 'Life-Stage Engagement',   body: 'Proactively engage customers during major life events—home buying, retirement planning, education funding—with contextual product information.' },
+  { title: 'Security & Compliance',   body: 'Enterprise-grade security with encrypted data, compliance guardrails, and audit logging for regulated financial services.' },
+];
+const retailCards = [
+  { title: 'Product Discovery',         body: 'Help shoppers find the perfect product through conversational commerce—understanding needs and recommending solutions.' },
+  { title: 'Order Support',             body: 'Track orders, handle returns, process exchanges, and resolve issues instantly through natural conversation.' },
+  { title: 'Product Usage Guidance',    body: 'Provide ongoing support for complex products—assembly instructions, care guides, usage tips, and troubleshooting.' },
+  { title: 'Loyalty & Re-engagement',  body: 'Personalized recommendations, reorder reminders, and loyalty program engagement to drive repeat purchases.' },
+];
+const industrialCards = [
+  { title: 'Operator Training',   body: 'On-demand guidance for equipment operation, safety procedures, and best practices—reducing training time and errors.' },
+  { title: 'Maintenance Support', body: 'Proactive maintenance reminders, troubleshooting assistance, and service scheduling integrated with your systems.' },
+  { title: 'IoT Integration',     body: 'Connect GLUCOSE to IoT sensors for context-aware support—responding to equipment alerts with relevant guidance.' },
+  { title: 'Documentation Access', body: 'Instant access to manuals, specifications, and procedures through natural conversation—no more searching through binders.' },
+];
+
+// ── Industry feature cards (with icons, 3-col) ─────────────────────────────
+const commercialCards = [
+  { Icon: Wrench,       title: 'Predictive Maintenance',      body: 'AI agents that alert operators before breakdowns, schedule service, and coordinate parts availability.' },
+  { Icon: MessageSquare, title: 'Driver & Operator Support',  body: '24/7 multimodal assistance for vehicle operation, troubleshooting, and compliance documentation.' },
+  { Icon: BarChart3,    title: 'Fleet Analytics',             body: 'Capture first-party data on usage patterns, common issues, and operator needs across your entire fleet.' },
+];
+const propertyCards = [
+  { Icon: Boxes,   title: 'Tenant Support',              body: 'Autonomous handling of maintenance requests, facility bookings, and community communications.' },
+  { Icon: Home,    title: 'Property Sales',              body: 'Qualify leads, schedule viewings, and guide prospective buyers through property features via WhatsApp and chat.' },
+  { Icon: Clock,   title: 'Smart Building Integration',  body: 'Connect to IoT systems for real-time facility management, energy monitoring, and occupant notifications.' },
+];
+const energyCards = [
+  { Icon: Zap,      title: 'Usage & Billing Support',   body: 'Autonomous agents that explain bills, compare plans, and process account changes instantly.' },
+  { Icon: Bell,     title: 'Proactive Notifications',   body: 'Alert customers about outages, maintenance windows, and consumption anomalies before they contact you.' },
+  { Icon: Activity, title: 'Demand Response',           body: 'Engage customers in energy-saving programs through intelligent, personalized communication campaigns.' },
+];
+const hospitalityCards = [
+  { Icon: MessageSquare, title: 'AI Concierge',            body: 'Autonomous guest support for bookings, room service, local recommendations, and special requests.' },
+  { Icon: Globe,         title: 'Multilingual Engagement', body: 'Serve international guests in 50+ languages across WhatsApp, LINE, and other regional channels.' },
+  { Icon: Users,         title: 'Loyalty & Upsell',        body: 'Proactively engage guests with personalized upgrade offers, loyalty rewards, and post-stay follow-ups.' },
+];
+const consumerGoodsCards = [
+  { Icon: BookOpen,  title: 'Product Education',   body: 'Guide consumers through product features, usage tips, and care instructions via conversational AI.' },
+  { Icon: BarChart3, title: 'Consumer Insights',   body: 'Capture first-party data on preferences, feedback, and purchase intent directly from conversations.' },
+  { Icon: Bell,      title: 'Lifecycle Engagement', body: 'Proactive re-engagement for refills, upgrades, and loyalty programs — building long-term brand relationships.' },
+];
+
+// ── Stats rows ─────────────────────────────────────────────────────────────
+const automotiveStats   = [{ v: '50%+', l: 'of vehicle features go unused by owners' }, { v: '24/7', l: 'support without call center overhead' }, { v: '50+', l: 'languages for global deployment' }];
+const healthcareStats   = [{ v: 'Always-On', l: 'patient support outside office hours' }, { v: 'Compliant', l: 'with healthcare regulations' }, { v: 'Multimodal', l: 'text, voice, images for accessibility' }];
+const appliancesStats   = [{ v: 'Reduced', l: 'support ticket volume' }, { v: 'Increased', l: 'feature adoption rates' }, { v: 'Higher', l: 'customer lifetime value' }];
+const financialStats    = [{ v: 'Secure', l: 'enterprise-grade encryption' }, { v: 'Compliant', l: 'with financial regulations' }, { v: 'Immediate', l: 'personalized responses' }];
+const retailStats       = [{ v: 'Increased', l: 'conversion rates' }, { v: 'Reduced', l: 'return and exchange rates' }, { v: 'Higher', l: 'repeat purchase rates' }];
+const industrialStats   = [{ v: 'Minimized', l: 'equipment downtime' }, { v: 'Improved', l: 'safety compliance' }, { v: 'Enhanced', l: 'operator efficiency' }];
+
+// ── Cross-industry benefits ────────────────────────────────────────────────
+const crossBenefits = [
+  { Icon: Globe,        title: 'Multilingual',          desc: '50+ languages for global deployment' },
+  { Icon: Monitor,      title: 'Multimodal',            desc: 'Text, voice, images, and video' },
+  { Icon: MessageSquare, title: 'Omnichannel',          desc: 'WhatsApp, Telegram, Line, Viber, and more' },
+  { Icon: Shield,       title: 'Enterprise Security',   desc: 'AWS-powered, encrypted, compliant' },
+  { Icon: Activity,     title: 'Analytics',             desc: 'First-party data and contextual insights' },
+  { Icon: Settings,     title: 'No-Code Management',    desc: 'Configure without technical expertise' },
+];
 ---
 
 <BaseLayout
@@ -205,9 +304,15 @@ import {
       box-shadow: 0 12px 32px rgba(255,192,0,0.06);
     }
     .industry-feature-card > * { position: relative; z-index: 1; }
+    .industry-feature-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+    .industry-feature-card-header h4 { margin: 0; }
     .industry-feature-card-icon {
-      width: 2.25rem;
-      height: 2.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
       color: var(--color-accent);
       flex-shrink: 0;
     }
@@ -350,83 +455,25 @@ import {
         />
 
         <div class="section-category-badge">Where We Win First</div>
-
         <div class="industries-overview-grid">
-          <a href="#automotive" class="industry-overview-card">
-            <div class="industry-overview-icon w-9 h-9 text-accent">
-              <Zap size={40} />
-            </div>
-            <h3 class="font-display text-base font-medium text-text-primary m-0">Automotive, Mobility & Transportation</h3>
-            <p>Revolutionize the entire ownership journey from consideration to second purchase.</p>
-          </a>
-          <a href="#commercial-vehicles" class="industry-overview-card">
-            <div class="industry-overview-icon w-9 h-9 text-accent">
-              <Wrench size={40} />
-            </div>
-            <h3 class="font-display text-base font-medium text-text-primary m-0">Commercial & Industrial Vehicles</h3>
-            <p>Keep fleets running with autonomous AI support for diagnostics, maintenance, and operations.</p>
-          </a>
-          <a href="#industrial" class="industry-overview-card">
-            <div class="industry-overview-icon w-9 h-9 text-accent">
-              <Building2 size={40} />
-            </div>
-            <h3 class="font-display text-base font-medium text-text-primary m-0">Industrial Appliances & Machineries</h3>
-            <p>Maximize asset utilization with real-time operator support and maintenance guidance.</p>
-          </a>
-          <a href="#electronics" class="industry-overview-card">
-            <div class="industry-overview-icon w-9 h-9 text-accent">
-              <Monitor size={40} />
-            </div>
-            <h3 class="font-display text-base font-medium text-text-primary m-0">Consumer Appliances</h3>
-            <p>Turn unboxing into brand loyalty with feature discovery and personalized guidance.</p>
-          </a>
-          <a href="#healthcare" class="industry-overview-card">
-            <div class="industry-overview-icon w-9 h-9 text-accent">
-              <Activity size={40} />
-            </div>
-            <h3 class="font-display text-base font-medium text-text-primary m-0">Healthcare</h3>
-            <p>Provide always-on, personalized care while managing costs and compliance.</p>
-          </a>
+          {overviewPrimary.map(({ href, Icon, title, desc }) => (
+            <a href={href} class="industry-overview-card">
+              <div class="industry-overview-icon w-9 h-9 text-accent"><Icon size={40} /></div>
+              <h3 class="font-display text-base font-medium text-text-primary m-0">{title}</h3>
+              <p>{desc}</p>
+            </a>
+          ))}
         </div>
 
         <div class="section-category-badge section-category-badge--muted mt-8">Expansion Verticals</div>
-
         <div class="industries-overview-grid">
-          <a href="#property" class="industry-overview-card">
-            <div class="industry-overview-icon w-9 h-9 text-accent">
-              <Home size={40} />
-            </div>
-            <h3 class="font-display text-base font-medium text-text-primary m-0">Buildings & Property Units</h3>
-            <p>Intelligent engagement for property occupants, tenants, and buyers.</p>
-          </a>
-          <a href="#financial" class="industry-overview-card">
-            <div class="industry-overview-icon w-9 h-9 text-accent">
-              <Briefcase size={40} />
-            </div>
-            <h3 class="font-display text-base font-medium text-text-primary m-0">Financial Services</h3>
-            <p>Build stronger relationships with immediate, personalized, and secure interactions.</p>
-          </a>
-          <a href="#energy" class="industry-overview-card">
-            <div class="industry-overview-icon w-9 h-9 text-accent">
-              <Zap size={40} />
-            </div>
-            <h3 class="font-display text-base font-medium text-text-primary m-0">Energy & Utilities</h3>
-            <p>Modernize customer engagement with proactive insights and automated support.</p>
-          </a>
-          <a href="#hospitality" class="industry-overview-card">
-            <div class="industry-overview-icon w-9 h-9 text-accent">
-              <Globe size={40} />
-            </div>
-            <h3 class="font-display text-base font-medium text-text-primary m-0">Hospitality & Travel</h3>
-            <p>Elevate the guest experience from booking to checkout with AI concierge.</p>
-          </a>
-          <a href="#consumer-goods" class="industry-overview-card">
-            <div class="industry-overview-icon w-9 h-9 text-accent">
-              <ShoppingCart size={40} />
-            </div>
-            <h3 class="font-display text-base font-medium text-text-primary m-0">Consumer Goods</h3>
-            <p>Own the direct-to-consumer relationship and drive repeat purchases.</p>
-          </a>
+          {overviewExpansion.map(({ href, Icon, title, desc }) => (
+            <a href={href} class="industry-overview-card">
+              <div class="industry-overview-icon w-9 h-9 text-accent"><Icon size={40} /></div>
+              <h3 class="font-display text-base font-medium text-text-primary m-0">{title}</h3>
+              <p>{desc}</p>
+            </a>
+          ))}
         </div>
       </div>
     </section>
@@ -452,36 +499,20 @@ import {
           </div>
         </div>
         <div class="industry-features-grid">
-          <div class="industry-feature-card">
-            <h4>Vehicle Configuration & Discovery</h4>
-            <p>Help customers explore models, compare trims, understand features, and configure their perfect vehicle through natural conversation.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Ownership Onboarding</h4>
-            <p>Proactively introduce features, explain controls, and personalize the ownership experience from day one—reducing "how-to" support calls.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Service & Maintenance</h4>
-            <p>Schedule service appointments, explain maintenance alerts, guide troubleshooting, and integrate with DMS systems for seamless experience.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Feature Discovery</h4>
-            <p>Most owners never discover half the features they paid for. GLUCOSE contextually introduces features based on usage patterns and preferences.</p>
-          </div>
+          {automotiveCards.map(({ title, body }) => (
+            <div class="industry-feature-card">
+              <h4>{title}</h4>
+              <p>{body}</p>
+            </div>
+          ))}
         </div>
         <div class="industry-stats-row">
-          <div class="industry-stat">
-            <span class="industry-stat-value">50%+</span>
-            <span class="industry-stat-label">of vehicle features go unused by owners</span>
-          </div>
-          <div class="industry-stat">
-            <span class="industry-stat-value">24/7</span>
-            <span class="industry-stat-label">support without call center overhead</span>
-          </div>
-          <div class="industry-stat">
-            <span class="industry-stat-value">50+</span>
-            <span class="industry-stat-label">languages for global deployment</span>
-          </div>
+          {automotiveStats.map(({ v, l }) => (
+            <div class="industry-stat">
+              <span class="industry-stat-value">{v}</span>
+              <span class="industry-stat-label">{l}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -496,36 +527,20 @@ import {
           class="max-w-[700px] mb-10"
         />
         <div class="industry-features-grid">
-          <div class="industry-feature-card">
-            <h4>Medical Device Education</h4>
-            <p>Guide patients through device setup, usage instructions, and ongoing support for complex medical equipment—from glucose monitors to CPAP machines.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Treatment Journey Support</h4>
-            <p>Proactive reminders, medication guidance, and personalized health information throughout the patient journey—with full compliance controls.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Appointment Management</h4>
-            <p>Schedule, reschedule, and provide pre-appointment instructions through natural conversation across messaging platforms.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Compliance & Guardrails</h4>
-            <p>Built-in IGDs (Instructions & Guidelines Documents) ensure GLUCOSE operates within strict healthcare compliance requirements.</p>
-          </div>
+          {healthcareCards.map(({ title, body }) => (
+            <div class="industry-feature-card">
+              <h4>{title}</h4>
+              <p>{body}</p>
+            </div>
+          ))}
         </div>
         <div class="industry-stats-row">
-          <div class="industry-stat">
-            <span class="industry-stat-value">Always-On</span>
-            <span class="industry-stat-label">patient support outside office hours</span>
-          </div>
-          <div class="industry-stat">
-            <span class="industry-stat-value">Compliant</span>
-            <span class="industry-stat-label">with healthcare regulations</span>
-          </div>
-          <div class="industry-stat">
-            <span class="industry-stat-value">Multimodal</span>
-            <span class="industry-stat-label">text, voice, images for accessibility</span>
-          </div>
+          {healthcareStats.map(({ v, l }) => (
+            <div class="industry-stat">
+              <span class="industry-stat-value">{v}</span>
+              <span class="industry-stat-label">{l}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -540,36 +555,20 @@ import {
           class="max-w-[700px] mb-10"
         />
         <div class="industry-features-grid">
-          <div class="industry-feature-card">
-            <h4>Product Onboarding</h4>
-            <p>Guide users through setup, initial configuration, and first-use experiences for smart home devices, appliances, and electronics.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Feature Education</h4>
-            <p>Contextually introduce advanced features based on user behavior and preferences—turning casual users into power users.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Troubleshooting & Support</h4>
-            <p>Instant, 24/7 troubleshooting through natural conversation—reducing support ticket volume while improving customer satisfaction.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Accessory & Upgrade Recommendations</h4>
-            <p>Contextual recommendations for compatible accessories, software updates, and product upgrades based on usage patterns.</p>
-          </div>
+          {appliancesCards.map(({ title, body }) => (
+            <div class="industry-feature-card">
+              <h4>{title}</h4>
+              <p>{body}</p>
+            </div>
+          ))}
         </div>
         <div class="industry-stats-row">
-          <div class="industry-stat">
-            <span class="industry-stat-value">Reduced</span>
-            <span class="industry-stat-label">support ticket volume</span>
-          </div>
-          <div class="industry-stat">
-            <span class="industry-stat-value">Increased</span>
-            <span class="industry-stat-label">feature adoption rates</span>
-          </div>
-          <div class="industry-stat">
-            <span class="industry-stat-value">Higher</span>
-            <span class="industry-stat-label">customer lifetime value</span>
-          </div>
+          {appliancesStats.map(({ v, l }) => (
+            <div class="industry-stat">
+              <span class="industry-stat-value">{v}</span>
+              <span class="industry-stat-label">{l}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -584,36 +583,20 @@ import {
           class="max-w-[700px] mb-10"
         />
         <div class="industry-features-grid">
-          <div class="industry-feature-card">
-            <h4>Product Recommendations</h4>
-            <p>Provide personalized guidance to help customers choose the best financial products for their needs—increasing acquisition and cross-sell rates.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Account Support</h4>
-            <p>Respond immediately to questions about account balances, fees, transactions, and policies—boosting customer trust and satisfaction.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Life-Stage Engagement</h4>
-            <p>Proactively engage customers during major life events—home buying, retirement planning, education funding—with contextual product information.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Security & Compliance</h4>
-            <p>Enterprise-grade security with encrypted data, compliance guardrails, and audit logging for regulated financial services.</p>
-          </div>
+          {financialCards.map(({ title, body }) => (
+            <div class="industry-feature-card">
+              <h4>{title}</h4>
+              <p>{body}</p>
+            </div>
+          ))}
         </div>
         <div class="industry-stats-row">
-          <div class="industry-stat">
-            <span class="industry-stat-value">Secure</span>
-            <span class="industry-stat-label">enterprise-grade encryption</span>
-          </div>
-          <div class="industry-stat">
-            <span class="industry-stat-value">Compliant</span>
-            <span class="industry-stat-label">with financial regulations</span>
-          </div>
-          <div class="industry-stat">
-            <span class="industry-stat-value">Immediate</span>
-            <span class="industry-stat-label">personalized responses</span>
-          </div>
+          {financialStats.map(({ v, l }) => (
+            <div class="industry-stat">
+              <span class="industry-stat-value">{v}</span>
+              <span class="industry-stat-label">{l}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -628,36 +611,20 @@ import {
           class="max-w-[700px] mb-10"
         />
         <div class="industry-features-grid">
-          <div class="industry-feature-card">
-            <h4>Product Discovery</h4>
-            <p>Help shoppers find the perfect product through conversational commerce—understanding needs and recommending solutions.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Order Support</h4>
-            <p>Track orders, handle returns, process exchanges, and resolve issues instantly through natural conversation.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Product Usage Guidance</h4>
-            <p>Provide ongoing support for complex products—assembly instructions, care guides, usage tips, and troubleshooting.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Loyalty & Re-engagement</h4>
-            <p>Personalized recommendations, reorder reminders, and loyalty program engagement to drive repeat purchases.</p>
-          </div>
+          {retailCards.map(({ title, body }) => (
+            <div class="industry-feature-card">
+              <h4>{title}</h4>
+              <p>{body}</p>
+            </div>
+          ))}
         </div>
         <div class="industry-stats-row">
-          <div class="industry-stat">
-            <span class="industry-stat-value">Increased</span>
-            <span class="industry-stat-label">conversion rates</span>
-          </div>
-          <div class="industry-stat">
-            <span class="industry-stat-value">Reduced</span>
-            <span class="industry-stat-label">return and exchange rates</span>
-          </div>
-          <div class="industry-stat">
-            <span class="industry-stat-value">Higher</span>
-            <span class="industry-stat-label">repeat purchase rates</span>
-          </div>
+          {retailStats.map(({ v, l }) => (
+            <div class="industry-stat">
+              <span class="industry-stat-value">{v}</span>
+              <span class="industry-stat-label">{l}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -672,36 +639,20 @@ import {
           class="max-w-[700px] mb-10"
         />
         <div class="industry-features-grid">
-          <div class="industry-feature-card">
-            <h4>Operator Training</h4>
-            <p>On-demand guidance for equipment operation, safety procedures, and best practices—reducing training time and errors.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Maintenance Support</h4>
-            <p>Proactive maintenance reminders, troubleshooting assistance, and service scheduling integrated with your systems.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>IoT Integration</h4>
-            <p>Connect GLUCOSE to IoT sensors for context-aware support—responding to equipment alerts with relevant guidance.</p>
-          </div>
-          <div class="industry-feature-card">
-            <h4>Documentation Access</h4>
-            <p>Instant access to manuals, specifications, and procedures through natural conversation—no more searching through binders.</p>
-          </div>
+          {industrialCards.map(({ title, body }) => (
+            <div class="industry-feature-card">
+              <h4>{title}</h4>
+              <p>{body}</p>
+            </div>
+          ))}
         </div>
         <div class="industry-stats-row">
-          <div class="industry-stat">
-            <span class="industry-stat-value">Minimized</span>
-            <span class="industry-stat-label">equipment downtime</span>
-          </div>
-          <div class="industry-stat">
-            <span class="industry-stat-value">Improved</span>
-            <span class="industry-stat-label">safety compliance</span>
-          </div>
-          <div class="industry-stat">
-            <span class="industry-stat-value">Enhanced</span>
-            <span class="industry-stat-label">operator efficiency</span>
-          </div>
+          {industrialStats.map(({ v, l }) => (
+            <div class="industry-stat">
+              <span class="industry-stat-value">{v}</span>
+              <span class="industry-stat-label">{l}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -717,21 +668,15 @@ import {
           class="max-w-[700px] mb-10 mx-auto"
         />
         <div class="industry-features-grid industry-features-grid--three">
-          <div class="industry-feature-card">
-            <div class="industry-feature-card-icon"><Wrench size={24} /></div>
-            <h4>Predictive Maintenance</h4>
-            <p>AI agents that alert operators before breakdowns, schedule service, and coordinate parts availability.</p>
-          </div>
-          <div class="industry-feature-card">
-            <div class="industry-feature-card-icon"><MessageSquare size={24} /></div>
-            <h4>Driver & Operator Support</h4>
-            <p>24/7 multimodal assistance for vehicle operation, troubleshooting, and compliance documentation.</p>
-          </div>
-          <div class="industry-feature-card">
-            <div class="industry-feature-card-icon"><BarChart3 size={24} /></div>
-            <h4>Fleet Analytics</h4>
-            <p>Capture first-party data on usage patterns, common issues, and operator needs across your entire fleet.</p>
-          </div>
+          {commercialCards.map(({ Icon, title, body }) => (
+            <div class="industry-feature-card">
+              <div class="industry-feature-card-header">
+                <div class="industry-feature-card-icon"><Icon size={20} /></div>
+                <h4>{title}</h4>
+              </div>
+              <p>{body}</p>
+            </div>
+          ))}
         </div>
         <div class="text-center">
           <a href="/contact" class="inline-flex items-center mt-8 py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90">Explore Commercial Vehicles</a>
@@ -750,21 +695,15 @@ import {
           class="max-w-[700px] mb-10 mx-auto"
         />
         <div class="industry-features-grid industry-features-grid--three">
-          <div class="industry-feature-card">
-            <div class="industry-feature-card-icon"><Boxes size={24} /></div>
-            <h4>Tenant Support</h4>
-            <p>Autonomous handling of maintenance requests, facility bookings, and community communications.</p>
-          </div>
-          <div class="industry-feature-card">
-            <div class="industry-feature-card-icon"><Home size={24} /></div>
-            <h4>Property Sales</h4>
-            <p>Qualify leads, schedule viewings, and guide prospective buyers through property features via WhatsApp and chat.</p>
-          </div>
-          <div class="industry-feature-card">
-            <div class="industry-feature-card-icon"><Clock size={24} /></div>
-            <h4>Smart Building Integration</h4>
-            <p>Connect to IoT systems for real-time facility management, energy monitoring, and occupant notifications.</p>
-          </div>
+          {propertyCards.map(({ Icon, title, body }) => (
+            <div class="industry-feature-card">
+              <div class="industry-feature-card-header">
+                <div class="industry-feature-card-icon"><Icon size={20} /></div>
+                <h4>{title}</h4>
+              </div>
+              <p>{body}</p>
+            </div>
+          ))}
         </div>
         <div class="text-center">
           <a href="/contact" class="inline-flex items-center mt-8 py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90">Explore Property Solutions</a>
@@ -783,21 +722,15 @@ import {
           class="max-w-[700px] mb-10 mx-auto"
         />
         <div class="industry-features-grid industry-features-grid--three">
-          <div class="industry-feature-card">
-            <div class="industry-feature-card-icon"><Zap size={24} /></div>
-            <h4>Usage & Billing Support</h4>
-            <p>Autonomous agents that explain bills, compare plans, and process account changes instantly.</p>
-          </div>
-          <div class="industry-feature-card">
-            <div class="industry-feature-card-icon"><Bell size={24} /></div>
-            <h4>Proactive Notifications</h4>
-            <p>Alert customers about outages, maintenance windows, and consumption anomalies before they contact you.</p>
-          </div>
-          <div class="industry-feature-card">
-            <div class="industry-feature-card-icon"><Activity size={24} /></div>
-            <h4>Demand Response</h4>
-            <p>Engage customers in energy-saving programs through intelligent, personalized communication campaigns.</p>
-          </div>
+          {energyCards.map(({ Icon, title, body }) => (
+            <div class="industry-feature-card">
+              <div class="industry-feature-card-header">
+                <div class="industry-feature-card-icon"><Icon size={20} /></div>
+                <h4>{title}</h4>
+              </div>
+              <p>{body}</p>
+            </div>
+          ))}
         </div>
         <div class="text-center">
           <a href="/contact" class="inline-flex items-center mt-8 py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90">Explore Energy Solutions</a>
@@ -816,21 +749,15 @@ import {
           class="max-w-[700px] mb-10 mx-auto"
         />
         <div class="industry-features-grid industry-features-grid--three">
-          <div class="industry-feature-card">
-            <div class="industry-feature-card-icon"><MessageSquare size={24} /></div>
-            <h4>AI Concierge</h4>
-            <p>Autonomous guest support for bookings, room service, local recommendations, and special requests.</p>
-          </div>
-          <div class="industry-feature-card">
-            <div class="industry-feature-card-icon"><Globe size={24} /></div>
-            <h4>Multilingual Engagement</h4>
-            <p>Serve international guests in 50+ languages across WhatsApp, LINE, and other regional channels.</p>
-          </div>
-          <div class="industry-feature-card">
-            <div class="industry-feature-card-icon"><Users size={24} /></div>
-            <h4>Loyalty & Upsell</h4>
-            <p>Proactively engage guests with personalized upgrade offers, loyalty rewards, and post-stay follow-ups.</p>
-          </div>
+          {hospitalityCards.map(({ Icon, title, body }) => (
+            <div class="industry-feature-card">
+              <div class="industry-feature-card-header">
+                <div class="industry-feature-card-icon"><Icon size={20} /></div>
+                <h4>{title}</h4>
+              </div>
+              <p>{body}</p>
+            </div>
+          ))}
         </div>
         <div class="text-center">
           <a href="/contact" class="inline-flex items-center mt-8 py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90">Explore Hospitality Solutions</a>
@@ -849,21 +776,15 @@ import {
           class="max-w-[700px] mb-10 mx-auto"
         />
         <div class="industry-features-grid industry-features-grid--three">
-          <div class="industry-feature-card">
-            <div class="industry-feature-card-icon"><BookOpen size={24} /></div>
-            <h4>Product Education</h4>
-            <p>Guide consumers through product features, usage tips, and care instructions via conversational AI.</p>
-          </div>
-          <div class="industry-feature-card">
-            <div class="industry-feature-card-icon"><BarChart3 size={24} /></div>
-            <h4>Consumer Insights</h4>
-            <p>Capture first-party data on preferences, feedback, and purchase intent directly from conversations.</p>
-          </div>
-          <div class="industry-feature-card">
-            <div class="industry-feature-card-icon"><Bell size={24} /></div>
-            <h4>Lifecycle Engagement</h4>
-            <p>Proactive re-engagement for refills, upgrades, and loyalty programs — building long-term brand relationships.</p>
-          </div>
+          {consumerGoodsCards.map(({ Icon, title, body }) => (
+            <div class="industry-feature-card">
+              <div class="industry-feature-card-header">
+                <div class="industry-feature-card-icon"><Icon size={20} /></div>
+                <h4>{title}</h4>
+              </div>
+              <p>{body}</p>
+            </div>
+          ))}
         </div>
         <div class="text-center">
           <a href="/contact" class="inline-flex items-center mt-8 py-3 px-7 bg-accent text-black font-semibold text-[0.9375rem] rounded-lg no-underline transition-colors duration-200 hover:opacity-90">Explore Consumer Solutions</a>
@@ -882,48 +803,13 @@ import {
           class="max-w-[540px] mb-12"
         />
         <div class="cross-benefits-grid">
-          <div class="cross-benefit-card">
-            <div class="cross-benefit-icon">
-              <Globe size={24} />
+          {crossBenefits.map(({ Icon, title, desc }) => (
+            <div class="cross-benefit-card">
+              <div class="cross-benefit-icon"><Icon size={20} /></div>
+              <h4>{title}</h4>
+              <p>{desc}</p>
             </div>
-            <h4>Multilingual</h4>
-            <p>50+ languages for global deployment</p>
-          </div>
-          <div class="cross-benefit-card">
-            <div class="cross-benefit-icon">
-              <Monitor size={24} />
-            </div>
-            <h4>Multimodal</h4>
-            <p>Text, voice, images, and video</p>
-          </div>
-          <div class="cross-benefit-card">
-            <div class="cross-benefit-icon">
-              <MessageSquare size={24} />
-            </div>
-            <h4>Omnichannel</h4>
-            <p>WhatsApp, Telegram, Line, Viber, and more</p>
-          </div>
-          <div class="cross-benefit-card">
-            <div class="cross-benefit-icon">
-              <Shield size={24} />
-            </div>
-            <h4>Enterprise Security</h4>
-            <p>AWS-powered, encrypted, compliant</p>
-          </div>
-          <div class="cross-benefit-card">
-            <div class="cross-benefit-icon">
-              <Activity size={24} />
-            </div>
-            <h4>Analytics</h4>
-            <p>First-party data and contextual insights</p>
-          </div>
-          <div class="cross-benefit-card">
-            <div class="cross-benefit-icon">
-              <Settings size={24} />
-            </div>
-            <h4>No-Code Management</h4>
-            <p>Configure without technical expertise</p>
-          </div>
+          ))}
         </div>
       </div>
     </section>

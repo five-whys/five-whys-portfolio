@@ -132,6 +132,69 @@ type PagesConnection implements Connection {
   edges: [PagesConnectionEdges]
 }
 
+type VsPageComparisonBlocks {
+  heading: String
+  body: String
+  bullets: [String]
+  visualTitle: String
+  visualDesc: String
+}
+
+type VsPageFeatureTable1Rows {
+  feature: String
+  glucose: String
+  col2: String
+  col3: String
+}
+
+type VsPageFeatureTable1 {
+  label: String
+  heading: String
+  subtext: String
+  col2: String
+  col3: String
+  rows: [VsPageFeatureTable1Rows]
+}
+
+type VsPageFeatureTable2Rows {
+  feature: String
+  glucose: String
+  col2: String
+  col3: String
+}
+
+type VsPageFeatureTable2 {
+  label: String
+  heading: String
+  subtext: String
+  col2: String
+  col3: String
+  rows: [VsPageFeatureTable2Rows]
+}
+
+type VsPageEngagementStack {
+  heading: String
+  legacyLabel: String
+  legacyItems: [String]
+  agenticLabel: String
+  agenticItems: [String]
+}
+
+type VsPageTestimonialsItems {
+  quote: String
+  name: String
+  role: String
+  avatarSrc: String
+  avatarAlt: String
+}
+
+type VsPageTestimonials {
+  label: String
+  heading: String
+  subtext: String
+  items: [VsPageTestimonialsItems]
+}
+
 type VsPage implements Node & Document {
   heroHeading: String
   heroSubtext: String
@@ -140,9 +203,87 @@ type VsPage implements Node & Document {
   sectionSubtext: String
   ctaHeading: String
   ctaSubtext: String
+  comparisonBlocks: [VsPageComparisonBlocks]
+  featureTable1: VsPageFeatureTable1
+  featureTable2: VsPageFeatureTable2
+  engagementStack: VsPageEngagementStack
+  testimonials: VsPageTestimonials
+  pricingLabel: String
+  pricingHeading: String
+  pricingSubtext: String
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
+}
+
+input VsPageComparisonBlocksFilter {
+  heading: StringFilter
+  body: StringFilter
+  bullets: StringFilter
+  visualTitle: StringFilter
+  visualDesc: StringFilter
+}
+
+input VsPageFeatureTable1RowsFilter {
+  feature: StringFilter
+  glucose: StringFilter
+  col2: StringFilter
+  col3: StringFilter
+}
+
+input VsPageFeatureTable1Filter {
+  label: StringFilter
+  heading: StringFilter
+  subtext: StringFilter
+  col2: StringFilter
+  col3: StringFilter
+  rows: VsPageFeatureTable1RowsFilter
+}
+
+input VsPageFeatureTable2RowsFilter {
+  feature: StringFilter
+  glucose: StringFilter
+  col2: StringFilter
+  col3: StringFilter
+}
+
+input VsPageFeatureTable2Filter {
+  label: StringFilter
+  heading: StringFilter
+  subtext: StringFilter
+  col2: StringFilter
+  col3: StringFilter
+  rows: VsPageFeatureTable2RowsFilter
+}
+
+input VsPageEngagementStackFilter {
+  heading: StringFilter
+  legacyLabel: StringFilter
+  legacyItems: StringFilter
+  agenticLabel: StringFilter
+  agenticItems: StringFilter
+}
+
+input ImageFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input VsPageTestimonialsItemsFilter {
+  quote: StringFilter
+  name: StringFilter
+  role: StringFilter
+  avatarSrc: ImageFilter
+  avatarAlt: StringFilter
+}
+
+input VsPageTestimonialsFilter {
+  label: StringFilter
+  heading: StringFilter
+  subtext: StringFilter
+  items: VsPageTestimonialsItemsFilter
 }
 
 input VsPageFilter {
@@ -153,6 +294,14 @@ input VsPageFilter {
   sectionSubtext: StringFilter
   ctaHeading: StringFilter
   ctaSubtext: StringFilter
+  comparisonBlocks: VsPageComparisonBlocksFilter
+  featureTable1: VsPageFeatureTable1Filter
+  featureTable2: VsPageFeatureTable2Filter
+  engagementStack: VsPageEngagementStackFilter
+  testimonials: VsPageTestimonialsFilter
+  pricingLabel: StringFilter
+  pricingHeading: StringFilter
+  pricingSubtext: StringFilter
 }
 
 type VsPageConnectionEdges {
@@ -240,9 +389,9 @@ input CustomersPageFeaturedCustomerFilter {
   heading: StringFilter
   body: StringFilter
   href: StringFilter
-  imageSrc: StringFilter
+  imageSrc: ImageFilter
   imageAlt: StringFilter
-  logoSrc: StringFilter
+  logoSrc: ImageFilter
   logoAlt: StringFilter
   metrics: CustomersPageFeaturedCustomerMetricsFilter
 }
@@ -251,9 +400,9 @@ input CustomersPageFeaturedTestimonialFilter {
   quote: StringFilter
   name: StringFilter
   role: StringFilter
-  logoSrc: StringFilter
+  logoSrc: ImageFilter
   logoAlt: StringFilter
-  avatarSrc: StringFilter
+  avatarSrc: ImageFilter
   avatarAlt: StringFilter
 }
 
@@ -266,9 +415,9 @@ input CustomersPageResultsFilter {
   title: StringFilter
   industry: StringFilter
   href: StringFilter
-  imageSrc: StringFilter
+  imageSrc: ImageFilter
   imageAlt: StringFilter
-  logoSrc: StringFilter
+  logoSrc: ImageFilter
   logoAlt: StringFilter
   metrics: CustomersPageResultsMetricsFilter
 }
@@ -278,7 +427,7 @@ input CustomersPageSuccessStoriesFilter {
   title: StringFilter
   body: StringFilter
   href: StringFilter
-  imageSrc: StringFilter
+  imageSrc: ImageFilter
   imageAlt: StringFilter
 }
 
@@ -337,6 +486,69 @@ input PagesMutation {
   body: JSON
 }
 
+input VsPageComparisonBlocksMutation {
+  heading: String
+  body: String
+  bullets: [String]
+  visualTitle: String
+  visualDesc: String
+}
+
+input VsPageFeatureTable1RowsMutation {
+  feature: String
+  glucose: String
+  col2: String
+  col3: String
+}
+
+input VsPageFeatureTable1Mutation {
+  label: String
+  heading: String
+  subtext: String
+  col2: String
+  col3: String
+  rows: [VsPageFeatureTable1RowsMutation]
+}
+
+input VsPageFeatureTable2RowsMutation {
+  feature: String
+  glucose: String
+  col2: String
+  col3: String
+}
+
+input VsPageFeatureTable2Mutation {
+  label: String
+  heading: String
+  subtext: String
+  col2: String
+  col3: String
+  rows: [VsPageFeatureTable2RowsMutation]
+}
+
+input VsPageEngagementStackMutation {
+  heading: String
+  legacyLabel: String
+  legacyItems: [String]
+  agenticLabel: String
+  agenticItems: [String]
+}
+
+input VsPageTestimonialsItemsMutation {
+  quote: String
+  name: String
+  role: String
+  avatarSrc: String
+  avatarAlt: String
+}
+
+input VsPageTestimonialsMutation {
+  label: String
+  heading: String
+  subtext: String
+  items: [VsPageTestimonialsItemsMutation]
+}
+
 input VsPageMutation {
   heroHeading: String
   heroSubtext: String
@@ -345,6 +557,14 @@ input VsPageMutation {
   sectionSubtext: String
   ctaHeading: String
   ctaSubtext: String
+  comparisonBlocks: [VsPageComparisonBlocksMutation]
+  featureTable1: VsPageFeatureTable1Mutation
+  featureTable2: VsPageFeatureTable2Mutation
+  engagementStack: VsPageEngagementStackMutation
+  testimonials: VsPageTestimonialsMutation
+  pricingLabel: String
+  pricingHeading: String
+  pricingSubtext: String
 }
 
 input CustomersPageFeaturedCustomerMetricsMutation {

@@ -5,8 +5,16 @@ import ResultsGrid from '../components/sections/ResultsGrid.astro';
 import SuccessStoryCard from '../components/cards/SuccessStoryCard.astro';
 import { ArrowRight } from 'lucide-astro';
 import { getEntry } from 'astro:content';
+
 const cms = await getEntry('customersPage', 'customers');
+if (!cms) throw new Error('Missing customersPage/customers content entry');
 const { successStories, results, featuredCustomer, featuredTestimonial, heroHeading, heroSubtext, ctaHeading, ctaSubtext } = cms.data;
+
+// Astro infers nested data-collection array items as optional — cast to align with component Props
+type StoryItem  = { href: string; imageSrc: string; imageAlt: string; brand: string; title: string; body: string };
+type ResultItem = { imageSrc: string; imageAlt: string; logoSrc: string; logoAlt: string; metrics: { label: string; value: string }[]; industry: string; title: string; href: string };
+const typedStories  = successStories as StoryItem[];
+const typedResults  = results as ResultItem[];
 ---
 
 <BaseLayout
@@ -25,7 +33,7 @@ const { successStories, results, featuredCustomer, featuredTestimonial, heroHead
   <PageHero heading={heroHeading} subtext={heroSubtext} />
 
   <!-- Featured Customer - IHH Healthcare -->
-  <section class="max-w-[1200px] mx-auto mb-16 px-8">
+  <section class="max-w-[1200px] mx-auto my-16 px-8">
     <a
       href={featuredCustomer.href}
       class="featured-card grid grid-cols-[1.2fr_1fr] gap-0 bg-bg-tertiary rounded-[20px] overflow-hidden border border-border-theme no-underline text-inherit transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
@@ -56,14 +64,14 @@ const { successStories, results, featuredCustomer, featuredTestimonial, heroHead
   </section>
 
   <!-- Customer Grid - ResultsGrid component -->
-  <ResultsGrid results={results} />
+  <ResultsGrid results={typedResults} />
 
   <!-- Success Stories -->
   <section class="bg-bg-secondary py-16 px-8">
     <div class="max-w-[1200px] mx-auto">
       <h2 class="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] font-medium tracking-[-0.02em] mb-10">Success Stories</h2>
       <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6">
-        {successStories.map((story) => <SuccessStoryCard {...story} />)}
+        {typedStories.map((story) => <SuccessStoryCard {...story} />)}
       </div>
     </div>
   </section>

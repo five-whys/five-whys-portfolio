@@ -61,6 +61,98 @@ export default defineConfig({
           { type: 'string', name: 'sectionSubtext', label: 'Section Subtext', ui: { component: 'textarea' } },
           { type: 'string', name: 'ctaHeading', label: 'CTA Heading' },
           { type: 'string', name: 'ctaSubtext',  label: 'CTA Subtext', ui: { component: 'textarea' } },
+
+          // Comparison Blocks
+          {
+            type: 'object', name: 'comparisonBlocks', label: 'Comparison Blocks (4)',
+            list: true,
+            fields: [
+              { type: 'string', name: 'heading',    label: 'Heading' },
+              { type: 'string', name: 'body',       label: 'Body', ui: { component: 'textarea' } },
+              { type: 'string', name: 'bullets',    label: 'Bullets', list: true },
+              { type: 'string', name: 'visualTitle', label: 'Visual Title' },
+              { type: 'string', name: 'visualDesc',  label: 'Visual Description', ui: { component: 'textarea' } },
+            ],
+          },
+
+          // Feature Table 1 — vs Traditional Chatbots
+          {
+            type: 'object', name: 'featureTable1', label: 'Feature Table — vs Alternatives',
+            fields: [
+              { type: 'string', name: 'label',   label: 'Section Label' },
+              { type: 'string', name: 'heading', label: 'Heading' },
+              { type: 'string', name: 'subtext', label: 'Subtext', ui: { component: 'textarea' } },
+              { type: 'string', name: 'col2',    label: 'Column 2 Header' },
+              { type: 'string', name: 'col3',    label: 'Column 3 Header' },
+              {
+                type: 'object', name: 'rows', label: 'Rows', list: true,
+                fields: [
+                  { type: 'string', name: 'feature', label: 'Feature' },
+                  { type: 'string', name: 'glucose', label: 'GLUCOSE', options: ['check', 'cross', 'partial'] },
+                  { type: 'string', name: 'col2',    label: 'Col 2',   options: ['check', 'cross', 'partial'] },
+                  { type: 'string', name: 'col3',    label: 'Col 3',   options: ['check', 'cross', 'partial'] },
+                ],
+              },
+            ],
+          },
+
+          // Feature Table 2 — vs AI-Native Platforms
+          {
+            type: 'object', name: 'featureTable2', label: 'Feature Table — vs AI-Native Platforms',
+            fields: [
+              { type: 'string', name: 'label',   label: 'Section Label' },
+              { type: 'string', name: 'heading', label: 'Heading' },
+              { type: 'string', name: 'subtext', label: 'Subtext', ui: { component: 'textarea' } },
+              { type: 'string', name: 'col2',    label: 'Column 2 Header' },
+              { type: 'string', name: 'col3',    label: 'Column 3 Header' },
+              {
+                type: 'object', name: 'rows', label: 'Rows', list: true,
+                fields: [
+                  { type: 'string', name: 'feature', label: 'Feature' },
+                  { type: 'string', name: 'glucose', label: 'GLUCOSE', options: ['check', 'cross', 'partial'] },
+                  { type: 'string', name: 'col2',    label: 'Col 2',   options: ['check', 'cross', 'partial'] },
+                  { type: 'string', name: 'col3',    label: 'Col 3',   options: ['check', 'cross', 'partial'] },
+                ],
+              },
+            ],
+          },
+
+          // Engagement Stack
+          {
+            type: 'object', name: 'engagementStack', label: 'Engagement Stack Section',
+            fields: [
+              { type: 'string', name: 'heading',      label: 'Section Heading' },
+              { type: 'string', name: 'legacyLabel',  label: 'Legacy Era Label' },
+              { type: 'string', name: 'legacyItems',  label: 'Legacy Era Items', list: true },
+              { type: 'string', name: 'agenticLabel', label: 'Agentic Era Label' },
+              { type: 'string', name: 'agenticItems', label: 'Agentic Era Items', list: true },
+            ],
+          },
+
+          // Testimonials
+          {
+            type: 'object', name: 'testimonials', label: 'Testimonials Carousel',
+            fields: [
+              { type: 'string', name: 'label',   label: 'Section Label' },
+              { type: 'string', name: 'heading', label: 'Heading' },
+              { type: 'string', name: 'subtext', label: 'Subtext', ui: { component: 'textarea' } },
+              {
+                type: 'object', name: 'items', label: 'Testimonial Slides', list: true,
+                fields: [
+                  { type: 'string', name: 'quote',     label: 'Quote', ui: { component: 'textarea' } },
+                  { type: 'string', name: 'name',      label: 'Name' },
+                  { type: 'string', name: 'role',      label: 'Role' },
+                  { type: 'image',  name: 'avatarSrc', label: 'Avatar Image' },
+                  { type: 'string', name: 'avatarAlt', label: 'Avatar Alt' },
+                ],
+              },
+            ],
+          },
+
+          // Pricing
+          { type: 'string', name: 'pricingLabel',   label: 'Pricing Label' },
+          { type: 'string', name: 'pricingHeading', label: 'Pricing Heading' },
+          { type: 'string', name: 'pricingSubtext', label: 'Pricing Subtext', ui: { component: 'textarea' } },
         ],
       },
 
@@ -85,9 +177,9 @@ export default defineConfig({
               { type: 'string', name: 'heading', label: 'Heading' },
               { type: 'string', name: 'body', label: 'Body', ui: { component: 'textarea' } },
               { type: 'string', name: 'href', label: 'Link URL' },
-              { type: 'string', name: 'imageSrc', label: 'Image URL' },
+              { type: 'image',  name: 'imageSrc', label: 'Image' },
               { type: 'string', name: 'imageAlt', label: 'Image Alt' },
-              { type: 'string', name: 'logoSrc', label: 'Logo URL' },
+              { type: 'image',  name: 'logoSrc', label: 'Logo' },
               { type: 'string', name: 'logoAlt', label: 'Logo Alt' },
               {
                 type: 'object', name: 'metrics', label: 'Metrics', list: true,
@@ -108,9 +200,9 @@ export default defineConfig({
               { type: 'string', name: 'quote', label: 'Quote', ui: { component: 'textarea' } },
               { type: 'string', name: 'name', label: 'Person Name' },
               { type: 'string', name: 'role', label: 'Person Role' },
-              { type: 'string', name: 'logoSrc', label: 'Logo URL' },
+              { type: 'image',  name: 'logoSrc', label: 'Logo' },
               { type: 'string', name: 'logoAlt', label: 'Logo Alt' },
-              { type: 'string', name: 'avatarSrc', label: 'Avatar URL' },
+              { type: 'image',  name: 'avatarSrc', label: 'Avatar Image' },
               { type: 'string', name: 'avatarAlt', label: 'Avatar Alt' },
             ],
           },
@@ -125,9 +217,9 @@ export default defineConfig({
               { type: 'string', name: 'title', label: 'Title' },
               { type: 'string', name: 'industry', label: 'Industry Tag' },
               { type: 'string', name: 'href', label: 'Link URL' },
-              { type: 'string', name: 'imageSrc', label: 'Image URL' },
+              { type: 'image',  name: 'imageSrc', label: 'Image' },
               { type: 'string', name: 'imageAlt', label: 'Image Alt' },
-              { type: 'string', name: 'logoSrc', label: 'Logo URL' },
+              { type: 'image',  name: 'logoSrc', label: 'Logo' },
               { type: 'string', name: 'logoAlt', label: 'Logo Alt' },
               {
                 type: 'object', name: 'metrics', label: 'Metrics', list: true,
@@ -150,7 +242,7 @@ export default defineConfig({
               { type: 'string', name: 'title', label: 'Story Title' },
               { type: 'string', name: 'body', label: 'Story Body', ui: { component: 'textarea' } },
               { type: 'string', name: 'href', label: 'Link URL' },
-              { type: 'string', name: 'imageSrc', label: 'Image URL' },
+              { type: 'image',  name: 'imageSrc', label: 'Image' },
               { type: 'string', name: 'imageAlt', label: 'Image Alt' },
             ],
           },

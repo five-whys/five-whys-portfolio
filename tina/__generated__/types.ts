@@ -243,6 +243,77 @@ export type PagesConnection = Connection & {
   edges?: Maybe<Array<Maybe<PagesConnectionEdges>>>;
 };
 
+export type VsPageComparisonBlocks = {
+  __typename?: 'VsPageComparisonBlocks';
+  heading?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['String']['output']>;
+  bullets?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  visualTitle?: Maybe<Scalars['String']['output']>;
+  visualDesc?: Maybe<Scalars['String']['output']>;
+};
+
+export type VsPageFeatureTable1Rows = {
+  __typename?: 'VsPageFeatureTable1Rows';
+  feature?: Maybe<Scalars['String']['output']>;
+  glucose?: Maybe<Scalars['String']['output']>;
+  col2?: Maybe<Scalars['String']['output']>;
+  col3?: Maybe<Scalars['String']['output']>;
+};
+
+export type VsPageFeatureTable1 = {
+  __typename?: 'VsPageFeatureTable1';
+  label?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  subtext?: Maybe<Scalars['String']['output']>;
+  col2?: Maybe<Scalars['String']['output']>;
+  col3?: Maybe<Scalars['String']['output']>;
+  rows?: Maybe<Array<Maybe<VsPageFeatureTable1Rows>>>;
+};
+
+export type VsPageFeatureTable2Rows = {
+  __typename?: 'VsPageFeatureTable2Rows';
+  feature?: Maybe<Scalars['String']['output']>;
+  glucose?: Maybe<Scalars['String']['output']>;
+  col2?: Maybe<Scalars['String']['output']>;
+  col3?: Maybe<Scalars['String']['output']>;
+};
+
+export type VsPageFeatureTable2 = {
+  __typename?: 'VsPageFeatureTable2';
+  label?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  subtext?: Maybe<Scalars['String']['output']>;
+  col2?: Maybe<Scalars['String']['output']>;
+  col3?: Maybe<Scalars['String']['output']>;
+  rows?: Maybe<Array<Maybe<VsPageFeatureTable2Rows>>>;
+};
+
+export type VsPageEngagementStack = {
+  __typename?: 'VsPageEngagementStack';
+  heading?: Maybe<Scalars['String']['output']>;
+  legacyLabel?: Maybe<Scalars['String']['output']>;
+  legacyItems?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  agenticLabel?: Maybe<Scalars['String']['output']>;
+  agenticItems?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+export type VsPageTestimonialsItems = {
+  __typename?: 'VsPageTestimonialsItems';
+  quote?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  role?: Maybe<Scalars['String']['output']>;
+  avatarSrc?: Maybe<Scalars['String']['output']>;
+  avatarAlt?: Maybe<Scalars['String']['output']>;
+};
+
+export type VsPageTestimonials = {
+  __typename?: 'VsPageTestimonials';
+  label?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  subtext?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<VsPageTestimonialsItems>>>;
+};
+
 export type VsPage = Node & Document & {
   __typename?: 'VsPage';
   heroHeading?: Maybe<Scalars['String']['output']>;
@@ -252,9 +323,87 @@ export type VsPage = Node & Document & {
   sectionSubtext?: Maybe<Scalars['String']['output']>;
   ctaHeading?: Maybe<Scalars['String']['output']>;
   ctaSubtext?: Maybe<Scalars['String']['output']>;
+  comparisonBlocks?: Maybe<Array<Maybe<VsPageComparisonBlocks>>>;
+  featureTable1?: Maybe<VsPageFeatureTable1>;
+  featureTable2?: Maybe<VsPageFeatureTable2>;
+  engagementStack?: Maybe<VsPageEngagementStack>;
+  testimonials?: Maybe<VsPageTestimonials>;
+  pricingLabel?: Maybe<Scalars['String']['output']>;
+  pricingHeading?: Maybe<Scalars['String']['output']>;
+  pricingSubtext?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
+};
+
+export type VsPageComparisonBlocksFilter = {
+  heading?: InputMaybe<StringFilter>;
+  body?: InputMaybe<StringFilter>;
+  bullets?: InputMaybe<StringFilter>;
+  visualTitle?: InputMaybe<StringFilter>;
+  visualDesc?: InputMaybe<StringFilter>;
+};
+
+export type VsPageFeatureTable1RowsFilter = {
+  feature?: InputMaybe<StringFilter>;
+  glucose?: InputMaybe<StringFilter>;
+  col2?: InputMaybe<StringFilter>;
+  col3?: InputMaybe<StringFilter>;
+};
+
+export type VsPageFeatureTable1Filter = {
+  label?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  subtext?: InputMaybe<StringFilter>;
+  col2?: InputMaybe<StringFilter>;
+  col3?: InputMaybe<StringFilter>;
+  rows?: InputMaybe<VsPageFeatureTable1RowsFilter>;
+};
+
+export type VsPageFeatureTable2RowsFilter = {
+  feature?: InputMaybe<StringFilter>;
+  glucose?: InputMaybe<StringFilter>;
+  col2?: InputMaybe<StringFilter>;
+  col3?: InputMaybe<StringFilter>;
+};
+
+export type VsPageFeatureTable2Filter = {
+  label?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  subtext?: InputMaybe<StringFilter>;
+  col2?: InputMaybe<StringFilter>;
+  col3?: InputMaybe<StringFilter>;
+  rows?: InputMaybe<VsPageFeatureTable2RowsFilter>;
+};
+
+export type VsPageEngagementStackFilter = {
+  heading?: InputMaybe<StringFilter>;
+  legacyLabel?: InputMaybe<StringFilter>;
+  legacyItems?: InputMaybe<StringFilter>;
+  agenticLabel?: InputMaybe<StringFilter>;
+  agenticItems?: InputMaybe<StringFilter>;
+};
+
+export type ImageFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type VsPageTestimonialsItemsFilter = {
+  quote?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  role?: InputMaybe<StringFilter>;
+  avatarSrc?: InputMaybe<ImageFilter>;
+  avatarAlt?: InputMaybe<StringFilter>;
+};
+
+export type VsPageTestimonialsFilter = {
+  label?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  subtext?: InputMaybe<StringFilter>;
+  items?: InputMaybe<VsPageTestimonialsItemsFilter>;
 };
 
 export type VsPageFilter = {
@@ -265,6 +414,14 @@ export type VsPageFilter = {
   sectionSubtext?: InputMaybe<StringFilter>;
   ctaHeading?: InputMaybe<StringFilter>;
   ctaSubtext?: InputMaybe<StringFilter>;
+  comparisonBlocks?: InputMaybe<VsPageComparisonBlocksFilter>;
+  featureTable1?: InputMaybe<VsPageFeatureTable1Filter>;
+  featureTable2?: InputMaybe<VsPageFeatureTable2Filter>;
+  engagementStack?: InputMaybe<VsPageEngagementStackFilter>;
+  testimonials?: InputMaybe<VsPageTestimonialsFilter>;
+  pricingLabel?: InputMaybe<StringFilter>;
+  pricingHeading?: InputMaybe<StringFilter>;
+  pricingSubtext?: InputMaybe<StringFilter>;
 };
 
 export type VsPageConnectionEdges = {
@@ -361,9 +518,9 @@ export type CustomersPageFeaturedCustomerFilter = {
   heading?: InputMaybe<StringFilter>;
   body?: InputMaybe<StringFilter>;
   href?: InputMaybe<StringFilter>;
-  imageSrc?: InputMaybe<StringFilter>;
+  imageSrc?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
-  logoSrc?: InputMaybe<StringFilter>;
+  logoSrc?: InputMaybe<ImageFilter>;
   logoAlt?: InputMaybe<StringFilter>;
   metrics?: InputMaybe<CustomersPageFeaturedCustomerMetricsFilter>;
 };
@@ -372,9 +529,9 @@ export type CustomersPageFeaturedTestimonialFilter = {
   quote?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
   role?: InputMaybe<StringFilter>;
-  logoSrc?: InputMaybe<StringFilter>;
+  logoSrc?: InputMaybe<ImageFilter>;
   logoAlt?: InputMaybe<StringFilter>;
-  avatarSrc?: InputMaybe<StringFilter>;
+  avatarSrc?: InputMaybe<ImageFilter>;
   avatarAlt?: InputMaybe<StringFilter>;
 };
 
@@ -387,9 +544,9 @@ export type CustomersPageResultsFilter = {
   title?: InputMaybe<StringFilter>;
   industry?: InputMaybe<StringFilter>;
   href?: InputMaybe<StringFilter>;
-  imageSrc?: InputMaybe<StringFilter>;
+  imageSrc?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
-  logoSrc?: InputMaybe<StringFilter>;
+  logoSrc?: InputMaybe<ImageFilter>;
   logoAlt?: InputMaybe<StringFilter>;
   metrics?: InputMaybe<CustomersPageResultsMetricsFilter>;
 };
@@ -399,7 +556,7 @@ export type CustomersPageSuccessStoriesFilter = {
   title?: InputMaybe<StringFilter>;
   body?: InputMaybe<StringFilter>;
   href?: InputMaybe<StringFilter>;
-  imageSrc?: InputMaybe<StringFilter>;
+  imageSrc?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
 };
 
@@ -530,6 +687,69 @@ export type PagesMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
+export type VsPageComparisonBlocksMutation = {
+  heading?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['String']['input']>;
+  bullets?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  visualTitle?: InputMaybe<Scalars['String']['input']>;
+  visualDesc?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type VsPageFeatureTable1RowsMutation = {
+  feature?: InputMaybe<Scalars['String']['input']>;
+  glucose?: InputMaybe<Scalars['String']['input']>;
+  col2?: InputMaybe<Scalars['String']['input']>;
+  col3?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type VsPageFeatureTable1Mutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+  subtext?: InputMaybe<Scalars['String']['input']>;
+  col2?: InputMaybe<Scalars['String']['input']>;
+  col3?: InputMaybe<Scalars['String']['input']>;
+  rows?: InputMaybe<Array<InputMaybe<VsPageFeatureTable1RowsMutation>>>;
+};
+
+export type VsPageFeatureTable2RowsMutation = {
+  feature?: InputMaybe<Scalars['String']['input']>;
+  glucose?: InputMaybe<Scalars['String']['input']>;
+  col2?: InputMaybe<Scalars['String']['input']>;
+  col3?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type VsPageFeatureTable2Mutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+  subtext?: InputMaybe<Scalars['String']['input']>;
+  col2?: InputMaybe<Scalars['String']['input']>;
+  col3?: InputMaybe<Scalars['String']['input']>;
+  rows?: InputMaybe<Array<InputMaybe<VsPageFeatureTable2RowsMutation>>>;
+};
+
+export type VsPageEngagementStackMutation = {
+  heading?: InputMaybe<Scalars['String']['input']>;
+  legacyLabel?: InputMaybe<Scalars['String']['input']>;
+  legacyItems?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  agenticLabel?: InputMaybe<Scalars['String']['input']>;
+  agenticItems?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type VsPageTestimonialsItemsMutation = {
+  quote?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  role?: InputMaybe<Scalars['String']['input']>;
+  avatarSrc?: InputMaybe<Scalars['String']['input']>;
+  avatarAlt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type VsPageTestimonialsMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+  subtext?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Array<InputMaybe<VsPageTestimonialsItemsMutation>>>;
+};
+
 export type VsPageMutation = {
   heroHeading?: InputMaybe<Scalars['String']['input']>;
   heroSubtext?: InputMaybe<Scalars['String']['input']>;
@@ -538,6 +758,14 @@ export type VsPageMutation = {
   sectionSubtext?: InputMaybe<Scalars['String']['input']>;
   ctaHeading?: InputMaybe<Scalars['String']['input']>;
   ctaSubtext?: InputMaybe<Scalars['String']['input']>;
+  comparisonBlocks?: InputMaybe<Array<InputMaybe<VsPageComparisonBlocksMutation>>>;
+  featureTable1?: InputMaybe<VsPageFeatureTable1Mutation>;
+  featureTable2?: InputMaybe<VsPageFeatureTable2Mutation>;
+  engagementStack?: InputMaybe<VsPageEngagementStackMutation>;
+  testimonials?: InputMaybe<VsPageTestimonialsMutation>;
+  pricingLabel?: InputMaybe<Scalars['String']['input']>;
+  pricingHeading?: InputMaybe<Scalars['String']['input']>;
+  pricingSubtext?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type CustomersPageFeaturedCustomerMetricsMutation = {
@@ -604,7 +832,7 @@ export type CustomersPageMutation = {
 
 export type PagesPartsFragment = { __typename: 'Pages', title: string, subtitle?: string | null, body?: any | null };
 
-export type VsPagePartsFragment = { __typename: 'VsPage', heroHeading?: string | null, heroSubtext?: string | null, sectionLabel?: string | null, sectionHeading?: string | null, sectionSubtext?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null };
+export type VsPagePartsFragment = { __typename: 'VsPage', heroHeading?: string | null, heroSubtext?: string | null, sectionLabel?: string | null, sectionHeading?: string | null, sectionSubtext?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, pricingLabel?: string | null, pricingHeading?: string | null, pricingSubtext?: string | null, comparisonBlocks?: Array<{ __typename: 'VsPageComparisonBlocks', heading?: string | null, body?: string | null, bullets?: Array<string | null> | null, visualTitle?: string | null, visualDesc?: string | null } | null> | null, featureTable1?: { __typename: 'VsPageFeatureTable1', label?: string | null, heading?: string | null, subtext?: string | null, col2?: string | null, col3?: string | null, rows?: Array<{ __typename: 'VsPageFeatureTable1Rows', feature?: string | null, glucose?: string | null, col2?: string | null, col3?: string | null } | null> | null } | null, featureTable2?: { __typename: 'VsPageFeatureTable2', label?: string | null, heading?: string | null, subtext?: string | null, col2?: string | null, col3?: string | null, rows?: Array<{ __typename: 'VsPageFeatureTable2Rows', feature?: string | null, glucose?: string | null, col2?: string | null, col3?: string | null } | null> | null } | null, engagementStack?: { __typename: 'VsPageEngagementStack', heading?: string | null, legacyLabel?: string | null, legacyItems?: Array<string | null> | null, agenticLabel?: string | null, agenticItems?: Array<string | null> | null } | null, testimonials?: { __typename: 'VsPageTestimonials', label?: string | null, heading?: string | null, subtext?: string | null, items?: Array<{ __typename: 'VsPageTestimonialsItems', quote?: string | null, name?: string | null, role?: string | null, avatarSrc?: string | null, avatarAlt?: string | null } | null> | null } | null };
 
 export type CustomersPagePartsFragment = { __typename: 'CustomersPage', heroHeading?: string | null, heroSubtext?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, featuredCustomer?: { __typename: 'CustomersPageFeaturedCustomer', heading?: string | null, body?: string | null, href?: string | null, imageSrc?: string | null, imageAlt?: string | null, logoSrc?: string | null, logoAlt?: string | null, metrics?: Array<{ __typename: 'CustomersPageFeaturedCustomerMetrics', label?: string | null, value?: string | null } | null> | null } | null, featuredTestimonial?: { __typename: 'CustomersPageFeaturedTestimonial', quote?: string | null, name?: string | null, role?: string | null, logoSrc?: string | null, logoAlt?: string | null, avatarSrc?: string | null, avatarAlt?: string | null } | null, results?: Array<{ __typename: 'CustomersPageResults', title?: string | null, industry?: string | null, href?: string | null, imageSrc?: string | null, imageAlt?: string | null, logoSrc?: string | null, logoAlt?: string | null, metrics?: Array<{ __typename: 'CustomersPageResultsMetrics', label?: string | null, value?: string | null } | null> | null } | null> | null, successStories?: Array<{ __typename: 'CustomersPageSuccessStories', brand?: string | null, title?: string | null, body?: string | null, href?: string | null, imageSrc?: string | null, imageAlt?: string | null } | null> | null };
 
@@ -632,7 +860,7 @@ export type VsPageQueryVariables = Exact<{
 }>;
 
 
-export type VsPageQuery = { __typename?: 'Query', vsPage: { __typename: 'VsPage', id: string, heroHeading?: string | null, heroSubtext?: string | null, sectionLabel?: string | null, sectionHeading?: string | null, sectionSubtext?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type VsPageQuery = { __typename?: 'Query', vsPage: { __typename: 'VsPage', id: string, heroHeading?: string | null, heroSubtext?: string | null, sectionLabel?: string | null, sectionHeading?: string | null, sectionSubtext?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, pricingLabel?: string | null, pricingHeading?: string | null, pricingSubtext?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, comparisonBlocks?: Array<{ __typename: 'VsPageComparisonBlocks', heading?: string | null, body?: string | null, bullets?: Array<string | null> | null, visualTitle?: string | null, visualDesc?: string | null } | null> | null, featureTable1?: { __typename: 'VsPageFeatureTable1', label?: string | null, heading?: string | null, subtext?: string | null, col2?: string | null, col3?: string | null, rows?: Array<{ __typename: 'VsPageFeatureTable1Rows', feature?: string | null, glucose?: string | null, col2?: string | null, col3?: string | null } | null> | null } | null, featureTable2?: { __typename: 'VsPageFeatureTable2', label?: string | null, heading?: string | null, subtext?: string | null, col2?: string | null, col3?: string | null, rows?: Array<{ __typename: 'VsPageFeatureTable2Rows', feature?: string | null, glucose?: string | null, col2?: string | null, col3?: string | null } | null> | null } | null, engagementStack?: { __typename: 'VsPageEngagementStack', heading?: string | null, legacyLabel?: string | null, legacyItems?: Array<string | null> | null, agenticLabel?: string | null, agenticItems?: Array<string | null> | null } | null, testimonials?: { __typename: 'VsPageTestimonials', label?: string | null, heading?: string | null, subtext?: string | null, items?: Array<{ __typename: 'VsPageTestimonialsItems', quote?: string | null, name?: string | null, role?: string | null, avatarSrc?: string | null, avatarAlt?: string | null } | null> | null } | null } };
 
 export type VsPageConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -644,7 +872,7 @@ export type VsPageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type VsPageConnectionQuery = { __typename?: 'Query', vsPageConnection: { __typename?: 'VsPageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'VsPageConnectionEdges', cursor: string, node?: { __typename: 'VsPage', id: string, heroHeading?: string | null, heroSubtext?: string | null, sectionLabel?: string | null, sectionHeading?: string | null, sectionSubtext?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type VsPageConnectionQuery = { __typename?: 'Query', vsPageConnection: { __typename?: 'VsPageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'VsPageConnectionEdges', cursor: string, node?: { __typename: 'VsPage', id: string, heroHeading?: string | null, heroSubtext?: string | null, sectionLabel?: string | null, sectionHeading?: string | null, sectionSubtext?: string | null, ctaHeading?: string | null, ctaSubtext?: string | null, pricingLabel?: string | null, pricingHeading?: string | null, pricingSubtext?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, comparisonBlocks?: Array<{ __typename: 'VsPageComparisonBlocks', heading?: string | null, body?: string | null, bullets?: Array<string | null> | null, visualTitle?: string | null, visualDesc?: string | null } | null> | null, featureTable1?: { __typename: 'VsPageFeatureTable1', label?: string | null, heading?: string | null, subtext?: string | null, col2?: string | null, col3?: string | null, rows?: Array<{ __typename: 'VsPageFeatureTable1Rows', feature?: string | null, glucose?: string | null, col2?: string | null, col3?: string | null } | null> | null } | null, featureTable2?: { __typename: 'VsPageFeatureTable2', label?: string | null, heading?: string | null, subtext?: string | null, col2?: string | null, col3?: string | null, rows?: Array<{ __typename: 'VsPageFeatureTable2Rows', feature?: string | null, glucose?: string | null, col2?: string | null, col3?: string | null } | null> | null } | null, engagementStack?: { __typename: 'VsPageEngagementStack', heading?: string | null, legacyLabel?: string | null, legacyItems?: Array<string | null> | null, agenticLabel?: string | null, agenticItems?: Array<string | null> | null } | null, testimonials?: { __typename: 'VsPageTestimonials', label?: string | null, heading?: string | null, subtext?: string | null, items?: Array<{ __typename: 'VsPageTestimonialsItems', quote?: string | null, name?: string | null, role?: string | null, avatarSrc?: string | null, avatarAlt?: string | null } | null> | null } | null } | null } | null> | null } };
 
 export type CustomersPageQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -683,6 +911,69 @@ export const VsPagePartsFragmentDoc = gql`
   sectionSubtext
   ctaHeading
   ctaSubtext
+  comparisonBlocks {
+    __typename
+    heading
+    body
+    bullets
+    visualTitle
+    visualDesc
+  }
+  featureTable1 {
+    __typename
+    label
+    heading
+    subtext
+    col2
+    col3
+    rows {
+      __typename
+      feature
+      glucose
+      col2
+      col3
+    }
+  }
+  featureTable2 {
+    __typename
+    label
+    heading
+    subtext
+    col2
+    col3
+    rows {
+      __typename
+      feature
+      glucose
+      col2
+      col3
+    }
+  }
+  engagementStack {
+    __typename
+    heading
+    legacyLabel
+    legacyItems
+    agenticLabel
+    agenticItems
+  }
+  testimonials {
+    __typename
+    label
+    heading
+    subtext
+    items {
+      __typename
+      quote
+      name
+      role
+      avatarSrc
+      avatarAlt
+    }
+  }
+  pricingLabel
+  pricingHeading
+  pricingSubtext
 }
     `;
 export const CustomersPagePartsFragmentDoc = gql`

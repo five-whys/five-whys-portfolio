@@ -10,6 +10,30 @@ const pages = defineCollection({
 });
 
 // VS comparison page text fields
+const comparisonBlockSchema = z.object({
+  heading: z.string(),
+  body: z.string(),
+  bullets: z.array(z.string()),
+  visualTitle: z.string(),
+  visualDesc: z.string(),
+});
+
+const tableValueSchema = z.enum(['check', 'cross', 'partial']);
+
+const featureTableSchema = z.object({
+  label: z.string(),
+  heading: z.string(),
+  subtext: z.string(),
+  col2: z.string(),
+  col3: z.string(),
+  rows: z.array(z.object({
+    feature: z.string(),
+    glucose: tableValueSchema,
+    col2: tableValueSchema,
+    col3: tableValueSchema,
+  })),
+});
+
 const vsPage = defineCollection({
   type: 'data',
   schema: z.object({
@@ -20,6 +44,31 @@ const vsPage = defineCollection({
     sectionSubtext: z.string(),
     ctaHeading: z.string(),
     ctaSubtext: z.string(),
+    comparisonBlocks: z.array(comparisonBlockSchema),
+    featureTable1: featureTableSchema,
+    featureTable2: featureTableSchema,
+    engagementStack: z.object({
+      heading: z.string(),
+      legacyLabel: z.string(),
+      legacyItems: z.array(z.string()),
+      agenticLabel: z.string(),
+      agenticItems: z.array(z.string()),
+    }),
+    testimonials: z.object({
+      label: z.string(),
+      heading: z.string(),
+      subtext: z.string(),
+      items: z.array(z.object({
+        quote: z.string(),
+        name: z.string(),
+        role: z.string(),
+        avatarSrc: z.string(),
+        avatarAlt: z.string(),
+      })),
+    }),
+    pricingLabel: z.string(),
+    pricingHeading: z.string(),
+    pricingSubtext: z.string(),
   }),
 });
 

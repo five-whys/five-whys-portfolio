@@ -5,5 +5,267 @@
   "sectionHeading": "What makes GLUCOSE different?",
   "sectionSubtext": "See why leading brands are switching from traditional chatbots and generic AI solutions to GLUCOSE's autonomous agents.",
   "ctaHeading": "Ready to see the difference?",
-  "ctaSubtext": "Join leading enterprise brands who have switched from traditional chatbots to GLUCOSE's autonomous AI agents."
+  "ctaSubtext": "Join leading enterprise brands who have switched from traditional chatbots to GLUCOSE's autonomous AI agents.",
+  "comparisonBlocks": [
+    {
+      "heading": "Goal-driven reasoning, not scripted responses",
+      "body": "Traditional chatbots follow rigid decision trees that break when conversations shift. GLUCOSE agents reason through complexity, adapting to context and pursuing goals autonomously.",
+      "bullets": [
+        "Understands intent even with unexpected questions",
+        "Handles multi-turn, complex conversations naturally",
+        "Balances user needs with business objectives"
+      ],
+      "visualTitle": "Autonomous Goal Pursuit",
+      "visualDesc": "GLUCOSE agents work toward outcomes, not just responses. They understand context, remember history, and make intelligent decisions."
+    },
+    {
+      "heading": "Native multi-channel, not bolted-on integrations",
+      "body": "Most solutions treat messaging channels as an afterthought. GLUCOSE is built from the ground up for WhatsApp, Telegram, LINE, and more—meeting customers where they already are.",
+      "bullets": [
+        "Deploy on WhatsApp, Telegram, LINE, Viber, and more",
+        "Consistent experience across all channels",
+        "No app downloads required for customers"
+      ],
+      "visualTitle": "Deploy Everywhere",
+      "visualDesc": "One configuration, every channel. Your brand shows up wherever your customers prefer to communicate."
+    },
+    {
+      "heading": "No-code setup, not months of development",
+      "body": "Traditional enterprise AI deployments take months and require technical teams. GLUCOSE's Management Console lets product managers configure, deploy, and iterate without writing code.",
+      "bullets": [
+        "Visual journey builder for business users",
+        "Deploy in days, not months",
+        "Iterate and improve without engineering support"
+      ],
+      "visualTitle": "Management Console",
+      "visualDesc": "Define customer journeys, configure responses, and analyze performance—all through an intuitive interface designed for business users."
+    },
+    {
+      "heading": "Proactive re-engagement, not just reactive support",
+      "body": "Traditional chatbots wait for customers to ask questions. GLUCOSE agents proactively engage—sharing relevant information, following up on service needs, and driving conversions.",
+      "bullets": [
+        "Scheduled follow-ups and reminders",
+        "Event-triggered communications (IoT, CRM, etc.)",
+        "Personalized product recommendations"
+      ],
+      "visualTitle": "Always-On Engagement",
+      "visualDesc": "GLUCOSE doesn't just answer—it anticipates. Proactive outreach keeps customers engaged throughout their journey."
+    }
+  ],
+  "featureTable1": {
+    "label": "Feature Comparison",
+    "heading": "GLUCOSE vs. Alternatives",
+    "subtext": "See how GLUCOSE compares to traditional chatbots and generic AI solutions.",
+    "col2": "Traditional Chatbots",
+    "col3": "Generic AI (GPT wrappers)",
+    "rows": [
+      {
+        "feature": "Goal-driven autonomous reasoning",
+        "glucose": "check",
+        "col2": "cross",
+        "col3": "partial"
+      },
+      {
+        "feature": "Native multi-channel deployment",
+        "glucose": "check",
+        "col2": "partial",
+        "col3": "cross"
+      },
+      {
+        "feature": "No-code configuration",
+        "glucose": "check",
+        "col2": "check",
+        "col3": "cross"
+      },
+      {
+        "feature": "Proactive customer engagement",
+        "glucose": "check",
+        "col2": "cross",
+        "col3": "cross"
+      },
+      {
+        "feature": "Enterprise CRM/CDP integrations",
+        "glucose": "check",
+        "col2": "partial",
+        "col3": "partial"
+      },
+      {
+        "feature": "IoT event-triggered actions",
+        "glucose": "check",
+        "col2": "cross",
+        "col3": "cross"
+      },
+      {
+        "feature": "First-party data insights",
+        "glucose": "check",
+        "col2": "partial",
+        "col3": "cross"
+      },
+      {
+        "feature": "Enterprise security (SOC 2, ISO 27001)",
+        "glucose": "check",
+        "col2": "partial",
+        "col3": "partial"
+      },
+      {
+        "feature": "Brand voice consistency",
+        "glucose": "check",
+        "col2": "partial",
+        "col3": "cross"
+      }
+    ]
+  },
+  "featureTable2": {
+    "label": "Enterprise Comparison",
+    "heading": "GLUCOSE vs. AI-Native Platforms",
+    "subtext": "How GLUCOSE compares to enterprise AI platforms in the market today.",
+    "col2": "Salesforce AgentForce",
+    "col3": "Sierra AI",
+    "rows": [
+      {
+        "feature": "Closes deals without human intervention",
+        "glucose": "check",
+        "col2": "partial",
+        "col3": "partial"
+      },
+      {
+        "feature": "Engages customers on WhatsApp, LINE, Telegram natively",
+        "glucose": "check",
+        "col2": "cross",
+        "col3": "partial"
+      },
+      {
+        "feature": "Proactive lifecycle re-engagement (Planner)",
+        "glucose": "check",
+        "col2": "cross",
+        "col3": "cross"
+      },
+      {
+        "feature": "Model-agnostic (no vendor lock-in)",
+        "glucose": "check",
+        "col2": "cross",
+        "col3": "partial"
+      },
+      {
+        "feature": "Vertical-specific product corpus architecture",
+        "glucose": "check",
+        "col2": "partial",
+        "col3": "cross"
+      },
+      {
+        "feature": "Live in weeks, not months",
+        "glucose": "check",
+        "col2": "cross",
+        "col3": "partial"
+      },
+      {
+        "feature": "Multimodal (voice, text, images, video)",
+        "glucose": "check",
+        "col2": "partial",
+        "col3": "partial"
+      },
+      {
+        "feature": "Single-tenant deployment option",
+        "glucose": "check",
+        "col2": "cross",
+        "col3": "cross"
+      },
+      {
+        "feature": "Outcome-based pricing",
+        "glucose": "check",
+        "col2": "cross",
+        "col3": "check"
+      }
+    ]
+  },
+  "engagementStack": {
+    "heading": "The Engagement Stack, Reimagined",
+    "legacyLabel": "Legacy Era",
+    "legacyItems": [
+      "CRM stores records",
+      "Chatbots answer questions",
+      "Marketing automates campaigns",
+      "Humans follow up"
+    ],
+    "agenticLabel": "Agentic Era",
+    "agenticItems": [
+      "GLUCOSE orchestrates experiences",
+      "GLUCOSE executes goals",
+      "GLUCOSE adapts in real time",
+      "Planner reengages autonomously"
+    ]
+  },
+  "testimonials": {
+    "label": "Our Customers",
+    "heading": "The results speak for themselves",
+    "subtext": "GLUCOSE is trusted by leading brands across industries to transform customer engagement.",
+    "items": [
+      {
+        "quote": "The platform's ability to understand context and deliver personalized responses transformed customer support operations. It's like having a team of experts available 24/7.",
+        "name": "Gennady K.",
+        "role": "CEO, Technology Services",
+        "avatarSrc": "https://images.unsplash.com/photo-1600486913747-55e5470d6f40?w=112&h=112&fit=crop&crop=face",
+        "avatarAlt": "Gennady K."
+      },
+      {
+        "quote": "GLUCOSE changed how we think about customer engagement. The AI doesn't just respond—it understands our products and brand voice perfectly.",
+        "name": "Product Head",
+        "role": "Lifestyle Mobility",
+        "avatarSrc": "https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=112&h=112&fit=crop&crop=face",
+        "avatarAlt": "Product Head"
+      },
+      {
+        "quote": "We've seen a dramatic improvement in response quality and customer satisfaction since implementing GLUCOSE. The autonomous agents handle complex queries with ease.",
+        "name": "Tech Lead",
+        "role": "Enterprise Software",
+        "avatarSrc": "https://images.unsplash.com/photo-1537511446984-935f663eb1f4?w=112&h=112&fit=crop&crop=face",
+        "avatarAlt": "Tech Lead"
+      },
+      {
+        "quote": "The platform handles everything from warranty inquiries to service bookings autonomously. Our customers get instant, accurate responses around the clock.",
+        "name": "Service Manager",
+        "role": "Automotive",
+        "avatarSrc": "https://images.unsplash.com/photo-1542190891-2093d38760f2?w=112&h=112&fit=crop&crop=face",
+        "avatarAlt": "Service Manager"
+      },
+      {
+        "quote": "Patient engagement has never been easier. The AI understands medical context and provides appropriate guidance while maintaining compliance.",
+        "name": "Digital Health Director",
+        "role": "Healthcare",
+        "avatarSrc": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=112&h=112&fit=crop&crop=face",
+        "avatarAlt": "Digital Health Director"
+      },
+      {
+        "quote": "Our customers receive personalized financial guidance instantly. The compliance guardrails give us confidence to scale without risk.",
+        "name": "VP Customer Experience",
+        "role": "Financial Services",
+        "avatarSrc": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=112&h=112&fit=crop&crop=face",
+        "avatarAlt": "VP Customer Experience"
+      },
+      {
+        "quote": "Post-purchase support is now a competitive advantage. Customers love getting instant help with setup and troubleshooting.",
+        "name": "Product Manager",
+        "role": "Consumer Electronics",
+        "avatarSrc": "https://images.unsplash.com/photo-1598550874175-4d0ef436c909?w=112&h=112&fit=crop&crop=face",
+        "avatarAlt": "Product Manager"
+      },
+      {
+        "quote": "We reduced support costs by 40% while improving CSAT scores. The AI handles routine queries so our team can focus on complex issues.",
+        "name": "CX Operations Lead",
+        "role": "Telecommunications",
+        "avatarSrc": "https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=112&h=112&fit=crop&crop=face",
+        "avatarAlt": "CX Operations Lead"
+      },
+      {
+        "quote": "Subscriber engagement increased significantly. The AI recommends content and handles account queries with our brand's personality.",
+        "name": "Head of Growth",
+        "role": "Media & Entertainment",
+        "avatarSrc": "https://images.unsplash.com/photo-1589386417686-0d34b5903d23?w=112&h=112&fit=crop&crop=face",
+        "avatarAlt": "Head of Growth"
+      }
+    ]
+  },
+  "pricingLabel": "Pricing",
+  "pricingHeading": "Pricing tied to outcomes, not seats",
+  "pricingSubtext": "GLUCOSE's pricing model is aligned with the value it delivers. You pay for results — not licenses, not seats, not per-message fees."
 }

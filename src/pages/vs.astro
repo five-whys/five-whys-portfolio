@@ -10,7 +10,23 @@ import {
 import { getEntry } from 'astro:content';
 
 const vs = await getEntry('vsPage', 'vs');
-const { heroHeading, heroSubtext, sectionLabel, sectionHeading, sectionSubtext, ctaHeading, ctaSubtext } = vs.data;
+if (!vs) throw new Error('Missing vsPage/vs content entry');
+const {
+  heroHeading, heroSubtext, sectionLabel, sectionHeading, sectionSubtext, ctaHeading, ctaSubtext,
+  comparisonBlocks, featureTable1, featureTable2, engagementStack, testimonials,
+  pricingLabel, pricingHeading, pricingSubtext,
+} = vs.data;
+
+// Type casts — Astro infers nested data-collection array items as optional
+type CBlock = { heading: string; body: string; bullets: string[]; visualTitle: string; visualDesc: string };
+type TRow   = { feature: string; glucose: 'check'|'cross'|'partial'; col2: 'check'|'cross'|'partial'; col3: 'check'|'cross'|'partial' };
+type TItem  = { quote: string; name: string; role: string; avatarSrc: string; avatarAlt: string };
+const blocks    = comparisonBlocks as CBlock[];
+const rows1     = featureTable1.rows as TRow[];
+const rows2     = featureTable2.rows as TRow[];
+const tItems    = testimonials.items as TItem[];
+const legacyList  = engagementStack.legacyItems as string[];
+const agenticList = engagementStack.agenticItems as string[];
 ---
 
 <BaseLayout
@@ -127,191 +143,101 @@ const { heroHeading, heroSubtext, sectionLabel, sectionHeading, sectionSubtext, 
           </div>
         </div>
 
-        <!-- Comparison 1: Goal-Driven vs. Script-Based -->
-        <div class="comparison-block">
-          <div class="comparison-content">
-            <h3>Goal-driven reasoning, not scripted responses</h3>
-            <p>Traditional chatbots follow rigid decision trees that break when conversations shift. GLUCOSE agents reason through complexity, adapting to context and pursuing goals autonomously.</p>
-            <ul>
-              <li>
-                <Check size={16} />
-                Understands intent even with unexpected questions
-              </li>
-              <li>
-                <Check size={16} />
-                Handles multi-turn, complex conversations naturally
-              </li>
-              <li>
-                <Check size={16} />
-                Balances user needs with business objectives
-              </li>
-            </ul>
-          </div>
-          <div class="comparison-visual">
-            <div class="visual-icon">
-              <Clock size={32} />
+        <!-- Comparison Blocks (text from CMS; visuals are structural and stay hardcoded) -->
+        {blocks.map((block, i) => (
+          <div class={`comparison-block${i % 2 === 1 ? ' reverse' : ''}`}>
+            <div class="comparison-content">
+              <h3>{block.heading}</h3>
+              <p>{block.body}</p>
+              <ul>
+                {(block.bullets as string[]).map((bullet) => (
+                  <li>
+                    <Check size={16} />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div class="visual-title">Autonomous Goal Pursuit</div>
-            <div class="visual-desc">GLUCOSE agents work toward outcomes, not just responses. They understand context, remember history, and make intelligent decisions.</div>
-            <div class="chat-mockup">
-              <div class="chat-message">
-                <div class="chat-avatar user">U</div>
-                <div class="chat-bubble">"Actually, wait—can I also ask about warranty coverage?"</div>
+            <div class="comparison-visual">
+              <div class="visual-header">
+                <div class="visual-icon">
+                  {i === 0 && <Clock size={18} />}
+                  {i === 1 && <MessageSquare size={18} />}
+                  {i === 2 && <Boxes size={18} />}
+                  {i === 3 && <Bell size={18} />}
+                </div>
+                <div class="visual-title">{block.visualTitle}</div>
               </div>
-              <div class="chat-message">
-                <div class="chat-avatar">G</div>
-                <div class="chat-bubble ai">"Of course! Your vehicle's warranty includes 4-year coverage. I'll also continue helping with the service booking—would you prefer morning or afternoon?"</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Comparison 2: Native Multi-Channel -->
-        <div class="comparison-block reverse">
-          <div class="comparison-content">
-            <h3>Native multi-channel, not bolted-on integrations</h3>
-            <p>Most solutions treat messaging channels as an afterthought. GLUCOSE is built from the ground up for WhatsApp, Telegram, LINE, and more—meeting customers where they already are.</p>
-            <ul>
-              <li>
-                <Check size={16} />
-                Deploy on WhatsApp, Telegram, LINE, Viber, and more
-              </li>
-              <li>
-                <Check size={16} />
-                Consistent experience across all channels
-              </li>
-              <li>
-                <Check size={16} />
-                No app downloads required for customers
-              </li>
-            </ul>
-          </div>
-          <div class="comparison-visual">
-            <div class="visual-icon">
-              <MessageSquare size={32} />
-            </div>
-            <div class="visual-title">Deploy Everywhere</div>
-            <div class="visual-desc">One configuration, every channel. Your brand shows up wherever your customers prefer to communicate.</div>
-            <div class="flow-diagram">
-              <div class="flow-node">
-                <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                <span>WhatsApp</span>
-              </div>
-              <div class="flow-node">
-                <svg viewBox="0 0 24 24" fill="#0088CC"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                <span>Telegram</span>
-              </div>
-              <div class="flow-node">
-                <svg viewBox="0 0 24 24" fill="#00C300"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.193 0-.378-.09-.503-.234l-2.178-2.636v2.243c0 .345-.282.63-.63.63-.345 0-.627-.285-.627-.63V8.108c0-.27.174-.51.432-.596.064-.021.13-.031.199-.031.19 0 .378.09.5.234l2.178 2.636V8.108c0-.345.282-.63.63-.63.346 0 .63.285.63.63v4.771zm-5.741 0c0 .345-.282.63-.63.63-.345 0-.627-.285-.627-.63V8.108c0-.345.282-.63.63-.63.346 0 .627.285.627.63v4.771zm-2.466.63H4.917c-.345 0-.63-.285-.63-.63V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .63.285.63.63 0 .345-.282.629-.63.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-                <span>LINE</span>
-              </div>
-              <div class="flow-node highlight">
-                <Boxes size={20} />
-                <span>GLUCOSE</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Comparison 3: No-Code Setup -->
-        <div class="comparison-block">
-          <div class="comparison-content">
-            <h3>No-code setup, not months of development</h3>
-            <p>Traditional enterprise AI deployments take months and require technical teams. GLUCOSE's Management Console lets product managers configure, deploy, and iterate without writing code.</p>
-            <ul>
-              <li>
-                <Check size={16} />
-                Visual journey builder for business users
-              </li>
-              <li>
-                <Check size={16} />
-                Deploy in days, not months
-              </li>
-              <li>
-                <Check size={16} />
-                Iterate and improve without engineering support
-              </li>
-            </ul>
-          </div>
-          <div class="comparison-visual">
-            <div class="visual-icon">
-              <Boxes size={32} />
-            </div>
-            <div class="visual-title">Management Console</div>
-            <div class="visual-desc">Define customer journeys, configure responses, and analyze performance—all through an intuitive interface designed for business users.</div>
-            <div class="flow-diagram mt-6">
-              <div class="flow-node">
-                <FileText size={20} />
-                <span>Add Docs</span>
-              </div>
-              <div class="flow-arrow"><ArrowRight size={16} /></div>
-              <div class="flow-node">
-                <Wrench size={20} />
-                <span>Add Tools</span>
-              </div>
-              <div class="flow-arrow"><ArrowRight size={16} /></div>
-              <div class="flow-node">
-                <Settings size={20} />
-                <span>Configure</span>
-              </div>
-              <div class="flow-arrow"><ArrowRight size={16} /></div>
-              <div class="flow-node highlight">
-                <CheckCircle size={20} />
-                <span>Go Live</span>
-              </div>
+              <div class="visual-desc">{block.visualDesc}</div>
+              {i === 0 && (
+                <div class="chat-mockup">
+                  <div class="chat-message">
+                    <div class="chat-avatar user">U</div>
+                    <div class="chat-bubble">"Actually, wait—can I also ask about warranty coverage?"</div>
+                  </div>
+                  <div class="chat-message">
+                    <div class="chat-avatar">G</div>
+                    <div class="chat-bubble ai">"Of course! Your vehicle's warranty includes 4-year coverage. I'll also continue helping with the service booking—would you prefer morning or afternoon?"</div>
+                  </div>
+                </div>
+              )}
+              {i === 1 && (
+                <div class="flow-diagram">
+                  <div class="flow-node">
+                    <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <span>WhatsApp</span>
+                  </div>
+                  <div class="flow-node">
+                    <svg viewBox="0 0 24 24" fill="#0088CC"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    <span>Telegram</span>
+                  </div>
+                  <div class="flow-node">
+                    <svg viewBox="0 0 24 24" fill="#00C300"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.193 0-.378-.09-.503-.234l-2.178-2.636v2.243c0 .345-.282.63-.63.63-.345 0-.627-.285-.627-.63V8.108c0-.27.174-.51.432-.596.064-.021.13-.031.199-.031.19 0 .378.09.5.234l2.178 2.636V8.108c0-.345.282-.63.63-.63.346 0 .63.285.63.63v4.771zm-5.741 0c0 .345-.282.63-.63.63-.345 0-.627-.285-.627-.63V8.108c0-.345.282-.63.63-.63.346 0 .627.285.627.63v4.771zm-2.466.63H4.917c-.345 0-.63-.285-.63-.63V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .63.285.63.63 0 .345-.282.629-.63.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+                    <span>LINE</span>
+                  </div>
+                  <div class="flow-node highlight">
+                    <Boxes size={20} />
+                    <span>GLUCOSE</span>
+                  </div>
+                </div>
+              )}
+              {i === 2 && (
+                <div class="flow-diagram mt-6">
+                  <div class="flow-node"><FileText size={20} /><span>Add Docs</span></div>
+                  <div class="flow-arrow"><ArrowRight size={16} /></div>
+                  <div class="flow-node"><Wrench size={20} /><span>Add Tools</span></div>
+                  <div class="flow-arrow"><ArrowRight size={16} /></div>
+                  <div class="flow-node"><Settings size={20} /><span>Configure</span></div>
+                  <div class="flow-arrow"><ArrowRight size={16} /></div>
+                  <div class="flow-node highlight"><CheckCircle size={20} /><span>Go Live</span></div>
+                </div>
+              )}
+              {i === 3 && (
+                <div class="chat-mockup">
+                  <div class="chat-message">
+                    <div class="chat-avatar">G</div>
+                    <div class="chat-bubble ai">"Hi! Your vehicle's 10,000km service is coming up. I noticed a convenient slot available next Tuesday at 10am. Would you like me to book it?"</div>
+                  </div>
+                  <div class="chat-message">
+                    <div class="chat-avatar user">U</div>
+                    <div class="chat-bubble">"Yes, that works perfectly!"</div>
+                  </div>
+                  <div class="chat-message">
+                    <div class="chat-avatar">G</div>
+                    <div class="chat-bubble ai">"Done! I've booked your service and sent a calendar invite. Need a reminder the day before?"</div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-        </div>
-
-        <!-- Comparison 4: Proactive Engagement -->
-        <div class="comparison-block reverse">
-          <div class="comparison-content">
-            <h3>Proactive re-engagement, not just reactive support</h3>
-            <p>Traditional chatbots wait for customers to ask questions. GLUCOSE agents proactively engage—sharing relevant information, following up on service needs, and driving conversions.</p>
-            <ul>
-              <li>
-                <Check size={16} />
-                Scheduled follow-ups and reminders
-              </li>
-              <li>
-                <Check size={16} />
-                Event-triggered communications (IoT, CRM, etc.)
-              </li>
-              <li>
-                <Check size={16} />
-                Personalized product recommendations
-              </li>
-            </ul>
-          </div>
-          <div class="comparison-visual">
-            <div class="visual-icon">
-              <Bell size={32} />
-            </div>
-            <div class="visual-title">Always-On Engagement</div>
-            <div class="visual-desc">GLUCOSE doesn't just answer—it anticipates. Proactive outreach keeps customers engaged throughout their journey.</div>
-            <div class="chat-mockup">
-              <div class="chat-message">
-                <div class="chat-avatar">G</div>
-                <div class="chat-bubble ai">"Hi! Your vehicle's 10,000km service is coming up. I noticed a convenient slot available next Tuesday at 10am. Would you like me to book it?"</div>
-              </div>
-              <div class="chat-message">
-                <div class="chat-avatar user">U</div>
-                <div class="chat-bubble">"Yes, that works perfectly!"</div>
-              </div>
-              <div class="chat-message">
-                <div class="chat-avatar">G</div>
-                <div class="chat-bubble ai">"Done! I've booked your service and sent a calendar invite. Need a reminder the day before?"</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
 
     <!-- Feature Comparison Table -->
     <section class="comparison-table-section">
       <div class="max-w-[1200px] mx-auto">
-        <SectionHeader label="Feature Comparison" heading="GLUCOSE vs. Alternatives" subtext="See how GLUCOSE compares to traditional chatbots and generic AI solutions." />
+        <SectionHeader label={featureTable1.label} heading={featureTable1.heading} subtext={featureTable1.subtext} />
 
         <div class="comparison-table-wrapper">
           <table class="comparison-table">
@@ -319,65 +245,19 @@ const { heroHeading, heroSubtext, sectionLabel, sectionHeading, sectionSubtext, 
               <tr>
                 <th>Features</th>
                 <th class="glucose-col">GLUCOSE</th>
-                <th>Traditional Chatbots</th>
-                <th>Generic AI (GPT wrappers)</th>
+                <th>{featureTable1.col2}</th>
+                <th>{featureTable1.col3}</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Goal-driven autonomous reasoning</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-                <td class="partial"><MinusCircle size={16} /></td>
-              </tr>
-              <tr>
-                <td>Native multi-channel deployment</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="partial"><MinusCircle size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-              </tr>
-              <tr>
-                <td>No-code configuration</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="check"><Check size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-              </tr>
-              <tr>
-                <td>Proactive customer engagement</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-              </tr>
-              <tr>
-                <td>Enterprise CRM/CDP integrations</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="partial"><MinusCircle size={16} /></td>
-                <td class="partial"><MinusCircle size={16} /></td>
-              </tr>
-              <tr>
-                <td>IoT event-triggered actions</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-              </tr>
-              <tr>
-                <td>First-party data insights</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="partial"><MinusCircle size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-              </tr>
-              <tr>
-                <td>Enterprise security (SOC 2, ISO 27001)</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="partial"><MinusCircle size={16} /></td>
-                <td class="partial"><MinusCircle size={16} /></td>
-              </tr>
-              <tr>
-                <td>Brand voice consistency</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="partial"><MinusCircle size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-              </tr>
+              {rows1.map((row) => (
+                <tr>
+                  <td>{row.feature}</td>
+                  <td class={row.glucose}>{row.glucose === 'check' ? <Check size={16} /> : row.glucose === 'cross' ? <X size={16} /> : <MinusCircle size={16} />}</td>
+                  <td class={row.col2}>{row.col2 === 'check' ? <Check size={16} /> : row.col2 === 'cross' ? <X size={16} /> : <MinusCircle size={16} />}</td>
+                  <td class={row.col3}>{row.col3 === 'check' ? <Check size={16} /> : row.col3 === 'cross' ? <X size={16} /> : <MinusCircle size={16} />}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -387,7 +267,7 @@ const { heroHeading, heroSubtext, sectionLabel, sectionHeading, sectionSubtext, 
     <!-- Enterprise AI Platform Comparison -->
     <section class="comparison-table-section bg-bg-primary">
       <div class="max-w-[1200px] mx-auto">
-        <SectionHeader label="Enterprise Comparison" heading="GLUCOSE vs. AI-Native Platforms" subtext="How GLUCOSE compares to enterprise AI platforms in the market today." />
+        <SectionHeader label={featureTable2.label} heading={featureTable2.heading} subtext={featureTable2.subtext} />
 
         <div class="comparison-table-wrapper">
           <table class="comparison-table">
@@ -395,89 +275,41 @@ const { heroHeading, heroSubtext, sectionLabel, sectionHeading, sectionSubtext, 
               <tr>
                 <th>Capability</th>
                 <th class="glucose-col">GLUCOSE</th>
-                <th>Salesforce AgentForce</th>
-                <th>Sierra AI</th>
+                <th>{featureTable2.col2}</th>
+                <th>{featureTable2.col3}</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Closes deals without human intervention</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="partial"><MinusCircle size={16} /></td>
-                <td class="partial"><MinusCircle size={16} /></td>
-              </tr>
-              <tr>
-                <td>Engages customers on WhatsApp, LINE, Telegram natively</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-                <td class="partial"><MinusCircle size={16} /></td>
-              </tr>
-              <tr>
-                <td>Proactive lifecycle re-engagement (Planner)</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-              </tr>
-              <tr>
-                <td>Model-agnostic (no vendor lock-in)</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-                <td class="partial"><MinusCircle size={16} /></td>
-              </tr>
-              <tr>
-                <td>Vertical-specific product corpus architecture</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="partial"><MinusCircle size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-              </tr>
-              <tr>
-                <td>Live in weeks, not months</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-                <td class="partial"><MinusCircle size={16} /></td>
-              </tr>
-              <tr>
-                <td>Multimodal (voice, text, images, video)</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="partial"><MinusCircle size={16} /></td>
-                <td class="partial"><MinusCircle size={16} /></td>
-              </tr>
-              <tr>
-                <td>Single-tenant deployment option</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-              </tr>
-              <tr>
-                <td>Outcome-based pricing</td>
-                <td class="check"><Check size={16} /></td>
-                <td class="cross"><X size={16} /></td>
-                <td class="check"><Check size={16} /></td>
-              </tr>
+              {rows2.map((row) => (
+                <tr>
+                  <td>{row.feature}</td>
+                  <td class={row.glucose}>{row.glucose === 'check' ? <Check size={16} /> : row.glucose === 'cross' ? <X size={16} /> : <MinusCircle size={16} />}</td>
+                  <td class={row.col2}>{row.col2 === 'check' ? <Check size={16} /> : row.col2 === 'cross' ? <X size={16} /> : <MinusCircle size={16} />}</td>
+                  <td class={row.col3}>{row.col3 === 'check' ? <Check size={16} /> : row.col3 === 'cross' ? <X size={16} /> : <MinusCircle size={16} />}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
 
-        <!-- Reframed Legacy vs Agentic -->
+        <!-- Engagement Stack -->
         <div class="mt-16">
-          <h3 class="font-[family-name:var(--font-display)] text-2xl font-medium text-text-primary text-center mb-8">The Engagement Stack, Reimagined</h3>
+          <h3 class="font-[family-name:var(--font-display)] text-2xl font-medium text-text-primary text-center mb-8">{engagementStack.heading}</h3>
           <div class="grid grid-cols-2 gap-8 max-w-[800px] mx-auto">
             <div class="p-8 bg-bg-tertiary rounded-[12px] border border-border-theme">
-              <div class="text-xs font-semibold uppercase tracking-[0.15em] text-text-muted mb-4">Legacy Era</div>
+              <div class="text-xs font-semibold uppercase tracking-[0.15em] text-text-muted mb-4">{engagementStack.legacyLabel}</div>
               <ul class="list-none flex flex-col gap-3">
-                <li class="text-[0.9375rem] text-text-secondary">CRM stores records</li>
-                <li class="text-[0.9375rem] text-text-secondary">Chatbots answer questions</li>
-                <li class="text-[0.9375rem] text-text-secondary">Marketing automates campaigns</li>
-                <li class="text-[0.9375rem] text-text-secondary">Humans follow up</li>
+                {legacyList.map((item) => (
+                  <li class="text-[0.9375rem] text-text-secondary">{item}</li>
+                ))}
               </ul>
             </div>
             <div class="p-8 bg-accent-soft rounded-[12px] border border-[rgba(255,192,0,0.2)]">
-              <div class="text-xs font-semibold uppercase tracking-[0.15em] text-accent mb-4">Agentic Era</div>
+              <div class="text-xs font-semibold uppercase tracking-[0.15em] text-accent mb-4">{engagementStack.agenticLabel}</div>
               <ul class="list-none flex flex-col gap-3">
-                <li class="text-[0.9375rem] text-text-primary font-medium">GLUCOSE orchestrates experiences</li>
-                <li class="text-[0.9375rem] text-text-primary font-medium">GLUCOSE executes goals</li>
-                <li class="text-[0.9375rem] text-text-primary font-medium">GLUCOSE adapts in real time</li>
-                <li class="text-[0.9375rem] text-text-primary font-medium">Planner reengages autonomously</li>
+                {agenticList.map((item) => (
+                  <li class="text-[0.9375rem] text-text-primary font-medium">{item}</li>
+                ))}
               </ul>
             </div>
           </div>
@@ -488,145 +320,24 @@ const { heroHeading, heroSubtext, sectionLabel, sectionHeading, sectionSubtext, 
     <!-- Testimonials Carousel -->
     <section class="testimonials-section">
       <div class="testimonials-inner">
-        <SectionHeader label="Our Customers" heading="The results speak for themselves" subtext="GLUCOSE is trusted by leading brands across industries to transform customer engagement." />
+        <SectionHeader label={testimonials.label} heading={testimonials.heading} subtext={testimonials.subtext} />
         <div class="testimonial-carousel" id="testimonialCarousel">
           <div class="testimonial-viewport">
             <div class="testimonial-slides">
-              <!-- Slide 1 -->
-              <div class="testimonial-slide active">
-                <div class="testimonial-card">
-                  <blockquote class="testimonial-quote">
-                    "The platform's ability to understand context and deliver personalized responses transformed customer support operations. It's like having a team of experts available 24/7."
-                  </blockquote>
-                  <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?w=112&h=112&fit=crop&crop=face" alt="Gennady K.">
-                    <div class="testimonial-info">
-                      <div class="testimonial-name">Gennady K.</div>
-                      <div class="testimonial-role">CEO, Technology Services</div>
+              {tItems.map((t, i) => (
+                <div class={`testimonial-slide${i === 0 ? ' active' : ''}`}>
+                  <div class="testimonial-card">
+                    <blockquote class="testimonial-quote">"{t.quote}"</blockquote>
+                    <div class="testimonial-author">
+                      <img class="testimonial-avatar" src={t.avatarSrc} alt={t.avatarAlt} />
+                      <div class="testimonial-info">
+                        <div class="testimonial-name">{t.name}</div>
+                        <div class="testimonial-role">{t.role}</div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- Slide 2 -->
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <blockquote class="testimonial-quote">
-                    "GLUCOSE changed how we think about customer engagement. The AI doesn't just respond—it understands our products and brand voice perfectly."
-                  </blockquote>
-                  <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=112&h=112&fit=crop&crop=face" alt="Product Head">
-                    <div class="testimonial-info">
-                      <div class="testimonial-name">Product Head</div>
-                      <div class="testimonial-role">Lifestyle Mobility</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Slide 3 -->
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <blockquote class="testimonial-quote">
-                    "We've seen a dramatic improvement in response quality and customer satisfaction since implementing GLUCOSE. The autonomous agents handle complex queries with ease."
-                  </blockquote>
-                  <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1537511446984-935f663eb1f4?w=112&h=112&fit=crop&crop=face" alt="Tech Lead">
-                    <div class="testimonial-info">
-                      <div class="testimonial-name">Tech Lead</div>
-                      <div class="testimonial-role">Enterprise Software</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Slide 4 -->
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <blockquote class="testimonial-quote">
-                    "The platform handles everything from warranty inquiries to service bookings autonomously. Our customers get instant, accurate responses around the clock."
-                  </blockquote>
-                  <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1542190891-2093d38760f2?w=112&h=112&fit=crop&crop=face" alt="Service Manager">
-                    <div class="testimonial-info">
-                      <div class="testimonial-name">Service Manager</div>
-                      <div class="testimonial-role">Automotive</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Slide 5 -->
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <blockquote class="testimonial-quote">
-                    "Patient engagement has never been easier. The AI understands medical context and provides appropriate guidance while maintaining compliance."
-                  </blockquote>
-                  <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=112&h=112&fit=crop&crop=face" alt="Digital Health Director">
-                    <div class="testimonial-info">
-                      <div class="testimonial-name">Digital Health Director</div>
-                      <div class="testimonial-role">Healthcare</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Slide 6 -->
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <blockquote class="testimonial-quote">
-                    "Our customers receive personalized financial guidance instantly. The compliance guardrails give us confidence to scale without risk."
-                  </blockquote>
-                  <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=112&h=112&fit=crop&crop=face" alt="VP Customer Experience">
-                    <div class="testimonial-info">
-                      <div class="testimonial-name">VP Customer Experience</div>
-                      <div class="testimonial-role">Financial Services</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Slide 7 -->
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <blockquote class="testimonial-quote">
-                    "Post-purchase support is now a competitive advantage. Customers love getting instant help with setup and troubleshooting."
-                  </blockquote>
-                  <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1598550874175-4d0ef436c909?w=112&h=112&fit=crop&crop=face" alt="Product Manager">
-                    <div class="testimonial-info">
-                      <div class="testimonial-name">Product Manager</div>
-                      <div class="testimonial-role">Consumer Electronics</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Slide 8 -->
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <blockquote class="testimonial-quote">
-                    "We reduced support costs by 40% while improving CSAT scores. The AI handles routine queries so our team can focus on complex issues."
-                  </blockquote>
-                  <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=112&h=112&fit=crop&crop=face" alt="CX Operations Lead">
-                    <div class="testimonial-info">
-                      <div class="testimonial-name">CX Operations Lead</div>
-                      <div class="testimonial-role">Telecommunications</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Slide 9 -->
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <blockquote class="testimonial-quote">
-                    "Subscriber engagement increased significantly. The AI recommends content and handles account queries with our brand's personality."
-                  </blockquote>
-                  <div class="testimonial-author">
-                    <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1589386417686-0d34b5903d23?w=112&h=112&fit=crop&crop=face" alt="Head of Growth">
-                    <div class="testimonial-info">
-                      <div class="testimonial-name">Head of Growth</div>
-                      <div class="testimonial-role">Media &amp; Entertainment</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
@@ -649,7 +360,7 @@ const { heroHeading, heroSubtext, sectionLabel, sectionHeading, sectionSubtext, 
     <!-- Pricing Signal -->
     <section class="py-16 px-8">
       <div class="max-w-[700px] mx-auto text-center">
-        <SectionHeader label="Pricing" heading="Pricing tied to outcomes, not seats" subtext="GLUCOSE's pricing model is aligned with the value it delivers. You pay for results — not licenses, not seats, not per-message fees." class="max-w-full mb-8" />
+        <SectionHeader label={pricingLabel} heading={pricingHeading} subtext={pricingSubtext} class="max-w-full mb-8" />
         <a href="/contact" class="btn btn-accent">Talk to Sales</a>
       </div>
     </section>
@@ -840,27 +551,33 @@ const { heroHeading, heroSubtext, sectionLabel, sectionHeading, sectionSubtext, 
     justify-content: center;
   }
 
+  .visual-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
   .visual-icon {
-    width: 80px;
-    height: 80px;
+    width: 36px;
+    height: 36px;
     background: var(--color-accent-soft);
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    flex-shrink: 0;
   }
 
   .visual-icon svg {
-    width: 40px;
-    height: 40px;
+    width: 18px;
+    height: 18px;
     color: var(--color-accent);
   }
 
   .visual-title {
     font-size: 1.25rem;
     font-weight: 600;
-    margin-bottom: 0.75rem;
   }
 
   .visual-desc {

@@ -14,6 +14,69 @@ fragment VsPageParts on VsPage {
   sectionSubtext
   ctaHeading
   ctaSubtext
+  comparisonBlocks {
+    __typename
+    heading
+    body
+    bullets
+    visualTitle
+    visualDesc
+  }
+  featureTable1 {
+    __typename
+    label
+    heading
+    subtext
+    col2
+    col3
+    rows {
+      __typename
+      feature
+      glucose
+      col2
+      col3
+    }
+  }
+  featureTable2 {
+    __typename
+    label
+    heading
+    subtext
+    col2
+    col3
+    rows {
+      __typename
+      feature
+      glucose
+      col2
+      col3
+    }
+  }
+  engagementStack {
+    __typename
+    heading
+    legacyLabel
+    legacyItems
+    agenticLabel
+    agenticItems
+  }
+  testimonials {
+    __typename
+    label
+    heading
+    subtext
+    items {
+      __typename
+      quote
+      name
+      role
+      avatarSrc
+      avatarAlt
+    }
+  }
+  pricingLabel
+  pricingHeading
+  pricingSubtext
 }
 
 fragment CustomersPageParts on CustomersPage {
