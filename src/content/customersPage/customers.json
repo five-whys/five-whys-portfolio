@@ -1,0 +1,95 @@
+{
+  "heroHeading": "Our Customers",
+  "heroSubtext": "5.Y is trusted by industry leaders delivering autonomous customer experiences across healthcare, mobility, and logistics.",
+  "ctaHeading": "See what GLUCOSE can do for you",
+  "ctaSubtext": "Discover how GLUCOSE can help your enterprise run autonomous brand experiences that reach every customer, in every moment that matters.",
+  "featuredCustomer": {
+    "href": "#",
+    "imageSrc": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80",
+    "imageAlt": "Healthcare professionals in modern hospital",
+    "logoSrc": "https://www.ihhhealthcare.com/ihh/assets/images/reskin/logo-ihh.svg",
+    "logoAlt": "IHH Healthcare",
+    "metrics": [
+      { "label": "Patient Interactions", "value": "2M+" },
+      { "label": "Resolution Rate", "value": "78%" }
+    ],
+    "heading": "How IHH Healthcare delivers Care. For Good. across 80+ hospitals with GLUCOSE.",
+    "body": "One of the world's largest private healthcare networks, operating across 10 countries, uses GLUCOSE to provide personalized patient engagement while maintaining the highest standards of care and compliance."
+  },
+  "featuredTestimonial": {
+    "logoSrc": "https://www.ruff-cycles.com/wp-content/uploads/2022/03/ruff-cycles-logo-k.svg",
+    "logoAlt": "RUFF CYCLES",
+    "quote": "GLUCOSE transformed how we engage with customers post-purchase. The AI understands our bikes better than most humans—and it speaks our brand voice perfectly. Our customers get instant, accurate answers about everything from maintenance to accessories.",
+    "avatarSrc": "/Images/ruff.jpg",
+    "avatarAlt": "Ruff Cycles",
+    "name": "CEO",
+    "role": "RUFF CYCLES"
+  },
+  "results": [
+    {
+      "imageSrc": "https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80",
+      "imageAlt": "Electric bike in urban setting",
+      "logoSrc": "https://www.ruff-cycles.com/wp-content/uploads/2022/03/ruff-cycles-logo-k.svg",
+      "logoAlt": "RUFF CYCLES",
+      "metrics": [
+        { "label": "CSAT", "value": "4.8/5" },
+        { "label": "Response Time", "value": "-65%" }
+      ],
+      "industry": "Lifestyle Mobility",
+      "title": "How RUFF CYCLES transforms post-purchase engagement into brand loyalty with AI.",
+      "href": "#"
+    },
+    {
+      "imageSrc": "https://images.unsplash.com/photo-1551076805-e1869033e561?w=600&q=80",
+      "imageAlt": "Modern healthcare facility",
+      "logoSrc": "https://www.ihhhealthcare.com/ihh/assets/images/reskin/logo-ihh.svg",
+      "logoAlt": "IHH Healthcare",
+      "metrics": [
+        { "label": "Hospitals", "value": "80+" },
+        { "label": "Countries", "value": "10" }
+      ],
+      "industry": "Healthcare",
+      "title": "How IHH Healthcare scales personalized patient engagement across its global network.",
+      "href": "#"
+    },
+    {
+      "imageSrc": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80",
+      "imageAlt": "Logistics warehouse operations",
+      "logoSrc": "https://www.wareflex.io/_next/static/media/WareflexLogo.32837ff8.svg",
+      "logoAlt": "Wareflex",
+      "metrics": [
+        { "label": "Warehouses", "value": "650+" },
+        { "label": "Quote Time", "value": "-80%" }
+      ],
+      "industry": "Logistics",
+      "title": "How Wareflex revolutionizes Vietnam's logistics industry with AI-powered customer engagement.",
+      "href": "#"
+    }
+  ],
+  "successStories": [
+    {
+      "href": "#",
+      "imageSrc": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80",
+      "imageAlt": "Electric bike lifestyle",
+      "brand": "RUFF CYCLES",
+      "title": "Building Brand Love Through AI-Powered Support",
+      "body": "How RUFF CYCLES uses GLUCOSE to provide 24/7 product expertise for their handcrafted European eBikes."
+    },
+    {
+      "href": "#",
+      "imageSrc": "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=400&q=80",
+      "imageAlt": "Healthcare innovation",
+      "brand": "IHH Healthcare",
+      "title": "Care. For Good. Powered by GLUCOSE",
+      "body": "Scaling personalized patient engagement across 80+ hospitals while maintaining compliance and care standards."
+    },
+    {
+      "href": "#",
+      "imageSrc": "https://images.unsplash.com/photo-1553413077-190dd305871c?w=400&q=80",
+      "imageAlt": "Logistics operations",
+      "brand": "Wareflex",
+      "title": "Vietnam's First AI-Powered Logistics Platform",
+      "body": "How LAVA AI, built on GLUCOSE, transforms logistics customer experience across 650+ warehouses."
+    }
+  ]
+}

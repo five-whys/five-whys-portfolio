@@ -56,10 +56,16 @@ type Query {
   document(collection: String, relativePath: String): DocumentNode!
   pages(relativePath: String): Pages!
   pagesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PagesFilter): PagesConnection!
+  vsPage(relativePath: String): VsPage!
+  vsPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: VsPageFilter): VsPageConnection!
+  customersPage(relativePath: String): CustomersPage!
+  customersPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: CustomersPageFilter): CustomersPageConnection!
 }
 
 input DocumentFilter {
   pages: PagesFilter
+  vsPage: VsPageFilter
+  customersPage: CustomersPageFilter
 }
 
 type DocumentConnectionEdges {
@@ -85,7 +91,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Pages | Folder
+union DocumentNode = Pages | VsPage | CustomersPage | Folder
 
 type Pages implements Node & Document {
   title: String!
@@ -126,6 +132,178 @@ type PagesConnection implements Connection {
   edges: [PagesConnectionEdges]
 }
 
+type VsPage implements Node & Document {
+  heroHeading: String
+  heroSubtext: String
+  sectionLabel: String
+  sectionHeading: String
+  sectionSubtext: String
+  ctaHeading: String
+  ctaSubtext: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input VsPageFilter {
+  heroHeading: StringFilter
+  heroSubtext: StringFilter
+  sectionLabel: StringFilter
+  sectionHeading: StringFilter
+  sectionSubtext: StringFilter
+  ctaHeading: StringFilter
+  ctaSubtext: StringFilter
+}
+
+type VsPageConnectionEdges {
+  cursor: String!
+  node: VsPage
+}
+
+type VsPageConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [VsPageConnectionEdges]
+}
+
+type CustomersPageFeaturedCustomerMetrics {
+  label: String
+  value: String
+}
+
+type CustomersPageFeaturedCustomer {
+  heading: String
+  body: String
+  href: String
+  imageSrc: String
+  imageAlt: String
+  logoSrc: String
+  logoAlt: String
+  metrics: [CustomersPageFeaturedCustomerMetrics]
+}
+
+type CustomersPageFeaturedTestimonial {
+  quote: String
+  name: String
+  role: String
+  logoSrc: String
+  logoAlt: String
+  avatarSrc: String
+  avatarAlt: String
+}
+
+type CustomersPageResultsMetrics {
+  label: String
+  value: String
+}
+
+type CustomersPageResults {
+  title: String
+  industry: String
+  href: String
+  imageSrc: String
+  imageAlt: String
+  logoSrc: String
+  logoAlt: String
+  metrics: [CustomersPageResultsMetrics]
+}
+
+type CustomersPageSuccessStories {
+  brand: String
+  title: String
+  body: String
+  href: String
+  imageSrc: String
+  imageAlt: String
+}
+
+type CustomersPage implements Node & Document {
+  heroHeading: String
+  heroSubtext: String
+  ctaHeading: String
+  ctaSubtext: String
+  featuredCustomer: CustomersPageFeaturedCustomer
+  featuredTestimonial: CustomersPageFeaturedTestimonial
+  results: [CustomersPageResults]
+  successStories: [CustomersPageSuccessStories]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input CustomersPageFeaturedCustomerMetricsFilter {
+  label: StringFilter
+  value: StringFilter
+}
+
+input CustomersPageFeaturedCustomerFilter {
+  heading: StringFilter
+  body: StringFilter
+  href: StringFilter
+  imageSrc: StringFilter
+  imageAlt: StringFilter
+  logoSrc: StringFilter
+  logoAlt: StringFilter
+  metrics: CustomersPageFeaturedCustomerMetricsFilter
+}
+
+input CustomersPageFeaturedTestimonialFilter {
+  quote: StringFilter
+  name: StringFilter
+  role: StringFilter
+  logoSrc: StringFilter
+  logoAlt: StringFilter
+  avatarSrc: StringFilter
+  avatarAlt: StringFilter
+}
+
+input CustomersPageResultsMetricsFilter {
+  label: StringFilter
+  value: StringFilter
+}
+
+input CustomersPageResultsFilter {
+  title: StringFilter
+  industry: StringFilter
+  href: StringFilter
+  imageSrc: StringFilter
+  imageAlt: StringFilter
+  logoSrc: StringFilter
+  logoAlt: StringFilter
+  metrics: CustomersPageResultsMetricsFilter
+}
+
+input CustomersPageSuccessStoriesFilter {
+  brand: StringFilter
+  title: StringFilter
+  body: StringFilter
+  href: StringFilter
+  imageSrc: StringFilter
+  imageAlt: StringFilter
+}
+
+input CustomersPageFilter {
+  heroHeading: StringFilter
+  heroSubtext: StringFilter
+  ctaHeading: StringFilter
+  ctaSubtext: StringFilter
+  featuredCustomer: CustomersPageFeaturedCustomerFilter
+  featuredTestimonial: CustomersPageFeaturedTestimonialFilter
+  results: CustomersPageResultsFilter
+  successStories: CustomersPageSuccessStoriesFilter
+}
+
+type CustomersPageConnectionEdges {
+  cursor: String!
+  node: CustomersPage
+}
+
+type CustomersPageConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [CustomersPageConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -134,21 +312,101 @@ type Mutation {
   createFolder(collection: String, relativePath: String!): DocumentNode!
   updatePages(relativePath: String!, params: PagesMutation!): Pages!
   createPages(relativePath: String!, params: PagesMutation!): Pages!
+  updateVsPage(relativePath: String!, params: VsPageMutation!): VsPage!
+  createVsPage(relativePath: String!, params: VsPageMutation!): VsPage!
+  updateCustomersPage(relativePath: String!, params: CustomersPageMutation!): CustomersPage!
+  createCustomersPage(relativePath: String!, params: CustomersPageMutation!): CustomersPage!
 }
 
 input DocumentUpdateMutation {
   pages: PagesMutation
+  vsPage: VsPageMutation
+  customersPage: CustomersPageMutation
   relativePath: String
 }
 
 input DocumentMutation {
   pages: PagesMutation
+  vsPage: VsPageMutation
+  customersPage: CustomersPageMutation
 }
 
 input PagesMutation {
   title: String
   subtitle: String
   body: JSON
+}
+
+input VsPageMutation {
+  heroHeading: String
+  heroSubtext: String
+  sectionLabel: String
+  sectionHeading: String
+  sectionSubtext: String
+  ctaHeading: String
+  ctaSubtext: String
+}
+
+input CustomersPageFeaturedCustomerMetricsMutation {
+  label: String
+  value: String
+}
+
+input CustomersPageFeaturedCustomerMutation {
+  heading: String
+  body: String
+  href: String
+  imageSrc: String
+  imageAlt: String
+  logoSrc: String
+  logoAlt: String
+  metrics: [CustomersPageFeaturedCustomerMetricsMutation]
+}
+
+input CustomersPageFeaturedTestimonialMutation {
+  quote: String
+  name: String
+  role: String
+  logoSrc: String
+  logoAlt: String
+  avatarSrc: String
+  avatarAlt: String
+}
+
+input CustomersPageResultsMetricsMutation {
+  label: String
+  value: String
+}
+
+input CustomersPageResultsMutation {
+  title: String
+  industry: String
+  href: String
+  imageSrc: String
+  imageAlt: String
+  logoSrc: String
+  logoAlt: String
+  metrics: [CustomersPageResultsMetricsMutation]
+}
+
+input CustomersPageSuccessStoriesMutation {
+  brand: String
+  title: String
+  body: String
+  href: String
+  imageSrc: String
+  imageAlt: String
+}
+
+input CustomersPageMutation {
+  heroHeading: String
+  heroSubtext: String
+  ctaHeading: String
+  ctaSubtext: String
+  featuredCustomer: CustomersPageFeaturedCustomerMutation
+  featuredTestimonial: CustomersPageFeaturedTestimonialMutation
+  results: [CustomersPageResultsMutation]
+  successStories: [CustomersPageSuccessStoriesMutation]
 }
 
 schema {

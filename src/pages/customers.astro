@@ -4,7 +4,9 @@ import PageHero from '../components/sections/PageHero.astro';
 import ResultsGrid from '../components/sections/ResultsGrid.astro';
 import SuccessStoryCard from '../components/cards/SuccessStoryCard.astro';
 import { ArrowRight } from 'lucide-astro';
-import { successStories, results, featuredCustomer, featuredTestimonial } from '../data/customers';
+import { getEntry } from 'astro:content';
+const cms = await getEntry('customersPage', 'customers');
+const { successStories, results, featuredCustomer, featuredTestimonial, heroHeading, heroSubtext, ctaHeading, ctaSubtext } = cms.data;
 ---
 
 <BaseLayout
@@ -20,10 +22,7 @@ import { successStories, results, featuredCustomer, featuredTestimonial } from '
   activeNav="customers"
 >
   <!-- Hero -->
-  <PageHero
-    heading="Our Customers"
-    subtext="5.Y is trusted by industry leaders delivering autonomous customer experiences across healthcare, mobility, and logistics."
-  />
+  <PageHero heading={heroHeading} subtext={heroSubtext} />
 
   <!-- Featured Customer - IHH Healthcare -->
   <section class="max-w-[1200px] mx-auto mb-16 px-8">
@@ -88,8 +87,8 @@ import { successStories, results, featuredCustomer, featuredTestimonial } from '
 
   <!-- CTA -->
   <section class="bg-bg-secondary border-t border-border-theme py-20 px-8 text-center" id="demo">
-    <h2 class="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3rem)] font-medium tracking-[-0.02em] mb-4">See what GLUCOSE can do for you</h2>
-    <p class="text-text-secondary text-lg max-w-[600px] mx-auto mb-8">Discover how GLUCOSE can help your enterprise run autonomous brand experiences that reach every customer, in every moment that matters.</p>
+    <h2 class="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3rem)] font-medium tracking-[-0.02em] mb-4">{ctaHeading}</h2>
+    <p class="text-text-secondary text-lg max-w-[600px] mx-auto mb-8">{ctaSubtext}</p>
     <a href="/contact" class="inline-flex items-center justify-center gap-2 font-[family-name:var(--font-primary)] text-[0.9375rem] font-medium no-underline rounded-pill bg-accent text-bg-primary py-[0.875rem] px-7 transition-all duration-300">Request Demo</a>
   </section>
 </BaseLayout>

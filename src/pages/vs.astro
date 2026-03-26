@@ -7,6 +7,10 @@ import {
   ArrowRight, Wrench, Settings, CheckCircle, Bell, X, MinusCircle,
   ChevronLeft, ChevronRight,
 } from 'lucide-astro';
+import { getEntry } from 'astro:content';
+
+const vs = await getEntry('vsPage', 'vs');
+const { heroHeading, heroSubtext, sectionLabel, sectionHeading, sectionSubtext, ctaHeading, ctaSubtext } = vs.data;
 ---
 
 <BaseLayout
@@ -27,8 +31,8 @@ import {
           <Boxes size={16} />
           Compare Solutions
         </div>
-        <h1>Why teams choose <span class="highlight">GLUCOSE</span> over traditional solutions</h1>
-        <p>Enterprise teams need autonomous AI agents that understand context, deliver personalized experiences, and scale effortlessly—not rule-based chatbots that frustrate customers.</p>
+        <h1>{heroHeading}</h1>
+        <p>{heroSubtext}</p>
         <div class="vs-hero-cta">
           <a href="/contact" class="btn btn-accent">Book a Demo</a>
           <a href="/product" class="btn btn-secondary">Explore GLUCOSE</a>
@@ -39,7 +43,7 @@ import {
     <!-- Comparison Sections -->
     <section class="py-32 px-8">
       <div class="max-w-[1200px] mx-auto">
-        <SectionHeader label="The Difference" heading="What makes GLUCOSE different?" subtext="See why leading brands are switching from traditional chatbots and generic AI solutions to GLUCOSE's autonomous agents." />
+        <SectionHeader label={sectionLabel} heading={sectionHeading} subtext={sectionSubtext} />
 
         <!-- Visual Comparison -->
         <div class="mb-16">
@@ -653,8 +657,8 @@ import {
     <!-- CTA Section -->
     <section class="cta-section">
       <div class="cta-inner">
-        <h2>Ready to see the difference?</h2>
-        <p>Book a demo and discover how GLUCOSE can transform your customer engagement.</p>
+        <h2>{ctaHeading}</h2>
+        <p>{ctaSubtext}</p>
         <div class="cta-buttons">
           <a href="/contact" class="btn btn-accent">Book a Demo</a>
           <a href="/demo" class="btn btn-secondary">Watch Demo Videos</a>

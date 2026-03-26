@@ -52,3 +52,113 @@ query pagesConnection($before: String, $after: String, $first: Float, $last: Flo
     }
   }
 }
+
+query vsPage($relativePath: String!) {
+  vsPage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...VsPageParts
+  }
+}
+
+query vsPageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: VsPageFilter) {
+  vsPageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...VsPageParts
+      }
+    }
+  }
+}
+
+query customersPage($relativePath: String!) {
+  customersPage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...CustomersPageParts
+  }
+}
+
+query customersPageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: CustomersPageFilter) {
+  customersPageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...CustomersPageParts
+      }
+    }
+  }
+}

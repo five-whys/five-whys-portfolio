@@ -4,3 +4,71 @@ fragment PagesParts on Pages {
   subtitle
   body
 }
+
+fragment VsPageParts on VsPage {
+  __typename
+  heroHeading
+  heroSubtext
+  sectionLabel
+  sectionHeading
+  sectionSubtext
+  ctaHeading
+  ctaSubtext
+}
+
+fragment CustomersPageParts on CustomersPage {
+  __typename
+  heroHeading
+  heroSubtext
+  ctaHeading
+  ctaSubtext
+  featuredCustomer {
+    __typename
+    heading
+    body
+    href
+    imageSrc
+    imageAlt
+    logoSrc
+    logoAlt
+    metrics {
+      __typename
+      label
+      value
+    }
+  }
+  featuredTestimonial {
+    __typename
+    quote
+    name
+    role
+    logoSrc
+    logoAlt
+    avatarSrc
+    avatarAlt
+  }
+  results {
+    __typename
+    title
+    industry
+    href
+    imageSrc
+    imageAlt
+    logoSrc
+    logoAlt
+    metrics {
+      __typename
+      label
+      value
+    }
+  }
+  successStories {
+    __typename
+    brand
+    title
+    body
+    href
+    imageSrc
+    imageAlt
+  }
+}
