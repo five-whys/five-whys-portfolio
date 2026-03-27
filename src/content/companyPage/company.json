@@ -109,10 +109,22 @@
     }
   ],
   "companyStats": [
-    { "value": "2023", "label": "Founded" },
-    { "value": "5",    "label": "Regions" },
-    { "value": "8",    "label": "Industries" },
-    { "value": "∞",    "label": "Scale" }
+    {
+      "value": "2023",
+      "label": "Founded"
+    },
+    {
+      "value": "5",
+      "label": "Regions"
+    },
+    {
+      "value": "8",
+      "label": "Industries"
+    },
+    {
+      "value": "∞",
+      "label": "Scale"
+    }
   ],
   "offices": [
     {
